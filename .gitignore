@@ -1,0 +1,23 @@
+# Ignore Symfony 2 Caches
+/app/cache/*
+!app/cache/.gitkeep
+
+# Ignore Symfony 2 Logs
+/app/logs/*
+!app/logs/.gitkeep
+
+# Ignore Symfony 2 Local Config
+/app/phpunit.xml
+/app/config/parameters.yml
+/app/bootstrap.php.cache
+
+# Ignore Vendors & Executables
+/bin/
+/vendor/
+/web/bundles/
+
+# Ignore composer packages
+/composer.phar
+
+# Ignore IDE configs
+.idea
