@@ -10,4 +10,4 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 3e0197329281e3278dd3f6e15c83f0edda08d66d
-    compass_bin: /usr/bin/compass
+    compass_bin: /home/travis/.rvm/gems/ruby-2.2.1/bin/compass
