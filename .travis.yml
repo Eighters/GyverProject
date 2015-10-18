@@ -1,22 +1,36 @@
 language: php
 
 php:
-    - 5.3
+    - 5.5.9
 
 before_script:
+    # Set config files
     - cp app/config/parameters.yml.travis app/config/parameters.yml
+    - cp app/phpunit.travis.xml app/phpunit.xml
+
+    # Ruby dependency
+    - rvm install ruby-2.2.1
     - rvm use 2.2.1
     - bundle install
+
+    # Bower dependency
+    - npm install -g bower
     - bower install
+
+    # Php dependency
+    - composer self-update
     - composer install --no-progress --prefer-dist
+
+    # DataBase config
 #    - php app/console doctrine:database:create --env=test
 #    - php app/console doctrine:schema:create --env=test
 #    - php app/console doctrine:fixtures:load -n --env=test
+
+    # Compile Assets
     - php app/console cypress:compass:compile
-    - cp app/config/phpunit.xml.dist app/config/phpunit.xml.dist
 
 script:
-    - phpunit -c app/
+    - phpunit -c app/phpunit.xml
 
 notifications:
     email:
