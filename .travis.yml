@@ -4,16 +4,28 @@ php:
     - 5.3
 
 before_script:
-    - cp app/config/parameters.yml.travis app/config/parameters.yml
+    # Ruby dependency
+    - rvm install ruby-2.2.1
     - rvm use 2.2.1
     - bundle install
+
+    # Bower dependency
     - bower install
+
+    # Set config files
+    - cp app/config/phpunit.xml.dist app/config/phpunit.xml.dist
+    - cp app/config/parameters.yml.travis app/config/parameters.yml
+
+    # Php dependency
     - composer install --no-progress --prefer-dist
+
+    # DataBase config
 #    - php app/console doctrine:database:create --env=test
 #    - php app/console doctrine:schema:create --env=test
 #    - php app/console doctrine:fixtures:load -n --env=test
+
+    # Compile Assets
     - php app/console cypress:compass:compile
-    - cp app/config/phpunit.xml.dist app/config/phpunit.xml.dist
 
 script:
     - phpunit -c app/
