@@ -1,0 +1,26 @@
+{
+  "name": "gyver-project",
+  "version": "0.0.1",
+  "homepage": "git@github.com:TechGameCrew/ProG4.git",
+  "authors": [
+    "Thibaut Gauvin     <gauvin.Thibaut83@gmail.com>",
+    "Robin Billy        <rbilly.mail@gmail.com>",
+    "Romain Dalleaux    <dalleau.romain@gmail.com>",
+    "Romain Lesniak     <lesniak.romain@gmail.com>",
+    "Remy Koci          <remikoci@gmail.com>",
+    "Ralph Lewiz        <ralph.lewiz@gmail.com>",
+    "Alicia Belkovski   <abelkovskaya@gmail.com>",
+    "Brandon Beurion    <turgotbeurionbrandon@gmail.com>",
+    "Karim Tayeb        <tayeb.karims@gmail.com>",
+    "Guillaume Roche    <guilohm.roche@gmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "bower_components",
+    "web/vendor"
+  ],
+  "dependencies": {
+    "foundation": "~5.1.0"
+  }
+}
+

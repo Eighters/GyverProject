@@ -21,3 +21,17 @@
 
 # Ignore IDE configs
 .idea
+
+# Compass
+/app/Resources/sass/compiled
+/app/Resources/sass/.sass-cache
+
+# Bower
+/bower_components/
+
+# NPM
+/node_modules/
+/npm-debug.log
+
+# Keep all .gitkeep files
+!.gitkeep

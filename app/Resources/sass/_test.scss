@@ -1,0 +1,27 @@
+/* I use this file to make some tests */
+
+.pink {
+  color: $red-color;
+  background-color: $pink-color;
+  padding: $padding-basic * 4;
+  margin: $margin-basic * 2;
+}
+
+.red {
+  background-color: $red-color;
+}
+
+.white-smoke {
+  color: $white-smoke;
+}
+
+.again {
+  border: 2px solid $red-color;
+  border-radius: $margin-basic * 2;
+  padding: $padding-basic * 4;
+
+  .update {
+    color: $green-color;
+    font-size: $font-size-p;
+  }
+}
