@@ -1,4 +1,6 @@
-# Manual-Provisionning:
+# Manual-Provisioning:
+
+This commands was tested on Ubuntu 14.04 LTS and also work on other linux system 
 
 ## I) Clone The repository:
 * Check if you have git installed on your machine:
@@ -93,11 +95,3 @@ php composer.phar install
     ```
     php app/console cypress:compass:compile
     ```
-
-## Symfony 2 Documentation :
-
-* [Basic Tutorial Symfony 2 (Made a blog with Symfony 2)](http://keiruaprod.fr/symblog-fr/)
-* [Install Foundation with Sass](http://foundation.zurb.com/docs/sass.html)
-* [Fixtures Documentation](http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html)
-* [Migrations Documentation](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
-* [Writing tests with PHPUnit](http://phpunit.de/manual/current/en/writing-tests-for-phpunit.html)
