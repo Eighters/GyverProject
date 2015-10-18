@@ -5,8 +5,8 @@ php:
 
 before_script:
     # Set config files
-    - cp app/config/phpunit.xml.dist app/config/phpunit.xml.dist
-    - cp app/parameters.yml.travis app/parameters.yml
+    - cp app/phpunit.xml.dist app/phpunit.xml.dist
+    - cp app/config/parameters.yml.travis app/config/parameters.yml
 
     # Ruby dependency
     - rvm install ruby-2.2.1
