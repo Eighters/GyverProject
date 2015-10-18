@@ -5,8 +5,8 @@ php:
 
 before_script:
     # Set config files
-    - cp app/phpunit.xml.dist app/phpunit.xml.dist
     - cp app/config/parameters.yml.travis app/config/parameters.yml
+    - cp app/phpunit.travis.xml app/phpunit.xml
 
     # Ruby dependency
     - rvm install ruby-2.2.1
@@ -30,7 +30,7 @@ before_script:
     - php app/console cypress:compass:compile
 
 script:
-    - phpunit -c app/
+    - phpunit -c app/phpunit.xml
 
 notifications:
     email:
