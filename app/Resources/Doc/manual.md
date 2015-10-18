@@ -88,10 +88,15 @@ php composer.phar install
     
     > This will install bower for all project in your computer (-g flag) 
     > (Bower requires node, npm and git) 
-
-* You need to run this command every time you modify .scss files:
-    > You can start Developping FrontEnd Application using Sass and Foundation
     
+* Install Bower Dependency:              
+    ```
+    bower install
+    ```
+
+* It's Done you can start coding ! :D
+
+* You need to run this command every time you modify .scss files:    
     ```
     php app/console cypress:compass:compile
     ```
