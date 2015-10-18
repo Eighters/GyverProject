@@ -38,11 +38,18 @@ php composer.phar install
 
 ## 5) Install Gyver Project Libraries
 
-* [Install Ruby](https://www.ruby-lang.org/fr/documentation/installation/)
+* Install Ruby
+    ```
+    sudo apt-get install ruby
+    ```
+    
+* Install RVM (Ruby Version Manager)
+    ```
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    ```
 
-* [Install RVM (Ruby Version Manager)](https://rvm.io/rvm/install)
-
-* Use ruby 2.2.1 version with RVM:
+* Install & use ruby 2.2.1 version with RVM:
     ```
     $ rvm install 2.2.1
     $ rvm use 2.2.1
@@ -57,11 +64,6 @@ php composer.phar install
 * Install Bundler:
     ```
     gem install bundler
-    ```
-
-* Install net-ssh Packages:
-    ```
-    gem install net-ssh -v '3.0.1'
     ```
 
 * Install Ruby Project Dependency:
@@ -99,4 +101,10 @@ php composer.phar install
 * You need to run this command every time you modify .scss files:    
     ```
     php app/console cypress:compass:compile
+    ```
+
+* In case you want to say where compass bin is located:
+    ```
+    which compass
+    /home/thibaut/.rvm/gems/ruby-2.2.1/bin/compass
     ```

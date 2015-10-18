@@ -3,13 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %} | Gyver Project</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {# Stylesheets Block #}
         {% block stylesheets %}
             {{ include('::stylesheets.html.twig') }}
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
+        {# Body Block #}
         {% block body %}{% endblock %}
+        {# End Body #}
+
+        {# Javascript Block #}
         {% block javascripts %}
             {{  include('::javascripts.html.twig') }}
         {% endblock %}
