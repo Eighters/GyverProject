@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             # Application Bundle
-            new AppBundle\AppBundle(),
+            new GyverBundle\GyverBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

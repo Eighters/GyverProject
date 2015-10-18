@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace GyverBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class GyverBundle extends Bundle
 {
 }

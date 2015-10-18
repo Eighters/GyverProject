@@ -20,7 +20,7 @@
 /composer.phar
 
 # Ignore IDE configs
-.idea
+/.idea
 
 # Compass
 /app/Resources/sass/compiled
