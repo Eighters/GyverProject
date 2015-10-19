@@ -76,7 +76,7 @@ php composer.phar install
 * Check node and npm version:
     ```
     node -v
-    v0.12.7
+    v4.2.1
     ```
     ```
     npm -v
