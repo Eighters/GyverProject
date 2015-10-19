@@ -16,13 +16,13 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 
 * Git clone the repository:
     ```
-    git clone git@github.com:TechGameCrew/ProG4.git         --> use ssh protocol (need to generate SSH key)
-    git clone https://github.com/TechGameCrew/ProG4.git     --> use https protocol
+    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate SSH key)
+    git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol
     ```
 
 * Cd to the directory:
     ```
-    cd /ProG4
+    cd /GyverProject
     ```
 
 ## 2) Install Web Server, php, and MySql Packages:
