@@ -16,11 +16,15 @@
   ],
   "private": true,
   "ignore": [
+    "**/.*",
+    "node_modules",
     "bower_components",
-    "web/vendor"
+    "web/vendor",
+    "components"
   ],
   "dependencies": {
-    "foundation": "~5.1.0"
+    "foundation": "~5.1.0",
+    "font-awesome": "4.3.0"
   }
 }
 
