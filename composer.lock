@@ -4,107 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9494d80209459527ecad980bf2c916d3",
-    "content-hash": "24c5e1c458de16b8d9697bcfb70e8253",
+    "hash": "df60aea2231a56e88ec090d4369e0063",
+    "content-hash": "cdfd7d92335bb403fcbffbf32ab1fede",
     "packages": [
-        {
-            "name": "cypresslab/compass-elephant",
-            "version": "v0.2.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matteosister/CompassElephant.git",
-                "reference": "e3a1a10a44efaffc8c6395b0b18f10c009d9bf08"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/CompassElephant/zipball/e3a1a10a44efaffc8c6395b0b18f10c009d9bf08",
-                "reference": "e3a1a10a44efaffc8c6395b0b18f10c009d9bf08",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/finder": "~2.1",
-                "symfony/process": "~2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CompassElephant": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Matteo Giachino",
-                    "email": "matteog@gmail.com",
-                    "homepage": "https://github.com/matteosister/CypressTreeBundle/tree/develop",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A library to manage a compass project with PHP",
-            "homepage": "http://matteosister.github.com/CompassElephant",
-            "keywords": [
-                "compass",
-                "css",
-                "sass"
-            ],
-            "time": "2014-07-15 22:09:05"
-        },
-        {
-            "name": "cypresslab/compass-elephant-bundle",
-            "version": "v0.1.0",
-            "target-dir": "Cypress/CompassElephantBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matteosister/CompassElephantBundle.git",
-                "reference": "cad51d698293f715913733f2092986c68c6cee0e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/CompassElephantBundle/zipball/cad51d698293f715913733f2092986c68c6cee0e",
-                "reference": "cad51d698293f715913733f2092986c68c6cee0e",
-                "shasum": ""
-            },
-            "require": {
-                "cypresslab/compass-elephant": "0.2.*",
-                "php": ">=5.3.0",
-                "symfony/console": "~2.3",
-                "symfony/framework-bundle": "~2.3",
-                "symfony/http-kernel": "~2.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.3"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Cypress\\CompassElephantBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Matteo Giachino",
-                    "email": "matteog@gmail.com"
-                }
-            ],
-            "description": "Integrates CompassElephant into Symfony2",
-            "homepage": "https://github.com/matteosister/CompassElephantBundle",
-            "keywords": [
-                "assets",
-                "compass",
-                "css",
-                "sass",
-                "scss"
-            ],
-            "time": "2014-11-07 23:00:12"
-        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
@@ -1402,17 +1304,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v4.0.1",
+            "version": "v4.0.2",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "62d99ba41144e704300e40f755346553702b27c9"
+                "reference": "6f5d663a1a34b5116c69009895feb81fb37a8875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/62d99ba41144e704300e40f755346553702b27c9",
-                "reference": "62d99ba41144e704300e40f755346553702b27c9",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/6f5d663a1a34b5116c69009895feb81fb37a8875",
+                "reference": "6f5d663a1a34b5116c69009895feb81fb37a8875",
                 "shasum": ""
             },
             "require": {
@@ -1458,7 +1360,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-08-03 10:07:56"
+            "time": "2015-10-20 06:54:18"
         },
         {
             "name": "sensio/framework-extra-bundle",

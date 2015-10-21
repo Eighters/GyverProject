@@ -12,6 +12,10 @@
     </head>
 
     <body>
+        {% block header %}
+            {{ include('::header.html.twig') }}
+        {% endblock %}
+
         {# Body Block #}
         {% block body %}{% endblock %}
         {# End Body #}

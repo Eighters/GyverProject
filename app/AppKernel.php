@@ -19,7 +19,6 @@ class AppKernel extends Kernel
 
             // Assets management and Compass integration
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Cypress\CompassElephantBundle\CypressCompassElephantBundle(),
 
             // DBAL and ORM
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),

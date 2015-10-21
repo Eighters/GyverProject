@@ -16,20 +16,21 @@
 /vendor/
 /web/bundles/
 
-# Ignore composer packages
+# Ignore local composer packages
 /composer.phar
 
 # Ignore IDE configs
 /.idea
 
-# Compass
+# Ignore Compass
+/app/Resources/sass/*.css
 /app/Resources/sass/compiled
 /app/Resources/sass/.sass-cache
 
-# Bower
+# Ignore Bower vendor
 /bower_components/
 
-# NPM
+# Ignore NodeJs vendor
 /node_modules/
 /npm-debug.log
 

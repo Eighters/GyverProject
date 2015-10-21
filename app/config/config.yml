@@ -46,15 +46,6 @@ assetic:
     filters:
         cssrewrite: ~
 
-# Compass Elephant Configuration
-cypress_compass_elephant:
-    register_listener: false
-    compass_binary_path: %compass_bin%
-    compass_projects:
-        main:
-            path: %kernel.root_dir%/Resources/sass
-            config_file: config/config.rb
-
 # Doctrine Configuration
 doctrine:
     dbal:

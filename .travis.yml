@@ -27,7 +27,7 @@ before_script:
 #    - php app/console doctrine:fixtures:load -n --env=test
 
     # Compile Assets
-    - php app/console cypress:compass:compile
+    - compass watch
 
 script:
     - phpunit -c app/phpunit.xml

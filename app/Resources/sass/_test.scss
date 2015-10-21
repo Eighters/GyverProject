@@ -1,27 +1,21 @@
 /* I use this file to make some tests */
 
-.pink {
-  color: $red-color;
-  background-color: $pink-color;
-  padding: $padding-basic * 4;
-  margin: $margin-basic * 2;
-}
-
-.red {
-  background-color: $red-color;
-}
-
-.white-smoke {
-  color: $white-smoke;
-}
-
-.again {
+.test_sass {
   border: 2px solid $red-color;
-  border-radius: $margin-basic * 2;
-  padding: $padding-basic * 4;
+  margin-bottom: $margin-basic;
 
-  .update {
-    color: $green-color;
-    font-size: $font-size-p;
+  div {
+    text-align: center;
+    padding: $padding-basic * 2;
+
+    p {
+      color: black;
+    }
+
   }
+
+}
+
+.icon-bar .item image {
+    filter: invert(0);
 }
