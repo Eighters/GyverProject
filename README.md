@@ -2,6 +2,7 @@
 
 A powerfull project management platform tools, free for use for everyone.
 
+[![Build Status](https://travis-ci.org/TechGameCrew/GyverProject.svg)](https://travis-ci.org/TechGameCrew/GyverProject)
 
 
 
