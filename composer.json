@@ -1,8 +1,8 @@
 {
-    "name": "TechGameCrew/GyverProject",
+    "name": "tech-game-crew/gyver-project",
     "description": "A powerful project management platform tools, free for use for everyone made with Symfony 2 Framework",
     "license": "proprietary",
-    "type": "Student Project",
+    "type": "symfony-project",
     "autoload": {
         "psr-4": {
             "": "src/"
