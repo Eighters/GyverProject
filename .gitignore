@@ -36,3 +36,6 @@
 
 # Keep all .gitkeep files
 !.gitkeep
+
+# Ignore code coverage reports
+/gyver-report
