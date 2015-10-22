@@ -28,6 +28,7 @@ before_script:
 
     # Compile Assets
     - compass compile
+#    - php app/console assetic:dump
 
 script:
     - phpunit -c app/phpunit.xml
@@ -36,4 +37,3 @@ notifications:
     slack: techgamey2team1:yKi6SZOIGGUBHt3PcnkUSvG9
     email:
         - gauvin.thibaut83@gmail.com
-    
