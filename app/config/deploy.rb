@@ -5,11 +5,11 @@
 # ------------------------------------------------------------------------------
 # 1. Servers config
 # ------------------------------------------------------------------------------
-set :application, "GyverProject"
-set :domain,      "104.233.80.186"
-set :deploy_to,   "/home/app/GyverProject"
+set :application, "%server_project_name%"
+set :domain,      "%server_address%"
+set :user,        "%server_user%"
+set :deploy_to,   "%server_project_path%"
 set :app_path,    "app"
-set :user,        "user"
 role :web,        domain
 role :app,        domain, :primary => true
 
