@@ -10,7 +10,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `sudo apt-get install git`
     
     Check if you have git installed on your machine:  
-    ```
+    ```bash
     git --version  
     git version 1.9.1
     ```
@@ -19,7 +19,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `sudo apt-get install nginx -y`
     
     Then, setup server config:  
-    ```
+    ```bash
     cd /etc/nginx/sites-available
     cp default default.backup
     sudo nano default
@@ -64,7 +64,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `sudo apt-get install php5-fpm php5-cli php5-mysql php5-intl php5-curl -y`
 
 * **Configure PHP:**  
-    ```
+    ```bash
     # Go to php cli directory
     cd /etc/php5/clI
     
@@ -80,7 +80,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     ```
     
     Set the date timezone:  
-    ```
+    ```ini
     ;date.timezone =
     date.timezone = "Europe/Paris"
     ```
@@ -93,7 +93,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]`
 
 * **Install RVM (Ruby Version Manager):**  
-    ```
+    ```bash
     # Import key
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
     
@@ -102,13 +102,13 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     ```
     
     Check if rvm is installed:  
-    ```
+    ```bash
     rvm -v
     rvm 1.26.11 (latest)
     ```
 
 * **Intall & Use ruby v2.2.1 with RVM:**  
-    ```
+    ```bash
     # Install
     rvm install 2.2.1
     
@@ -117,7 +117,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     ```
 
 * **Install NodeJs:**
-    ```
+    ```bash
     sudo apt-get install python-software-properties python g++ make
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
@@ -125,18 +125,18 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     ```
     
     Check Nodejs Version
-    ```
+    ```bash
     node -v
     v0.10.37
     ```
 
 * **Install Bower for all project:**
-    ```
+    ```bash
     sudo npm install -g bower
     ```
     
     Check bower Version
-    ```
+    ```bash
     bower -v
     1.6.3
     ```
@@ -144,7 +144,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 ## II) Build the GyverProject baby yeah:
 
 * **Clone the Repository:**  
-    ```
+    ```bash
     git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate SSH Key)
     git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol
     ```
@@ -172,7 +172,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `compass compile`
  
 * **Give Read, Write and Execute privilege to Cache & log directory**
-    ```
+    ```bash
     sudo chmod 777 -R app/cache/
     sudo chmod 777 -R app/logs/
     ```
