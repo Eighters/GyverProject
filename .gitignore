@@ -39,3 +39,6 @@
 
 # Ignore code coverage reports
 /gyver-report
+
+# Capifony local config
+app/config/deploy.rb

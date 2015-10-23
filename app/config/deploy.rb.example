@@ -3,26 +3,26 @@
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 1. Servers config
+# 1. Server Config
 # ------------------------------------------------------------------------------
-set :application, "%server_project_name%"
-set :domain,      "%server_address%"
-set :user,        "%server_user%"
-set :deploy_to,   "%server_project_path%"
+set :application, "Your application name"
+set :domain,      "Url of your remote server"
+set :user,        "User on your remote server"
+set :deploy_to,   "Path where your application is clonned"
 set :app_path,    "app"
 role :web,        domain
 role :app,        domain, :primary => true
 
 # ------------------------------------------------------------------------------
-# 2. Git config
+# 2. Git Config
 # ------------------------------------------------------------------------------
-set :repository,        "git@github.com:TechGameCrew/GyverProject.git"
+set :repository,        "Git address of your project"
 set :scm,               :git
 set :deploy_via,        :copy
 set :keep_releases,     5
 
 # ------------------------------------------------------------------------------
-# 3. Symfony config
+# 3. Symfony Config
 # ------------------------------------------------------------------------------
 set :shared_files,      ["app/config/parameters.yml"]
 set :writable_dirs,     ["app/cache", "app/logs"]
@@ -35,7 +35,7 @@ set :use_sudo,          false
 # set :dump_assetic_assets, true
 
 # ------------------------------------------------------------------------------
-# 3. Other config
+# 3. Other Config
 # ------------------------------------------------------------------------------
 # Resolve error message sudo : no tty present and no askpass program specified
 default_run_options[:pty] = true
