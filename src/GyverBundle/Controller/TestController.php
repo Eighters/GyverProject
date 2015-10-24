@@ -29,7 +29,7 @@ class TestController extends Controller
     public function sendEmailAction(Request $request)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('New Event Alert From MonitEasy')
+            ->setSubject('New Event From Gyver Project')
             ->setFrom('Notifications@GyverProject.com')
             ->setTo('gauvin.thibaut83@gmail.com')
             ->setBody($this->renderView('email/email.txt.twig'));
