@@ -22,10 +22,12 @@
 # Ignore IDE configs
 /.idea
 
-# Ignore Compass
+# Ignore Compass & asset
 /app/Resources/sass/*.css
 /app/Resources/sass/compiled
 /app/Resources/sass/.sass-cache
+/web/assets/css
+/web/js
 
 # Ignore Bower vendor
 /bower_components/

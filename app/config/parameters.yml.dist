@@ -5,9 +5,13 @@ parameters:
     database_name: gyver_project
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+
+    # Catch email with mailcatcher (port 1025)
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_port:       1025
+    mailer_user:       ~
+    mailer_password:   ~
+
     # Change This Token
     secret: 3e0197329281e3278dd3f6e15c83f0edda08d66d
