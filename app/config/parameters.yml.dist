@@ -1,15 +1,16 @@
 # This file is auto-generated during the composer install
 parameters:
+    # Database Config
     database_host: 127.0.0.1
     database_port: null
     database_name: gyver_project
     database_user: root
     database_password: null
 
-    # Catch email with mailcatcher (port 1025)
+    # Email Config
     mailer_transport:  smtp
-    mailer_host:       localhost
-    mailer_port:       1025
+    mailer_host:       ~
+    mailer_port:       ~
     mailer_user:       ~
     mailer_password:   ~
 

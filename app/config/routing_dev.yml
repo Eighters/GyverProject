@@ -10,6 +10,7 @@ _configurator:
     resource: "@SensioDistributionBundle/Resources/config/routing/webconfigurator.xml"
     prefix:   /_configurator
 
+# To be able to see custom error page in dev mode
 _errors:
     resource: "@TwigBundle/Resources/config/routing/errors.xml"
     prefix:   /_error
@@ -20,8 +21,3 @@ _main:
 _assetic:
     resource: .
     type:     assetic
-
-# To be able to see custom error page in dev mode
-_errors:
-    resource: "@TwigBundle/Resources/config/routing/errors.xml"
-    prefix:   /_error

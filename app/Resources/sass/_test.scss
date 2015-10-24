@@ -1,17 +1,18 @@
 /* I use this file to make some tests */
 
-.test_sass {
-  border: 2px solid $red-color;
+.base-bg {
   margin-bottom: $margin-basic;
+  border-radius: $margin-basic / 2;
 
-  div {
-    text-align: center;
-    padding: $padding-basic * 2;
+    div {
+      text-align: center;
+      padding: $padding-basic * 2;
 
-    p {
-      color: black;
+      p {
+        color: $dark-color-primary;
+        font-weight: bold;
+        font-size: $font-size-p;
+      }
+
     }
-
-  }
-
 }

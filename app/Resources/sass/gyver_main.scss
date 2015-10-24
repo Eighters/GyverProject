@@ -1,5 +1,9 @@
+/* Base File */
 @import "../../../vendor/foundation/scss/foundation";
 @import "icon";
 @import "base";
+@import "reset";
 
+/* App File */
+@import "flashMessage";
 @import "test";

@@ -16,11 +16,18 @@
             {{ include('::header.html.twig') }}
         {% endblock %}
 
+        {% block flashMessage %}
+            {{ include('::flashMessage.html.twig') }}
+        {% endblock %}
+
         {# Body Block #}
         {% block body %}{% endblock %}
         {# End Body #}
 
-        {# Javascript Block #}
+        {% block footer %}
+            {{ include('::footer.html.twig') }}
+        {% endblock %}
+
         {% block javascripts %}
             {{  include('::javascripts.html.twig') }}
         {% endblock %}

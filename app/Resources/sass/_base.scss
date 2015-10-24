@@ -1,14 +1,18 @@
 /* Base Color */
-$green-color: #00C552;
-$red-color: #D02121;
-$pink-color: #FF009C;
-$white-smoke: #DCDCDC;
+$dark-color-primary: #065159 !default;;
+$primary-color: #0091AB !default;;
+$light-color-primary: #90EAF4 !default;;
+$text-icons: #FFF !default;;
+$accent-color: #E3A63A !default;;
 
 /* Base Margin, Padding*/
-$margin-basic: 10px;
-$padding-basic: 5px;
+$margin-basic: 20px;
+$padding-basic: 10px;
 
 /* Font */
 $font-size-title: 35px;
-$font-size-p: 15px;
-$font-space: 2px;
+$font-size-p: 18px;
+$font-space: 3px;
+
+/* BackGround Color */
+$base-bg-color: $light-color-primary;
