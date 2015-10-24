@@ -46,8 +46,8 @@ assetic:
 
 swiftmailer:
     # MailCatcher Config
-    transport: smtp
-    host: 'localhost'
-    port: 1025
-    username: null
-    password: null
+    transport: %mailcatcher_transport%
+    host: %mailcatcher_host%
+    port: %mailcatcher_port%
+    username: %mailcatcher_user%
+    password: %mailcatcher_user%

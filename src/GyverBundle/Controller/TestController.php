@@ -54,7 +54,7 @@ class TestController extends Controller
     {
         $this->addFlash(
             $type,
-            $type . ' Flash Message Sample'
+            ucfirst($type) . ' Flash Message Sample'
         );
 
         return $this->render('default/testPage.html.twig');
