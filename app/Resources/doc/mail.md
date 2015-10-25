@@ -24,3 +24,5 @@ In order to develop email features, this tools is here to help developer.
     `mailcatcher`
     
 * **Go to MailCatcher Homepage [localhost:1080](http://localhost:1080)**
+
+* **To quit MailCatcher, Go to the web interface**
