@@ -56,7 +56,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     `sudo service nginx restart`
     
 * **Install HTTP server, Apache 2:**
-    * Pour installer un serveur Apache 2 sur votre machine, vous pouvez suivre ce tutoriel, très bien rédigé et testé par mes soins : [Installer un serveur apache2] (http://www.petit-laboratoire-de-graphisme-potentiel.com/tutoriels/installer-serveur-developpement-apache2-php5.html)
+    * To install an Apache 2 server on your machine, you can follow this tutorial, very well written and tested by myself : [Installer un serveur apache2] (http://www.petit-laboratoire-de-graphisme-potentiel.com/tutoriels/installer-serveur-developpement-apache2-php5.html)
 
 * **Install MySql client & server:**  
     `sudo apt-get install mysql-server mysql-client -y`
