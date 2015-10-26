@@ -157,10 +157,13 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 
 * **Download Composer.phar package:**  
     /!\ You need CURL to be able to run this command /!\  
-    `curl -sS https://getcomposer.org/installer | php`
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
     
 * **Install PHP vendors library (Symfony Core, Doctrine ORM, SwiftMailer ...):**  
-    `php composer.phar install`   
+    `composer install`   
      
 * **Install Bundler into your project directory:**  
     `gem install bundler`
