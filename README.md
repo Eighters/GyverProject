@@ -21,8 +21,7 @@ This project is currently a school project and closed to external contributors. 
 Quality is fundamental for us. We constantly use tools to check the quality of the project. All results are freely available and searchable below.
 
 [![Build Status](https://travis-ci.org/TechGameCrew/GyverProject.svg)](https://travis-ci.org/TechGameCrew/GyverProject)
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25/small.png)](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25/mini.png)](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25)
 
 ## Documentation
 
