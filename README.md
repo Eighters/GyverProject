@@ -10,7 +10,7 @@ We made it simple and user friendly : no useless tools, just what you need to ma
  * Technical Manager: [Thibaut-gauvin](https://github.com/Thibaut-gauvin)
  * Quality Manager: [TazKilla](https://github.com/TazKilla)
  * Risk Manager: [aliciabelk](https://github.com/aliciabelk)
- * Developers: [Krocodeal](https://github.com/Krocodeal) [ktayeb94](https://github.com/ktayeb94) [lewiz88](https://github.com/lewiz88) [Rlsnk](https://github.com/Rlsnk) [Rowmain](https://github.com/Rowmain)
+ * Developers: [Krocodeal](https://github.com/Krocodeal), [ktayeb94](https://github.com/ktayeb94), [lewiz88](https://github.com/lewiz88), [Rlsnk](https://github.com/Rlsnk), [Rowmain](https://github.com/Rowmain)
 
 ## Contribute
 
