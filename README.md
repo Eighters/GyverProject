@@ -5,12 +5,12 @@ Written with Symfony, it provides powerful and stable tools for all your project
 We made it simple and user friendly : no useless tools, just what you need to manage your projects.
 
 * Team :
- * Product Owner: [Brandon-Beurion]()
- * Scrum Master: [RobinBilly]()
- * Technical Manager: [Thibaut-gauvin]()
- * Quality Manager: [TazKilla]()
- * Risk Manager: [aliciabelk]()
- * Developers: [Krocodeal]() [ktayeb94]() [lewiz88]() [Rlsnk]() [Rowmain]()
+ * Product Owner: [Brandon-Beurion](https://github.com/Brandon-Beurion)
+ * Scrum Master: [RobinBilly](https://github.com/RobinBilly)
+ * Technical Manager: [Thibaut-gauvin](https://github.com/Thibaut-gauvin)
+ * Quality Manager: [TazKilla](https://github.com/TazKilla)
+ * Risk Manager: [aliciabelk](https://github.com/aliciabelk)
+ * Developers: [Krocodeal](https://github.com/Krocodeal) [ktayeb94](https://github.com/ktayeb94) [lewiz88](https://github.com/lewiz88) [Rlsnk](https://github.com/Rlsnk) [Rowmain](https://github.com/Rowmain)
 
 ## Contribute
 
