@@ -1,4 +1,4 @@
-# VERSION:		  0.1
+# VERSION:		  1
 # DESCRIPTION:	  Create the env for the project
 # AUTHOR:		  Gauvin Thibaut  <gauvin.thibaut83@gmail.com>
 # COMMENTS:
@@ -18,21 +18,15 @@
 #   docker exec -ti <hashContainerID> bash -l
 #
 
-FROM ubuntu:14.04
+FROM rhyu/ubuntu:latest
+ENV TERM linux
 MAINTAINER Gauvin Thibaut
 
 
 
 # Base
 RUN apt-get update && apt-get install -y \
-  git \
-  curl \
-  multitail \
-  htop \
-  nano \
   nginx \
-  python-software-properties \
-  software-properties-common \
   python \
   php5-fpm \
   php5-cli \
@@ -40,7 +34,8 @@ RUN apt-get update && apt-get install -y \
   php5-json \
   php5-intl \
   php5-curl \
-  build-essential
+  dialog \
+  net-tools
 
 
 
@@ -83,28 +78,26 @@ RUN /bin/bash -l -c "rvm use 2.2.1"
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php
-RUN chmod +x composer.phar \
+RUN chmod +x composer.phar
 RUN mv composer.phar /usr/local/bin/composer
 
 
 
-
-# Install Dep & compile asset:
-# RUN gem install bundler
-# RUN cd /home/app && \
-#   bundle install && \
-#   bower install && \
-#   compass compile
-
+# Install dep & compile assets
+# RUN /bin/bash -l -c "gem install bundler"
+# RUN /bin/bash -l -c "cd /home/app && composer install"
+# RUN /bin/bash -l -c "cd /home/app && bundle install"
+# RUN /bin/bash -l -c "cd /home/app && bower install"
+# RUN /bin/bash -l -c "cd /home/app && compass compile"
 
 
-ADD app/config/docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+
+# ADD app/config/docker/entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 EXPOSE 999
 VOLUME ["/home/app"]
 WORKDIR /home/app
+# USER [user]
 
-
-
-# ENTRYPOINT ["/entrypoint.sh"]
+# CMD ["./entrypoint.sh"]
