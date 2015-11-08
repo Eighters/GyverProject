@@ -12,7 +12,7 @@
 #	docker build -t GyverProject .
 #
 #   # Run container in daemon mode & Open port 999 & Mount shared directory :
-#   docker run -ti -d -p 999:80 --name GyverProject -v /path/to/code/local:/home/app GyverProject
+#   docker run -d -p 999:80 --name GyverProject -v /path/to/code/local:/home/app GyverProject
 #
 #   # Connect to running container :
 #   docker exec -ti <hashContainerID> bash -l
@@ -26,6 +26,7 @@ MAINTAINER Gauvin Thibaut
 
 # Base
 RUN apt-get update && apt-get install -y \
+  bash \
   nginx \
   python \
   php5-fpm \
@@ -83,21 +84,15 @@ RUN mv composer.phar /usr/local/bin/composer
 
 
 
-# Install dep & compile assets
-# RUN /bin/bash -l -c "gem install bundler"
-# RUN /bin/bash -l -c "cd /home/app && composer install"
-# RUN /bin/bash -l -c "cd /home/app && bundle install"
-# RUN /bin/bash -l -c "cd /home/app && bower install"
-# RUN /bin/bash -l -c "cd /home/app && compass compile"
-
-
-
-# ADD app/config/docker/entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
+ADD app/config/docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 999
-VOLUME ["/home/app"]
-WORKDIR /home/app
-# USER [user]
+EXPOSE 1080
+EXPOSE 1025
 
-# CMD ["./entrypoint.sh"]
+VOLUME ["/home/app"]
+
+#   Example:
+#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 --name gyverproject -v /home/app/php/GyverProject:/home/app app
+#   docker exec -ti <Container ID> bash -l
