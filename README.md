@@ -28,6 +28,7 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 [Github Wiki](https://github.com/TechGameCrew/GyverProject/wiki)
 
 * [Symfony 2 Help & Documentation](app/Resources/doc/symfonyDoc.md)
+* [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 * [Manual Provisioning](app/Resources/doc/manual.md)
 * [Tests](app/Resources/doc/test.md)
 * [F.A.Q](app/Resources/doc/faq.md)
@@ -35,10 +36,3 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 ## Licence
 
 Code released under [GLPv2](https://github.com/TechGameCrew/GyverProject/blob/master/LICENSE)
-
-
-
-
-
-
-
