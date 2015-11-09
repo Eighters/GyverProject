@@ -38,12 +38,10 @@ class DefaultController extends Controller
      * @Route("/test/db", name="test_db")
      * @Method("GET")
      */
-    public function testDb(Request $request)
+    public function testDbAction(Request $request)
     {
-        var_dump('fzeighoe'); die;
         $userRepository = $this->getDoctrine()->getRepository('GyverBundle:User');
-        $users = $userRepository->findAll();
-
+        $userRepository->findAll();
 
         return $this->render('default/user.html.twig');
     }
@@ -54,7 +52,7 @@ class DefaultController extends Controller
      * @Route("/test/user", name="test_pop_db")
      * @Method("GET")
      */
-    public function popUserDb(Request $request)
+    public function popUserDbAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
