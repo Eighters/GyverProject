@@ -3,6 +3,7 @@
 namespace GyverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -38,7 +39,16 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=80)
+     *
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 80,
+     *      minMessage = "Your password must be at least {{ limit }} characters long",
+     *      minMessage = "Your password cannot be longer than {{ limit }} characters long"
+     * )
+     *
+     * @Assert\NotNull()
      */
     private $password;
 
@@ -53,6 +63,20 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Your email must be at least {{ limit }} characters long",
+     *      minMessage = "Your email cannot be longer than {{ limit }} characters long"
+     * )
+     *
+     * @Assert\NotNull()
+     *
+     * @Assert\Email(
+     *      message = "The email '{{ value }}' is not a valid email.",
+     *      checkMX = true
+     * )
      */
     private $email;
 
@@ -218,4 +242,3 @@ class User
         return $this->phone;
     }
 }
-
