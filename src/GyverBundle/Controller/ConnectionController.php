@@ -14,8 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Tests\User\UserTest;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class ConnectionController
@@ -28,41 +26,41 @@ class ConnectionController extends Controller
 {
 
     /**
+     * Login view render and authentication function.
+     *
      * @param Request $request
+     * @return render
      *
      * @Route("/login", name="login_form")
      * @Method("GET|POST")
      */
-
     public function renderConnectionFormAction(Request $request)
     {
+        // Verify if user is already authenticated
         $session = $request->getSession();
         if(!$session->has("user")) {
 
-            $user = new User();
-            $form = $this->createFormBuilder($user)
+            // User not connected, creating the login form.
+            $form = $this->createFormBuilder(new User())
                 ->add('email', 'email')
                 ->add('password', 'password')
                 ->add('Connexion', 'submit', array('label' => 'Login'))
                 ->getForm();
-
+            // Listening for login request
             $form->handleRequest($request);
 
+            /*
+             * Checking if the login form is valid
+             * If valid, checking params validity.
+             */
             if ($form->isValid()) {
-                $email = $form->get('email')->getData();
-                $password = $form->get('password')->getData();
+                $user = $this->authenticateUser($form->get('email')->getData(), $form->get('password')->getData());
 
-                try {
-                    $userRepository = $this->getDoctrine()->getRepository('GyverBundle:User');
-                    $user = $userRepository->findOneBy(
-                        array("email" => $email, "password" => $password)
-                    );
-                } catch (Exception $e) {
-                    ThrowException($e);
-                }
-
+                /*
+                 * If user exists, creating session and redirect to dashboard.
+                 * Else, return an error message
+                 */
                 if ($user) {
-
                     $session->set("user", $user);
                     $session->getFlashBag()->add("success", "User connected");
                     return $this->render('default/index.html.twig');
@@ -70,16 +68,43 @@ class ConnectionController extends Controller
                     $session->getFlashBag()->add("error", "Identifiant ou mot de passe invalide !");
             }
 
+            // Rendering login form by default
             return $this->render('connection/form_login.html.twig', array(
                 'form' => $form->createView()
             ));
-
         }
 
+        // User already authenticated, redirect him to his dashboard
         return $this->render('default/index.html.twig');
-
     }
 
+    /**
+     * Authenticate a user with is email and password.
+     * Checking if the user exists in database.
+     * If user exists return the User object, else return null.
+     *
+     * @param $email
+     * @param $password
+     * @return User
+     */
+    private function authenticateAction($email, $password)
+    {
+        // Initialize user
+        $user = null;
+
+        // Searching for the user
+        try {
+            $userRepository = $this->getDoctrine()->getRepository('GyverBundle:User');
+            $user = $userRepository->findOneBy(
+                array("email" => $email, "password" => $password)
+            );
+        } catch (Exception $e) {
+            ThrowException($e);
+        }
+
+        // Return user
+        return $user;
+    }
 
 
 }
