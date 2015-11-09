@@ -87,7 +87,7 @@ class ConnectionController extends Controller
      * @param $password
      * @return User
      */
-    private function authenticateAction($email, $password)
+    private function authenticateUser($email, $password)
     {
         // Initialize user
         $user = null;
