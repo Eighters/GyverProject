@@ -4,19 +4,35 @@
 # COMMENTS:
 #	This file describes how to build environment for the Gyver Project.
 #	It is a Symfony 2.7.6 Project and we use :
-#	PHP (of course), Foundation, Sass, Compass, Nginx & Bower
+#	PHP (of course), Foundation, Sass, Compass, Nginx & Bower, NodeJs & Ruby
 #	Tested on Ubuntu 14.04
 #
-# USAGE:
+#
+# FIRST USAGE:
 #	# Build GyverProject image :
-#	docker build -t GyverProject .
+#	docker build -t base_image .
 #
-#   # Run container in daemon mode & Open port 999 & Mount shared directory :
-#   docker run -d -p 999:80 --name GyverProject -v /path/to/code/local:/home/app GyverProject
+#   # Run container :
+#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 --name gyverproject -v /path/to/your/project:/home/app base_image
 #
-#   # Connect to running container :
-#   docker exec -ti <hashContainerID> bash -l
+#   # Connect running container :
+#   docker exec -ti <Container ID> bash -l
 #
+#   # Setup project dependencies :
+#   ./entrypoint.sh
+#
+#
+# ON EVERY REBOOT
+#   # Starting stopped container :
+#   docker start <Container ID>
+#
+#   # Connect running container :
+#   docker exec -ti <Container ID> bash -l
+#
+#   # Start Process :
+#   ./gyver.sh
+#
+
 
 FROM rhyu/ubuntu:latest
 ENV TERM linux
@@ -87,12 +103,16 @@ RUN mv composer.phar /usr/local/bin/composer
 ADD app/config/docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+ADD app/config/docker/gyver.sh /gyver.sh
+RUN chmod +x /gyver.sh
+
+
+
 EXPOSE 999
 EXPOSE 1080
 EXPOSE 1025
 
 VOLUME ["/home/app"]
 
-#   Example:
-#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 --name gyverproject -v /home/app/php/GyverProject:/home/app app
-#   docker exec -ti <Container ID> bash -l
+#   docker run -ti -d --name gyver_mysql -e MYSQL_ROOT_PASSWORD=mypassword mysql:latest
+#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 -p 3307:3306 --link gyver_mysql:mysql --name gyverproject -v /home/app/php/GyverProject:/home/app app

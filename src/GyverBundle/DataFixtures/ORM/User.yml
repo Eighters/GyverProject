@@ -1,0 +1,32 @@
+GyverBundle\Entity\User:
+    user (template):
+        lastName: ~
+        firstName: ~
+        password: ~
+        salt: ~
+        email: ~
+        phone: ~
+
+    user1 (extends user):
+        lastName: thibaut
+        firstName: gauvin
+        password: password
+        salt: KK1J8M
+        email: thibaut@test.fr
+        phone: 0123456789
+
+    user2 (extends user):
+        lastName: guillaume
+        firstName: roche
+        password: password
+        salt: 4GLK1
+        email: guillaume@test.fr
+        phone: 0123456789
+
+    user3 (extends user):
+        lastName: dimitri
+        firstName: fruit
+        password: password
+        salt: 98S3M
+        email: dimitri@test.fr
+        phone: 0123456789

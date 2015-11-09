@@ -41,6 +41,16 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%dev_database_host%"
+        port:     "%dev_database_port%"
+        dbname:   "%dev_database_name%"
+        user:     "%dev_database_user%"
+        password: "%dev_database_password%"
+
 assetic:
     use_controller: true
 

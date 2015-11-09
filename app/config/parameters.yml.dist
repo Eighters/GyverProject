@@ -1,11 +1,25 @@
 # This file is auto-generated during the composer install
 parameters:
-    # Database Config
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: gyver_project
-    database_user: root
-    database_password: null
+    # Database Config PROD
+    prod_database_host:     ~
+    prod_database_port:     ~
+    prod_database_name:     ~
+    prod_database_user:     ~
+    prod_database_password: ~
+    
+    # Database Config DEV
+    dev_database_host:      127.0.0.1
+    dev_database_port:      3307
+    dev_database_name:      gyver_project
+    dev_database_user:      root
+    dev_database_password:  titi
+    
+    # Database Config TEST
+    test_database_host:     127.0.0.1
+    test_database_port:     3306
+    test_database_name:     gyver_project
+    test_database_user:     root
+    test_database_password: titi
 
     # Email Prod Config
     mailer_transport:  ~

@@ -66,10 +66,10 @@ More infos :
 Before, you need to git clone clone the GyverProject repository & cd to the project.
 
 * **1° Build GyverProject image :**  
-    `docker build -t <Container Name> .`
+    `docker build -t <Image Name> .`
   
 * **2° Run container :**  
-    `docker run -ti -d -p 999:80 -p 1080:1080 --name gyverproject -v /path/to/code/local:/home/app <Image Name>`
+    `docker run -ti -d -p 999:80 --name gyverproject -v /path/to/code/local:/home/app <Image Name>`
  
  docker run option :
     * **-ti**: run container in interactive mode  
@@ -87,19 +87,7 @@ Before, you need to git clone clone the GyverProject repository & cd to the proj
  
 * **4° Build the Project :**  
     ```
-    composer install
-    bundle install
-    bower install --allow-root
-    mailcatcher
-    compass compile
-    sudo chmod 777 -R app/cache
-    sudo chmod 777 -R app/log
-    ```
- 
-* **5° Start Nginx & Php5 Process :**  
-    ```
-    nginx
-    php5-fpm
+    ./entrypoint.sh
     ```
  
 * **6° Exit Container :**  
@@ -115,28 +103,9 @@ Once your have successfully build the project one time, when you restart your co
 * **Start container :**  
     `docker start <CONTAINER ID>`
 
-* **Connect to running container & start Nginx & Php5-fpm process :**  
+* **Connect to running container :**  
     `docker exec -ti <CONTAINER ID> bash -l`
-    `nginx`
-    `php5-fpm`
+    `./gyver.sh`
     `exit`
- 
- Example :
-    ```
-    thibaut@thibaut-UX32VD:/home/app/php/GyverProject (master)$ docker ps -a
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
-    7421597cd17d        app:latest          "/bin/bash"         22 hours ago        Exited (0) 8 seconds ago                       gyverproject        
-    thibaut@thibaut-UX32VD:/home/app/php/GyverProject (master)$ docker start 7421597cd17d 
-    7421597cd17d9da7d5719ff920d2b6f1eaac775f35f6f77db5d609a34b6328e0
-    thibaut@thibaut-UX32VD:/home/app/php/GyverProject (master)$ docker exec -ti 7421597cd17d bash -l
-    root@7421597cd17d:/home/app# 
-    root@7421597cd17d:/home/app# nginx
-    root@7421597cd17d:/home/app# 
-    root@7421597cd17d:/home/app# php5-fpm 
-    root@7421597cd17d:/home/app# 
-    root@7421597cd17d:/home/app# exit
-    logout
-    thibaut@thibaut-UX32VD:/home/app/php/GyverProject (master)$ 
-    ```
  
 * **Your done [here](http://localhost:999) !**
