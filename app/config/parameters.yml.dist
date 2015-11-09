@@ -9,17 +9,17 @@ parameters:
     
     # Database Config DEV
     dev_database_host:      127.0.0.1
-    dev_database_port:      3307
+    dev_database_port:      3306
     dev_database_name:      gyver_project
     dev_database_user:      root
-    dev_database_password:  titi
+    dev_database_password:  ~
     
     # Database Config TEST
     test_database_host:     127.0.0.1
     test_database_port:     3306
-    test_database_name:     gyver_project
+    test_database_name:     gyver_project_test
     test_database_user:     root
-    test_database_password: titi
+    test_database_password: ~
 
     # Email Prod Config
     mailer_transport:  ~

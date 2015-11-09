@@ -30,7 +30,7 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-        if ($this->container->getParameter('kernel.environment') == 'dev') {
+        if ($this->container->getParameter('kernel.environment') == 'test') {
             $files = array(
                 __DIR__.'/User.yml',
             );
