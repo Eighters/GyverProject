@@ -14,12 +14,6 @@ security:
         class: GyverBundle:User
         property: username
 
-    in_memory:
-      memory:
-        users:
-          user: { password: userpass, roles: [ 'ROLE_USER' ] }
-          admin: { password: adminpass, roles: [ 'ROLE_USER' ] }
-
   firewalls:
     dev:
       pattern: (_(profiler|wdt)|css|images|js)/
@@ -28,7 +22,7 @@ security:
     main:
       pattern: ^/
       anonymous: true
-      provider: in_memory
+      provider: main_provider
       form_login:
         login_path: login
         check_path: login_check
