@@ -1,24 +1,37 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
+  encoders:
+    Symfony\Component\Security\Core\User\User: plaintext
+    GyverBundle\Entity\User: plaintext
 
-    firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+  role_hierarchy:
+    ROLE_ADMIN: ROLE_USER
+    ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+  providers:
+    main_provider:
+      entity:
+        class: GyverBundle:User
+        property: username
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+    in_memory:
+      memory:
+        users:
+          user: { password: userpass, roles: [ 'ROLE_USER' ] }
+          admin: { password: userpass, roles: [ 'ROLE_USER' ] }
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+  firewalls:
+    dev:
+      pattern: (_(profiler|wdt)|css|images|js)/
+      security: false
+
+    main:
+      pattern: ^/
+      anonymous: true
+      provider: main_provider
+      form_login:
+        login_path: login
+        check_path: login_check
+      logout:
+        path: logout
+        target: /login
