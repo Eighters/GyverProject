@@ -3,14 +3,15 @@
 namespace GyverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="GyverBundle\Repository\UserRepository")
+ * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -24,16 +25,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
-    private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=255)
-     */
-    private $firstName;
+    private $username;
 
     /**
      * @var string
@@ -50,18 +44,11 @@ class User
     private $salt;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="roles", type="array")
      */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="phone", type="string", length=255)
-     */
-    private $phone;
+    private $roles;
 
 
     /**
@@ -75,51 +62,27 @@ class User
     }
 
     /**
-     * Set lastName
+     * Set username
      *
-     * @param string $lastName
+     * @param string $username
      *
      * @return User
      */
-    public function setLastName($lastName)
+    public function setUsername($username)
     {
-        $this->lastName = $lastName;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get username
      *
      * @return string
      */
-    public function getLastName()
+    public function getUsername()
     {
-        return $this->lastName;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
+        return $this->username;
     }
 
     /**
@@ -171,51 +134,32 @@ class User
     }
 
     /**
-     * Set email
+     * Set roles
      *
-     * @param string $email
+     * @param array $roles
      *
      * @return User
      */
-    public function setEmail($email)
+    public function setRoles($roles)
     {
-        $this->email = $email;
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get roles
      *
-     * @return string
+     * @return array
      */
-    public function getEmail()
+    public function getRoles()
     {
-        return $this->email;
+        return $this->roles;
     }
 
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     *
-     * @return User
-     */
-    public function setPhone($phone)
+    public function eraseCredentials()
     {
-        $this->phone = $phone;
 
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
     }
 }
 
