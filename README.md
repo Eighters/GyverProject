@@ -28,9 +28,10 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 [Github Wiki](https://github.com/TechGameCrew/GyverProject/wiki)
 
 * [Symfony 2 Help & Documentation](app/Resources/doc/symfonyDoc.md)
-* [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 * [Manual Provisioning](app/Resources/doc/manual.md)
+* [Use Mailcatcher](app/Resources/doc/mail.md)
 * [Tests](app/Resources/doc/test.md)
+* [Docker Provisioning (Not Ready Yet)](app/Resources/doc/docker.md)
 * [F.A.Q](app/Resources/doc/faq.md)
 
 ## Licence
