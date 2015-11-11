@@ -1,0 +1,24 @@
+GyverBundle\Entity\User:
+    user (template):
+        password: ~
+        salt: ~
+        username: ~
+        roles: ~
+
+    user1 (extends user):
+        password: thibaut
+        salt: thibaut
+        username: thibaut
+        roles: [ROLE_USER]
+
+    user2 (extends user):
+        password: dim
+        salt: dim
+        username: dim
+        roles: [ROLE_USER]
+
+    user3 (extends user):
+        password: robin
+        salt: robin
+        username: robin
+        roles: [ROLE_USER]
