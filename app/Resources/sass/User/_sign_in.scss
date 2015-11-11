@@ -1,0 +1,12 @@
+fieldset {
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px 10px;
+    border: 1px groove blue;
+    border-radius: 5px;
+
+    small.error {
+        font-weight: bold;
+    }
+}

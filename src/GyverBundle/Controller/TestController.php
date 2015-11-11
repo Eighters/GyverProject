@@ -17,7 +17,7 @@ class TestController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/testPage.html.twig');
+        return $this->render('Default/testPage.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class TestController extends Controller
             ->setSubject('New Event From Gyver Project')
             ->setFrom('Notifications@GyverProject.com')
             ->setTo('gauvin.thibaut83@gmail.com')
-            ->setBody($this->renderView('email/email.txt.twig'));
+            ->setBody($this->renderView('Email/email.txt.twig'));
         $message->setContentType("text/html");
         $this->get('mailer')->send($message);
 
@@ -50,13 +50,49 @@ class TestController extends Controller
      * @Route("/test/flash/{type}", name="test_flash_message")
      * @Method("GET")
      */
-    public function flashAction(Request $request, $type)
+    public function testFlashAction(Request $request, $type)
     {
         $this->addFlash(
             $type,
             ucfirst($type) . ' Flash Message Sample'
         );
 
-        return $this->render('default/testPage.html.twig');
+        return $this->render('Default/testPage.html.twig');
+    }
+
+    /**
+     * test db
+     *
+     * @Route("/test/db", name="test_db")
+     * @Method("GET")
+     */
+    public function testDbAction(Request $request)
+    {
+        $userRepository = $this->getDoctrine()->getRepository('GyverBundle:User');
+        $userRepository->findAll();
+
+        return $this->render('Default/user.html.twig');
+    }
+
+    /**
+     * test pop user db
+     *
+     * @Route("/test/user", name="test_pop_db")
+     * @Method("GET")
+     */
+    public function popUserDbAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = new User();
+        $user->setFirstName('thibaut');
+        $user->setLastName('gauvin');
+        $user->setPassword('pass');
+        $user->setSalt('salt');
+        $user->setEmail('thibaut@test.fr');
+        $user->setPhone('0123456789');
+
+        $em->persist($user);
+        $em->flush();
     }
 }

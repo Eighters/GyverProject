@@ -6,7 +6,7 @@
  * Time: 00:47
  */
 
-namespace GyverBundle\Controller;
+namespace GyverBundle\Controller\User;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,14 +26,22 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBER')) {
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('/backend');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
 
-        return $this->render('connection/form_login.html.twig', array(
+        return $this->render('User/form_login.html.twig', array(
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ));
+    }
+
+    /**
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheckAction()
+    {
+
     }
 }
