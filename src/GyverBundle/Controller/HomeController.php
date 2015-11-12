@@ -20,15 +20,4 @@ class HomeController extends Controller
         return $this->render('Default/index.html.twig');
     }
 
-    /**
-     * Return test page
-     *
-     * @Route("/test", name="test_page")
-     * @Method("GET")
-     */
-    public function testPageAction(Request $request)
-    {
-        return $this->redirectToRoute('index_test_page', array(), 301);
-    }
-
 }
