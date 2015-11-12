@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use GyverBundle\Entity\User;
 
 class TestController extends Controller
 {
@@ -78,7 +79,7 @@ class TestController extends Controller
      * test pop user db
      *
      * @Route("/test/user", name="test_pop_db")
-     * @Method("GET")
+     * @Method("POST")
      */
     public function popUserDbAction(Request $request)
     {
