@@ -13,6 +13,12 @@ security:
       entity:
         class: GyverBundle:User
         property: username
+    in_memory:
+      memory:
+        users:
+          user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+          admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+          super_admin: { password: superadminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
 
   firewalls:
     dev:
@@ -22,7 +28,7 @@ security:
     main:
       pattern: ^/
       anonymous: true
-      provider: main_provider
+      provider: in_memory
       form_login:
         login_path: login
         check_path: login_check
