@@ -17,22 +17,25 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-            # Framework, Security, Logs and Views
+            # Framework
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
 
-            // Mailing
+            # Mailing
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
 
-            // Assets management and Compass integration
+            # Assets management and Compass integration
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
-            // DBAL and ORM
+            # DBAL and ORM
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
+            # User Management
+            new FOS\UserBundle\FOSUserBundle(),
 
             # Application Bundle
             new GyverBundle\GyverBundle(),

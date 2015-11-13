@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Log In{% endblock%}
+
 {% block body %}
+
     <div class="row">
         <div class="large-12 columns">
             <fieldset>
@@ -12,22 +15,25 @@
                     </div>
                 {% endif %}
 
-                <form action="{{ path('login_check') }}" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <div class="top-margin">
+                        <label for="username">Username<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required">
+                    </div>
+                    <div class="top-margin">
+                        <label for="password">Password <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" name="_password" required="required">
+                    </div>
 
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="_password" />
+                    <hr>
 
-                    {#
-                        If you want to control the URL the user
-                        is redirected to on success (more details below)
-                        <input type="hidden" name="_target_path" value="/account" />
-                    #}
-
-                    <button type="submit">Login</button>
+                    <button class="btn btn-action" type="submit" id="_submit" name="_submit">Sign in</button>
                 </form>
             </fieldset>
         </div>
     </div>
+
 {% endblock %}
+
+
+
