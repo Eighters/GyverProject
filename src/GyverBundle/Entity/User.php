@@ -157,6 +157,9 @@ class User implements UserInterface
         return $this->roles;
     }
 
+    /**
+     * Erase credentials implementation
+     */
     public function eraseCredentials()
     {
 

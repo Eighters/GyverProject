@@ -14,9 +14,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+/**
+ * Class SecurityController
+ *
+ * Application security controller, manage the user authentication.
+ *
+ * @package GyverBundle\Controller\User
+ */
 class SecurityController extends Controller
 {
     /**
+     * Render the user login view
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
@@ -35,13 +44,5 @@ class SecurityController extends Controller
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ));
-    }
-
-    /**
-     * @Route("/login_check", name="login_check")
-     */
-    public function loginCheckAction()
-    {
-
     }
 }

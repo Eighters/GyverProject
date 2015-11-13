@@ -1,17 +1,40 @@
 <?php
+
 namespace GyverBundle\DataFixtures\ORM;
+
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
+
+/**
+ * Class DataLoader
+ *
+ * User Entity fixtures loader.
+ *
+ * @package GyverBundle\DataFixtures\ORM
+ */
 class DataLoader implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var string
+     *
+     * The container interface
+     */
     private $container;
+
+    /**
+     * Container property setter
+     * The container interface to set is optional, set to null by default.
+     *
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
+
     /**
      * Custom data provider for alice. Converts a string to a \DateTime.
      *
@@ -22,6 +45,13 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
     {
         return new \DateTime($dateTimeString);
     }
+
+    /**
+     * Manager loader.
+     * Load the correct fixtures file.
+     *
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         if ($this->container->getParameter('kernel.environment') == 'test' || $this->container->getParameter('kernel.environment') == 'dev') {
