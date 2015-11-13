@@ -1,8 +1,11 @@
 security:
 
   encoders:
-    Symfony\Component\Security\Core\User\User: plaintext
-    GyverBundle\Entity\User: plaintext
+    Symfony\Component\Security\Core\User\User:
+      algorithm: sha512
+      encode_as_base64: false
+      iterations: 1
+    GyverBundle\Entity\User: sha512
 
   role_hierarchy:
     ROLE_ADMIN: ROLE_USER
@@ -16,9 +19,9 @@ security:
     in_memory:
       memory:
         users:
-          user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-          admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-          super_admin: { password: superadminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
+          user:  { password: b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86, roles: [ 'ROLE_USER' ] }
+          admin: { password: b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86 , roles: [ 'ROLE_ADMIN' ] }
+          super_admin: { password: b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86 , roles: [ 'ROLE_SUPER_ADMIN' ] }
 
   firewalls:
     dev:
