@@ -9,10 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class SettingsController extends Controller
 {
-    public function indexAction($name)
-    {
-        return $this->render('', array('name' => $name));
-    }
 
     /**
      * @param Request $request
@@ -25,4 +21,5 @@ class SettingsController extends Controller
     {
         return $this->render('Settings/home.html.twig');
     }
+
 }

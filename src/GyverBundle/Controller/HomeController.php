@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('Default/index.html.twig');
+        return $this->redirectToRoute('user_login', array(), 301);
     }
 
 }
