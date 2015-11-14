@@ -1,24 +1,53 @@
 GyverBundle\Entity\User:
     user (template):
-        password: ~
-        salt: ~
-        username: ~
-        roles: ~
+        username: user
+        usernameCanonical: user
+        email: user@example.com
+        emailCanonical: user@example.com
+        enabled: 1
+        salt: ajsdqew2drsw0ggss0k0gs4gw4wgwcw
+        password: jWV51iizX2+qwWLLya+eXImJ9wwWw0CCHi4yW9STBFcn6lLEv7r2f1cpRxbnBQtRoP/8pozVXNcrOdu3L+iv5Q== # version crypté de 'password'
+        lastLogin: ~
+        locked: 0
+        expired: 0
+        expiresAt: ~
+        confirmationToken: ~
+        passwordRequestedAt: ~
+        roles: [ROLE_USER]
+        credentialsExpired: 0
+        credentialsExpireAt: ~
 
-    user1 (extends user):
-        password: thibaut
-        salt: thibaut
+    admin (extends user):
+        username: admin
+        usernameCanonical: admin
+        email: admin@example.com
+        emailCanonical: admin@example.com
+        roles: [ROLE_ADMIN]      
+
+    thibaut (extends user):
         username: thibaut
+        usernameCanonical: thibaut
+        email: thibaut@example.com
+        emailCanonical: thibaut@example.com
+        roles: [ROLE_USER]
+          
+    chef_projet (extends user):
+        username: chef_projet
+        usernameCanonical: chef_projet
+        email: chef_projet@example.com
+        emailCanonical: chef_projet@example.com
         roles: [ROLE_USER]
 
-    user2 (extends user):
-        password: dim
-        salt: dim
-        username: dim
+    developpeur (extends user):
+        username: developpeur
+        usernameCanonical: developpeur
+        email: developpeur@example.com
+        emailCanonical: developpeur@example.com
         roles: [ROLE_USER]
-
-    user3 (extends user):
-        password: robin
-        salt: robin
-        username: robin
+         
+    collaborateur (extends user):
+        username: collaborateur
+        usernameCanonical: collaborateur
+        email: collaborateur@example.com
+        emailCanonical: collaborateur@example.com
         roles: [ROLE_USER]
