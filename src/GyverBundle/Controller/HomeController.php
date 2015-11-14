@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends Controller
 {
     /**
-     * Return Home Page
+     * Return the application home page
      *
      * @Route("/", name="front_homepage")
      * @Method("GET")
