@@ -22,6 +22,6 @@ class SettingsControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/backend');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 }
