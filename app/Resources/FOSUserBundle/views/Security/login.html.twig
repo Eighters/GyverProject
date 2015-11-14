@@ -1,0 +1,36 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Log In{% endblock%}
+
+{% block body %}
+
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+        <div class="large-12 columns">
+            <fieldset>
+                <legend>Log In with your user account :</legend>
+
+                {% if error %}
+                    <div class="form-error-global">
+                        <small class="error text-center">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</small>
+                    </div>
+                {% endif %}
+
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password" required="required" />
+
+                    {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>#}
+
+                    <button class="btn btn-action" type="submit" id="_submit" name="_submit">Sign in</button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+
+{% endblock %}
