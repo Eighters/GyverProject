@@ -3,6 +3,7 @@
 namespace GyverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PhoneNumber
@@ -31,7 +32,15 @@ class PhoneNumber
     /**
      * @var string
      *
-     * @ORM\Column(name="phoneNumber", type="string")
+     * @ORM\Column(name="phoneNumber", type="string", length=15)
+     *
+     * @Assert\NotNull()
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 15,
+     *      minMessage = "Your phone number must be at least {{ limit }} characters long",
+     *      maxMessage = "Your phone number cannot be longer than {{ limit }} characters"
+     * )
      */
     private $phoneNumber;
 

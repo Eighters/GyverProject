@@ -3,6 +3,7 @@
 namespace GyverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Email
@@ -32,6 +33,12 @@ class Email
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\NotNull()
+     * @Assert\Email(
+     *      message = "The email '{{ value }}' is not a valid email.",
+     *      checkMX = true
+     * )
      */
     private $email;
 
@@ -39,6 +46,8 @@ class Email
      * @var boolean
      *
      * @ORM\Column(name="principal", type="boolean")
+     *
+     * @Assert\NotNull()
      */
     private $principal;
 
