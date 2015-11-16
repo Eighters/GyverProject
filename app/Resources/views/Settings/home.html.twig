@@ -3,32 +3,25 @@
 {% block body %}
 
     <div class="row">
-        <div class="large-12 columns">
+        <div class="offset-s2 col s8">
             <h4>Hi {{ app.user.username }},</h4>
         </div>
     </div>
 
     <div class="row">
-        <div class="large-12 columns">
-            <table>
+        <div class="offset-s2 col s8">
+            <table class="striped z-depth-3">
                 <thead>
                 <tr>
-                    <td>
-                        Nom
-                    </td>
-                    <td>
-                        Email
-                    </td>
+                    <th data-field="id">Name :</th>
+                    <th data-field="name">Email :</th>
                 </tr>
                 </thead>
+
                 <tbody>
                 <tr>
-                    <td>
-                        {{ app.user.username }}
-                    </td>
-                    <td>
-                        {{ app.user.email }}
-                    </td>
+                    <td>{{ app.user.username }}</td>
+                    <td>{{ app.user.email }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -36,7 +29,7 @@
     </div>
 
     <div class="row">
-        <div class="large-12 columns">
+        <div class="offset-s2 col s8">
             <a href="/logout">logout</a>
         </div>
     </div>

@@ -23,7 +23,7 @@
     "components"
   ],
   "dependencies": {
-    "foundation": "~5.4.7",
+    "materialize": "~0.97.2",
     "font-awesome": "4.3.0"
   }
 }

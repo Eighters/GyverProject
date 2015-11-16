@@ -1,3 +1,7 @@
+/* Override Materialise Default Directory path */
+$roboto-font-path: "../../../vendor/materialize/font/roboto" !default;
+$icons-font-path: "../../../vendor/materialize/font/material-design-icons/" !default;
+
 /* Base Color */
 $dark-color-primary: #065159 !default;
 $primary-color: #0091AB !default;
