@@ -22,17 +22,21 @@
 
 
                     {% for email in user.emailList %}
-                        <input type="email" name="_mail_" value="{{ email.email }}" />
+                        <input type="email" name="mail[]" value="{{ email.email }}" />
                     {% endfor %}
+
+                    <input type="button" name="add_mail" id="add_mail" onclick="addInputField('mail')" value="Another Mail"/>
 
 
                     <label for="phone">Phone :</label>
 
                     {% for phone in user.phoneNumber %}
-                        <input type="text" name="_phone_" value="{{ phone.phoneNumber }}" />
+                        <input type="text" name="phone[]" value="{{ phone.phoneNumber }}" />
                     {% endfor %}
 
-                    <label for="phone">Company :</label>
+                    <input type="button" name="add_phone" id="add_phone" onclick="addInputField('phone')" value="Another Phone Number"/>
+
+                    <label for="company">Company :</label>
                     {% for company in user.company %}
                         <input type="text" value="{{ company.name }}" />
                     {% endfor %}
