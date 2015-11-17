@@ -18,6 +18,8 @@ class UserController extends Controller
      */
     public function showUserAction($id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('GyverBundle:User')->find($id);
