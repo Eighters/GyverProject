@@ -20,7 +20,7 @@ class SettingsControllerTest extends WebTestCase
     public function testHomeAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/backend');
+        $client->request('GET', '/secure');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
