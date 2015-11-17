@@ -1,0 +1,50 @@
+{% set i = 0 %}
+
+{% extends '::base.html.twig' %}
+
+{% block title %}Admin OverView{% endblock %}
+
+{% block body %}
+    
+    <div class="row">
+        <div class="offset-s2 col s8">
+            <h3>Registered User :</h3>
+
+            <table class="striped z-depth-3">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Civility :</th>
+                        <th>First Name :</th>
+                        <th>Last Name :</th>
+                        <th>Email :</th>
+                        <th>Enabled :</th>
+                        <th>Last Login :</th>
+                        <th>Actions :</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for u in users %}
+                        {% set i = i+1 %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>{{ u.civility }}</td>
+                            <td>{{ u.firstName }}</td>
+                            <td>{{ u.lastName }}</td>
+                            <td>{{ u.email }}</td>
+                            <td>{{ u.enabled ? 'Yes':'No' }}</td>
+                            <td>{{ u.lastLogin|date("m/d/Y") }}</td>
+                            <td>
+                                <a href="#">View</a>
+                                <a href="#">Edit</a>
+                                <a href="#">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

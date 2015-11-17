@@ -34,4 +34,12 @@
         </div>
     </div>
 
+    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+        <div class="row">
+            <div class="offset-s2 col s8">
+                <a class="waves-effect waves-light btn" href="{{ path('admin_overview') }}">Manage User</a>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
