@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class UserController
@@ -19,16 +20,13 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @Route("/account/{id}", requirements={"id" = "\d+"}, name="user_info")
-     * @Method("GET")
+     * @Route("/account", name="user_info")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function readAction($id)
+    public function readAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->getRepository('GyverBundle:User')->findOneById($id);
-
+        //To get the user who is logged
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         return $this->render(':User:form_informations.html.twig', array('user' => $user ));
     }
