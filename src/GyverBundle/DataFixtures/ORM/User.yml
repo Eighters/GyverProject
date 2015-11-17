@@ -16,6 +16,9 @@ GyverBundle\Entity\User:
         roles: [ROLE_USER]
         credentialsExpired: 0
         credentialsExpireAt: ~
+        firstName: John
+        lastName: Doe
+        civility: 1
 
     admin (extends user):
         username: admin
