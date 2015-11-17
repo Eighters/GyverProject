@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="large-12 columns">
+            <fieldset>
+                <form action="" method="post">
+                    <label for="civility">Civility :</label>
+
+
+                    <input type="checkbox" name="_civility" value="1" {% if user.civility %} checked {% endif %}/> Homme
+                    <input type="checkbox" name="_civility" value="0" {% if not user.civility %} checked {% endif %}/> Femme
+
+                    <br/>
+                    <label for="first_username">First Name :</label>
+                    <input type="text" id="first_username" name="_first_username" value="{{ user.firstName }}" />
+
+                    <label for="username">Last Name:</label>
+                    <input type="text" id="username" name="_username" value="{{ user.lastName }}" />
+
+                    <label for="email">Email :</label>
+
+
+                    {% for email in user.emailList %}
+                        <input type="email" name="_mail_" value="{{ email.email }}" />
+                    {% endfor %}
+
+
+                    <label for="phone">Phone :</label>
+
+                    {% for phone in user.phoneNumber %}
+                        <input type="text" name="_phone_" value="{{ phone.phoneNumber }}" />
+                    {% endfor %}
+
+                    <label for="phone">Company :</label>
+                    {% for company in user.company %}
+                        <input type="text" value="{{ company.name }}" />
+                    {% endfor %}
+
+
+                    <button type="submit">Change</button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}
