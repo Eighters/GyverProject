@@ -2,8 +2,10 @@
     <div class="nav-wrapper grey">
         <a href="" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="">sass</a></li>
-            <li><a href="">sass <span class="new badge">4</span></a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('user_info') }}">Manage users</a></li>
+            {% endif %}
+            <li><a href="{{ path('user_info') }}">Account</a></li>
             <li><a href="{{ path('logout') }}">Logout</a></li>
         </ul>
     </div>
