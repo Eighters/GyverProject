@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Welcome to the User:showUser page</h1>
-{{ dump(user) }}
+
     <h2>{{ user.civility ? 'Monsieur' : 'Madame' }} {{ user.firstName}} {{ user.lastName}}</h2>
 
     {% if user.company|length == 0 %}

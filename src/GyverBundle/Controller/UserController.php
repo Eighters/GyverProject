@@ -5,8 +5,8 @@ namespace GyverBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Class UserController
@@ -36,6 +36,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/{id}")
+     * @Method("GET")
      * @Template()
      */
     public function showUserAction($id)
@@ -50,11 +51,9 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        //$deleteForm = $this->createDeleteForm($id);
 
         return array(
             'user' => $user,
-            //'delete_form' => $deleteForm->createView(),
         );
     }
 
