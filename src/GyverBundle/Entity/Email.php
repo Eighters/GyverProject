@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Email
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GyverBundle\Repository\EmailRepository")
  */
 class Email
 {
@@ -25,7 +25,7 @@ class Email
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="emailList", cascade = {"persist"})
+     * @ORM\ManyToOne(targetEntity="GyverBundle\Entity\User", inversedBy="emailList", cascade = {"persist"})
      */
     private $user;
 

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * PhoneNumber
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GyverBundle\Repository\PhoneNumberRepository")
  */
 class PhoneNumber
 {

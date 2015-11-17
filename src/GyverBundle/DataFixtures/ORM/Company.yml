@@ -1,0 +1,24 @@
+GyverBundle\Entity\Company:
+    companySample (template):
+        name: Company Sample
+
+    company1 (extends companySample):
+        name: IT2M Consultant
+
+    company2 (extends companySample):
+        name: Institut G4
+
+    company3 (extends companySample):
+        name: Orange
+
+    company4 (extends companySample):
+        name: SFR
+
+    company5 (extends companySample):
+        name: Auberge du poney qui touse
+
+    company6 (extends companySample):
+        name: Supermarché KASHER pas cher
+
+    company7 (extends companySample):
+        name: Restaurant Tinoix

@@ -79,9 +79,9 @@ class User extends BaseUser
     protected $emailList;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Compagny", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Company", cascade={"persist"})
      */
-    private $compagny;
+    private $company;
 
     /**
      * @return mixed
@@ -182,37 +182,37 @@ class User extends BaseUser
     }
 
     /**
-     * Add compagny
+     * Add company
      *
-     * @param \GyverBundle\Entity\Compagny $compagny
+     * @param \GyverBundle\Entity\company $company
      *
      * @return User
      */
-    public function addCompagny(\GyverBundle\Entity\Compagny $compagny)
+    public function addCompany(\GyverBundle\Entity\Company $company)
     {
-        $this->compagny[] = $compagny;
+        $this->company[] = $company;
 
         return $this;
     }
 
     /**
-     * Remove compagny
+     * Remove company
      *
-     * @param \GyverBundle\Entity\Compagny $compagny
+     * @param \GyverBundle\Entity\Company $company
      */
-    public function removeCompagny(\GyverBundle\Entity\Compagny $compagny)
+    public function removeCompany(\GyverBundle\Entity\Company $company)
     {
-        $this->compagny->removeElement($compagny);
+        $this->company->removeElement($company);
     }
 
     /**
-     * Get compagny
+     * Get company
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCompagny()
+    public function getCompany()
     {
-        return $this->compagny;
+        return $this->company;
     }
 
     /**

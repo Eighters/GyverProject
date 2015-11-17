@@ -5,12 +5,12 @@ namespace GyverBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Compagny
+ * Company
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GyverBundle\Repository\CompanyRepository")
  */
-class Compagny
+class Company
 {
     /**
      * @var integer
@@ -43,7 +43,7 @@ class Compagny
      *
      * @param string $name
      *
-     * @return Compagny
+     * @return company
      */
     public function setName($name)
     {

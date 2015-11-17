@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @package GyverBundle\Tests\Controller\User
  */
-class SecurityControllerTest extends WebTestCase
+class LoginControllerTest extends WebTestCase
 {
     /**
      * loginAction method test

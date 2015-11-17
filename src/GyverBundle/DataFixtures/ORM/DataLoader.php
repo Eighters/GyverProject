@@ -11,7 +11,7 @@ use Nelmio\Alice\Fixtures;
 /**
  * Class DataLoader
  *
- * User Entity fixtures loader.
+ * Entity data fixtures loader.
  *
  * @package GyverBundle\DataFixtures\ORM
  */
@@ -56,7 +56,10 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
     {
         if ($this->container->getParameter('kernel.environment') == 'test' || $this->container->getParameter('kernel.environment') == 'dev') {
             $files = array(
+                __DIR__.'/Company.yml',
                 __DIR__.'/User.yml',
+                __DIR__.'/Email.yml',
+                __DIR__.'/PhoneNumber.yml',
             );
             Fixtures::load($files, $manager, array('providers' => array($this)));
         }
