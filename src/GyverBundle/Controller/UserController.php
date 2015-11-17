@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class UserController
@@ -19,8 +18,8 @@ class UserController extends Controller
 {
 
     /**
-     * @param $id
      * @Route("/account", name="user_info")
+     * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function readAction()
