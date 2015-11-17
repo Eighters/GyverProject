@@ -5,7 +5,7 @@
 {% block title %}Admin OverView{% endblock %}
 
 {% block body %}
-    
+
     <div class="row">
         <div class="offset-s2 col s8">
             <h3>Registered User :</h3>
@@ -29,7 +29,7 @@
                         {% set i = i+1 %}
                         <tr>
                             <td>{{ i }}</td>
-                            <td>{{ u.civility }}</td>
+                            <td>{{ u.civility ? 'Mme':'Mr' }}</td>
                             <td>{{ u.firstName }}</td>
                             <td>{{ u.lastName }}</td>
                             <td>{{ u.email }}</td>
