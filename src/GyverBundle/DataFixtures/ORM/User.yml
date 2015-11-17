@@ -97,3 +97,14 @@ GyverBundle\Entity\User:
         firstName: Thibaut
         lastName: Gauvin
         company: [ @company5 ]
+
+    rkoci (extends user):
+        username: rkoci
+        usernameCanonical: rkoci
+        email: rkoci@g4.fr
+        emailCanonical: rkoci@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Rémi
+        lastName: Koci
+        company: [ @company2 ]

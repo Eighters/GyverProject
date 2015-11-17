@@ -32,4 +32,30 @@ class UserController extends Controller
 
         return $this->render(':User:form_informations.html.twig', array('user' => $user ));
     }
+
+
+    /**
+     * @Route("/user/{id}")
+     * @Template()
+     */
+    public function showUserAction($id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('GyverBundle:User')->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        //$deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'user' => $user,
+            //'delete_form' => $deleteForm->createView(),
+        );
+    }
+
 }
