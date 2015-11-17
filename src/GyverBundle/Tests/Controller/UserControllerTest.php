@@ -14,7 +14,7 @@ class UserControllerTest extends WebTestCase
     public function testReadAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/secure/account/6');
+        $client->request('GET', '/secure/account');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
