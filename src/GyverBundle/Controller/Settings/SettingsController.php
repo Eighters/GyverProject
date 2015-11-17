@@ -23,7 +23,7 @@ class SettingsController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/backend", name="backend_home")
+     * @Route("/secure", name="backend_home")
      * @Method("GET")
      */
     public function homeAction(Request $request)

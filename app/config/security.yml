@@ -20,17 +20,17 @@ security:
       anonymous: true
       form_login:
         check_path: /login_check
-        login_path: /log_in
+        login_path: /login
         provider: fos_userbundle
         always_use_default_target_path: true
-        default_target_path: /backend
+        default_target_path: /secure
       logout:
         path: /logout
-        target: /log_in
+        target: /login
 
 
   access_control:
-    - { path: ^/log_in, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/backend, role: ROLE_USER }
+    - { path: ^/secure, role: ROLE_USER }
