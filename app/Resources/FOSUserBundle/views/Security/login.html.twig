@@ -8,13 +8,23 @@
     <div class="row center">
         <div class="col offset-s3 s6">
             <div class="card white">
-                <div class="card-content z-depth-5">
+                <div class="card-content z-depth-5 login-form">
                     <div class="row">
+                        <div class="language-selector">
+                            <a href="#">FR</a> |
+                            <a href="#">EN</a>
+                        </div>
+
+                        <div class="col s12 application-icon">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="gyver-logo circle responsive-img valign">
+                        </div>
+
                         {% if error %}
                             <div class="form-error-global">
                                 <small class="error text-center">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</small>
                             </div>
                         {% endif %}
+
                         <form class="col s12" action="{{ path("fos_user_security_check") }}" method="post">
                             <div class="row">
                                 <div class="input-field col s12">
@@ -41,13 +51,15 @@
                             </div>
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                         </form>
-                        <a href="#">Mot de passe oublié ?</a>
+
+                        <div class="col s12">
+                            <a href="#">Mot de passe oublié ?</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 {% endblock %}

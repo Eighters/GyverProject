@@ -5,27 +5,29 @@
 {% block title %}Admin OverView{% endblock %}
 
 {% block body %}
-
     <div class="row">
+        <h3>User List :</h3>
+
         <div class="container">
             <ul class="collection">
                 {% for u in users %}
                     <li class="collection-item avatar">
                         <img src="http://lorempixel.com/{{ random(500) }}/{{ random(500) }}/people/" class="circle">
                         <span class="title">{{ u.firstName }} {{ u.lastName }}</span>
-                        <p>{{ u.enabled ? 'Compte actif':'Compte archivé' }}<br/>
+                        <p>Compte: {{ u.enabled ? 'actif':'archivé' }}</p>
+                        <p>
+                            Entreprise{% if u.company|length > 1 %}s{% endif %}:
                             <ul>
-                           {% for company in u.company %}
-                                <li>{{ company.name }}</li>
-                            {%  endfor %}
+                                {% for company in u.company %}
+                                    <li>{{ company.name }}</li>
+                                {%  endfor %}
                             </ul>
                         </p>
                         <a href="{{ path('user_show', {'id': u.id}) }}" class="secondary-content">
-
-                                <i class="material-icons" title="Voir">visibility</i>
-                                <i class="material-icons" title="Modifier">settings</i>
-                                <i class="material-icons" title="Archiver">lock_outline</i>
-                                <i class="material-icons" title="Supprimer">delete</i>
+                            <i class="material-icons" title="Voir">visibility</i>
+                            <i class="material-icons" title="Modifier">settings</i>
+                            <i class="material-icons" title="Archiver">lock_outline</i>
+                            <i class="material-icons" title="Supprimer">delete</i>
                         </a>
                     </li>
                 {% endfor %}
@@ -33,21 +35,4 @@
         </div>
     </div>
 
-<!-- {#
-                            <td>{{ u.id }}</td>
-                            <td>{{ u.civility ? 'Mme':'Mr' }}</td>
-                            <td>{{ u.firstName }}</td>
-                            <td>{{ u.lastName }}</td>
-                            <td>{{ u.email }}</td>
-                            <td>{{ u.enabled ? 'Yes':'No' }}</td>
-                            <td>{{ u.lastLogin|date("m/d/Y") }}</td>
-                            <td>
-                                <a href="{{ path('user_show', {'id': u.id}) }}">View</a>
-                                <a href="#">Edit</a>
-                                <a href="#">Archive</a>
-                                <a href="#">Delete</a>
-                            </td>
-                        </tr>
-#}
--->
 {% endblock %}
