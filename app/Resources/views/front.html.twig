@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %} | Gyver Project</title>
+        <title>{% block title %}{% endblock %} | Gyver Project</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
         {# Stylesheets Block #}
@@ -11,7 +11,7 @@
         {% endblock %}
     </head>
 
-    <body>
+    <body class="login_background">
         {# Body Block #}
         {% block body %}{% endblock %}
         {# End Body #}
