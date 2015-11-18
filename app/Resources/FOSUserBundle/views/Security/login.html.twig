@@ -16,18 +16,27 @@
                 {% endif %}
 
                 <form action="{{ path("fos_user_security_check") }}" method="post">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input class="validate" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        <label for="username">Username:</label>
+                    </div>
 
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="_password" required="required" />
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input class="validate" type="password" id="password" name="_password" required="required" />
+                        <label for="password">Password:</label>
+                    </div>
 
                     {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>#}
-                    
-                    <button class="waves-effect waves-light btn" type="submit" id="_submit" name="_submit">Sign in</button>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <button class="waves-effect waves-light btn" type="submit" id="_submit" name="_submit">
+                        <i class="material-icons left"></i>
+                        Sign in
+                    </button>
                 </form>
             </fieldset>
         </div>

@@ -29,21 +29,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{ asset('js/jquery.min.js') }}"></script>
-            <script src="{{ asset('js/materialize.min.js') }}"></script>
-            <script>
-                function addInputField(name){
-
-                    switch(name) {
-                        case "mail":
-                            $("#add_mail").before("<input type='text' name='mail[]' />");
-                            break;
-                        case "phone":
-                            $("#add_phone").before("<input type='text' name='phone[]' />");
-                            break;
-                    }
-                }
-            </script>
+            {{ include('::javascripts.html.twig') }}
         {% endblock %}
     </body>
 </html>

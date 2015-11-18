@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %} | Gyver Project</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %} | Gyver Project</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-    {# Stylesheets Block #}
-    {% block stylesheets %}
-        {{ include('::stylesheets.html.twig') }}
-    {% endblock %}
-</head>
+        {# Stylesheets Block #}
+        {% block stylesheets %}
+            {{ include('::stylesheets.html.twig') }}
+        {% endblock %}
+    </head>
 
-<body>
+    <body>
+        {# Body Block #}
+        {% block body %}{% endblock %}
+        {# End Body #}
 
-{# Body Block #}
-{% block body %}{% endblock %}
-{# End Body #}
-
-</body>
+        {% block javascripts %}
+            {{ include('::javascripts.html.twig') }}
+        {% endblock %}
+    </body>
 </html>
