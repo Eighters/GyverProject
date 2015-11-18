@@ -26,9 +26,8 @@
 
                 <tbody>
                     {% for u in users %}
-                        {% set i = i+1 %}
                         <tr>
-                            <td>{{ i }}</td>
+                            <td>{{ u.id }}</td>
                             <td>{{ u.civility ? 'Mme':'Mr' }}</td>
                             <td>{{ u.firstName }}</td>
                             <td>{{ u.lastName }}</td>
@@ -36,7 +35,7 @@
                             <td>{{ u.enabled ? 'Yes':'No' }}</td>
                             <td>{{ u.lastLogin|date("m/d/Y") }}</td>
                             <td>
-                                <a href="#">View</a>
+                                <a href="{{ path('user_show', {'id': u.id}) }}">View</a>
                                 <a href="#">Edit</a>
                                 <a href="#">Delete</a>
                             </td>

@@ -1,12 +1,54 @@
-<nav>
-    <div class="nav-wrapper grey">
+<!--<nav>
+    <div class="nav-wrapper cyan darken-4">
         <a href="" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
             {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('user_info') }}">Manage users</a></li>
+                <li><a href="{{ path('user_show_list') }}">Utilisateurs</a></li>
             {% endif %}
-            <li><a href="{{ path('user_info') }}">Account</a></li>
-            <li><a href="{{ path('logout') }}">Logout</a></li>
+            <li><a href="{{ path('user_info') }}">Compte</a></li>
+            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
         </ul>
     </div>
+</nav>-->
+
+<nav class="col s12 cyan darken-4">
+
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#">MonApplication</a></li>
+
+        <!-- Dashboard -->
+        {% if app.request.attributes.get('_route') == 'backend_home' %}
+            <li class="active"><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+        {% else %}
+            <li><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+        {% endif %}
+        <!-- #Dashboard -->
+
+        <!-- Projects -->
+        <li><a href="#">Projets</a></li>
+        <!-- #Projects -->
+
+        <!-- Users -->
+        {% if is_granted('ROLE_ADMIN') %}
+            {% if app.request.attributes.get('_route') == 'user_show_list' %}
+                <li class="active"><a href="{{ path('user_show_list') }}">Utilisateurs</a></li>
+            {% else %}
+                <li><a href="{{ path('user_show_list') }}">Utilisateurs</a></li>
+            {% endif %}
+        {% endif %}
+        <!-- #Users -->
+    </ul>
+    <ul class="right hide-on-med-and-down">
+        
+        <!-- Profile -->
+        {% if app.request.attributes.get('_route') == 'user_info' %}
+            <li class="active"><a href="{{ path('user_info') }}">Profil</a></li>
+        {% else %}
+            <li><a href="{{ path('user_info') }}">Profil</a></li>
+        {% endif %}
+        <!-- #Profile -->
+
+        <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+    </ul>
 </nav>

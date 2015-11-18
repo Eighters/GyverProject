@@ -32,7 +32,7 @@ class UserController extends Controller
 
 
     /**
-     * @Route("/user/{id}")
+     * @Route("/user/{id}", name="user_show")
      * @Method("GET")
      * @Template()
      */

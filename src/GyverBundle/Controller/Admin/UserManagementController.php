@@ -15,7 +15,7 @@ class UserManagementController extends Controller
     /**
      * Return the view to manage user
      *
-     * @Route("/admin/overview", name="admin_overview")
+     * @Route("/secure/user", name="user_show_list")
      * @Method("GET")
      */
     public function indexAction()

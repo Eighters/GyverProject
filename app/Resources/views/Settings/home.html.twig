@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="offset-s2 col s8">
-            <h4>Hi {{ app.user.username }},</h4>
+            <h4>Bonjour {{ app.user.username }},</h4>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
             <table class="striped z-depth-3">
                 <thead>
                 <tr>
-                    <th data-field="id">Name :</th>
+                    <th data-field="id">Nom :</th>
                     <th data-field="name">Email :</th>
                 </tr>
                 </thead>
@@ -28,16 +28,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="offset-s2 col s8">
-            <a href="/logout">logout</a>
-        </div>
-    </div>
-
     {% if app.user.roles[0] == 'ROLE_ADMIN' %}
         <div class="row">
             <div class="offset-s2 col s8">
-                <a class="waves-effect waves-light btn" href="{{ path('admin_overview') }}">Manage User</a>
+                <a class="waves-effect waves-light btn amber accent-4" href="{{ path('user_show_list') }}">Gérer les utilisateurs</a>
             </div>
         </div>
     {% endif %}
