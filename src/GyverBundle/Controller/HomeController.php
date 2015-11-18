@@ -7,6 +7,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class HomeController
+ * @package GyverBundle\Controller
+ *
+ * @Route("/")
+ */
 class HomeController extends Controller
 {
     /**

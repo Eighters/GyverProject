@@ -7,17 +7,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Class UserController
- * @package GyverBundle\Controller\User
+ * Class UserManagementController
+ * @package GyverBundle\Controller\Admin
  *
- * @Route("/admin")
+ * @Route("/secure")
  */
 class UserManagementController extends Controller
 {
     /**
-     * Return the list of all user
+     * Show all user information by user_id ONLY for admin
      *
-     * @Route("/user", name="admin_overview")
+     * @Route("/user", name="user_list")
      * @Method("GET")
      */
     public function indexAction()
@@ -31,9 +31,9 @@ class UserManagementController extends Controller
     }
 
     /**
-     * Show user information by user_id
+     * Show given user information ONLY for admin
      *
-     * @Route("/user/{id}")
+     * @Route("/user/{id}", name="user_show")
      * @Method("GET")
      */
     public function showUserAction($id)
@@ -41,7 +41,6 @@ class UserManagementController extends Controller
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
         $em = $this->getDoctrine()->getManager();
-
         $user = $em->getRepository('GyverBundle:User')->find($id);
 
         if (!$user) {

@@ -4,52 +4,61 @@
 
 {% block body %}
 
-    <h3>User Information :</h3>
+    <div class="row">
+        <div class="offset-s2 col s8 user-infos">
+            <h4>User Information :</h4>
 
-    <table class="striped z-depth-3">
-        <thead>
-            <tr>
-                <th>Civility :</th>
-                <th>First Name :</th>
-                <th>Last Name :</th>
-                <th>Company :</th>
-                <th>Emails :</th>
-                <th>Phone Number :</th>
-            </tr>
-        </thead>
+            <table class="striped z-depth-3">
+                <thead>
+                <tr>
+                    <th>Civility :</th>
+                    <th>First Name :</th>
+                    <th>Last Name :</th>
+                    <th>Company :</th>
+                    <th>Emails :</th>
+                    <th>Phone Number :</th>
+                </tr>
+                </thead>
 
-        <tbody>
-            <tr>
-                <td>{{ user.civility ? 'Mme' : 'Mr' }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>
-                    {% if user.company|length == 0 %}
-                        <p>no company</p>
-                    {% else %}
+                <tbody>
+                <tr>
+                    <td>{{ user.civility ? 'Mme' : 'Mr' }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>
+                        {% if user.company|length == 0 %}
+                            <p>no company</p>
+                        {% else %}
+                            <ul>
+                                {% for company in user.company %}
+                                    <li>{{ company.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </td>
+                    <td>
                         <ul>
-                            {% for company in user.company %}
-                                <li>{{ company.name }}</li>
+                            {% for email in user.emailList %}
+                                <li>{{ email.email }}</li>
                             {% endfor %}
                         </ul>
-                    {% endif %}
-                </td>
-                <td>
-                    <ul>
-                        {% for email in user.emailList %}
-                            <li>{{ email.email }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        {% for phoneNumber in user.phoneNumber %}
-                            <li>{{ phoneNumber.phoneNumber }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                    <td>
+                        <ul>
+                            {% for phoneNumber in user.phoneNumber %}
+                                <li>{{ phoneNumber.phoneNumber }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="offset-s2 col s8">
+            <a class="btn waves-effect waves-light" href="{{ path('user_list') }}">Retour</a>
+        </div>
+    </div>
 
 {% endblock %}

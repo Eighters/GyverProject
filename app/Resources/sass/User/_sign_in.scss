@@ -2,3 +2,20 @@
     background-image: url("/assets/images/background.jpeg");
     background-size: cover;
 }
+
+.language-selector, .application-icon {
+    margin-bottom: $margin-basic;
+}
+
+.language-selector {
+    float: right !important;
+}
+
+.login-form {
+    border-radius: 10px;
+}
+
+.gyver-logo {
+    width: 100px;
+    height: 100px;
+}

@@ -9,10 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * Class SettingsController
- *
- * User settings controller
- *
  * @package GyverBundle\Controller\Settings
+ *
+ * @Route("/secure")
  */
 class SettingsController extends Controller
 {
@@ -23,7 +22,7 @@ class SettingsController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/secure", name="backend_home")
+     * @Route("/", name="backend_home")
      * @Method("GET")
      */
     public function homeAction(Request $request)
@@ -32,6 +31,8 @@ class SettingsController extends Controller
     }
 
     /**
+     * Render Form update user profile
+     *
      * @Route("/account", name="user_info")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
