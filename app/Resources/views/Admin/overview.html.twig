@@ -7,26 +7,33 @@
 {% block body %}
 
     <div class="row">
-        <div class="offset-s2 col s8">
-            <h3>Registered User :</h3>
+        <div class="container">
+            <ul class="collection">
+                {% for u in users %}
+                    <li class="collection-item avatar">
+                        <img src="http://lorempixel.com/{{ random(500) }}/{{ random(500) }}/people/" class="circle">
+                        <span class="title">{{ u.firstName }} {{ u.lastName }}</span>
+                        <p>{{ u.enabled ? 'Compte actif':'Compte archivé' }}<br/>
+                            <ul>
+                           {% for company in u.company %}
+                                <li>{{ company.name }}</li>
+                            {%  endfor %}
+                            </ul>
+                        </p>
+                        <a href="{{ path('user_show', {'id': u.id}) }}" class="secondary-content">
 
-            <table class="striped z-depth-3">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Civility :</th>
-                        <th>First Name :</th>
-                        <th>Last Name :</th>
-                        <th>Email :</th>
-                        <th>Enabled :</th>
-                        <th>Last Login :</th>
-                        <th>Actions :</th>
-                    </tr>
-                </thead>
+                                <i class="material-icons" title="Voir">visibility</i>
+                                <i class="material-icons" title="Modifier">settings</i>
+                                <i class="material-icons" title="Archiver">lock_outline</i>
+                                <i class="material-icons" title="Supprimer">delete</i>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-                <tbody>
-                    {% for u in users %}
-                        <tr>
+<!-- {#
                             <td>{{ u.id }}</td>
                             <td>{{ u.civility ? 'Mme':'Mr' }}</td>
                             <td>{{ u.firstName }}</td>
@@ -41,10 +48,6 @@
                                 <a href="#">Delete</a>
                             </td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+#}
+-->
 {% endblock %}
