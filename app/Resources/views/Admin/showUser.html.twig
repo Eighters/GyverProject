@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}User infos | admin {% endblock %}
+
+{% block body %}
+
+    <h3>User Information :</h3>
+
+    <table class="striped z-depth-3">
+        <thead>
+            <tr>
+                <th>Civility :</th>
+                <th>First Name :</th>
+                <th>Last Name :</th>
+                <th>Company :</th>
+                <th>Emails :</th>
+                <th>Phone Number :</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ user.civility ? 'Mme' : 'Mr' }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>
+                    {% if user.company|length == 0 %}
+                        <p>no company</p>
+                    {% else %}
+                        <ul>
+                            {% for company in user.company %}
+                                <li>{{ company.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        {% for email in user.emailList %}
+                            <li>{{ email.email }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for phoneNumber in user.phoneNumber %}
+                            <li>{{ phoneNumber.phoneNumber }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
