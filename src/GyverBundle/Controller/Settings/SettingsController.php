@@ -32,7 +32,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * @Route("/account", name="user_info")
+     * @Route("/secure/account", name="user_info")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
