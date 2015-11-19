@@ -20,8 +20,13 @@
                         </div>
 
                         {% if error %}
-                            <div class="form-error-global">
-                                <small class="error text-center">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</small>
+                            <div class="col s12">
+                                <div class="col s1">
+                                    <i class="material-icons" title="Voir">report_problem</i>
+                                </div>
+                                <div class="col s11">
+                                    <p class="red darken-1">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</p>
+                                </div>
                             </div>
                         {% endif %}
 

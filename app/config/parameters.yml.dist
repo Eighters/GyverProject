@@ -1,11 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
     # Database Config PROD
-    prod_database_host:     ~
-    prod_database_port:     ~
-    prod_database_name:     ~
-    prod_database_user:     ~
-    prod_database_password: ~
+    database_host: ~
+    database_port: ~
+    database_name: ~
+    database_user: ~
+    database_password: ~
     
     # Database Config DEV
     dev_database_host:      127.0.0.1
