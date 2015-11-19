@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}BackEnd Home{% endblock%}
+
 {% block body %}
 
     <div class="row">
@@ -28,7 +30,7 @@
         </div>
     </div>
 
-    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="row">
             <div class="offset-s2 col s8">
                 <a class="waves-effect waves-light btn amber accent-4" href="{{ path('user_list') }}">Gérer les utilisateurs</a>

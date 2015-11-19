@@ -15,7 +15,10 @@ class HomeControllerTest extends WebTestCase
 {
     /**
      * IndexAction method test
-     * - Assert if the returned status code equals 200.
+     *
+     * Expected redirection to user login form view
+     *
+     * - Assert if the returned status code equals 301.
      */
     public function testIndexAction()
     {
