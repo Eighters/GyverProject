@@ -16,7 +16,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class UserManagementController extends Controller
 {
     /**
-     * Show all user information by user_id ONLY for admin
+     * Show all users ONLY for admin
      *
      * @Route("/user/page/{page}", name="user_list")
      * @Method("GET")

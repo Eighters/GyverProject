@@ -1,50 +1,52 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}Profil personnel{% endblock%}
+{% block underNavTitle %}Profil personnel{% endblock %}
+{% block underNavText %}Retrouvez ici l'ensemble des informations vous concernant.{% endblock %}
+
 {% block body %}
 
     <div class="row">
         <div class="large-12 columns">
             <fieldset>
-                <form action="" method="post">
-                    <label for="civility">Civility :</label>
 
-
-                    <input type="checkbox" name="_civility" value="1" {% if user.civility %} checked {% endif %}/> Homme
-                    <input type="checkbox" name="_civility" value="0" {% if not user.civility %} checked {% endif %}/> Femme
+                    <p>Civilité :</p>
+                    <p> {{user.civility ? "Homme" : "Femme" }} </p>
 
                     <br/>
-                    <label for="first_username">First Name :</label>
-                    <input type="text" id="first_username" name="_first_username" value="{{ user.firstName }}" />
+                    <p>Prénom :</p>
+                    <p>{{ user.firstName }}</p>
 
-                    <label for="username">Last Name:</label>
-                    <input type="text" id="username" name="_username" value="{{ user.lastName }}" />
+                    <br/>
+                    <p>Nom:</p>
+                    <p>{{ user.lastName }}</p>
 
-                    <label for="email">Email :</label>
-
-
+                    <br/>
+                    <p>Email :</p>
                     {% for email in user.emailList %}
-                        <input type="email" name="mail[]" value="{{ email.email }}" />
+                        <p>{{ email.email }}</p>
                     {% endfor %}
+                    <br/>
 
-                    <input type="button" name="add_mail" id="add_mail" onclick="addInputField('mail')" value="Another Mail"/>
-
-
-                    <label for="phone">Phone :</label>
-
+                    <p>Phone :</p>
                     {% for phone in user.phoneNumber %}
-                        <input type="text" name="phone[]" value="{{ phone.phoneNumber }}" />
+                        <p>{{ phone.phoneNumber }}</p>
                     {% endfor %}
+                    <br/>
 
-                    <input type="button" name="add_phone" id="add_phone" onclick="addInputField('phone')" value="Another Phone Number"/>
 
-                    <label for="company">Company :</label>
+
+                    <p>Entreprise :</p>
                     {% for company in user.company %}
-                        <input type="text" value="{{ company.name }}" />
+                        <p>{{ company.name }}</p>
                     {% endfor %}
 
+                    <div class="row">
+                        <div class="col l6 right">
+                            <a class="waves-effect waves-light btn" href="{{ path('user_edit') }}">Editer</a>
+                        </div>
+                    </div>
 
-                    <button type="submit">Change</button>
-                </form>
             </fieldset>
         </div>
     </div>

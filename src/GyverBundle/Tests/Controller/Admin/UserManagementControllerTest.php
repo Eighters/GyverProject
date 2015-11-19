@@ -11,15 +11,15 @@ class UserManagementControllerTest extends WebTestCase
      * readAction method test
      * - Assert if the returned status code equals 200.
      */
-    public function testReadAction()
+    public function testIndexAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/secure/account');
+        $client->request('GET', '/secure/user');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 
-    public function testShowuser()
+    public function testShowuserAction()
     {
         $client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
@@ -32,7 +32,7 @@ class UserManagementControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testColleage()
+    public function testColleageAction()
     {
         $client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'thibaut',

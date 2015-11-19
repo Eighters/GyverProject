@@ -24,4 +24,28 @@ class LoginControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function testAdminLoginForm()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('_submit')->form();
+
+        $client->submit($form, array(
+            '_username' => 'admin',
+            '_password' => 'password',
+        ));
+
+        // redir validation
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $client->followRedirect();
+
+        // Redir vers /secure
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+        $client->followRedirect();
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
 }
