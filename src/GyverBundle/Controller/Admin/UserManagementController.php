@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class UserManagementController extends Controller
 {
     /**
-     * Show all user information by user_id ONLY for admin
+     * Show all users ONLY for admin
      *
      * @Route("/user", name="user_list")
      * @Method("GET")
