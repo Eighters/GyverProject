@@ -26,3 +26,7 @@ GyverBundle\Entity\PhoneNumber:
     thibaut_principal:
         user: @thibaut
         phoneNumber: 0601010101
+
+    remi_principal:
+        user: @rkoci
+        phoneNumber: 0669696969

@@ -104,7 +104,7 @@ GyverBundle\Entity\User:
         email: rkoci@g4.fr
         emailCanonical: rkoci@g4.fr
         roles: [ROLE_USER]
-        civility: 0
+        civility: 1
         firstName: Rémi
         lastName: Koci
-        company: [ @company2 ]
+        company: [ @company7 ]
