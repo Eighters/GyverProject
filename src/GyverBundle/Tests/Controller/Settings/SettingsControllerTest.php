@@ -24,4 +24,16 @@ class SettingsControllerTest extends WebTestCase
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
+
+    /**
+     * readAction method test
+     * - Assert if the returned status code equals 200.
+     */
+    public function testReadAction()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/secure/account');
+
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    }
 }
