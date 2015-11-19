@@ -1,6 +1,30 @@
-nav ul li.active {
+/*nav ul li {
+  color: $cyan-lighten-2;
+  .active {
+    background-color: $accent-color;
+    a {
+      color: #fff;
+    }
+  }
+}*/
+
+nav ul a {
+  color: $cyan-lighten-2;
+}
+nav a {
+  color: #fff;
+}
+nav ul li + .active {
   background-color: $accent-color;
   a {
-    color: $dark-color-primary;
+    color: #fff;
   }
+}
+.fixed-action-btn {
+  position: inherit;
+  right: 5px;
+  top: 5px;
+  padding-top: 15px;
+  margin-bottom: 0px;
+  z-index: 998;
 }
