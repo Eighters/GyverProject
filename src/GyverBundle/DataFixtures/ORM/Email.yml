@@ -68,3 +68,13 @@ GyverBundle\Entity\Email:
         user: @thibaut
         email: thibautEmailSecondary@example.com
         principal: 0
+
+    rkoci_principal:
+        user: @rkoci
+        email: rkociEmailPrincipal@example.com
+        principal: 1
+
+    rkoci_secondary:
+        user: @rkoci
+        email: rkociEmailSecondary@example.com
+        principal: 0
