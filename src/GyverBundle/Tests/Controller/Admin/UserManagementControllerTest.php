@@ -14,7 +14,7 @@ class UserManagementControllerTest extends WebTestCase
     public function testIndexAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/secure/account');
+        $client->request('GET', '/secure/user');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
