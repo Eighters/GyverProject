@@ -95,6 +95,9 @@ fos_user:
     registration:
         form:
             type: app_user_registration
+    profile:
+        form:
+            type: app_user_profile_edit
 
 # Paginator Configuration
 knp_paginator:
