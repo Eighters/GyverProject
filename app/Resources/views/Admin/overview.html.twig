@@ -2,9 +2,9 @@
 
 {% extends '::base.html.twig' %}
 
-{% block title %}Admin OverView{% endblock %}
-{% block underNavTitle %}Welcome{% endblock %}
-{% block underNavText %}DashBoard{% endblock %}
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block underNavTitle %}Gestion des utilisateurs{% endblock %}
+{% block underNavText %}Retrouvez ici l'ensemble des utilisateurs de l'application.{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -29,40 +29,33 @@
                         </p>
                         <div  class="secondary-content">
                             <div class="fixed-action-btn horizontal click-to-toggle">
-                                <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="View Actions">
+                                <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
                                     <i class="material-icons">more_vert</i>
                                 </a>
 
                                 <ul>
                                     <li>
-                                        <a href="{{ path('user_show', {'id': u.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="View">
+                                        <a href="{{ path('user_show', {'id': u.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
                                             <i class="material-icons">info</i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit">
+                                        <a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                                             <i class="material-icons">create</i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Archive">
+                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
                                             <i class="material-icons">archive</i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Delete">
+                                        <a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                             <i class="material-icons ">delete</i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <!--
-                            <i class="material-icons" title="Voir">visibility</i>
-                            <i class="material-icons" title="Modifier">settings</i>
-                            <i class="material-icons" title="Archiver">lock_outline</i>
-                            <i class="material-icons" title="Supprimer">delete</i>
-                            -->
-                            {# href="{{ path('user_show', {'id': u.id}) }}" #}
                         </div>
                     </li>
                 {% endfor %}
