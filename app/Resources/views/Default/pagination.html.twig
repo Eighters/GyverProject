@@ -10,7 +10,7 @@
     {% endif %}
 
     {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.pages_count)) %}
-        <li class="waves-effect {% if p == pagination.page %}active{% endif %}">
+        <li class="waves-effect {% if p == pagination.page %}active amber accent-4{% endif %}">
             <a href="{{ path(pagination.route, pagination.route_params|merge({'page': p})) }}">{{ p }}</a></li>
     {% endfor %}
     {% if pagination.page<pagination.pages_count %}
