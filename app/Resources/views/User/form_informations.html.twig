@@ -10,15 +10,15 @@
         <div class="large-12 columns">
             <fieldset>
 
-                    <p>Civility :</p>
+                    <p>Civilité :</p>
                     <p> {{user.civility ? "Homme" : "Femme" }} </p>
 
                     <br/>
-                    <p>First Name :</p>
+                    <p>Prénom :</p>
                     <p>{{ user.firstName }}</p>
 
                     <br/>
-                    <p>Last Name:</p>
+                    <p>Nom:</p>
                     <p>{{ user.lastName }}</p>
 
                     <br/>
@@ -36,7 +36,7 @@
 
 
 
-                    <p>Company :</p>
+                    <p>Entreprise :</p>
                     {% for company in user.company %}
                         <p>{{ company.name }}</p>
                     {% endfor %}
