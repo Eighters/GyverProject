@@ -9,15 +9,15 @@
 }*/
 
 nav ul a {
-  color: $cyan-lighten-2;
+  color: $light-color-primary;
 }
 nav a {
-  color: #fff;
+  color: $text-icons;
 }
 nav ul li + .active {
   background-color: $accent-color;
   a {
-    color: #fff;
+    color: $text-icons;
   }
 }
 .fixed-action-btn {
