@@ -16,6 +16,13 @@
             {{ include('::header.html.twig') }}
         {% endblock %}
 
+        <div class="row">
+            <div class="under-nav col s12 cyan darken-2">
+                <h3>{% block underNavTitle %}coucou{% endblock %}</h3>
+                <p>{% block underNavText %}coucou{% endblock %}</p>
+            </div>
+        </div>
+
         {% block flashMessage %}
             {{ include('::flashMessage.html.twig') }}
         {% endblock %}
