@@ -23,8 +23,15 @@ nav ul li + .active {
 .fixed-action-btn {
   position: inherit;
   right: 5px;
-  top: 5px;
+  top: 0px;
   padding-top: 15px;
   margin-bottom: 0px;
   z-index: 998;
+}
+.btn-floating i {
+  font-size: 1.2rem;
+}
+.collection-item.avatar .title {
+  font-size: 18px;
+  font-weight: 500;
 }
