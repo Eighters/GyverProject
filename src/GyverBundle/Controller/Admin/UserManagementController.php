@@ -5,6 +5,7 @@ namespace GyverBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Class UserManagementController
@@ -17,17 +18,34 @@ class UserManagementController extends Controller
     /**
      * Show all user information by user_id ONLY for admin
      *
-     * @Route("/user", name="user_list")
+     * @Route("/user/page/{page}", name="user_list")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page=1)
     {
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository('GyverBundle:User');
 
         $users = $userRepository->findAll();
 
-        return $this->render('Admin/overview.html.twig', array('users' => $users));
+        $nbUsers = count($users);
+
+        $pagination = array(
+            'page' => $page,
+            'route' => 'user_list',
+            'pages_count' => ceil($nbUsers / 2),
+            'route_params' => array()
+        );
+
+        $users = $this->getDoctrine()->getRepository('GyverBundle:User')
+            ->getList($page, 2);
+
+        return $this->render('Admin/overview.html.twig', array(
+            'users' => $users,
+            'pagination' => $pagination
+        ));
+
+
     }
 
     /**
