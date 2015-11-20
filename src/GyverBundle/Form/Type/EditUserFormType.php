@@ -5,10 +5,19 @@ namespace GyverBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Class Form builder for user profile edition
+ *
+ * @package GyverBundle\Form\Type
+ */
 class EditUserFormType extends AbstractType
 {
-
-
+    /**
+     * Build form creator
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
@@ -37,11 +46,21 @@ class EditUserFormType extends AbstractType
         ;
     }
 
+    /**
+     * Return the builder parent name
+     *
+     * @return string
+     */
     public function getParent()
     {
         return 'fos_user_profile';
     }
 
+    /**
+     * Return the parent name
+     *
+     * @return string
+     */
     public function getName()
     {
         return 'app_user_profile_edit';

@@ -4,7 +4,11 @@ namespace GyverBundle\Tests\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
+/**
+ * UserManagementController Unit Testing
+ *
+ * @package GyverBundle\Tests\Controller\Admin
+ */
 class UserManagementControllerTest extends WebTestCase
 {
     /**
@@ -19,6 +23,9 @@ class UserManagementControllerTest extends WebTestCase
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 
+    /**
+     * Test showUserAction
+     */
     public function testShowuserAction()
     {
         $client = static::createClient(array(), array(
@@ -32,6 +39,9 @@ class UserManagementControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    /**
+     * Test colleageAction
+     */
     public function testColleageAction()
     {
         $client = static::createClient(array(), array(
