@@ -33,12 +33,12 @@ class UserManagementController extends Controller
         $pagination = array(
             'page' => $page,
             'route' => 'user_list',
-            'pages_count' => ceil($nbUsers / 2),
+            'pages_count' => ceil($nbUsers / 3),
             'route_params' => array()
         );
 
         $users = $this->getDoctrine()->getRepository('GyverBundle:User')
-            ->getList($page, 2);
+            ->getList($page, 3);
 
         return $this->render('Admin/overview.html.twig', array(
             'users' => $users,

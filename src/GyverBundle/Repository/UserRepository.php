@@ -27,6 +27,7 @@ class UserRepository extends EntityRepository
         $q = $this->_em->createQueryBuilder()
             ->select('user')
             ->from('GyverBundle:User','user')
+            ->orderBy('user.firstName', 'ASC')
         ;
 
         $q->setFirstResult(($page-1) * $maxperpage)
