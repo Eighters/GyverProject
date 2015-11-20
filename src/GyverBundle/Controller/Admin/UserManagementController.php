@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserManagementController
@@ -44,8 +45,6 @@ class UserManagementController extends Controller
             'users' => $users,
             'pagination' => $pagination
         ));
-
-
     }
 
     /**
@@ -108,28 +107,52 @@ class UserManagementController extends Controller
      */
     public function DeleteUserAction($id)
     {
-        var_dump($id); die;
-
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
-        $this->addFlash(
-            'error',
-            'Your checkUrl has been properly deleted'
-        );
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GyverBundle:User')->find($id);
 
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $this->addFlash('error', 'Your can\'t delete Admin User!');
+            return $this->redirect($this->generateUrl('user_list'));
+        }
+
+        $em->remove($user);
+        $em->flush();
+
+        $this->addFlash('success', 'Your User has been properly deleted');
         return $this->redirect($this->generateUrl('user_list'));
     }
 
     /**
-     * Delete given user information ONLY for admin
+     * Check the Admin password to confirm sensitive actions
      *
      * @Route("/user/admin/password/check", name="admin_password_check")
      * @Method("POST")
      */
-    public function checkUserPassword($password)
+    public function checkUserPassword()
     {
-        var_dump($password); die;
+        $inputPassword = $this->get('request')->get('password');
 
-        return $password;
+        $em = $this->getDoctrine()->getManager();
+        $admin = $em->getRepository('GyverBundle:User')->find(1);
+
+        $salt = $admin->getSalt();
+        $passwordEncrypt = $admin->getPassword();
+
+        $salted = $inputPassword.'{'.$salt.'}';
+        $digest = hash('sha512', $salted, true);
+
+        for ($i=1; $i<5000; $i++) {
+            $digest = hash('sha512', $digest.$salted, true);
+        }
+
+        $encodedPassword = base64_encode($digest);
+
+        if ($passwordEncrypt == $encodedPassword) {
+            return new Response(json_encode(true));
+        } else {
+            return  new Response(json_encode(false));
+        }
     }
 }
