@@ -22,6 +22,7 @@ class UserManagementController extends Controller
      */
     public function indexAction($page=1)
     {
+        $maxperpage = 6;
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository('GyverBundle:User');
 
@@ -32,12 +33,12 @@ class UserManagementController extends Controller
         $pagination = array(
             'page' => $page,
             'route' => 'user_list',
-            'pages_count' => ceil($nbUsers / 6),
+            'pages_count' => ceil($nbUsers / $maxperpage),
             'route_params' => array()
         );
 
         $users = $this->getDoctrine()->getRepository('GyverBundle:User')
-            ->getList($page, 6);
+            ->getList($page, $maxperpage);
 
         return $this->render('Admin/overview.html.twig', array(
             'users' => $users,
