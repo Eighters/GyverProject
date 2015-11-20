@@ -1,0 +1,110 @@
+GyverBundle\Entity\User:
+    user (template):
+        username: user
+        usernameCanonical: user
+        email: user@example.com
+        emailCanonical: user@example.com
+        enabled: 1
+        salt: ajsdqew2drsw0ggss0k0gs4gw4wgwcw
+        password: jWV51iizX2+qwWLLya+eXImJ9wwWw0CCHi4yW9STBFcn6lLEv7r2f1cpRxbnBQtRoP/8pozVXNcrOdu3L+iv5Q== # version crypté du mot de passe 'password'
+        lastLogin: <dateTime("2015-06-07 00:00:00")>
+        locked: 0
+        expired: 0
+        expiresAt: ~
+        confirmationToken: ~
+        passwordRequestedAt: ~
+        roles: [ROLE_USER]
+        credentialsExpired: 0
+        credentialsExpireAt: ~
+        civility: 0 # 0 = Male, 1 = Female
+        firstName: user
+        lastName: user
+        company: ~
+
+    admin (extends user):
+        username: admin
+        usernameCanonical: admin
+        email: admin@example.com
+        emailCanonical: admin@example.com
+        roles: [ROLE_ADMIN]
+        civility: 0
+        firstName: admin
+        lastName: admin
+        company: [ @company1 ]
+
+    chef_projet (extends user):
+        username: chef_projet
+        usernameCanonical: chef_projet
+        email: chef_projet@example.com
+        emailCanonical: chef_projet@example.com
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Carl
+        lastName: Sutter
+        company: [ @company1 ]
+
+    consultant (extends user):
+        username: devconsultanteloppeur
+        usernameCanonical: consultant
+        email: consultant@example.com
+        emailCanonical: consultant@example.com
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: ALexandre
+        lastName: Jacob
+        company: [ @company3, @company2 ]
+
+    developpeur (extends user):
+        username: developpeur
+        usernameCanonical: developpeur
+        email: developpeur@example.com
+        emailCanonical: developpeur@example.com
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Matthieu
+        lastName: Rodraney
+        company: [ @company1 ]
+
+    collaborateur (extends user):
+        username: collaborateur
+        usernameCanonical: collaborateur
+        email: collaborateur@example.com
+        emailCanonical: collaborateur@example.com
+        roles: [ROLE_USER]
+        civility: 1
+        firstName: Carine
+        lastName: Leguellec
+        company: [ @company1 ]
+
+    client (extends user):
+        username: client
+        usernameCanonical: client
+        email: client@example.com
+        emailCanonical: client@example.com
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Roberto
+        lastName: Ramos
+        company: [ @company4 ]
+
+    thibaut (extends user):
+        username: thibaut
+        usernameCanonical: thibaut
+        email: thibaut@example.com
+        emailCanonical: thibaut@example.com
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Thibaut
+        lastName: Gauvin
+        company: [ @company5 ]
+
+    rkoci (extends user):
+        username: rkoci
+        usernameCanonical: rkoci
+        email: rkoci@g4.fr
+        emailCanonical: rkoci@g4.fr
+        roles: [ROLE_USER]
+        civility: 1
+        firstName: Rémi
+        lastName: Koci
+        company: [ @company7 ]

@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% block underNavTitle %}Modifier le profil{% endblock %}
+{% block underNavText %}Cette page vous permet de modifier les informations relatives à votre profil.{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <form action="{{ path('user_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_widget(form.civility) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_widget(form.firstName) }}
+                            {{ form_label(form.firstName) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_widget(form.lastName) }}
+                            {{ form_label(form.lastName) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            {{ form_widget(form.email) }}
+                            {{ form_label(form.email) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">vpn_key</i>
+                            {{ form_widget(form.current_password) }}
+                            <label for="fos_user_profile_form_current_password">Mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="{{ path('user_info') }}" class="waves-effect waves-light btn-large amber accent-4">
+                                <i class="material-icons left">skip_previous</i>
+                                Annuler
+                            </a>
+                            <button class="btn-large waves-effect waves-light right" type="submit">
+                                Modifier
+                                <i class="material-icons right">done</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{ form_widget(form._token) }}
+                    <div style="display:none;">
+                    {{ form_widget(form.username) }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

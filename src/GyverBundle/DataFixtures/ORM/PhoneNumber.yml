@@ -1,0 +1,32 @@
+GyverBundle\Entity\PhoneNumber:
+    admin_principal:
+        user: @admin
+        phoneNumber: 0601020304
+
+    chef_projet_principal:
+        user: @chef_projet
+        phoneNumber: 0610203040
+        
+    consultant_principal:
+        user: @consultant
+        phoneNumber: 0611223344
+
+    developpeur_principal:
+        user: @developpeur
+        phoneNumber: 0699887766
+
+    collaborateur_principal:
+        user: @collaborateur
+        phoneNumber: 0609080706
+
+    client_principal:
+        user: @client
+        phoneNumber: 0690807060
+
+    thibaut_principal:
+        user: @thibaut
+        phoneNumber: 0601010101
+
+    remi_principal:
+        user: @rkoci
+        phoneNumber: 0669696969

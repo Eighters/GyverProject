@@ -98,6 +98,3 @@ DEPENDENCIES
   compass (~> 1.0.3)
   foundation (~> 1.0, >= 1.0.4)
   mailcatcher (~> 0.6.1)
-
-BUNDLED WITH
-   1.10.6

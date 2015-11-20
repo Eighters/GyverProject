@@ -1,0 +1,70 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Connexion{% endblock%}
+
+{% block body %}
+
+<div class="container">
+    <div class="row center">
+        <div class="col offset-l3 l6 s12">
+            <div class="card white">
+                <div class="card-content z-depth-2 login-form">
+                    <div class="row">
+                        <div class="language-selector">
+                            <a href="#">FR</a> |
+                            <a href="#">EN</a>
+                        </div>
+
+                        <div class="col s12 application-icon">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="gyver-logo circle responsive-img valign">
+                        </div>
+
+                        {% if error %}
+                            <div class="col s12">
+                                <div class="col s1">
+                                    <i class="material-icons" title="Voir">report_problem</i>
+                                </div>
+                                <div class="col s11">
+                                    <p class="red darken-1">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <form class="col s12" action="{{ path("fos_user_security_check") }}" method="post">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input class="validate" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                                    <label for="username">Email :</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input class="validate" type="password" id="password" name="_password" required="required" />
+                                    <label for="password">Mot de passe :</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="checkbox" id="filled-in-box" checked="checked" />
+                                <label for="filled-in-box">Se souvenir de moi</label>
+                            </div>
+                            <div class="row">
+                                <button class="btn waves-effect waves-light btn-large amber accent-4" type="submit" id="_submit" name="_submit">
+                                    Connexion
+                                </button>
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        </form>
+
+                        <div class="col s12">
+                            <a href="#">Mot de passe oublié ?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

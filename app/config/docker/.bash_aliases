@@ -11,6 +11,7 @@ alias mv='mv -i'
 # Symfony
 alias symfony='php app/console'
 alias sf='symfony'
-alias sfixt='sf d:s:drop --env=test --force && sf d:s:create --env=test && sf d:f:load --env=test -n'
+alias dbregen_test='sf d:s:drop --env=test --force && sf d:s:create --env=test && sf d:f:load --env=test -n'
+alias dbregen='sf d:s:drop --env=dev --force && sf d:s:create --env=dev && sf d:f:load --env=dev -n'
 
 # :mode=shellscript:

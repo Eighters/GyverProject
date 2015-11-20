@@ -1,0 +1,80 @@
+GyverBundle\Entity\Email:
+    admin_principal:
+        user: @admin
+        email: adminEmailPrincipal@example.com
+        principal: 1
+
+    admin_secondary:
+        user: @admin
+        email: adminEmailSecondary@example.com
+        principal: 0
+
+    chef_projet_principal:
+        user: @chef_projet
+        email: chef_projetEmailPrincipal@example.com
+        principal: 1
+
+    chef_projet_secondary:
+        user: @chef_projet
+        email: chef_projetEmailSecondary@example.com
+        principal: 0
+        
+    consultant_principal:
+        user: @consultant
+        email: consultantEmailPrincipal@example.com
+        principal: 1
+
+    consultant_secondary:
+        user: @consultant
+        email: consultantEmailSecondary@example.com
+        principal: 0
+
+    developpeur_principal:
+        user: @developpeur
+        email: developpeurEmailPrincipal@example.com
+        principal: 1
+
+    developpeur_secondary:
+        user: @developpeur
+        email: developpeurEmailSecondary@example.com
+        principal: 0
+
+    collaborateur_principal:
+        user: @collaborateur
+        email: collaborateurEmailPrincipal@example.com
+        principal: 1
+
+    collaborateur_secondary:
+        user: @collaborateur
+        email: collaborateurEmailSecondary@example.com
+        principal: 0
+        
+    client_principal:
+        user: @client
+        email: clientEmailPrincipal@example.com
+        principal: 1
+
+    client_secondary:
+        user: @client
+        email: clientEmailSecondary@example.com
+        principal: 0
+
+    thibaut_principal:
+        user: @thibaut
+        email: thibautEmailPrincipal@example.com
+        principal: 1
+
+    thibaut_secondary:
+        user: @thibaut
+        email: thibautEmailSecondary@example.com
+        principal: 0
+
+    rkoci_principal:
+        user: @rkoci
+        email: rkociEmailPrincipal@example.com
+        principal: 1
+
+    rkoci_secondary:
+        user: @rkoci
+        email: rkociEmailSecondary@example.com
+        principal: 0
