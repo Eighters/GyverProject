@@ -79,28 +79,41 @@ class SettingsController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid())
+            $this->validateEditAction($form, $request, $dispatcher, $user);
 
-            /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager');
-
-            $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
-
-            $userManager->updateUser($user);
-
-            if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('user_info');
-                $response = new RedirectResponse($url);
-            }
-
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-            return $response;
-        }
         return $this->render('FOSUserBundle:Profile:edit_content.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * Validate edit action
+     *
+     * @param $form
+     * @param $request
+     * @param $dispatcher
+     * @param $user
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    private function validateEditAction($form, $request, $dispatcher, $user)
+    {
+        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        $userManager = $this->get('fos_user.user_manager');
+
+        $event = new FormEvent($form, $request);
+        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
+
+        $userManager->updateUser($user);
+
+        if (null === $response = $event->getResponse()) {
+            $url = $this->generateUrl('user_info');
+            $response = new RedirectResponse($url);
+        }
+
+        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+        return $response;
     }
 
 }
