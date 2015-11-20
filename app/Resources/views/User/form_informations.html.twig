@@ -6,48 +6,76 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="large-12 columns">
-            <fieldset>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card cyan darken-2 white-text">
+                        <div class="card-content ">
+                            <div class="right">
+                                <a href="{{ path('user_edit') }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                    <i class="material-icons">create</i>
+                                </a>
+                                <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                    <i class="material-icons">archive</i>
+                                </a>
+                                <a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                    <i class="material-icons ">delete</i>
+                                </a>
+                            </div>
+                            <h4>
+                                <i class="material-icons small">perm_identity</i>
+                                {{ user.firstName }} {{ user.lastName }}
+                            </h4>
 
-                    <p>Civilité :</p>
-                    <p> {{user.civility ? "Homme" : "Femme" }} </p>
-
-                    <br/>
-                    <p>Prénom :</p>
-                    <p>{{ user.firstName }}</p>
-
-                    <br/>
-                    <p>Nom:</p>
-                    <p>{{ user.lastName }}</p>
-
-                    <br/>
-                    <p>Email :</p>
-                    {% for email in user.emailList %}
-                        <p>{{ email.email }}</p>
-                    {% endfor %}
-                    <br/>
-
-                    <p>Phone :</p>
-                    {% for phone in user.phoneNumber %}
-                        <p>{{ phone.phoneNumber }}</p>
-                    {% endfor %}
-                    <br/>
-
-
-
-                    <p>Entreprise :</p>
-                    {% for company in user.company %}
-                        <p>{{ company.name }}</p>
-                    {% endfor %}
-
-                    <div class="row">
-                        <div class="col l6 right">
-                            <a class="waves-effect waves-light btn" href="{{ path('user_edit') }}">Editer</a>
                         </div>
                     </div>
+                    <div class="card-content">
+                        {{ user.civility ? 'Homme' : 'Femme' }} <br>
+                        Compte {{ user.enabled ? 'activé' : 'archivé' }} <br>
+                        Dernière connexion : {{ user.lastLogin|date('d/m/Y H:i:s') }}
+                        <ul class="collection with-header">
+                            <li class="collection-header"><h5>Emails</h5></li>
+                            <li class="collection-item">{{ user.email }}</li>
+                            {% for email in user.emailList %}
+                                <li class="collection-item">{{ email.email }}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="collection with-header">
+                            <li class="collection-header"><h5>Numéros de téléphone</h5></li>
+                            {% for phoneNumber in user.phoneNumber %}
+                                <li class="collection-item">{{ phoneNumber.phoneNumber }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-action">
 
-            </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card cyan darken-2 white-text">
+                        <div class="card-content ">
+                            <h4>
+                                <i class="material-icons small">business</i>
+                                Entreprises
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        {% if user.company|length == 0 %}
+                            <p>no company</p>
+                        {% else %}
+                            <ul>
+                                {% for company in user.company %}
+                                    <li>{{ company.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
