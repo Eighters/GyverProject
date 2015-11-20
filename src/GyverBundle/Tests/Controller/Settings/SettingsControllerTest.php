@@ -36,4 +36,15 @@ class SettingsControllerTest extends WebTestCase
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
+
+    /**
+     * editAction method test
+     */
+    public function testEditAction()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/secure/account/edit');
+
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    }
 }

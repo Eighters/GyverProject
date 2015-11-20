@@ -26,7 +26,7 @@ class UserManagementControllerTest extends WebTestCase
     /**
      * Test showUserAction
      */
-    public function testShowuserAction()
+    public function testShowUserAction()
     {
         $client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',

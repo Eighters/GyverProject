@@ -46,8 +46,6 @@ class LoginControllerTest extends WebTestCase
         $client->followRedirect();
 
         // Redir vers /secure
-        $this->assertEquals(301, $client->getResponse()->getStatusCode());
-        $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
