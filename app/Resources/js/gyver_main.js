@@ -17,13 +17,13 @@ function addInputField(name) {
 
 function confirmAdminDeleteUser(id) {
     swal({
-        title: "Would you really like to remove this user ?",
-        text: "No rollback possible !",
+        title: "Voulez vous vraiment supprimer cet utilisateur ?",
+        text: "Aucun retour en arrière possible !",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it !",
-        cancelButtonText: "No, cancel please !",
+        confirmButtonText: "Oui, supprimer!",
+        cancelButtonText: "Non, annuler !",
         closeOnConfirm: false,
         closeOnCancel: false
     },
@@ -31,15 +31,15 @@ function confirmAdminDeleteUser(id) {
         if (isConfirm) {
             AdminDeleteUser(id)
         } else {
-            swal("Cancelled", "", "error");
+            swal("Action annulée", "", "error");
         }
     });
 }
 
 function AdminDeleteUser(id) {
     swal({
-        title: "You need to confirm your password !",
-        text: "Enter your admin password",
+        title: "Vous devez confirmer votre mot de passe !",
+        text: "Entrer le mot de passe administrateur",
         type: "input",
         inputType: "password",
         showCancelButton: true,
@@ -59,14 +59,14 @@ function AdminDeleteUser(id) {
                     url: "/secure/user/" + id + "/delete",
                     type: "DELETE"
                 });
-                swal("Deleted!", "Your account has been deleted!", "success");
+                swal("Supprimer !", "L'utilisateur a bien été supprimé !", "success");
                 document.location.reload(true);
             } else {
-                swal.showInputError("Your password is wrong!");
+                swal.showInputError("Votre mot de passe est incorrect !");
             }
         })
         .error(function(data) {
-            swal.showInputError("Your password is wrong!");
+            swal.showInputError("Votre mot de passe est incorrect !");
         });
     });
 }

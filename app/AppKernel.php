@@ -39,7 +39,6 @@ class AppKernel extends Kernel
 
             # Application Bundle
             new GyverBundle\GyverBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
