@@ -52,7 +52,7 @@ GyverBundle\Entity\User:
         civility: 0
         firstName: ALexandre
         lastName: Jacob
-        company: [ @company3, @company2 ]
+        company: [ @company1, @company2 ]
 
     developpeur (extends user):
         username: developpeur
@@ -74,7 +74,7 @@ GyverBundle\Entity\User:
         civility: 1
         firstName: Carine
         lastName: Leguellec
-        company: [ @company1 ]
+        company: [ @company1, @company3 ]
 
     client (extends user):
         username: client
@@ -96,7 +96,7 @@ GyverBundle\Entity\User:
         civility: 0
         firstName: Thibaut
         lastName: Gauvin
-        company: [ @company5 ]
+        company: [ @company1, @company2 ]
 
     rkoci (extends user):
         username: rkoci
@@ -107,4 +107,92 @@ GyverBundle\Entity\User:
         civility: 1
         firstName: Rémi
         lastName: Koci
-        company: [ @company7 ]
+        company: [ @company1, @company2 ]
+
+    guillaume (extends user):
+        username: guillaume
+        usernameCanonical: guillaume
+        email: guillaume@g4.fr
+        emailCanonical: guillaume@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Guillaume
+        lastName: Roche
+        company: [ @company1, @company2 ]
+
+    karim (extends user):
+        username: karim
+        usernameCanonical: karim
+        email: karim@g4.fr
+        emailCanonical: karim@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Karim
+        lastName: Tayeb
+        company: [ @company1, @company2 ]
+
+    ralph (extends user):
+        username: ralph
+        usernameCanonical: ralph
+        email: ralph@g4.fr
+        emailCanonical: ralph@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Ralph
+        lastName: Zogo
+        company: [ @company1, @company2 ]
+
+    rowmain (extends user):
+        username: rowmain
+        usernameCanonical: rowmain
+        email: rowmain@g4.fr
+        emailCanonical: rowmain@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Romain
+        lastName: Dalleau
+        company: [ @company1, @company2 ]
+
+    romain (extends user):
+        username: romain
+        usernameCanonical: romain
+        email: romain@g4.fr
+        emailCanonical: romain@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Romain
+        lastName: Lesniak
+        company: [ @company1, @company2 ]
+
+    brandon (extends user):
+        username: brandon
+        usernameCanonical: brandon
+        email: brandon@g4.fr
+        emailCanonical: brandon@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Brandon
+        lastName: Beurion
+        company: [ @company1, @company2 ]
+
+    robin (extends user):
+        username: robin
+        usernameCanonical: robin
+        email: robin@g4.fr
+        emailCanonical: robin@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Robin
+        lastName: Billy
+        company: [ @company1, @company2 ]
+
+    alicia (extends user):
+        username: alicia
+        usernameCanonical: alicia
+        email: alicia@g4.fr
+        emailCanonical: alicia@g4.fr
+        roles: [ROLE_USER]
+        civility: 0
+        firstName: Alicia
+        lastName: Belkovskaya
+        company: [ @company1, @company2 ]

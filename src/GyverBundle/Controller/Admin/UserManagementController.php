@@ -5,6 +5,7 @@ namespace GyverBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserManagementController
@@ -44,8 +45,6 @@ class UserManagementController extends Controller
             'users' => $users,
             'pagination' => $pagination
         ));
-
-
     }
 
     /**
@@ -104,32 +103,62 @@ class UserManagementController extends Controller
      * Delete given user information ONLY for admin
      *
      * @Route("/user/{id}/delete", name="user_delete")
-     * @Method("GET")
+     * @Method("DELETE")
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function DeleteUserAction($id)
+    public function deleteUserAction($id)
     {
-        var_dump($id); die;
-
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
-        $this->addFlash(
-            'error',
-            'Your checkUrl has been properly deleted'
-        );
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GyverBundle:User')->find($id);
+        $name = $user->getFirstName() . ' ' .$user->getLastName();
 
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $this->addFlash('error', 'Vous ne pouvez pas supprimer l\'utilisateur :'. $name .' car il est Administrateur !');
+            return $this->redirect($this->generateUrl('user_list'));
+        }
+
+        $em->remove($user);
+        $em->flush();
+
+        $this->addFlash('success', 'L\'utilisateur '. $name .' a été correctement supprimé');
         return $this->redirect($this->generateUrl('user_list'));
     }
 
     /**
-     * Delete given user information ONLY for admin
+     * Check the Admin password to confirm sensitive actions
      *
      * @Route("/user/admin/password/check", name="admin_password_check")
      * @Method("POST")
+     *
+     * @return Response
      */
-    public function checkUserPassword($password)
+    public function checkUserPasswordAction()
     {
-        var_dump($password); die;
+        $inputPassword = $this->get('request')->get('password');
 
-        return $password;
+        $em = $this->getDoctrine()->getManager();
+        $admin = $em->getRepository('GyverBundle:User')->find(1);
+
+        $salt = $admin->getSalt();
+        $passwordEncrypt = $admin->getPassword();
+
+        $salted = $inputPassword.'{'.$salt.'}';
+        $digest = hash('sha512', $salted, true);
+
+        for ($i=1; $i<5000; $i++) {
+            $digest = hash('sha512', $digest.$salted, true);
+        }
+
+        $encodedPassword = base64_encode($digest);
+
+        if ($passwordEncrypt == $encodedPassword) {
+            return new Response(json_encode(true));
+        } else {
+            return  new Response(json_encode(false));
+        }
     }
 }

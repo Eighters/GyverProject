@@ -37,7 +37,6 @@ function confirmAdminDeleteUser(id) {
 }
 
 function AdminDeleteUser(id) {
-    console.log(id);
     swal({
         title: "You need to confirm your password !",
         text: "Enter your admin password",
@@ -50,16 +49,23 @@ function AdminDeleteUser(id) {
     },
     function(inputValue){
         $.ajax({
-            url: "secure/user/admin/password/check",
+            url: "/secure/user/admin/password/check",
             data: { password: inputValue },
             type: "POST"
         })
-        .done(function(data) {
-            console.log(data);
-            swal("Deleted!", "Your account has been deleted!", "success");
+        .success(function(data) {
+            if(data == 'true') {
+                $.ajax({
+                    url: "/secure/user/" + id + "/delete",
+                    type: "DELETE"
+                });
+                swal("Deleted!", "Your account has been deleted!", "success");
+                document.location.reload(true);
+            } else {
+                swal.showInputError("Your password is wrong!");
+            }
         })
         .error(function(data) {
-            console.log(data);
             swal.showInputError("Your password is wrong!");
         });
     });

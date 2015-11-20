@@ -69,12 +69,12 @@ class User extends BaseUser
     private $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="PhoneNumber", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="PhoneNumber", mappedBy="user", cascade={"remove"})
      */
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="Email", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Email", mappedBy="user", cascade={"remove"})
      */
     protected $emailList;
 

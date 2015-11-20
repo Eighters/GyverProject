@@ -30,3 +30,35 @@ GyverBundle\Entity\PhoneNumber:
     remi_principal:
         user: @rkoci
         phoneNumber: 0669696969
+
+    guillaume_principal:
+        user: @guillaume
+        phoneNumber: 0601027812
+
+    karim_principal:
+        user: @karim
+        phoneNumber: 0612991412
+
+    ralph_principal:
+        user: @ralph
+        phoneNumber: 0612541520
+
+    rowmain_principal:
+        user: @rowmain
+        phoneNumber: 0723520523
+
+    romain_principal:
+        user: @romain
+        phoneNumber: 0624023592
+
+    brandon_principal:
+        user: @brandon
+        phoneNumber: 0620834810
+
+    robin_principal:
+        user: @robin
+        phoneNumber: 0615151208
+
+    alicia_principal:
+        user: @alicia
+        phoneNumber: 0612413419
