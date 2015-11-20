@@ -5,7 +5,6 @@ namespace GyverBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -103,9 +102,12 @@ class UserManagementController extends Controller
      * Delete given user information ONLY for admin
      *
      * @Route("/user/{id}/delete", name="user_delete")
-     * @Method("GET")
+     * @Method("DELETE")
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function DeleteUserAction($id)
+    public function deleteUserAction($id)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
@@ -129,8 +131,10 @@ class UserManagementController extends Controller
      *
      * @Route("/user/admin/password/check", name="admin_password_check")
      * @Method("POST")
+     *
+     * @return Response
      */
-    public function checkUserPassword()
+    public function checkUserPasswordAction()
     {
         $inputPassword = $this->get('request')->get('password');
 

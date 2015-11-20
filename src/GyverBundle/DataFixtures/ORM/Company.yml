@@ -15,10 +15,19 @@ GyverBundle\Entity\Company:
         name: SFR
 
     company5 (extends companySample):
-        name: Auberge du poney qui touse
+        name: Decathlon
 
     company6 (extends companySample):
-        name: Supermarché KASHER pas cher
+        name: Leader Price
 
     company7 (extends companySample):
-        name: Restaurant Tinoix
+        name: Auchan
+
+    company8 (extends companySample):
+        name: Atos
+
+    company9 (extends companySample):
+        name: Microsoft
+
+    company10 (extends companySample):
+        name: Apple
