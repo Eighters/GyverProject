@@ -59,9 +59,8 @@ class SettingsController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
+        if (!is_object($user) || !$user instanceof UserInterface)
             throw new AccessDeniedException('This user does not have access to this section.');
-        }
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
@@ -69,9 +68,8 @@ class SettingsController extends Controller
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
 
-        if (null !== $event->getResponse()) {
+        if (null !== $event->getResponse())
             return $event->getResponse();
-        }
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
@@ -83,7 +81,6 @@ class SettingsController extends Controller
 
         if ($form->isValid()) {
 
-            $data = $form->getData();
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 

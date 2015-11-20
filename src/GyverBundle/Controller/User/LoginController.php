@@ -9,6 +9,11 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+/**
+ * LoginController, use to manage login actions
+ *
+ * @package GyverBundle\Controller\User
+ */
 class LoginController extends SecurityController
 {
 

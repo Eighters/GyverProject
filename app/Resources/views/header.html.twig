@@ -17,7 +17,7 @@
 
         <!-- Users -->
         {% if is_granted('ROLE_ADMIN') %}
-            {% if app.request.attributes.get('_route') == 'user_list' %}
+            {% if (app.request.attributes.get('_route') == 'user_list' or app.request.attributes.get('_route') == 'user_show') %}
                 <li class="active"><a href="{{ path('user_list') }}">Utilisateurs</a></li>
             {% else %}
                 <li><a href="{{ path('user_list') }}">Utilisateurs</a></li>
@@ -28,7 +28,7 @@
     <ul class="right hide-on-med-and-down">
 
         <!-- Profile -->
-        {% if app.request.attributes.get('_route') == 'user_info' %}
+        {% if (app.request.attributes.get('_route') == 'user_info' or app.request.attributes.get('_route') == 'user_edit') %}
             <li class="active"><a href="{{ path('user_info') }}">Profil</a></li>
         {% else %}
             <li><a href="{{ path('user_info') }}">Profil</a></li>
