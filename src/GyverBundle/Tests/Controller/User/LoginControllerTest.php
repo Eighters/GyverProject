@@ -25,6 +25,9 @@ class LoginControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    /**
+     * test adminLoginForm
+     */
     public function testAdminLoginForm()
     {
         $client = static::createClient();
@@ -44,8 +47,6 @@ class LoginControllerTest extends WebTestCase
 
         // Redir vers /secure
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
-        $client->followRedirect();
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
 }
