@@ -1,3 +1,11 @@
 .flashMessage {
     text-align: center;
+    padding: $padding-basic;
+    border-radius: 5px;
+
+    p {
+        color: white;
+        letter-spacing: 2px;
+        font-size: 20px;
+    }
 }

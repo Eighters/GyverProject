@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "homepage": "git@github.com:TechGameCrew/ProG4.git",
   "authors": [
-    "Thibaut Gauvin     <gauvin.Thibaut83@gmail.com>",
+    "Thibaut Gauvin     <gauvin.thibaut83@gmail.com>",
     "Robin Billy        <rbilly.mail@gmail.com>",
-    "Romain Dalleaux    <dalleau.romain@gmail.com>",
+    "Romain Dalleau    <dalleau.romain@gmail.com>",
     "Romain Lesniak     <lesniak.romain@gmail.com>",
-    "Remy Koci          <remikoci@gmail.com>",
+    "Remi Koci          <remikoci@gmail.com>",
     "Ralph Lewiz        <ralph.lewiz@gmail.com>",
     "Alicia Belkovski   <abelkovskaya@gmail.com>",
     "Brandon Beurion    <turgotbeurionbrandon@gmail.com>",
@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "materialize": "~0.97.2",
-    "font-awesome": "4.3.0"
+    "font-awesome": "4.3.0",
+    "sweetalert": "~1.1.3",
   }
 }
-

@@ -12,21 +12,24 @@
             <ul class="collection">
                 {% for u in users %}
                     <li href="#!" class="collection-item avatar">
-                        <img src="http://lorempixel.com/{{ random(500) }}/{{ random(500) }}/people/" class="circle">
+                        <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
+
                         <span class="title">{{ u.firstName }} {{ u.lastName }}</span>
+
                         <p>Compte: {{ u.enabled ? 'actif':'archivé' }}</p>
+
                         <p>
                             Entreprise{% if u.company|length > 1 %}s{% endif %}:
 
-                                {% for company in u.company %}
-                                    {% if loop.last %}
-                                        {{ company.name }}
-                                    {% else  %}
-                                        {{ company.name }} |
-                                    {% endif %}
-                                {%  endfor %}
-
+                            {% for company in u.company %}
+                                {% if loop.last %}
+                                    {{ company.name }}
+                                {% else  %}
+                                    {{ company.name }} |
+                                {% endif %}
+                            {%  endfor %}
                         </p>
+
                         <div  class="secondary-content">
                             <div class="fixed-action-btn horizontal click-to-toggle">
                                 <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
@@ -50,11 +53,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                        <a href="#" onclick="confirmAdminDeleteUser({{ u.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                             <i class="material-icons ">delete</i>
                                         </a>
                                     </li>
                                 </ul>
+
                             </div>
                         </div>
                     </li>
@@ -62,6 +66,7 @@
             </ul>
         </div>
     </div>
+
     {% include ':Default:pagination.html.twig' %}
 
 {% endblock %}

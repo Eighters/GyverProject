@@ -3,7 +3,7 @@
 
 console.log('fichier gyver main chargé');
 
-function addInputField(name){
+function addInputField(name) {
 
     switch(name) {
         case "mail":
@@ -13,4 +13,54 @@ function addInputField(name){
             $("#add_phone").before("<input type='text' name='phone[]' />");
             break;
     }
+}
+
+function confirmAdminDeleteUser(id) {
+    swal({
+        title: "Would you really like to remove this user ?",
+        text: "No rollback possible !",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it !",
+        cancelButtonText: "No, cancel please !",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            AdminDeleteUser(id)
+        } else {
+            swal("Cancelled", "", "error");
+        }
+    });
+}
+
+function AdminDeleteUser(id) {
+    console.log(id);
+    swal({
+        title: "You need to confirm your password !",
+        text: "Enter your admin password",
+        type: "input",
+        inputType: "password",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        animation: "slide-from-top",
+        inputPlaceholder: "P@ssword"
+    },
+    function(inputValue){
+        $.ajax({
+            url: "secure/user/admin/password/check",
+            data: { password: inputValue },
+            type: "POST"
+        })
+        .done(function(data) {
+            console.log(data);
+            swal("Deleted!", "Your account has been deleted!", "success");
+        })
+        .error(function(data) {
+            console.log(data);
+            swal.showInputError("Your password is wrong!");
+        });
+    });
 }

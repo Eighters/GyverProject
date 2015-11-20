@@ -99,4 +99,37 @@ class UserManagementController extends Controller
         else
             throw $this->createAccessDeniedException('You cannot access this page!');
     }
+
+    /**
+     * Delete given user information ONLY for admin
+     *
+     * @Route("/user/{id}/delete", name="user_delete")
+     * @Method("GET")
+     */
+    public function DeleteUserAction($id)
+    {
+        var_dump($id); die;
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
+        $this->addFlash(
+            'error',
+            'Your checkUrl has been properly deleted'
+        );
+
+        return $this->redirect($this->generateUrl('user_list'));
+    }
+
+    /**
+     * Delete given user information ONLY for admin
+     *
+     * @Route("/user/admin/password/check", name="admin_password_check")
+     * @Method("POST")
+     */
+    public function checkUserPassword($password)
+    {
+        var_dump($password); die;
+
+        return $password;
+    }
 }

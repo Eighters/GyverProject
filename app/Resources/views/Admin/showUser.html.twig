@@ -58,8 +58,15 @@
 
 
         <div class="offset-s2 col s8">
-            <a class="btn waves-effect waves-light amber accent-4" href="{{ path('user_list') }}">Retour</a>
+            <a class="btn-floating amber accent-4 tooltipped" data-position="left" data-delay="50" data-tooltip="retour" href="{{ path('user_list') }}">
+                <i class="material-icons">fast_rewind</i>
+            </a>
+
+            <a class="btn-floating red tooltipped" data-position="right" data-delay="50" data-tooltip="Supprimer" onclick="confirmAdminDeleteUser({{ user.id }})" href="#">
+                <i class="material-icons ">delete</i>
+            </a>
         </div>
+
     </div>
 
 {% endblock %}

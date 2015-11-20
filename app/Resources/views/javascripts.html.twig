@@ -1,12 +1,7 @@
 {% javascripts output="assets/js/base.js" package="main"
     '../vendor/jquery/dist/jquery.min.js'
     '../vendor/materialize/dist/js/materialize.min.js'
-%}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
-
-
-{% javascripts output="assets/js/gyver_main.js" package="main"
+    '../vendor/sweetalert/dist/sweetalert.min.js'
     '../app/Resources/js/gyver_main.js'
 %}
 <script src="{{ asset_url }}"></script>
