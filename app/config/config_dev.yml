@@ -51,13 +51,14 @@ doctrine:
         user:     "%dev_database_user%"
         password: "%dev_database_password%"
 
+# Assetic Config Dev
 assetic:
     use_controller: true
 
+# Mailcatcher config (dev only)
 swiftmailer:
-    # MailCatcher Config
     transport: %mailcatcher_transport%
-    host: %mailcatcher_host%
-    port: %mailcatcher_port%
-    username: %mailcatcher_user%
-    password: %mailcatcher_user%
+    host: %mailer_host%
+    port: %mailer_port%
+    username: %mailer_user%
+    password: %mailer_user%

@@ -1,18 +1,6 @@
 imports:
     - { resource: config.yml }
-
-#framework:
-#    validation:
-#        cache: validator.mapping.cache.apc
-#    serializer:
-#        cache: serializer.mapping.cache.apc
-
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
-
+    
 monolog:
     handlers:
         main:
@@ -35,3 +23,15 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+
+# Assetic Config Prod
+assetic:
+    use_controller: true
+
+# Mailer Config Prod
+swiftmailer:
+    transport: %mailer_transport%
+    host: %mailcatcher_host%
+    port: %mailcatcher_port%
+    username: %mailcatcher_user%
+    password: %mailcatcher_user%
