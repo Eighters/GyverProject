@@ -38,7 +38,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
 
             # Application Bundle
-            new GyverBundle\GyverBundle(),
             new GP\UserBundle\GPUserBundle(),
             new GP\CompanyBundle\GPCompanyBundle(),
             new GP\ProjectBundle\GPProjectBundle(),

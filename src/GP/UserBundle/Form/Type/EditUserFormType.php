@@ -1,6 +1,6 @@
 <?php
 
-namespace GyverBundle\Form\Type;
+namespace GP\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Class Form builder for user profile edition
  *
- * @package GyverBundle\Form\Type
+ * @package GP\UserBundle\Form\Type
  */
 class EditUserFormType extends AbstractType
 {
@@ -23,7 +23,7 @@ class EditUserFormType extends AbstractType
 
         $builder
             ->add("civility", "choice", array(
-                "choices" => array(true => "Monsieur", false => "Madame"),
+                "choices" => array('male' => "Monsieur", 'female' => "Madame"),
                 "expanded" => true,
                 "multiple" => false
             ))

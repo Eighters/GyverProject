@@ -31,6 +31,11 @@ class SecurityController extends FOSSecurityController
      */
     public function loginAction(Request $request)
     {
+        // Checking if user already authenticated
+        $user = $this->getUser();
+        if (is_object($user) || $user instanceof UserInterface)
+            return $this->redirectToRoute('dashboard');
+
         // Checking csrf token and create one if any detected
         $csrfToken = $this->has('form.csrf_provider')
             ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')

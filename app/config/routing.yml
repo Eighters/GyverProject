@@ -28,7 +28,3 @@ fos_user:
 
 logout:
   path: /logout
-
-app:
-  resource: "@GyverBundle/Controller/"
-  type:     annotation

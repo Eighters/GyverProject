@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'layout_connected.html.twig' %}
 
 {% block underNavTitle %}Modifier le profil{% endblock %}
 {% block underNavText %}Cette page vous permet de modifier les informations relatives à votre profil.{% endblock %}
@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <form action="{{ path('user_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                <form action="{{ path('edit_account') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
                     <div class="row">
                         <div class="col s12">
                             {{ form_widget(form.civility) }}
@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <a href="{{ path('user_info') }}" class="waves-effect waves-light btn-large amber accent-4">
+                            <a href="{{ path('show_account') }}" class="waves-effect waves-light btn-large amber accent-4">
                                 <i class="material-icons left">skip_previous</i>
                                 Annuler
                             </a>
@@ -57,7 +57,7 @@
 
                     {{ form_widget(form._token) }}
                     <div style="display:none;">
-                    {{ form_widget(form.username) }}
+                        {{ form_widget(form.username) }}
                     </div>
                 </form>
             </div>

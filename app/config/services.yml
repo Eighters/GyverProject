@@ -5,6 +5,6 @@ parameters:
 
 services:
     app.form.profile.edit:
-        class: GyverBundle\Form\Type\EditUserFormType
+        class: GP\UserBundle\Form\Type\EditUserFormType
         tags:
           - { name: form.type, alias: app_user_profile_edit }
