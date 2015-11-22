@@ -1,3 +1,28 @@
+gp_fixtures:
+    resource: "@GPFixturesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gp_security:
+    resource: "@GPSecurityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gp_project:
+    resource: "@GPProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gp_company:
+    resource: "@GPCompanyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gp_user:
+    resource: "@GPUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 

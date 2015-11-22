@@ -4,10 +4,10 @@
         <li><a href="#">MonApplication</a></li>
 
         <!-- Dashboard -->
-        {% if app.request.attributes.get('_route') == 'backend_home' %}
-            <li class="active"><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+        {% if app.request.attributes.get('_route') == 'dashboard' %}
+            <li class="active"><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
         {% else %}
-            <li><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+            <li><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
         {% endif %}
         <!-- #Dashboard -->
 

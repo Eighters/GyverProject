@@ -24,20 +24,6 @@ class SettingsController extends Controller
 {
 
     /**
-     * Render the backend home view
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @Route("/", name="backend_home")
-     * @Method("GET")
-     */
-    public function homeAction(Request $request)
-    {
-        return $this->render('Settings/home.html.twig');
-    }
-
-    /**
      * Render Form update user profile
      *
      * @Route("/account", name="user_info")

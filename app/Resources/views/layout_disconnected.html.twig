@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %} | Gyver Project</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {# Stylesheets Block #}
+        {% block stylesheets %}
+            {{ include('::stylesheets.html.twig') }}
+        {% endblock %}
+    </head>
+
+    <body class="login_background">
+    {# Body Block #}
+    {% block body %}{% endblock %}
+    {# End Body #}
+
+    {% block javascripts %}
+        {{ include('::javascripts.html.twig') }}
+    {% endblock %}
+    </body>
+</html>

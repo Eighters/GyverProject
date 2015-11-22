@@ -1,0 +1,34 @@
+GP\FixturesBundle\Entity\User:
+
+  user (template):
+    username: username@gyver.com
+    usernameCanonical: username@gyver.com
+    email: username@gyver.com
+    emailCanonical: username@gyver.com
+    enabled: 1
+    salt: ajsdqew2drsw0ggss0k0gs4gw4wgwcw
+    password: jWV51iizX2+qwWLLya+eXImJ9wwWw0CCHi4yW9STBFcn6lLEv7r2f1cpRxbnBQtRoP/8pozVXNcrOdu3L+iv5Q==
+    lastLogin: <dateTime("2015-10-19 09:57:18")>
+    locked: 0
+    expired: 0
+    expiresAt: ~
+    confirmationToken: ~
+    passwordRequestedAt: ~
+    roles: [ROLE_USER]
+    credentialsExpired: 0
+    credentialsExpireAt: ~
+    civility: male
+    firstName: John
+    lastName: Doe
+    company: ~
+
+  mroyer (extends user):
+    username: mroyer@gyver.com
+    usernameCanonical: mroyer@gyver.com
+    email: mroyer@gyver.com
+    emailCanonical: mroyer@gyver.com
+    roles: [ROLE_ADMIN]
+    civility: male
+    firstName: Martin
+    lastName: Royer
+    company: [ @company1 ]

@@ -39,6 +39,11 @@ class AppKernel extends Kernel
 
             # Application Bundle
             new GyverBundle\GyverBundle(),
+            new GP\UserBundle\GPUserBundle(),
+            new GP\CompanyBundle\GPCompanyBundle(),
+            new GP\ProjectBundle\GPProjectBundle(),
+            new GP\SecurityBundle\GPSecurityBundle(),
+            new GP\FixturesBundle\GPFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

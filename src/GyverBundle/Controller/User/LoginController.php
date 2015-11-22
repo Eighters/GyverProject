@@ -21,8 +21,6 @@ class LoginController extends SecurityController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/login", name="user_login")
-     * @Method("GET")
      */
     public function loginAction(Request $request)
     {
