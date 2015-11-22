@@ -8,10 +8,28 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
 
+/**
+ * Class DataLoader
+ *
+ * Entity data fixtures loader.
+ *
+ * @package GyverBundle\DataFixtures\ORM
+ */
 class DataLoader implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var string
+     *
+     * The container interface
+     */
     private $container;
 
+    /**
+     * Container property setter
+     * The container interface to set is optional, set to null by default.
+     *
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
@@ -28,11 +46,20 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         return new \DateTime($dateTimeString);
     }
 
+    /**
+     * Manager loader.
+     * Load the correct fixtures file.
+     *
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-        if ($this->container->getParameter('kernel.environment') == 'test') {
+        if ($this->container->getParameter('kernel.environment') == 'test' || $this->container->getParameter('kernel.environment') == 'dev') {
             $files = array(
+                __DIR__.'/Company.yml',
                 __DIR__.'/User.yml',
+                __DIR__.'/Email.yml',
+                __DIR__.'/PhoneNumber.yml',
             );
             Fixtures::load($files, $manager, array('providers' => array($this)));
         }

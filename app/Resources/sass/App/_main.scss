@@ -1,0 +1,58 @@
+/*nav ul li {
+  color: $cyan-lighten-2;
+  .active {
+    background-color: $accent-color;
+    a {
+      color: #fff;
+    }
+  }
+}*/
+
+nav ul a {
+  color: $light-color-primary;
+}
+nav a {
+  color: $text-icons;
+}
+nav ul li + .active {
+  background-color: $accent-color;
+  a {
+    color: $text-icons;
+  }
+}
+.fixed-action-btn {
+  position: inherit;
+  right: 5px;
+  top: 0px;
+  padding-top: 15px;
+  margin-bottom: 0px;
+  z-index: 998;
+}
+.btn-floating i {
+  font-size: 1.2rem;
+}
+.collection-item.avatar .title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.collection {
+  margin: 2rem 0 1rem 0;
+}
+
+/* UNDER NAV MENU */
+
+.row .under-nav {
+  padding: $padding-basic *4 $padding-basic * 4;
+
+  h3 {
+    font-size: 32px;
+    color: white;
+  }
+
+  p {
+    font-size: 20px;
+    color: #b2ebf2;
+  }
+}
+
+/* END UNDER NAV MENU */

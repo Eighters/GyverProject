@@ -1,0 +1,72 @@
+{% set i = 0 %}
+
+{% extends '::base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block underNavTitle %}Gestion des utilisateurs{% endblock %}
+{% block underNavText %}Retrouvez ici l'ensemble des utilisateurs de l'application.{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <ul class="collection">
+                {% for u in users %}
+                    <li href="#!" class="collection-item avatar">
+                        <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
+
+                        <span class="title">{{ u.firstName }} {{ u.lastName }}</span>
+
+                        <p>Compte: {{ u.enabled ? 'actif':'archivé' }}</p>
+
+                        <p>
+                            Entreprise{% if u.company|length > 1 %}s{% endif %}:
+
+                            {% for company in u.company %}
+                                {% if loop.last %}
+                                    {{ company.name }}
+                                {% else  %}
+                                    {{ company.name }} |
+                                {% endif %}
+                            {%  endfor %}
+                        </p>
+
+                        <div  class="secondary-content">
+                            <div class="fixed-action-btn horizontal click-to-toggle">
+                                <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('user_show', {'id': u.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
+                                            <i class="material-icons">info</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                            <i class="material-icons">create</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                            <i class="material-icons">archive</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="confirmAdminDeleteUser({{ u.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                            <i class="material-icons ">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% include ':Default:pagination.html.twig' %}
+
+{% endblock %}

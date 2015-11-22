@@ -1,0 +1,33 @@
+GyverBundle\Entity\Company:
+    companySample (template):
+        name: Company Sample
+
+    company1 (extends companySample):
+        name: IT2M Consultant
+
+    company2 (extends companySample):
+        name: Institut G4
+
+    company3 (extends companySample):
+        name: Orange
+
+    company4 (extends companySample):
+        name: SFR
+
+    company5 (extends companySample):
+        name: Decathlon
+
+    company6 (extends companySample):
+        name: Leader Price
+
+    company7 (extends companySample):
+        name: Auchan
+
+    company8 (extends companySample):
+        name: Atos
+
+    company9 (extends companySample):
+        name: Microsoft
+
+    company10 (extends companySample):
+        name: Apple

@@ -1,10 +1,13 @@
 # Mail Catcher:
 
-In order to develop email features, this tools is here to help developer.  
 ![MailCatcher preview](img/mailcatcher.png)
 
-**More Documentation [here](http://mailcatcher.me/)**
+In order to develop email features, this tools is here to help developer.  
 
+To use this tools, you need to install ruby v 2.2.1 and RVM.   
+See Manual Provisionning Doc [here](app/Resources/doc/manual.md)  
+
+**More Documentation [here](http://mailcatcher.me/)**
 
 ## Use Mail Catcher:
 
@@ -17,12 +20,12 @@ In order to develop email features, this tools is here to help developer.
     mailcatcher (0.6.1)
     ```
 
-* **Install Mailcatcher: (if you don't have it)**  
+* **Install Mailcatcher : (if you don't have it)**  
     `bundle install`
     
-* **Run SMTP server:**
+* **Run Mailcatcher :**
     `mailcatcher`
     
-* **Go to MailCatcher Homepage [localhost:1080](http://localhost:1080)**
+* **Go to MailCatcher Homepage : [localhost:1080](http://localhost:1080)**
 
 * **To quit MailCatcher, Go to the web interface**

@@ -1,3 +1,8 @@
-{% javascripts %}
-    <script src="/vendor/foundation/js/foundation.min.js"></script>
+{% javascripts output="assets/js/base.js" package="main"
+    '../vendor/jquery/dist/jquery.min.js'
+    '../vendor/materialize/dist/js/materialize.min.js'
+    '../vendor/sweetalert/dist/sweetalert.min.js'
+    '../app/Resources/js/gyver_main.js'
+%}
+<script src="{{ asset_url }}"></script>
 {% endjavascripts %}

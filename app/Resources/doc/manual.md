@@ -4,9 +4,10 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 
 ## I) Build your environment:
 
-**This command need to be executed only one time. After, build the project is very quick.**
+**This command will setup your environment to the requirment of the GyverProject & need to be executed only one time.**  
+**After this, build the project is very quick.**
 
-* **Install Git:**  
+* **Install Git :**  
     `sudo apt-get install git`
     
     Check if you have git installed on your machine:  
@@ -15,7 +16,24 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     git version 1.9.1
     ```
 
-* **Install HTTP server, NGINX:**
+* **Install Pre-required tools :** 
+    ```bash
+    sudp apt-get install htop multitail curl
+    ```
+    
+    **Htop:** interactive tools that display process running on your machine  
+    **Multitail:** view multiple logfiles windowed on console  
+    **Curl:** providing a library and command-line tool for transferring data using various protocols  
+
+----
+
+**Install HTTP server. Chose Between Apache2 or Nginx.**  
+/!\ Don't install both of them /!\
+
+**Note :**  
+If you install Nginx, you need to install php5-fpm them.
+
+* **NGINX :**  
     `sudo apt-get install nginx -y`
     
     Then, setup server config:  
@@ -25,7 +43,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     sudo nano default
     ```
 
-    ```
+    ```bash
     server {
         listen 80;
         # path to your project
@@ -52,21 +70,15 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     }
     ```
     
-    Save & quit. Then restart nginx service:  
+    Save & quit. Then, restart nginx service to apply change :  
     `sudo service nginx restart`
     
-* **Install HTTP server, Apache 2:**
-    * To install an Apache 2 server on your machine, you can follow this tutorial, very well written and tested by myself : [Installer un serveur apache2] (http://www.petit-laboratoire-de-graphisme-potentiel.com/tutoriels/installer-serveur-developpement-apache2-php5.html)
-
-* **Install MySql client & server:**  
-    `sudo apt-get install mysql-server mysql-client -y`
+    **Note:** everytime you change server config, you need to restart nginx service.
     
-    During the installation process, a password will be required for root user, don't loose it !
-
-* **Install Php5 libraries:**
+* **Install Php5-fpm :**  
     `sudo apt-get install php5-fpm php5-cli php5-mysql php5-intl php5-curl -y`
-
-* **Configure PHP:**  
+    
+* **Configure Php5-fpm :**  
     ```bash
     # Go to php cli directory
     cd /etc/php5/clI
@@ -80,25 +92,41 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     # Edit fpm php.ini
     cd ../fpm  
     sudo nano php.ini
-    ```
     
-    Set the date timezone:  
-    ```ini
+    # And set the date timezone
     ;date.timezone =
     date.timezone = "Europe/Paris"
     ```
+        
+    Restart Php5-fpm service:  
+    `sudo service php5-fpm restart`
+    
+----
 
-* **Install Ruby language:**  
+* **Apache 2 :**  
+    To install an Apache 2 server on your machine, you can follow this [tutorial](http://www.petit-laboratoire-de-graphisme-potentiel.com/tutoriels/installer-serveur-developpement-apache2-php5.html), very well written and tested by Robin Billy (ask him if you have more question). 
+    /!\ Don't forget to set your date.timezone in your php.ini files. /!\
+    
+----
+
+* **Install MySql client & server :**  
+    `sudo apt-get install mysql-server mysql-client -y`
+    
+    During the installation process, a password will be required for root user, **Don't loose it !**
+
+* **Install Ruby language :**  
     `sudo apt-get install ruby`
     
     Check if ruby is installed  
     `ruby -v`  
-    `ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]`
+    `ruby 1.9.3`
 
-* **Install RVM (Ruby Version Manager):**  
+* **Install RVM (Ruby Version Manager) :**  
+    /!\ You need CURL to be able to run this command /!\
+
     ```bash
     # Import key
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    curl -sSL https://rvm.io/mpapis.asc | gpg --import -
     
     # Install RVM with ruby
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -109,8 +137,13 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     rvm -v
     rvm 1.26.11 (latest)
     ```
+    
+    **Note:** to use rvm features, you need to be in interactive shell.  
+    Use this command to switch in interactive mode:  
+    `bash -l`
+    If you reboot your computer, you need to run this again. To start every new shell in interactive mode, please refer to [stackoverflow](http://stackoverflow.com/questions/5352827/why-doesnt-rvm-work-in-a-bash-script-like-it-works-in-an-interactive-shell)
 
-* **Intall & Use ruby v2.2.1 with RVM:**  
+* **Intall & Use ruby v2.2.1 with RVM :**  
     ```bash
     # Install
     rvm install 2.2.1
@@ -118,8 +151,17 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     # Use
     rvm use 2.2.1
     ```
+    
+* **Install Bundler :**  
+    `gem install bundler`
+    
+    Check Bundler Version
+    ```bash
+    bundler -v
+    Bundler version 1.10.6
+    ```
 
-* **Install NodeJs:**
+* **Install NodeJs :**
     ```bash
     sudo apt-get install python-software-properties python g++ make
     sudo add-apt-repository ppa:chris-lea/node.js
@@ -133,45 +175,57 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     v0.10.37
     ```
 
-* **Install Bower for all project:**
+* **Install Bower :**
     ```bash
     sudo npm install -g bower
     ```
     
-    Check bower Version
+    Check Bower Version
     ```bash
     bower -v
     1.6.3
     ```
+
+* **Install Composer :**  
+    /!\ You need CURL to be able to run this command /!\  
+    ```bash
+    # Download binaries
+    curl -sS https://getcomposer.org/installer | php
+    # Move it into user bin folder
+    sudo mv composer.phar /usr/local/bin/composer
+    # Manage access right
+    sudo chmod +x /usr/local/bin/composer
+    ```
+    
+    Check Composer Version  
+    ```bash
+    composer --version
+    Composer version 1.0-dev (58a6d4b7d305a0ff98e8417a51b59b7d2cfa638c) 2015-11-10 16:35:29
+    ```
+    
+    **Note:** don't miss to frequently update your composer version with this command:  
+    `composer self-update`
     
 ## II) Build the GyverProject baby yeah:
 
-* **Clone the Repository:**  
+* **Clone the Repository :**  
     ```bash
-    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate SSH Key)
+    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate SSH Key before)
     git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol
     ```
 
-* **Cd to project directory:**  
+* **Cd to project directory :**  
     `cd GyverProject`
-
-* **Download Composer.phar package:**  
-    /!\ You need CURL to be able to run this command /!\  
-    ```bash
-    curl -sS https://getcomposer.org/installer | php
-    sudo mv composer.phar /usr/local/bin/composer
-    ```
     
-* **Install PHP vendors library (Symfony Core, Doctrine ORM, SwiftMailer ...):**  
-    `composer install`   
-     
-* **Install Bundler into your project directory:**  
-    `gem install bundler`
+* **Install PHP vendors library (Symfony Core, Doctrine ORM, SwiftMailer ...) :**  
+    `composer install`
+      
+    **Note:** You will be asking during this process to give some parameter to application. Don't worry about this and press enter, you can configure it later with your text editor in app/config/parameter.yml
     
-* **Install Ruby dependency (Capifony, Compass ...):**  
+* **Install Ruby dependency (Mailcatcher, Compass ...) :**  
     `bundle install`
     
-* **Install Bower dependency (Foundation, FontAwesome ...):**  
+* **Install Bower dependency (Foundation ,Jquery, FontAwesome ...) :**  
     `bower install`
 
 * **Compile Css files:**
@@ -183,4 +237,4 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     sudo chmod 777 -R app/logs/
     ```
 
-* **Go to localhost, if you have all done correctly you will see home page directory:**
+* **Go to [localhost](http://localhost/), if you have all done correctly you will see home page   :D :D :D \O/**

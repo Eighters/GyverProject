@@ -1,5 +1,7 @@
 # GET STARTED WITH DOCKER :
 
+**Docker provisioning is not finished yet.**
+
 More infos :
 [Docker Doc](https://docs.docker.com/)
 

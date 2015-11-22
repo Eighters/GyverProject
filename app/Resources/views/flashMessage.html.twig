@@ -1,7 +1,7 @@
 {% for flashMessage in app.session.flashbag.get('success') %}
      <div class="row">
-         <div class="large-12 columns">
-            <div data-alert class="alert-box success radius flashMessage">
+         <div class="offset-s2 col s8">
+            <div class="flashMessage green accent-4">
                 <p>{{ flashMessage }}</p>
             </div>
          </div>
@@ -10,8 +10,8 @@
 
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="row">
-        <div class="large-12 columns">
-            <div data-alert class="alert-box warning radius flashMessage">
+        <div class="offset-s2 col s8">
+            <div class="flashMessage amber accent-4">
                 <p>{{ flashMessage }}</p>
             </div>
         </div>
@@ -20,12 +20,10 @@
 
 {% for flashMessage in app.session.flashbag.get('error') %}
     <div class="row">
-        <div class="large-12 columns">
-            <div data-alert class="alert-box alert radius flashMessage">
+        <div class="offset-s2 col s8">
+            <div class="flashMessage red">
                 <p>{{ flashMessage }}</p>
             </div>
         </div>
     </div>
 {% endfor %}
-
-
