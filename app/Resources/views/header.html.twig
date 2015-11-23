@@ -16,15 +16,13 @@
         <!-- #Projects -->
 
         <!-- Users -->
-        {#
         {% if is_granted('ROLE_ADMIN') %}
-            {% if (app.request.attributes.get('_route') == 'user_list' or app.request.attributes.get('_route') == 'user_show') %}
-                <li class="active"><a href="{{ path('user_list') }}">Utilisateurs</a></li>
+            {% if (app.request.attributes.get('_route') == 'show_users' or app.request.attributes.get('_route') == 'user_show') %}
+                <li class="active"><a href="{{ path('show_users') }}">Utilisateurs</a></li>
             {% else %}
-                <li><a href="{{ path('user_list') }}">Utilisateurs</a></li>
+                <li><a href="{{ path('show_users') }}">Utilisateurs</a></li>
             {% endif %}
         {% endif %}
-        #}
         <!-- #Users -->
     </ul>
     <ul class="right hide-on-med-and-down">

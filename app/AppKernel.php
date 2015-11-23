@@ -37,6 +37,9 @@ class AppKernel extends Kernel
             # User Management
             new FOS\UserBundle\FOSUserBundle(),
 
+            # Pagination
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
             # Application Bundle
             new GP\UserBundle\GPUserBundle(),
             new GP\CompanyBundle\GPCompanyBundle(),

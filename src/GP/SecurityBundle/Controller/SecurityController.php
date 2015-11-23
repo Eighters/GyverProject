@@ -19,6 +19,17 @@ class SecurityController extends FOSSecurityController
 {
 
     /**
+     * Redirect from the website index to the login view
+     *
+     * @Route("/", name="index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        return $this->redirectToRoute("login", array(), 301);
+    }
+
+    /**
      * Override of the FOSUserBundle login function.
      * Render the login form with the project template.
      *

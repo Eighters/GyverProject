@@ -18,8 +18,6 @@ class UserManagementController extends Controller
     /**
      * Show all users ONLY for admin
      *
-     * @Route("/user/page/{page}", name="user_list")
-     * @Method("GET")
      */
     public function indexAction($page=1)
     {

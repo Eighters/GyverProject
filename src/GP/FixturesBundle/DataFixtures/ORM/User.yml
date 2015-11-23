@@ -32,3 +32,36 @@ GP\FixturesBundle\Entity\User:
     firstName: Martin
     lastName: Royer
     company: [ @company1 ]
+
+  aaudibert (extends user):
+    username: aaudibert@gyver.com
+    usernameCanonical: aaudibert@gyver.com
+    email: aaudibert@gyver.com
+    emailCanonical: aaudibert@gyver.com
+    roles: [ROLE_USER]
+    civility: male
+    firstName: Alexis
+    lastName: Audibert
+    company: [ @company1 ]
+
+  pbordeleau (extends user):
+    username: pbordeleau@gyver.com
+    usernameCanonical: pbordeleau@gyver.com
+    email: pbordeleau@gyver.com
+    emailCanonical: pbordeleau@gyver.com
+    roles: [ROLE_USER]
+    civility: male
+    firstName: Paul
+    lastName: Bordeleau
+    company: [ @company1 ]
+
+  ggivry (extends user):
+    username: ggivry@gyver.com
+    usernameCanonical: ggivry@gyver.com
+    email: ggivry@gyver.com
+    emailCanonical: ggivry@gyver.com
+    roles: [ROLE_USER]
+    civility: male
+    firstName: Gauthier
+    lastName: Givry
+    company: [ @company1 ]

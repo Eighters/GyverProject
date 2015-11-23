@@ -19,13 +19,26 @@ class AccountControllerTest extends WebTestCase
 {
 
     /**
-     * Unit testing the indexAction function
+     * Unit testing the showAccountAction function
      */
     public function testShowAccountAction()
     {
         $client = static::createClient();
 
         $client->request('GET', '/secure/account');
+
+        // Assert that the response status code is 3xx
+        $this->assertTrue($client->getResponse()->isRedirection());
+    }
+
+    /**
+     * Unit testing the editAccountAction function
+     */
+    public function testEditAccountAction()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/secure/account/edit');
 
         // Assert that the response status code is 3xx
         $this->assertTrue($client->getResponse()->isRedirection());
