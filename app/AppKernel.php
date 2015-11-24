@@ -41,11 +41,11 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             # Application Bundle
+            new GP\CoreBundle\GPCoreBundle(),
             new GP\UserBundle\GPUserBundle(),
             new GP\CompanyBundle\GPCompanyBundle(),
             new GP\ProjectBundle\GPProjectBundle(),
             new GP\SecurityBundle\GPSecurityBundle(),
-            new GP\FixturesBundle\GPFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

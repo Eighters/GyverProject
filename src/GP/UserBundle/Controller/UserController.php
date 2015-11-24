@@ -31,7 +31,7 @@ class UserController extends Controller
     {
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM GPUserBundle:User a ORDER BY a.firstName ASC";
+        $dql   = "SELECT a FROM GPCoreBundle:User a ORDER BY a.firstName ASC";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');

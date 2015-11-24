@@ -1,0 +1,64 @@
+GP\CoreBundle\Entity\Phone:
+    admin_principal:
+        user: @admin
+        number: 0601020304
+
+    chef_projet_principal:
+        user: @chef_projet
+        number: 0610203040
+
+    consultant_principal:
+        user: @consultant
+        number: 0611223344
+
+    developpeur_principal:
+        user: @developpeur
+        number: 0699887766
+
+    collaborateur_principal:
+        user: @collaborateur
+        number: 0609080706
+
+    client_principal:
+        user: @client
+        number: 0690807060
+
+    thibaut_principal:
+        user: @thibaut
+        number: 0601010101
+
+    remi_principal:
+        user: @rkoci
+        number: 0669696969
+
+    guillaume_principal:
+        user: @guillaume
+        number: 0601027812
+
+    karim_principal:
+        user: @karim
+        number: 0612991412
+
+    ralph_principal:
+        user: @ralph
+        number: 0612541520
+
+    rowmain_principal:
+        user: @rowmain
+        number: 0723520523
+
+    romain_principal:
+        user: @romain
+        number: 0624023592
+
+    brandon_principal:
+        user: @brandon
+        number: 0620834810
+
+    robin_principal:
+        user: @robin
+        number: 0615151208
+
+    alicia_principal:
+        user: @alicia
+        number: 0612413419

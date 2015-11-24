@@ -1,5 +1,5 @@
 gp_fixtures:
-    resource: "@GPFixturesBundle/Controller/"
+    resource: "@GPCoreBundle/Controller/"
     type:     annotation
     prefix:   /
 
