@@ -29,16 +29,14 @@ class UserController extends Controller
      */
     public function showUsersAction(Request $request)
     {
-
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM GPCoreBundle:User a ORDER BY a.firstName ASC";
-        $query = $em->createQuery($dql);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('GPCoreBundle:User')->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            3/*limit per page*/
+            $query,
+            $request->query->getInt('page', 1),
+            5
         );
 
         return array('pagination' => $pagination);

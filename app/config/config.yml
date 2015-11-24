@@ -93,3 +93,10 @@ fos_user:
   profile:
     form:
       type: app_user_profile_edit
+
+# KnpPaginator Configuration
+knp_paginator:
+  page_range: 5
+  template:
+    pagination: :Pagination:sliding.html.twig
+    sortable: :Pagination:sortable_link.html.twig
