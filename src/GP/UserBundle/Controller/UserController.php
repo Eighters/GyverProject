@@ -38,7 +38,7 @@ class UserController extends Controller
         $pagination = $paginator->paginate(
             $users,
             $request->query->getInt('page', 1),
-            5
+            $this->container->getParameter( 'knp_paginator.page_range' )
         );
 
         // Return all users with KnpPaginator
