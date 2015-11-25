@@ -22,8 +22,8 @@ function confirmAdminDeleteUser(id) {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Oui, supprimer!",
-        cancelButtonText: "Non, annuler !",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
         closeOnConfirm: false,
         closeOnCancel: false
     },
@@ -31,42 +31,42 @@ function confirmAdminDeleteUser(id) {
         if (isConfirm) {
             AdminDeleteUser(id)
         } else {
-            swal("Action annulée", "", "error");
+            swal("Suppression annulée", "", "error");
         }
     });
 }
 
 function AdminDeleteUser(id) {
     swal({
-        title: "Vous devez confirmer votre mot de passe !",
-        text: "Entrer le mot de passe administrateur",
+        title: "Vous devez confirmer votre mot de passe",
         type: "input",
         inputType: "password",
         showCancelButton: true,
         closeOnConfirm: false,
         animation: "slide-from-top",
-        inputPlaceholder: "P@ssword"
+        inputPlaceholder: "Mot de passe",
+        cancelButtonText: "Annuler"
     },
     function(inputValue){
         $.ajax({
-            url: "/secure/user/admin/password/check",
+            url: "/secure/password/check",
             data: { password: inputValue },
             type: "POST"
         })
         .success(function(data) {
             if(data == 'true') {
                 $.ajax({
-                    url: "/secure/user/" + id + "/delete",
+                    url: "/secure/admin/user/" + id + "/delete",
                     type: "DELETE"
                 });
-                swal("Supprimer !", "L'utilisateur a bien été supprimé !", "success");
+                swal("Supprimer !", "L'utilisateur a bien été supprimé", "success");
                 document.location.reload(true);
             } else {
-                swal.showInputError("Votre mot de passe est incorrect !");
+                swal.showInputError("Mot de passe incorrect");
             }
         })
         .error(function(data) {
-            swal.showInputError("Votre mot de passe est incorrect !");
+            swal.showInputError("Mot de passe incorrect");
         });
     });
 }

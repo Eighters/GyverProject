@@ -37,4 +37,17 @@ class UserControllerTest extends WebTestCase
         // Assert that the response status code is 3xx
         $this->assertTrue($client->getResponse()->isRedirection());
     }
+
+    /**
+     * Unit testing the deleteUserAction function
+     */
+    public function testDeleteUserAction()
+    {
+        $client = static::createClient();
+
+        $client->request('DELETE', '/secure/admin/user/1/delete');
+
+        // Assert that the response status code is 3xx
+        $this->assertTrue($client->getResponse()->isRedirection());
+    }
 }

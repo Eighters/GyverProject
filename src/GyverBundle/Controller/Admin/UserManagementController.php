@@ -15,55 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class UserManagementController extends Controller
 {
-    /**
-     * Show all users ONLY for admin
-     *
-     */
-    public function indexAction($page=1)
-    {
-        $maxperpage = 6;
-        $em = $this->getDoctrine()->getManager();
-        $userRepository = $em->getRepository('GyverBundle:User');
 
-        $users = $userRepository->findAll();
-
-        $nbUsers = count($users);
-
-        $pagination = array(
-            'page' => $page,
-            'route' => 'user_list',
-            'pages_count' => ceil($nbUsers / $maxperpage),
-            'route_params' => array()
-        );
-
-        $users = $this->getDoctrine()->getRepository('GyverBundle:User')
-            ->getList($page, $maxperpage);
-
-        return $this->render('Admin/overview.html.twig', array(
-            'users' => $users,
-            'pagination' => $pagination
-        ));
-    }
-
-    /**
-     * Show given user information ONLY for admin
-     *
-     * @Route("/user/{id}", name="user_show")
-     * @Method("GET")
-     */
-    public function showUserAction($id)
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
-
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('GyverBundle:User')->find($id);
-
-        if (!$user) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        return $this->render('Admin/showUser.html.twig', array('user' => $user));
-    }
 
     /**
      * @Route("/colleage/{id}", name="colleage_show")

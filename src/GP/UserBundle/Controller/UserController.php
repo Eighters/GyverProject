@@ -29,33 +29,68 @@ class UserController extends Controller
      */
     public function showUsersAction(Request $request)
     {
+        // Getting all users
         $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('GPCoreBundle:User')->findAll();
+        $users = $em->getRepository('GPCoreBundle:User')->findAll();
 
+        // Create a pagination
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $users,
             $request->query->getInt('page', 1),
             5
         );
 
+        // Return all users with KnpPaginator
         return array('pagination' => $pagination);
     }
 
     /**
-     * @Route("/{id}", name="user_show")
+     * Return the profile of a specific user
+     *
+     * @Route("/{id}", name="show_user")
      * @Method("GET")
      * @Template()
      */
     public function showUserAction($id)
     {
+        // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
 
+        // Checking if user exists
         if (!$user) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
+        // Return user profile
         return array('user' => $user);
+    }
+
+    /**
+     * Delete the specified user from the database.
+     * This is a complete deletion, no turning back available
+     *
+     * @Route("/{id}/delete", name="delete_user")
+     * @Method("DELETE")
+     */
+    public function deleteUserAction($id)
+    {
+        // Searching requested user
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GPCoreBundle:User')->find($id);
+
+        // Checking if user exists
+        if (!$user) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        // Removing the user
+        $em->remove($user);
+        $em->flush();
+
+        // Return success message
+        $this->addFlash('success', 'L\'utilisateur a été correctement supprimé');
+        return $this->redirectToRoute('show_users');
     }
 }
