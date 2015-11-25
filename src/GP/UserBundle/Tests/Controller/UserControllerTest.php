@@ -5,34 +5,34 @@ namespace GP\UserBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Unit testing for the Dashboard controller
+ * Unit testing for the User controller
  *
  * @package GP\UserBundle\Tests\Controller
  */
-class AccountControllerTest extends WebTestCase
+class UserControllerTest extends WebTestCase
 {
 
     /**
-     * Unit testing the showAccountAction function
+     * Unit testing the showUsersAction function
      */
-    public function testShowAccountAction()
+    public function testShowUsersAction()
     {
         $client = static::createClient();
 
-        $client->request('GET', '/secure/account');
+        $client->request('GET', '/secure/admin/user');
 
         // Assert that the response status code is 3xx
         $this->assertTrue($client->getResponse()->isRedirection());
     }
 
     /**
-     * Unit testing the editAccountAction function
+     * Unit testing the showUserAction function
      */
-    public function testEditAccountAction()
+    public function testShowUserAction()
     {
         $client = static::createClient();
 
-        $client->request('GET', '/secure/account/edit');
+        $client->request('GET', '/secure/admin/user/1');
 
         // Assert that the response status code is 3xx
         $this->assertTrue($client->getResponse()->isRedirection());

@@ -10,10 +10,6 @@
     <div class="container">
         <div class="row">
 
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
-            <th{% if pagination.isSorted('a.firstName') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.firstName') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Release', ['a.enabled', 'a.time']) }}</th>
-
             <ul class="collection">
                 {% for user in pagination %}
                     <li href="#!" class="collection-item avatar">

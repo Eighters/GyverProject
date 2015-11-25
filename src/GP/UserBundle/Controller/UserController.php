@@ -43,10 +43,19 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/toto", name="user_show")
+     * @Route("/{id}", name="user_show")
+     * @Method("GET")
+     * @Template()
      */
-    public function totoAction()
+    public function showUserAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GPCoreBundle:User')->find($id);
 
+        if (!$user) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        return array('user' => $user);
     }
 }
