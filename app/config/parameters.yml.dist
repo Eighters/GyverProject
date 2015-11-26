@@ -39,4 +39,4 @@ parameters:
     secret: 3e0197329281e3278dd3f6e15c83f0edda08d66d
 
     # Aplication Parameters
-    knp_paginator_page_range: 6
+    item_per_page: 6

@@ -96,7 +96,7 @@ fos_user:
 
 # KnpPaginator Configuration
 knp_paginator:
-  page_range: "%knp_paginator_page_range%"
+  page_range: "%item_per_page%"
   template:
     pagination: :Pagination:sliding.html.twig
     sortable: :Pagination:sortable_link.html.twig
