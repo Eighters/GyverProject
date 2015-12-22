@@ -22,9 +22,11 @@ echo "Install composer dependency"
 echo "Install ruby dependency"
 /bin/bash -l -c "cd /home/app && bundle install"
 
+echo "fix bower issue with G4 fucking proxy"
+/bin/bash -l -c "git config --global url.'https://'.insteadOf git://"
 
 echo "Install bower dependency"
-/bin/bash -l -c "cd /home/app && bower install --allow-root"
+/bin/bash -l -c "cd /home/app && bower install --allow-root -y"
 
 
 echo "Compile asset"
