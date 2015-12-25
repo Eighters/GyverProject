@@ -1,7 +1,10 @@
-// Here is the main file to write JavaScript for Application.
-// He is included in base template so you can access from everywhere
+/**
+ * gyver_main.js
+ *
+ * Here is the main file to write JavaScript for Application.
+ * He is included in base template so you can access from everywhere
+ */
 
-console.log('fichier gyver main chargé');
 
 function addInputField(name) {
 
@@ -15,6 +18,11 @@ function addInputField(name) {
     }
 }
 
+
+/**
+ * Modal to confirm action when administrator want to delete a user from the application
+ * @param id (ID of the user admin want to delete)
+ */
 function confirmAdminDeleteUser(id) {
     swal({
         title: "Voulez vous vraiment supprimer cet utilisateur ?",
@@ -36,6 +44,10 @@ function confirmAdminDeleteUser(id) {
     });
 }
 
+/**
+ * Modal to confirm administrator password to complete delete user action
+ * @param id (ID of the user admin want to delete)
+ */
 function AdminDeleteUser(id) {
     swal({
         title: "Vous devez confirmer votre mot de passe",

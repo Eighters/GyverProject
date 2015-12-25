@@ -1,7 +1,7 @@
 {
   "name": "gyver-project",
   "version": "0.0.1",
-  "homepage": "git@github.com:TechGameCrew/ProG4.git",
+  "homepage": "git@github.com:TechGameCrew/GyverProject.git",
   "authors": [
     "Thibaut Gauvin     <gauvin.thibaut83@gmail.com>",
     "Robin Billy        <rbilly.mail@gmail.com>",
@@ -23,7 +23,7 @@
     "components"
   ],
   "dependencies": {
-    "materialize": "~0.97.2",
+    "materialize": "~0.97.5",
     "font-awesome": "4.3.0",
     "sweetalert": "~1.1.3"
   }

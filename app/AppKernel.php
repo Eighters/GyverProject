@@ -26,9 +26,6 @@ class AppKernel extends Kernel
             # Mailing
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
 
-            # Assets management and Compass integration
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
             # DBAL and ORM
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),

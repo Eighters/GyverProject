@@ -27,10 +27,7 @@
 /app/Resources/sass/compiled
 /app/Resources/sass/.sass-cache
 /web/assets/css
-/web/js
-
-# Ignore Bower vendor
-/bower_components/
+/web/assets/js
 
 # Ignore NodeJs vendor
 /node_modules/
@@ -38,9 +35,6 @@
 
 # Keep all .gitkeep files
 !.gitkeep
-
-# Ignore code coverage reports
-/gyver-report
 
 # Capifony local config
 app/config/deploy.rb

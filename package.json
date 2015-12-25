@@ -1,0 +1,21 @@
+{
+  "name": "gyver-project",
+  "version": "1.0.0",
+  "description": "Provides powerful and stable tools for all your projects. We made it simple and user friendly : no useless tools, just what you need to manage your projects.",
+  "main": "app.js",
+  "author": "Thibaut Gauvin, Robin Billy, Romain Dalleau, Romain Lesniak, Remi Koci, Alicia Belkovski, Brandon Beurion, Guillaume Roche, Karim Tayeb, Ralph Lewiz.",
+  "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TechGameCrew/GyverProject.git"
+  },
+  "dependencies": {
+    "bower": "^1.7.1",
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-sass": "^2.1.1"
+  }
+}
