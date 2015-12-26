@@ -16,7 +16,7 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
     git version 1.9.1
     ```
 
-* **Install Pre-required tools :** 
+* **Install utilities tools :**  
     ```bash
     sudp apt-get install htop multitail curl
     ```
@@ -47,16 +47,13 @@ If you install Nginx, you need to install php5-fpm them.
     server {
         listen 80;
         # path to your project
-        root /home/app/php/GyverProject/web;
-    
+        root /home/app/php/GyverProject/web;       
         location / {
             try_files $uri @rewriteapp;
         }
-    
         location @rewriteapp {
             rewrite ^(.*)$ /app_dev.php/$1 last;
         }
-    
         location ~ ^/(app|app_dev|config)\.php(/|$) {
             fastcgi_pass unix:/var/run/php5-fpm.sock;
             fastcgi_split_path_info ^(.+\.php)(/.*)$;
@@ -64,7 +61,7 @@ If you install Nginx, you need to install php5-fpm them.
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param HTTPS off;
         }
-    
+        # Log files
         error_log /var/log/nginx/GyverProject_error.log;
         access_log /var/log/nginx/GyverProject_access.log;
     }
@@ -82,17 +79,13 @@ If you install Nginx, you need to install php5-fpm them.
     ```bash
     # Go to php cli directory
     cd /etc/php5/clI
-    
     # Make a backup of php.ini file
     sudo mv php.ini php.ini.backup 
-    
     # Create a symlink to fpm php.ini
     sudo ln -s ../fpm/php.ini
-    
     # Edit fpm php.ini
     cd ../fpm  
     sudo nano php.ini
-    
     # And set the date timezone
     ;date.timezone =
     date.timezone = "Europe/Paris"
@@ -127,7 +120,6 @@ If you install Nginx, you need to install php5-fpm them.
     ```bash
     # Import key
     curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-    
     # Install RVM with ruby
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
     ```
@@ -147,7 +139,6 @@ If you install Nginx, you need to install php5-fpm them.
     ```bash
     # Install
     rvm install 2.2.1
-    
     # Use
     rvm use 2.2.1
     ```
@@ -162,28 +153,17 @@ If you install Nginx, you need to install php5-fpm them.
     ```
 
 * **Install NodeJs :**
+    Node.js is available from the NodeSource Debian and Ubuntu binary distributions repository  
+    /!\ You need CURL to be able to run this command /!\  
     ```bash
-    sudo apt-get install python-software-properties python g++ make
-    sudo add-apt-repository ppa:chris-lea/node.js
-    sudo apt-get update
-    sudo apt-get install nodejs
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+    sudo apt-get install -y nodejs
     ```
     
     Check Nodejs Version
     ```bash
     node -v
-    v0.10.37
-    ```
-
-* **Install Bower :**
-    ```bash
-    sudo npm install -g bower
-    ```
-    
-    Check Bower Version
-    ```bash
-    bower -v
-    1.6.3
+    v4.2.3
     ```
 
 * **Install Composer :**  
@@ -206,35 +186,42 @@ If you install Nginx, you need to install php5-fpm them.
     **Note:** don't miss to frequently update your composer version with this command:  
     `composer self-update`
     
-## II) Build the GyverProject baby yeah:
+## II) Build the GyverProject baby yeah :  
 
 * **Clone the Repository :**  
+    Use one this two commands, depending on what protocol you want to use.  
     ```bash
-    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate SSH Key before)
-    git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol
+    git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol (Easy Way)
+    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate & configure SSH Key before)
     ```
 
 * **Cd to project directory :**  
     `cd GyverProject`
-    
-* **Install PHP vendors library (Symfony Core, Doctrine ORM, SwiftMailer ...) :**  
-    `composer install`
-      
-    **Note:** You will be asking during this process to give some parameter to application. Don't worry about this and press enter, you can configure it later with your text editor in app/config/parameter.yml
-    
-* **Install Ruby dependency (Mailcatcher, Compass ...) :**  
+
+* **Install Ruby dependencies (Mailcatcher & Capifony):**  
     `bundle install`
     
-* **Install Bower dependency (Foundation ,Jquery, FontAwesome ...) :**  
-    `bower install`
-
-* **Compile Css files:**
-    `compass compile`
- 
-* **Give Read, Write and Execute privilege to Cache & log directory**
+* **Install NodeJs dependencies (Bower, Gulp & Gulp Plugins) :**  
+    `npm install`
+    
+* **Install PHP (BackEnd) dependencies (Symfony Core, Doctrine ORM, SwiftMailer, Twig ...) :**  
+    `composer install`
+    
+    **Note:** You will be asking during this process to give some parameter to application. Don't worry about this and press enter, you can configure it later with your code editor in app/config/parameter.yml
+    
+* **Install Bower (FrontEnd) dependencies (Materialize, FontAwesome, SeweetAlert ...) :**  
+    `./node_modules/bower/bin/bower install`
+    
+* **Compile Sass & Js files :**  
+    `./node_modules/gulp/bin/gulp.js build`
+    
+* **Give Read, Write and Execute privilege to Cache & log directory :**  
     ```bash
-    sudo chmod 777 -R app/cache/
-    sudo chmod 777 -R app/logs/
+    sudo chmod 777 -R app/cache/ app/logs/
     ```
+    
+* **Go to [localhost](http://localhost/), if you have all done correctly you will see home page  :D :D :D \O/**  
 
-* **Go to [localhost](http://localhost/), if you have all done correctly you will see home page   :D :D :D \O/**
+
+* **In Developement Environement, you may use following command to watch any change on Sass And Js file and recompile them :**  
+    `./node_modules/gulp/bin/gulp.js watch`
