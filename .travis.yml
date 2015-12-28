@@ -8,16 +8,18 @@ before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - cp app/phpunit.travis.xml app/phpunit.xml
 
-    # Ruby dependency
+    # Ruby dependencies
     - rvm install ruby-2.2.1
     - rvm use 2.2.1
     - bundle install
 
-    # Bower dependency
-    - npm install -g bower
-    - bower install
+    # Npm dependencies
+    - npm install
 
-    # Php dependency
+    # Bower dependencies
+    - ./node_modules/bower/bin/bower install
+
+    # Php dependencies
     - composer self-update
     - composer install --prefer-source --no-interaction
 
@@ -27,8 +29,7 @@ before_script:
     - php app/console doctrine:fixtures:load -n --env=test
 
     # Compile Assets
-    - compass compile
-#    - php app/console assetic:dump
+    - ./node_modules/gulp/bin/gulp.js build
 
 script:
     - phpunit -c app/phpunit.xml
