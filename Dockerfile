@@ -4,22 +4,23 @@
 # COMMENTS:
 #	This file describes how to build environment for the Gyver Project.
 #	It is a Symfony 2.7.6 Project and we use :
-#	PHP (of course), Foundation, Sass, Compass, Nginx & Bower, NodeJs & Ruby
+#	PHP, MySql, Sass, Materialize, Nginx & NodeJs, Gulp, Bower
 #	Tested on Ubuntu 14.04
 #
 #
 # FIRST USAGE:
-#	# Build GyverProject image :
-#	docker build -t base_image .
+#	# 1). Build GyverProject image :
+#	docker build -t gyver_base_image .
 #
-#   # Run container :
-#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 --name gyverproject -v /path/to/your/project:/home/app base_image
+#   # 2). Run container :
+#   docker run -ti -d -p 999:80 --name gyverproject -v /path/to/your/project:/home/app gyver_base_image
 #
-#   # Connect running container :
-#   docker exec -ti <Container ID> bash -l
+#   /!\ -v option is equivalent to --volume, don't forget to replace by path where your project is.
+#   ex:  Your project code is located at /home/app/php/GyverProject, then the command look like this:
+#   docker run -ti -d -p 999:80 --name gyverproject -v /home/app/php/GyverProject:/home/app gyver_base_image
 #
-#   # Setup project dependencies :
-#   ./entrypoint.sh
+#   # 3). Connect running container :
+#   docker exec -ti <Container ID> bash ./entrypoint.sh
 #
 #
 # ON EVERY REBOOT
@@ -27,18 +28,11 @@
 #   docker start <Container ID>
 #
 #   # Connect running container :
-#   docker exec -ti <Container ID> bash -l
+#   docker exec -ti <Container ID> bash ./gyver.sh
 #
-#   # Start Process :
-#   ./gyver.sh
-#
-
 
 FROM rhyu/ubuntu:latest
-ENV TERM linux
 MAINTAINER Gauvin Thibaut
-
-
 
 # Base
 RUN apt-get update && apt-get install -y \
@@ -54,24 +48,16 @@ RUN apt-get update && apt-get install -y \
   dialog \
   net-tools
 
-
+# Install Mysql Server
+RUN apt-get install -y \
+  mysql-server
 
 # Install NodeJs
-RUN add-apt-repository ppa:chris-lea/node.js && \
-  apt-get update && \
-  apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN apt-get install -y nodejs
 
-
-
-# Install Bower
-RUN npm install -g bower
-
-
-
-# Configure Nginx  
+# Configure Nginx
 ADD app/config/docker/default /etc/nginx/sites-available/default
-
-
 
 # Configure PHP
 RUN cd /etc/php5/cli && \
@@ -80,19 +66,6 @@ RUN cd /etc/php5/cli && \
 
 ADD app/config/docker/php.ini /etc/php5/fpm/php.ini
 
-
-
-# Install Ruby
-RUN apt-get -y update
-RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-RUN curl -L https://get.rvm.io | bash -s stable
-
-RUN /bin/bash -l -c "rvm requirements"
-RUN /bin/bash -l -c "rvm install 2.2.1"
-RUN /bin/bash -l -c "rvm use 2.2.1"
-
-
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN chmod +x composer.phar
@@ -100,19 +73,13 @@ RUN mv composer.phar /usr/local/bin/composer
 
 
 
+# Add Provisionning Scripts
 ADD app/config/docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 ADD app/config/docker/gyver.sh /gyver.sh
-RUN chmod +x /gyver.sh
+RUN chmod +x /entrypoint.sh /gyver.sh
 
+# Nginx Port
+EXPOSE 80
 
-
-EXPOSE 999
-EXPOSE 1080
-EXPOSE 1025
-
+# Project Code
 VOLUME ["/home/app"]
-
-#   docker run -ti -d --name gyver_mysql -e MYSQL_ROOT_PASSWORD=mypassword mysql:latest
-#   docker run -ti -d -p 999:80 -p 1080:1080 -p 1025:1025 -p 3307:3306 --link gyver_mysql:mysql --name gyverproject -v /home/app/php/GyverProject:/home/app app

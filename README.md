@@ -31,7 +31,7 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 * [Manual Provisioning](app/Resources/doc/manual.md)
 * [Use Mailcatcher](app/Resources/doc/mail.md)
 * [Tests](app/Resources/doc/test.md)
-* [Docker Provisioning (Not Ready Yet)](app/Resources/doc/docker.md)
+* [Docker Provisioning (Recommanded)](app/Resources/doc/docker.md)
 * [F.A.Q](app/Resources/doc/faq.md)
 
 ## Licence
