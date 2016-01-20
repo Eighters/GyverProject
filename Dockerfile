@@ -1,5 +1,5 @@
-# VERSION:		  1
-# DESCRIPTION:	  Create the env for the project
+# VERSION:		  1.1
+# DESCRIPTION:	  Create the env for the gyver project
 # AUTHOR:		  Gauvin Thibaut  <gauvin.thibaut83@gmail.com>
 # COMMENTS:
 #	This file describes how to build environment for the Gyver Project.
@@ -14,14 +14,11 @@
 #
 #   # 2). Run container :
 #   docker run -ti -d -p 999:80 --name gyverproject -v /path/to/your/project:/home/app gyver_base_image
+#   /!\/!\ -v option is equivalent to --volume, don't forget to replace by path where your project is. /!\/!\
 #
-#   /!\ -v option is equivalent to --volume, don't forget to replace by path where your project is.
-#   ex:  Your project code is located at /home/app/php/GyverProject, then the command look like this:
-#   docker run -ti -d -p 999:80 --name gyverproject -v /home/app/php/GyverProject:/home/app gyver_base_image
-#
-#   # 3). Connect running container :
-#   docker exec -ti <Container ID> bash ./entrypoint.sh
-#
+#   ex:
+#   Your project code is located at /home/app/php/GyverProject, then the command look like this:
+#   docker run -ti -d -p 999:80 -p 3307:3306 --name gyverproject -v /home/app/php/GyverProject:/home/app -v /var/lib/mysql:/var/lib/mysql/ gyver_base_img
 #
 # ON EVERY REBOOT
 #   # Starting stopped container :
@@ -58,12 +55,12 @@ RUN apt-get install -y nodejs
 
 # Configure Nginx
 ADD app/config/docker/default /etc/nginx/sites-available/default
+RUN chown -R www-data:www-data /var/lib/nginx
 
 # Configure PHP
 RUN cd /etc/php5/cli && \
   mv php.ini php.ini.backup && \
   ln -s ../fpm/php.ini
-
 ADD app/config/docker/php.ini /etc/php5/fpm/php.ini
 
 # Install Composer
@@ -71,15 +68,15 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN chmod +x composer.phar
 RUN mv composer.phar /usr/local/bin/composer
 
-
-
 # Add Provisionning Scripts
 ADD app/config/docker/entrypoint.sh /entrypoint.sh
 ADD app/config/docker/gyver.sh /gyver.sh
 RUN chmod +x /entrypoint.sh /gyver.sh
 
-# Nginx Port
+# Expose Port
 EXPOSE 80
 
 # Project Code
 VOLUME ["/home/app"]
+
+CMD ["/entrypoint.sh"]
