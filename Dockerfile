@@ -18,13 +18,16 @@
 #
 #   ex:
 #   Your project code is located at /home/app/php/GyverProject, then the command look like this:
-#   docker run -ti -d -p 999:80 -p 3307:3306 --name gyverproject -v /home/app/php/GyverProject:/home/app -v /var/lib/mysql:/var/lib/mysql/ gyver_base_img
+#   docker run -ti -d -p 999:80 --name gyverproject -v /home/app/php/GyverProject:/home/app gyver_base_image
+#
+#   3). Build the project and start services :
+#   docker exec -ti <Container ID> bash ./entrypoint.sh
 #
 # ON EVERY REBOOT
 #   # Starting stopped container :
 #   docker start <Container ID>
 #
-#   # Connect running container :
+#   # Start services :
 #   docker exec -ti <Container ID> bash ./gyver.sh
 #
 
@@ -78,5 +81,3 @@ EXPOSE 80
 
 # Project Code
 VOLUME ["/home/app"]
-
-CMD ["/entrypoint.sh"]
