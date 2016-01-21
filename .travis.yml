@@ -1,5 +1,12 @@
 language: php
 
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - node_modules
+
 php:
     - 5.5.9
 
@@ -8,20 +15,18 @@ before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - cp app/phpunit.travis.xml app/phpunit.xml
 
-    # Ruby dependencies
-    - rvm install ruby-2.2.1
-    - rvm use 2.2.1
-    - bundle install
-
     # Npm dependencies
     - npm install
 
     # Bower dependencies
     - ./node_modules/bower/bin/bower install
 
+    # Fix composer rate limiting issue.
+    - if [ -n "$github_api_rate" ]; then composer config github-oauth.github.com ${github_api_rate}; fi;
+
     # Php dependencies
     - composer self-update
-    - composer install --prefer-source --no-interaction
+    - composer install --prefer-dist --no-interaction
 
     # DataBase config
     - php app/console doctrine:database:create --env=test
