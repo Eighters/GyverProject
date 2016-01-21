@@ -20,6 +20,9 @@ before_script:
     # Bower dependencies
     - ./node_modules/bower/bin/bower install
 
+    # Fix composer rate limiting issue.
+    - if [ -n "$github_api_rate" ]; then composer config github-oauth.github.com ${github_api_rate}; fi;
+
     # Php dependencies
     - composer self-update
     - composer install --prefer-dist --no-interaction
