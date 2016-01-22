@@ -1,0 +1,47 @@
+{% if pageCount > 1 %}
+<ul class="pagination center">
+
+    {# Previous #}
+    {% if previous is defined %}
+        <li class="waves-effect">
+            <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+    {# #Previous #}
+
+    {# Pages #}
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <li class="waves-effect">
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </li>
+        {% else %}
+            <li class="waves-effect active amber accent-4">
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    {# #Pages #}
+
+    {# Next #}
+    {% if next is defined %}
+        <li class="waves-effect">
+            <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="#!">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
+    {% endif %}
+    {# #Next #}
+
+</ul>
+{% endif %}

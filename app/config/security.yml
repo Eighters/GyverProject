@@ -27,10 +27,15 @@ security:
       logout:
         path: /logout
         target: /login
+      remember_me:
+        key: "%secret%"
+        lifetime: 604800
+        path: /
 
 
   access_control:
+    - { path: ^/secure/admin, role: ROLE_ADMIN }
+    - { path: ^/secure, role: ROLE_USER }
     - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/secure, role: ROLE_USER }

@@ -1,13 +1,12 @@
 /* Base File */
 @import "../../../vendor/materialize/sass/materialize";
 @import "../../../vendor/sweetalert/dev/sweetalert.scss";
-
 @import "reset";
 @import "base";
-@import "flashMessage";
 
 /* App File */
 @import "User/sign_in";
 @import "User/userInfos";
+@import "App/flashMessage";
 @import "App/main";
 

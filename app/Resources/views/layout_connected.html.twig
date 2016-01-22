@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %} | Gyver Project</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {# Stylesheets Block #}
+        {% block stylesheets %}
+            {{ include('::stylesheets.html.twig') }}
+        {% endblock %}
+    </head>
+
+    <body>
+    {% block header %}
+        {{ include('::header.html.twig') }}
+    {% endblock %}
+
+    <div class="row">
+        <div class="under-nav col s12 cyan darken-2">
+            <h4 class="white-text">{% block underNavTitle %}Titre{% endblock %}</h4>
+            <p class="cyan-text text-accent-1">{% block underNavText %}Description{% endblock %}</p>
+        </div>
+    </div>
+
+    {% block flashMessage %}
+        {{ include('::flashMessage.html.twig') }}
+    {% endblock %}
+
+    {# Body Block #}
+    {% block body %}{% endblock %}
+    {# End Body #}
+
+    {% block footer %}
+        {{ include('::footer.html.twig') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ include('::javascripts.html.twig') }}
+    {% endblock %}
+    </body>
+</html>

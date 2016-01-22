@@ -1,7 +1,10 @@
-// Here is the main file to write JavaScript for Application.
-// He is included in base template so you can access from everywhere
+/**
+ * gyver_main.js
+ *
+ * Here is the main file to write JavaScript for Application.
+ * He is included in base template so you can access from everywhere
+ */
 
-console.log('fichier gyver main chargé');
 
 function addInputField(name) {
 
@@ -15,6 +18,11 @@ function addInputField(name) {
     }
 }
 
+
+/**
+ * Modal to confirm action when administrator want to delete a user from the application
+ * @param id (ID of the user admin want to delete)
+ */
 function confirmAdminDeleteUser(id) {
     swal({
         title: "Voulez vous vraiment supprimer cet utilisateur ?",
@@ -22,8 +30,8 @@ function confirmAdminDeleteUser(id) {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Oui, supprimer!",
-        cancelButtonText: "Non, annuler !",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
         closeOnConfirm: false,
         closeOnCancel: false
     },
@@ -31,42 +39,46 @@ function confirmAdminDeleteUser(id) {
         if (isConfirm) {
             AdminDeleteUser(id)
         } else {
-            swal("Action annulée", "", "error");
+            swal("Suppression annulée", "", "error");
         }
     });
 }
 
+/**
+ * Modal to confirm administrator password to complete delete user action
+ * @param id (ID of the user admin want to delete)
+ */
 function AdminDeleteUser(id) {
     swal({
-        title: "Vous devez confirmer votre mot de passe !",
-        text: "Entrer le mot de passe administrateur",
+        title: "Vous devez confirmer votre mot de passe",
         type: "input",
         inputType: "password",
         showCancelButton: true,
         closeOnConfirm: false,
         animation: "slide-from-top",
-        inputPlaceholder: "P@ssword"
+        inputPlaceholder: "Mot de passe",
+        cancelButtonText: "Annuler"
     },
     function(inputValue){
         $.ajax({
-            url: "/secure/user/admin/password/check",
+            url: "/secure/password/check",
             data: { password: inputValue },
             type: "POST"
         })
         .success(function(data) {
             if(data == 'true') {
                 $.ajax({
-                    url: "/secure/user/" + id + "/delete",
+                    url: "/secure/admin/user/" + id + "/delete",
                     type: "DELETE"
                 });
-                swal("Supprimer !", "L'utilisateur a bien été supprimé !", "success");
+                swal("Supprimer !", "L'utilisateur a bien été supprimé", "success");
                 document.location.reload(true);
             } else {
-                swal.showInputError("Votre mot de passe est incorrect !");
+                swal.showInputError("Mot de passe incorrect");
             }
         })
         .error(function(data) {
-            swal.showInputError("Votre mot de passe est incorrect !");
+            swal.showInputError("Mot de passe incorrect");
         });
     });
 }

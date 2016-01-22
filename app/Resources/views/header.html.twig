@@ -4,10 +4,10 @@
         <li><a href="#">MonApplication</a></li>
 
         <!-- Dashboard -->
-        {% if app.request.attributes.get('_route') == 'backend_home' %}
-            <li class="active"><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+        {% if app.request.attributes.get('_route') == 'dashboard' %}
+            <li class="active"><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
         {% else %}
-            <li><a href="{{ path('backend_home') }}">Tableau de bord</a></li>
+            <li><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
         {% endif %}
         <!-- #Dashboard -->
 
@@ -17,10 +17,10 @@
 
         <!-- Users -->
         {% if is_granted('ROLE_ADMIN') %}
-            {% if (app.request.attributes.get('_route') == 'user_list' or app.request.attributes.get('_route') == 'user_show') %}
-                <li class="active"><a href="{{ path('user_list') }}">Utilisateurs</a></li>
+            {% if (app.request.attributes.get('_route') == 'show_users' or app.request.attributes.get('_route') == 'user_show') %}
+                <li class="active"><a href="{{ path('show_users') }}">Utilisateurs</a></li>
             {% else %}
-                <li><a href="{{ path('user_list') }}">Utilisateurs</a></li>
+                <li><a href="{{ path('show_users') }}">Utilisateurs</a></li>
             {% endif %}
         {% endif %}
         <!-- #Users -->
@@ -28,10 +28,10 @@
     <ul class="right hide-on-med-and-down">
 
         <!-- Profile -->
-        {% if (app.request.attributes.get('_route') == 'user_info' or app.request.attributes.get('_route') == 'user_edit') %}
-            <li class="active"><a href="{{ path('user_info') }}">Profil</a></li>
+        {% if (app.request.attributes.get('_route') == 'show_account' or app.request.attributes.get('_route') == 'edit_account') %}
+            <li class="active"><a href="{{ path('show_account') }}">Profil</a></li>
         {% else %}
-            <li><a href="{{ path('user_info') }}">Profil</a></li>
+            <li><a href="{{ path('show_account') }}">Profil</a></li>
         {% endif %}
         <!-- #Profile -->
 

@@ -1,5 +1,12 @@
 language: php
 
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - node_modules
+
 php:
     - 5.5.9
 
@@ -8,18 +15,18 @@ before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - cp app/phpunit.travis.xml app/phpunit.xml
 
-    # Ruby dependency
-    - rvm install ruby-2.2.1
-    - rvm use 2.2.1
-    - bundle install
+    # Npm dependencies
+    - npm install
 
-    # Bower dependency
-    - npm install -g bower
-    - bower install
+    # Bower dependencies
+    - ./node_modules/bower/bin/bower install
 
-    # Php dependency
+    # Fix composer rate limiting issue.
+    - if [ -n "$github_api_rate" ]; then composer config github-oauth.github.com ${github_api_rate}; fi;
+
+    # Php dependencies
     - composer self-update
-    - composer install --prefer-source --no-interaction
+    - composer install --prefer-dist --no-interaction
 
     # DataBase config
     - php app/console doctrine:database:create --env=test
@@ -27,8 +34,7 @@ before_script:
     - php app/console doctrine:fixtures:load -n --env=test
 
     # Compile Assets
-    - compass compile
-#    - php app/console assetic:dump
+    - ./node_modules/gulp/bin/gulp.js build
 
 script:
     - phpunit -c app/phpunit.xml
@@ -37,3 +43,5 @@ notifications:
     slack: techgamey2team1:yKi6SZOIGGUBHt3PcnkUSvG9
     email:
         - gauvin.thibaut83@gmail.com
+        - rbilly.mail@gmail.com
+        - guilohm.roche@gmail.com

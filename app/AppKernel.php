@@ -26,9 +26,6 @@ class AppKernel extends Kernel
             # Mailing
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
 
-            # Assets management and Compass integration
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
             # DBAL and ORM
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -37,8 +34,15 @@ class AppKernel extends Kernel
             # User Management
             new FOS\UserBundle\FOSUserBundle(),
 
+            # Pagination
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
             # Application Bundle
-            new GyverBundle\GyverBundle(),
+            new GP\CoreBundle\GPCoreBundle(),
+            new GP\UserBundle\GPUserBundle(),
+            new GP\CompanyBundle\GPCompanyBundle(),
+            new GP\ProjectBundle\GPProjectBundle(),
+            new GP\SecurityBundle\GPSecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

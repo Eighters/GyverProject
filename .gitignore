@@ -29,18 +29,12 @@
 /web/assets/css
 /web/assets/js
 
-# Ignore Bower vendor
-/bower_components/
-
 # Ignore NodeJs vendor
 /node_modules/
 /npm-debug.log
 
 # Keep all .gitkeep files
 !.gitkeep
-
-# Ignore code coverage reports
-/gyver-report
 
 # Capifony local config
 app/config/deploy.rb
