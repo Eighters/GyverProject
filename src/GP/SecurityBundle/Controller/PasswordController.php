@@ -24,7 +24,7 @@ class PasswordController extends Controller
      * @Route("/check", name="check_password")
      * @Method("POST")
      */
-    public function checkUserPassword()
+    public function checkUserPasswordAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
