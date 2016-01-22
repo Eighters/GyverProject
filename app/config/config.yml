@@ -3,13 +3,6 @@ imports:
   - { resource: security.yml }
   - { resource: services.yml }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-  locale: fr
-  assetic.filter.compass.images_dir: %kernel.root_dir%/../web/img
-  assetic.filter.compass.http_path:  /img
-
 # Symfony Configuration
 framework:
   #esi:             ~

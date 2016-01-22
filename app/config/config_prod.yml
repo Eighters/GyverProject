@@ -24,10 +24,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
 
-# Assetic Config Prod
-assetic:
-    use_controller: true
-
 # Mailer Config Prod
 swiftmailer:
     transport:  %mailer_transport%

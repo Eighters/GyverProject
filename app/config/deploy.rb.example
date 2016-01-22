@@ -32,8 +32,6 @@ set :use_composer,      true
 set :update_vendors,    false
 set :use_sudo,          false
 
-# set :dump_assetic_assets, true
-
 # ------------------------------------------------------------------------------
 # 3. Other Config
 # ------------------------------------------------------------------------------
