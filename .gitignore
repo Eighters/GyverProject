@@ -19,9 +19,6 @@
 # Ignore local composer packages
 /composer.phar
 
-# Ignore IDE configs
-/.idea
-
 # Ignore Compass & asset files
 /app/Resources/sass/*.css
 /app/Resources/sass/compiled

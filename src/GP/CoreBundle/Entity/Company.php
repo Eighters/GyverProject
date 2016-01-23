@@ -26,6 +26,15 @@ class Company
      * @var string
      *
      * @ORM\Column(name="name", type="string")
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Company name must be at least {{ limit }} characters long",
+     *      maxMessage = "Company name cannot be longer than {{ limit }} characters"
+     * )
+     *
      */
     private $name;
 

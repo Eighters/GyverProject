@@ -13,7 +13,7 @@ php:
 before_script:
     # Set config files
     - cp app/config/parameters.yml.dist app/config/parameters.yml
-    - cp app/phpunit.travis.xml app/phpunit.xml
+    - cp app/phpunit.xml.dist app/phpunit.xml
 
     # Npm dependencies
     - npm install
@@ -37,7 +37,7 @@ before_script:
     - ./node_modules/gulp/bin/gulp.js build
 
 script:
-    - phpunit -c app/phpunit.xml
+    - bin/phpunit -c app/phpunit.xml
 
 notifications:
     slack: techgamey2team1:yKi6SZOIGGUBHt3PcnkUSvG9
