@@ -13,11 +13,11 @@
 
     <body class="login_background">
     {# Body Block #}
-    {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
     {# End Body #}
 
     {% block javascripts %}
-        {{ include('::javascripts.html.twig') }}
+        {% include '::javascripts.html.twig' %}
     {% endblock %}
     </body>
 </html>

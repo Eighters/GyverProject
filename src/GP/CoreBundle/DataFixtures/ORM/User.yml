@@ -16,7 +16,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         credentialsExpired: 0
         credentialsExpireAt: ~
-        civility: 0 # 0 = Male, 1 = Female
+        civility: male
         firstName: user
         lastName: user
         company: ~
@@ -27,7 +27,6 @@ GP\CoreBundle\Entity\User:
         email: admin@example.com
         emailCanonical: admin@example.com
         roles: [ROLE_ADMIN]
-        civility: 0
         firstName: admin
         lastName: admin
         company: [ @company1 ]
@@ -38,18 +37,16 @@ GP\CoreBundle\Entity\User:
         email: chef_projet@example.com
         emailCanonical: chef_projet@example.com
         roles: [ROLE_USER]
-        civility: 0
         firstName: Carl
         lastName: Sutter
         company: [ @company1 ]
 
     consultant (extends user):
-        username: devconsultanteloppeur
+        username: consultant
         usernameCanonical: consultant
         email: consultant@example.com
         emailCanonical: consultant@example.com
         roles: [ROLE_USER]
-        civility: 0
         firstName: ALexandre
         lastName: Jacob
         company: [ @company1, @company2 ]
@@ -60,7 +57,6 @@ GP\CoreBundle\Entity\User:
         email: developpeur@example.com
         emailCanonical: developpeur@example.com
         roles: [ROLE_USER]
-        civility: 0
         firstName: Matthieu
         lastName: Rodraney
         company: [ @company1 ]
@@ -71,7 +67,6 @@ GP\CoreBundle\Entity\User:
         email: collaborateur@example.com
         emailCanonical: collaborateur@example.com
         roles: [ROLE_USER]
-        civility: 1
         firstName: Carine
         lastName: Leguellec
         company: [ @company1, @company3 ]
@@ -82,7 +77,6 @@ GP\CoreBundle\Entity\User:
         email: client@example.com
         emailCanonical: client@example.com
         roles: [ROLE_USER]
-        civility: 0
         firstName: Roberto
         lastName: Ramos
         company: [ @company4 ]
@@ -93,7 +87,6 @@ GP\CoreBundle\Entity\User:
         email: thibaut@example.com
         emailCanonical: thibaut@example.com
         roles: [ROLE_USER]
-        civility: 0
         firstName: Thibaut
         lastName: Gauvin
         company: [ @company1, @company2 ]
@@ -104,7 +97,6 @@ GP\CoreBundle\Entity\User:
         email: rkoci@g4.fr
         emailCanonical: rkoci@g4.fr
         roles: [ROLE_USER]
-        civility: 1
         firstName: Rémi
         lastName: Koci
         company: [ @company1, @company2 ]
@@ -115,7 +107,6 @@ GP\CoreBundle\Entity\User:
         email: guillaume@g4.fr
         emailCanonical: guillaume@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Guillaume
         lastName: Roche
         company: [ @company1, @company2 ]
@@ -126,7 +117,6 @@ GP\CoreBundle\Entity\User:
         email: karim@g4.fr
         emailCanonical: karim@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Karim
         lastName: Tayeb
         company: [ @company1, @company2 ]
@@ -137,7 +127,6 @@ GP\CoreBundle\Entity\User:
         email: ralph@g4.fr
         emailCanonical: ralph@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Ralph
         lastName: Zogo
         company: [ @company1, @company2 ]
@@ -148,7 +137,6 @@ GP\CoreBundle\Entity\User:
         email: rowmain@g4.fr
         emailCanonical: rowmain@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Romain
         lastName: Dalleau
         company: [ @company1, @company2 ]
@@ -159,7 +147,6 @@ GP\CoreBundle\Entity\User:
         email: romain@g4.fr
         emailCanonical: romain@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Romain
         lastName: Lesniak
         company: [ @company1, @company2 ]
@@ -170,7 +157,6 @@ GP\CoreBundle\Entity\User:
         email: brandon@g4.fr
         emailCanonical: brandon@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Brandon
         lastName: Beurion
         company: [ @company1, @company2 ]
@@ -181,7 +167,6 @@ GP\CoreBundle\Entity\User:
         email: robin@g4.fr
         emailCanonical: robin@g4.fr
         roles: [ROLE_USER]
-        civility: 0
         firstName: Robin
         lastName: Billy
         company: [ @company1, @company2 ]
@@ -192,7 +177,7 @@ GP\CoreBundle\Entity\User:
         email: alicia@g4.fr
         emailCanonical: alicia@g4.fr
         roles: [ROLE_USER]
-        civility: 0
+        civility: female
         firstName: Alicia
         lastName: Belkovskaya
         company: [ @company1, @company2 ]

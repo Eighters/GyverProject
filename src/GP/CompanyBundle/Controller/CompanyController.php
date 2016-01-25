@@ -7,15 +7,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class DefaultController extends Controller
+/**
+ * Class ProjectController
+ * @package GP\ProjectBundle\Controller
+ *
+ * @Route("/secure/company")
+ */
+class CompanyController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/", name="company_index")
+     *
      * @Template()
      * @Method("GET")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 }

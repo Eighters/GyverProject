@@ -1,0 +1,28 @@
+{% set current_route = app.request.attributes.get('_route') %}
+
+<nav class="col s12 grey darken-3">
+
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li {% if current_route == 'admin_dashboard' %}class="active" {% endif %}>
+            <a class="white-text" href="{{ path('admin_dashboard') }}">
+                <i class="material-icons left">dashboard</i>
+                Dashboard
+            </a>
+        </li>
+
+        <li {% if current_route == 'admin_show_all_user' %}class="active" {% endif %}>
+            <a class="white-text" href="{{ path('admin_show_all_user') }}">
+                <i class="material-icons left">group</i>
+                Utilisateurs
+            </a>
+        </li>
+    </ul>
+
+    <ul class="right hide-on-med-and-down">
+        <li>
+            <a class="white-text" href="{{ path('logout') }}">
+                <i class="material-icons right">exit_to_app</i>
+            </a>
+        </li>
+    </ul>
+</nav>

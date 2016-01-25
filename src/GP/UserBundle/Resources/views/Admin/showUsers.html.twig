@@ -1,10 +1,9 @@
-{% set i = 0 %}
-
-{% extends '::layout_connected.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block title %}Gestion des utilisateurs{% endblock %}
+
 {% block underNavTitle %}Gestion des utilisateurs{% endblock %}
-{% block underNavText %}Retrouvez ici l'ensemble des utilisateurs de l'application.{% endblock %}
+{% block underNavText %}Vous avez {{ pagination.getTotalItemCount }} utilisateurs{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -36,7 +35,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="{{ path('show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
+                                        <a href="{{ path('admin_show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
                                             <i class="material-icons">info</i>
                                         </a>
                                     </li>
@@ -61,6 +60,7 @@
                     </li>
                 {% endfor %}
             </ul>
+
             {{ knp_pagination_render(pagination) }}
         </div>
     </div>

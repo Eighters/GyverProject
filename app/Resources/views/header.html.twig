@@ -1,40 +1,61 @@
+{% set current_route = app.request.attributes.get('_route') %}
+
 <nav class="col s12 cyan darken-4">
 
     <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#">MonApplication</a></li>
+        {# Dashboard #}
+        <li {% if current_route == 'dashboard' %}class="active" {% endif %}>
+            <a href="{{ path('dashboard') }}">
+                <i class="material-icons left">dashboard</i>
+                Dashboard
+            </a>
+        </li>
+        {# Dashboard End #}
 
-        <!-- Dashboard -->
-        {% if app.request.attributes.get('_route') == 'dashboard' %}
-            <li class="active"><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
-        {% else %}
-            <li><a href="{{ path('dashboard') }}">Tableau de bord</a></li>
-        {% endif %}
-        <!-- #Dashboard -->
+        {# Projects #}
+        <li {% if current_route == 'project_index' %}class="active" {% endif %}>
+            <a href="{{ path('project_index') }}">
+                <i class="material-icons left">folder</i>
+                Projects
+            </a>
+        </li>
+        {# Projects End #}
 
-        <!-- Projects -->
-        <li><a href="#">Projets</a></li>
-        <!-- #Projects -->
+        {# Company #}
+        <li {% if current_route == 'company_index' %}class="active" {% endif %}>
+            <a href="{{ path('company_index') }}">
+                <i class="material-icons left">business</i>
+                Company
+            </a>
+        </li>
+        {# Company End #}
 
-        <!-- Users -->
-        {% if is_granted('ROLE_ADMIN') %}
-            {% if (app.request.attributes.get('_route') == 'show_users' or app.request.attributes.get('_route') == 'user_show') %}
-                <li class="active"><a href="{{ path('show_users') }}">Utilisateurs</a></li>
-            {% else %}
-                <li><a href="{{ path('show_users') }}">Utilisateurs</a></li>
-            {% endif %}
-        {% endif %}
-        <!-- #Users -->
     </ul>
     <ul class="right hide-on-med-and-down">
 
         <!-- Profile -->
-        {% if (app.request.attributes.get('_route') == 'show_account' or app.request.attributes.get('_route') == 'edit_account') %}
-            <li class="active"><a href="{{ path('show_account') }}">Profil</a></li>
-        {% else %}
-            <li><a href="{{ path('show_account') }}">Profil</a></li>
-        {% endif %}
+        <li {% if current_route == 'show_account' or current_route == 'edit_account' %}class="active"{% endif %}>
+            <a href="{{ path('show_account') }}">
+                <i class="material-icons left">group</i>
+                Profile
+            </a>
+        </li>
         <!-- #Profile -->
 
-        <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+        {# Access to the admin dashboard #}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('admin_dashboard') }}">
+                    <i class="material-icons left">enhanced_encryption</i>
+                    Admin
+                </a>
+            </li>
+        {% endif %}
+
+        <li>
+            <a href="{{ path('logout') }}">
+                <i class="material-icons right">exit_to_app</i>
+            </a>
+        </li>
     </ul>
 </nav>
