@@ -1,6 +1,6 @@
 <?php
 
-namespace GP\UserBundle\Controller;
+namespace GP\UserBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -8,14 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
+use GP\CoreBundle\Entity\User;
 
 /**
- * Class DashboardController
+ * Class Admin User Controller
  * @package GP\UserBundle\Controller
  *
  * @Route("/secure/admin")
  */
-class AdminController extends Controller
+class AdminUserController extends Controller
 {
 
     /**
@@ -23,7 +24,7 @@ class AdminController extends Controller
      *
      * @Route("/", name="admin_dashboard")
      * @Method("GET")
-     * @Template()
+     * @Template("GPUserBundle:Admin:index.html.twig")
      */
     public function indexAction(Request $request)
     {
@@ -35,7 +36,7 @@ class AdminController extends Controller
      *
      * @Route("/user", name="admin_show_all_user")
      * @Method("GET")
-     * @Template()
+     * @Template("GPUserBundle:Admin/User:showUsers.html.twig")
      */
     public function showUsersAction(Request $request)
     {
@@ -60,7 +61,7 @@ class AdminController extends Controller
      *
      * @Route("/user/{id}", name="admin_show_user")
      * @Method("GET")
-     * @Template()
+     * @Template("GPUserBundle:Admin/User:showUser.html.twig")
      */
     public function showUserAction($id)
     {
@@ -70,7 +71,7 @@ class AdminController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'Utilisateur introuvable');
+            $this->addFlash('error', 'L\'utilisateur est introuvable');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
@@ -99,7 +100,14 @@ class AdminController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'Utilisateur introuvable');
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            return $this->redirectToRoute('admin_show_all_user');
+        }
+
+        // Admin can't be deleted !
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être supprimé');
+            return $this->redirectToRoute('admin_show_all_user');
         }
 
         // Removing the user
@@ -107,8 +115,49 @@ class AdminController extends Controller
         $em->flush();
 
         // Return success message
-        $this->addFlash('success', 'L\'utilisateur a été correctement supprimé');
-
+        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement supprimé');
         return $this->redirectToRoute('admin_show_all_user');
     }
+
+    /**
+     * Archive a given user. He can be reactivated later.
+     *
+     * @Route("/user/{id}/disable", name="admin_disable_user")
+     * @Method("GET")
+     * @Template()
+     */
+    public function archiveUserAction($id) {
+
+        $user = $this->getUser();
+
+        if (!$user->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('You need to be admin');
+        }
+
+        // Searching requested user
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GPCoreBundle:User')->find($id);
+
+        // Checking if user exists
+        if (!$user) {
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            return $this->redirectToRoute('admin_show_all_user');
+        }
+
+        // Admin can't be archived !
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être archivé');
+            return $this->redirectToRoute('admin_show_all_user');
+        }
+
+        // Archive the user
+        $user->setEnabled(0);
+        $em->persist($user);
+        $em->flush();
+
+        // Return success message
+        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement archivé');
+        return $this->redirectToRoute('admin_show_all_user');
+    }
+
 }

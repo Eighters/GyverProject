@@ -11,7 +11,7 @@
 
             <ul class="collection">
                 {% for user in pagination %}
-                    <li href="#!" class="collection-item avatar">
+                    <li class="collection-item avatar">
                         <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
                         <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
                         <p>
@@ -40,12 +40,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                                             <i class="material-icons">create</i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                        <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
                                             <i class="material-icons">archive</i>
                                         </a>
                                     </li>

@@ -97,6 +97,7 @@ GP\CoreBundle\Entity\User:
         email: rkoci@g4.fr
         emailCanonical: rkoci@g4.fr
         roles: [ROLE_USER]
+        civility: female
         firstName: Rémi
         lastName: Koci
         company: [ @company1, @company2 ]

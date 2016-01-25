@@ -3,26 +3,50 @@
 <nav class="col s12 grey darken-3">
 
     <ul id="nav-mobile" class="left hide-on-med-and-down">
+        {# Dashboard #}
         <li {% if current_route == 'admin_dashboard' %}class="active" {% endif %}>
             <a class="white-text" href="{{ path('admin_dashboard') }}">
                 <i class="material-icons left">dashboard</i>
                 Dashboard
             </a>
         </li>
+        {# Dashboard End #}
 
-        <li {% if current_route == 'admin_show_all_user' %}class="active" {% endif %}>
+        {# User #}
+        <li {% if current_route == 'admin_show_all_user' or current_route == 'admin_show_user' %}class="active" {% endif %}>
             <a class="white-text" href="{{ path('admin_show_all_user') }}">
                 <i class="material-icons left">group</i>
-                Utilisateurs
+                User
             </a>
         </li>
+        {# User End #}
+
+        {# Company #}
+        <li {% if current_route == 'admin_show_companies'%}class="active" {% endif %}>
+            <a class="white-text" href="{{ path('admin_show_companies') }}">
+                <i class="material-icons left">business</i>
+                Company
+            </a>
+        </li>
+        {# Company End #}
+
+        {# Project #}
+        <li {% if current_route == 'admin_show_project'%}class="active" {% endif %}>
+            <a class="white-text" href="{{ path('admin_show_project') }}">
+                <i class="material-icons left">today</i>
+                Project
+            </a>
+        </li>
+        {# Project End #}
     </ul>
 
     <ul class="right hide-on-med-and-down">
+        {# Logout #}
         <li>
-            <a class="white-text" href="{{ path('logout') }}">
-                <i class="material-icons right">exit_to_app</i>
+            <a class="white-text" href="{{ path('dashboard') }}">
+                <i class="material-icons right">power_settings_new</i>
             </a>
         </li>
+        {# Logout End #}
     </ul>
 </nav>
