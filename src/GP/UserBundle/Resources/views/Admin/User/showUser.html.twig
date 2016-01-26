@@ -17,9 +17,15 @@
                                 <a href="#"  class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                                     <i class="material-icons">create</i>
                                 </a>
-                                <a href="#" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
-                                    <i class="material-icons">archive</i>
-                                </a>
+                                {% if user.enabled %}
+                                    <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                        <i class="material-icons">visibility_off</i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('admin_activate_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                        <i class="material-icons">visibility</i>
+                                    </a>
+                                {% endif %}
                                 <a href="#" onclick="confirmAdminDeleteUser({{ user.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                     <i class="material-icons ">delete</i>
                                 </a>
@@ -32,8 +38,15 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        {{ user.civility ? 'Homme' : 'Femme' }} <br>
-                        Compte {{ user.enabled ? 'activé' : 'archivé' }} <br>
+                        {{ user.civility }}
+                        <div class="switch">
+                            <label>
+                                Archivé
+                                <input disabled type="checkbox" {{ user.enabled ? 'checked':'' }}>
+                                <span class="lever"></span>
+                                Actif
+                            </label>
+                        </div>
                         Dernière connexion : {{ user.lastLogin|date('d/m/Y H:i:s') }}
                         <ul class="collection with-header">
                             <li class="collection-header"><h5>Emails</h5></li>

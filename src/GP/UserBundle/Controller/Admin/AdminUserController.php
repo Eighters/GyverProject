@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
-use GP\CoreBundle\Entity\User;
 
 /**
  * Class Admin User Controller
@@ -146,7 +145,7 @@ class AdminUserController extends Controller
 
         // Admin can't be archived !
         if ($user->hasRole('ROLE_ADMIN')) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être archivé');
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être désactivé');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
@@ -156,7 +155,48 @@ class AdminUserController extends Controller
         $em->flush();
 
         // Return success message
-        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement archivé');
+        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement désactivé');
+        return $this->redirectToRoute('admin_show_all_user');
+    }
+
+    /**
+     * Reactive a given user.
+     *
+     * @Route("/user/{id}/activate", name="admin_activate_user")
+     * @Method("GET")
+     * @Template()
+     */
+    public function activateUserAction($id) {
+
+        $user = $this->getUser();
+
+        if (!$user->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('You need to be admin');
+        }
+
+        // Searching requested user
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GPCoreBundle:User')->find($id);
+
+        // Checking if user exists
+        if (!$user) {
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            return $this->redirectToRoute('admin_show_all_user');
+        }
+
+        // Admin can't be archived !
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être activé');
+            return $this->redirectToRoute('admin_show_all_user');
+        }
+
+        // Archive the user
+        $user->setEnabled(1);
+        $em->persist($user);
+        $em->flush();
+
+        // Return success message
+        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement activé');
         return $this->redirectToRoute('admin_show_all_user');
     }
 

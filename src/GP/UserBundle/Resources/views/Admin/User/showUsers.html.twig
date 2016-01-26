@@ -11,12 +11,19 @@
 
             <ul class="collection">
                 {% for user in pagination %}
+
                     <li class="collection-item avatar">
                         <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
                         <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
-                        <p>
-                            Compte: {{ user.enabled ? 'actif':'archivé' }}
-                        </p>
+
+                        <div class="switch">
+                            <label>
+                                Archivé
+                                <input disabled type="checkbox" {{ user.enabled ? 'checked':'' }}>
+                                <span class="lever"></span>
+                                Actif
+                            </label>
+                        </div>
                         <p>
                             Entreprise{% if user.company|length > 1 %}s{% endif %}:
 
@@ -44,11 +51,19 @@
                                             <i class="material-icons">create</i>
                                         </a>
                                     </li>
+
                                     <li>
-                                        <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
-                                            <i class="material-icons">archive</i>
-                                        </a>
+                                        {% if user.enabled %}
+                                            <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                                <i class="material-icons">visibility_off</i>
+                                            </a>
+                                        {% else %}
+                                            <a href="{{ path('admin_activate_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                                <i class="material-icons">visibility</i>
+                                            </a>
+                                        {% endif %}
                                     </li>
+
                                     <li>
                                         <a href="#" onclick="confirmAdminDeleteUser({{ user.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                             <i class="material-icons ">delete</i>
