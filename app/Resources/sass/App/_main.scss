@@ -15,9 +15,9 @@ nav ul li + .active {
 .fixed-action-btn {
   position: inherit;
   right: 5px;
-  top: 0px;
+  top: 0;
   padding-top: 15px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   z-index: 998;
 }
 .btn-floating i {
@@ -34,21 +34,26 @@ nav ul li + .active {
 /* Side nav menu */
 .menu-gauche {
   .application-header {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     padding: 0;
+
+    .application-logo {
+      margin: 15px 5px 15px 15px;
+    }
     .application-name {
       text-transform: uppercase;
-      font-size: 24px;
+      font-size: 18px;
     }
+
     .user-pannel {
       background: url("/assets/images/backgound_user.png");
-      height: 100px;
+      height: 120px;
 
       a {
         all: inherit;
       }
       .user-infos-block {
-        padding-top: 15px;
+        padding-top: 20px;
       }
       .user-profile-img {
         margin-left: 10px;

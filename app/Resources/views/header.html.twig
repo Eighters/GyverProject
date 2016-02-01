@@ -12,40 +12,33 @@
             <ul id="slide-out" class="side-nav fixed  cyan darken-2">
 
                 <li class="application-header">
-
-                    <p class="application-name center">
-                        {{ application_name }}
-                    </p>
+                    <div class="valign-wrapper">
+                        <img class="circle application-logo" src="{{ asset('assets/images/logo.png') }}" alt="user-profile-img"/>
+                        <p class="application-name">{{ application_name }}</p>
+                    </div>
 
                     <div class="user-pannel">
                         <div class="row valign-wrapper user-infos-block">
-                            <img class="circle user-profile-img" src="{{ asset('assets/images/test/user_img_test.jpg') }}" alt="user-profile-img"/>
+                            <img class="circle user-profile-img" src="{{ asset('assets/images/user_img_default.png') }}" alt="user-profile-img"/>
                             <a href="#" class="user-infos" data-activates="user-dropdown">
-                                {{ app.user.firstName }} {{ app.user.lastName }} &#x25BC;
-                                {{ app.user.email }}
+                                    {{ app.user.firstName }} {{ app.user.lastName }} &#x25BC;
+                                    {{ app.user.email }}
                             </a>
 
-                            <ul id="user-dropdown" class="dropdown-content cyan darken-1">
+                            <ul id="user-dropdown" class="dropdown-content cyan darken-2">
                                 <li>
                                     <a href="{{ path('show_account') }}">
                                         <i class="material-icons left">group</i>
-                                        Show
+                                        Show Account
                                     </a>
                                 </li>
+                                <li class="divider"></li>
                                 <li>
                                     <a href="{{ path('edit_account') }}">
                                         <i class="material-icons left">edit</i>
-                                        Edit
+                                        Edit Account
                                     </a>
                                 </li>
-                                {#<li>#}
-                                    {#<a href="{{ path('edit_account') }}">#}
-                                        {#<i class="material-icons">group</i>#}
-                                        {#Show#}
-                                    {#</a>#}
-                                {#</li>#}
-                                <li class="divider"></li>
-                                <li><a href="#!">{{ app.user.email }}</a></li>
                             </ul>
                         </div>
                     </div>
