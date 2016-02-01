@@ -53,8 +53,9 @@ doctrine:
 
 # Mailcatcher config (dev only)
 swiftmailer:
-    transport:  %mailcatcher_transport%
-    host:       %mailcatcher_host%
-    port:       %mailcatcher_port%
-    username:   %mailcatcher_user%
-    password:   %mailcatcher_user%
+    transport:  "%mailer_transport%"
+    encryption: "%mailer_encryption%"
+    host:       "%mailer_host%"
+    port:       "%mailer_port%"
+    username:   "%mailer_user%"
+    password:   "%mailer_user%"

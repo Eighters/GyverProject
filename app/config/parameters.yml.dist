@@ -23,17 +23,11 @@ parameters:
 
     # Email Prod Config
     mailer_transport:  ~
+    mailer_encryption: ~
     mailer_host:       ~
     mailer_port:       ~
     mailer_user:       ~
     mailer_password:   ~
-
-    # Dev MailCatcher Config
-    mailcatcher_transport:  smtp
-    mailcatcher_host:       localhost
-    mailcatcher_port:       1025
-    mailcatcher_user:       ~
-    mailcatcher_password:   ~
 
     # Change This Token
     secret: 3e0197329281e3278dd3f6e15c83f0edda08d66d

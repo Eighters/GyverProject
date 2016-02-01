@@ -68,11 +68,13 @@ doctrine_migrations:
 
 # Swiftmailer Configuration
 swiftmailer:
-  transport: "%mailer_transport%"
-  host:      "%mailer_host%"
-  username:  "%mailer_user%"
-  password:  "%mailer_password%"
-  spool:     { type: memory }
+  transport:  "%mailer_transport%"
+  encryption: "%mailer_encryption%"
+  host:       "%mailer_host%"
+  port:       "%mailer_port%"
+  username:   "%mailer_user%"
+  password:   "%mailer_password%"
+  spool:      { type: memory }
 
 # FosUser Bundle Configuration
 fos_user:

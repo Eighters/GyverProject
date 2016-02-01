@@ -27,6 +27,11 @@ class AdminUserController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('You need to be admin');
+        }
+
         return array();
     }
 
@@ -39,6 +44,11 @@ class AdminUserController extends Controller
      */
     public function showUsersAction(Request $request)
     {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('You need to be admin');
+        }
+
         // Getting all users
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('GPCoreBundle:User')->findAll();
@@ -64,6 +74,11 @@ class AdminUserController extends Controller
      */
     public function showUserAction($id)
     {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('You need to be admin');
+        }
+
         // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
@@ -87,9 +102,8 @@ class AdminUserController extends Controller
      */
     public function deleteUserAction($id)
     {
-        $user = $this->getUser();
-
-        if (!$user->hasRole('ROLE_ADMIN')) {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('You need to be admin');
         }
 
@@ -113,6 +127,10 @@ class AdminUserController extends Controller
         $em->remove($user);
         $em->flush();
 
+        // Notice him by email
+        $mailerService = $this->get('gp.core_bundle.mailing_service');
+        $mailerService->sendUserAccountDeletedNotification($user);
+
         // Return success message
         $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement supprimé');
         return $this->redirectToRoute('admin_show_all_user');
@@ -123,13 +141,11 @@ class AdminUserController extends Controller
      *
      * @Route("/user/{id}/disable", name="admin_disable_user")
      * @Method("GET")
-     * @Template()
      */
     public function archiveUserAction($id) {
 
-        $user = $this->getUser();
-
-        if (!$user->hasRole('ROLE_ADMIN')) {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('You need to be admin');
         }
 
@@ -154,6 +170,10 @@ class AdminUserController extends Controller
         $em->persist($user);
         $em->flush();
 
+        // Notice him by email
+        $mailerService = $this->get('gp.core_bundle.mailing_service');
+        $mailerService->sendUserAccountArchivedNotification($user);
+
         // Return success message
         $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement désactivé');
         return $this->redirectToRoute('admin_show_all_user');
@@ -164,13 +184,11 @@ class AdminUserController extends Controller
      *
      * @Route("/user/{id}/activate", name="admin_activate_user")
      * @Method("GET")
-     * @Template()
      */
     public function activateUserAction($id) {
 
-        $user = $this->getUser();
-
-        if (!$user->hasRole('ROLE_ADMIN')) {
+        $currentUser = $this->getUser();
+        if (!$currentUser->hasRole('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('You need to be admin');
         }
 
@@ -194,6 +212,10 @@ class AdminUserController extends Controller
         $user->setEnabled(1);
         $em->persist($user);
         $em->flush();
+
+        // Notice him by email
+        $mailerService = $this->get('gp.core_bundle.mailing_service');
+        $mailerService->sendUserAccountActivatedNotification($user);
 
         // Return success message
         $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement activé');

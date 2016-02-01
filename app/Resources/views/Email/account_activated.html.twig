@@ -1,0 +1,21 @@
+{% extends 'Email/email_layout.html.twig' %}
+
+{% block body %}
+
+    <p>
+        Hi <span style="font-weight:bold; font-size:16px;">{{ user.firstName }} {{ user.lastName }}</span>,
+        <br>
+        <br>
+        Your account on www.gyverproject.com has been reactivated by administrator
+        <br>
+        <br>
+        If you have any question, please contact support team at gyver.project@gmail.com
+        <br>
+        <br>
+        Kind regards,
+        <br>
+        <br>
+        The Gyver Project team.
+    </p>
+
+{% endblock %}

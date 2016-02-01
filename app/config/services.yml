@@ -8,3 +8,8 @@ services:
         class: GP\UserBundle\Form\Type\EditUserFormType
         tags:
           - { name: form.type, alias: app_user_profile_edit }
+
+    # Mailer service
+    gp.core_bundle.mailing_service:
+        class: GP\CoreBundle\Services\MailingService
+        arguments: [@Mailer, @Templating, %notification_sender_mail%]

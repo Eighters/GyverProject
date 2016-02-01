@@ -1,0 +1,24 @@
+{% extends 'Email/email_layout.html.twig' %}
+
+{% block body %}
+
+    <p>
+        Hi <span style="font-weight:bold; font-size:16px;">{{ user.firstName }} {{ user.lastName }}</span>,
+        <br>
+        <br>
+        Your account on www.gyverproject.com has been disabled by administrator
+        <br>
+        <br>
+        You won't be able to login again until admin reactivate your account
+        <br>
+        <br>
+        If you have any question, please contact support team at gyver.project@gmail.com
+        <br>
+        <br>
+        Kind regards,
+        <br>
+        <br>
+        The Gyver Project team.
+    </p>
+
+{% endblock %}
