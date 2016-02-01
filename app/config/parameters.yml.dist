@@ -35,3 +35,4 @@ parameters:
     # Aplication Parameters
     item_per_page: 6
     application_name: Gyver Project
+    notification_sender_mail: gyver.project@gmail.com
