@@ -1,61 +1,157 @@
 {% set current_route = app.request.attributes.get('_route') %}
 
-<nav class="col s12 cyan darken-4">
+<div class="row">
+    <nav class="cyan darken-4">
 
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
-        {# Dashboard #}
-        <li {% if current_route == 'dashboard' %}class="active" {% endif %}>
-            <a href="{{ path('dashboard') }}">
-                <i class="material-icons left">dashboard</i>
-                Dashboard
+        <div class="menu-gauche">
+
+            <a href="#" data-activates="slide-out" class="button-collapse">
+                <i class="material-icons left">view_list</i>
             </a>
-        </li>
-        {# Dashboard End #}
 
-        {# Projects #}
-        <li {% if current_route == 'project_index' %}class="active" {% endif %}>
-            <a href="{{ path('project_index') }}">
-                <i class="material-icons left">folder</i>
-                Projects
-            </a>
-        </li>
-        {# Projects End #}
+            <ul id="slide-out" class="side-nav fixed  cyan darken-2">
 
-        {# Company #}
-        <li {% if current_route == 'company_index' %}class="active" {% endif %}>
-            <a href="{{ path('company_index') }}">
-                <i class="material-icons left">business</i>
-                Company
-            </a>
-        </li>
-        {# Company End #}
+                <li class="application-header">
 
-    </ul>
-    <ul class="right hide-on-med-and-down">
+                    <p class="application-name center">
+                        {{ application_name }}
+                    </p>
 
-        <!-- Profile -->
-        <li {% if current_route == 'show_account' or current_route == 'edit_account' %}class="active"{% endif %}>
-            <a href="{{ path('show_account') }}">
-                <i class="material-icons left">group</i>
-                Profile
-            </a>
-        </li>
-        <!-- #Profile -->
+                    <div class="user-pannel">
+                        <div class="row valign-wrapper user-infos-block">
+                            <img class="circle user-profile-img" src="{{ asset('assets/images/test/user_img_test.jpg') }}" alt="user-profile-img"/>
+                            <a href="#" class="user-infos" data-activates="user-dropdown">
+                                {{ app.user.firstName }} {{ app.user.lastName }} &#x25BC;
+                                {{ app.user.email }}
+                            </a>
 
-        {# Access to the admin dashboard #}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('admin_dashboard') }}">
-                    <i class="material-icons left">enhanced_encryption</i>
-                    Admin
-                </a>
-            </li>
-        {% endif %}
+                            <ul id="user-dropdown" class="dropdown-content cyan darken-1">
+                                <li>
+                                    <a href="{{ path('show_account') }}">
+                                        <i class="material-icons left">group</i>
+                                        Show
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('edit_account') }}">
+                                        <i class="material-icons left">edit</i>
+                                        Edit
+                                    </a>
+                                </li>
+                                {#<li>#}
+                                    {#<a href="{{ path('edit_account') }}">#}
+                                        {#<i class="material-icons">group</i>#}
+                                        {#Show#}
+                                    {#</a>#}
+                                {#</li>#}
+                                <li class="divider"></li>
+                                <li><a href="#!">{{ app.user.email }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
 
-        <li>
-            <a href="{{ path('logout') }}">
-                <i class="material-icons right">exit_to_app</i>
-            </a>
-        </li>
-    </ul>
-</nav>
+                {# Dashboard #}
+                <li {% if current_route == 'dashboard' %}class="active" {% endif %}>
+                    <a href="{{ path('dashboard') }}">
+                        <i class="material-icons left">dashboard</i>
+                        Dashboard
+                    </a>
+                </li>
+
+                {# Projects #}
+                <li {% if current_route == 'project_index' %}class="active" {% endif %}>
+                    <a href="{{ path('project_index') }}">
+                        <i class="material-icons left">folder</i>
+                        Projects
+                    </a>
+                </li>
+
+                {# Company #}
+                <li {% if current_route == 'company_index' %}class="active" {% endif %}>
+                    <a href="{{ path('company_index') }}">
+                        <i class="material-icons left">business</i>
+                        Company
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">toc</i>
+                        Task
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">group</i>
+                        Team
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">folder</i>
+                        Deliverables
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">recent_actors</i>
+                        Meeting
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">attach_money</i>
+                        Budget
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="material-icons left">trending_up</i>
+                        Risk
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-haut">
+
+            <div class="row">
+
+                <p class="brand-logo center hide-on-small-only">Dashboard</p>
+
+                <ul class="right">
+                    <li>
+                        <div class="nav-wrapper">
+                            <form class="teal darken-1">
+                                <div class="input-field">
+                                    <input id="search" type="search" required>
+                                    <label for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    {# Access to the admin dashboard #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ path('admin_dashboard') }}">
+                                <i class="material-icons left">enhanced_encryption</i>
+                                Admin
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li>
+                        <a href="{{ path('logout') }}">
+                            <i class="material-icons right">exit_to_app</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+</div>

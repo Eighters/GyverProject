@@ -40,3 +40,4 @@ parameters:
 
     # Aplication Parameters
     item_per_page: 6
+    application_name: Gyver Project

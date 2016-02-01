@@ -28,7 +28,7 @@ GP\CoreBundle\Entity\User:
         emailCanonical: admin@example.com
         roles: [ROLE_ADMIN]
         firstName: admin
-        lastName: admin
+        lastName: user
         company: [ @company1 ]
 
     chef_projet (extends user):

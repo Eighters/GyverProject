@@ -17,23 +17,20 @@
         {% endblock %}
 
         <div class="row">
-            <div class="under-nav col s12 cyan darken-2">
-                <h4 class="white-text">{% block underNavTitle %}Titre{% endblock %}</h4>
-                <p class="cyan-text text-accent-1">{% block underNavText %}Description{% endblock %}</p>
+            <div class="col m12 l10 push-l2">
+                {% block flashMessage %}
+                    {% include '::flashMessage.html.twig' %}
+                {% endblock %}
+
+                {# Body Block #}
+                {% block body %}{% endblock %}
+                {# End Body #}
+
+                {% block footer %}
+                    {% include '::footer.html.twig' %}
+                {% endblock %}
             </div>
         </div>
-
-        {% block flashMessage %}
-            {% include '::flashMessage.html.twig' %}
-        {% endblock %}
-
-        {# Body Block #}
-        {% block body %}{% endblock %}
-        {# End Body #}
-
-        {% block footer %}
-            {% include '::footer.html.twig' %}
-        {% endblock %}
 
         {% block javascripts %}
             {% include '::javascripts.html.twig' %}

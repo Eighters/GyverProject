@@ -7,26 +7,23 @@
 
 {% block body %}
 
-    <div class="container">
-        <div class="row">
-            {% for i in 1..6 %}
-                <div class="col s12 m6">
-                    <div class="card">
-                        <div class="card deep-purple accent-1 white-text">
-                            <div class="card-content">
-                                <h5 class="valign center-align center">
-                                    <i class="material-icons medium">folder</i>
-                                    <br/>
-                                    Projet {{ i }}
-                                </h5>
-                            </div>
+    <div class="row">
+        {% for i in 1..6 %}
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card deep-purple accent-1 white-text">
+                        <div class="card-content">
+                            <h5 class="valign center-align center">
+                                <i class="material-icons medium">folder</i>
+                                <br/>
+                                Project {{ i }}
+                            </h5>
                         </div>
-                        <div class="card-content"></div>
                     </div>
+                    <div class="card-content"></div>
                 </div>
-            {% endfor %}
-
-        </div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

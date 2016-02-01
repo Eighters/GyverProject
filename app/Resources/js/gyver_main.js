@@ -81,3 +81,19 @@ function AdminDeleteUser(id) {
         });
     });
 }
+
+$(document).ready(function(){
+
+    /**
+     * Initialize the sidebar nav
+     */
+    $('.button-collapse').sideNav({
+        menuWidth: 275
+    });
+
+    /**
+     * Initialize user dropdown in sidebar nav
+     */
+    $('.user-infos').dropdown();
+
+});
