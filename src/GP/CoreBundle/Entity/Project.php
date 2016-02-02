@@ -21,6 +21,65 @@ class Project
      */
     private $id;
 
+    /**
+     * @var varchar
+     *
+     * @ORM\Column(name="name", type="varchar")
+     * @ORM\Name
+     */
+    private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", cascade={"persist"})
+     */
+    private $company;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", cascade={"persist"})
+     */
+    private $projectCategory;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", cascade={"persist"})
+     */
+    private $administratorsList;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", cascade={"persist"})
+     */
+    private $membersList;
+
+    /**
+     * @var varchar
+     *
+     * @ORM\Column(name="status", type="varchar")
+     * @ORM\Status
+     */
+    private $status;
+
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="begin_date", type="date")
+     * @ORM\Begin_date
+     */
+    private $begin_date;
+
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="planned_end_date", type="date")
+     * @ORM\Planned_end_date
+     */
+    private $planned_end_date;
+
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="real_end_date", type="date")
+     * @ORM\Real_end_date
+     */
+    private $real_end_date;
 
     /**
      * Get id
@@ -31,5 +90,7 @@ class Project
     {
         return $this->id;
     }
+
+
 }
 
