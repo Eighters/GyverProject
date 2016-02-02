@@ -13,12 +13,14 @@ class MailingService
 {
     protected $mailer;
     protected $templating;
+    protected $kernelEnvironment;
 
-    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail, $kernelEnvironment)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->senderEmail = $senderEmail;
+        $this->kernelEnvironment = $kernelEnvironment;
     }
 
     /**
@@ -32,7 +34,7 @@ class MailingService
 
         $from = $this->senderEmail;
         $to = 'gauvin.thibaut83@gmail.com';
-        $subject = '[GyverProject Notification] Account Deleted !';
+        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Deleted !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
@@ -49,7 +51,7 @@ class MailingService
 
         $from = $this->senderEmail;
         $to = 'gauvin.thibaut83@gmail.com';
-        $subject = '[GyverProject Notification] Account Archived !';
+        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Archived !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
@@ -66,10 +68,21 @@ class MailingService
 
         $from = $this->senderEmail;
         $to = 'gauvin.thibaut83@gmail.com';
-        $subject = '[GyverProject Notification] Account Reactivated !';
+        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Reactivated !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
+    }
+
+    /**
+     * Set the prefix of the mail subject
+     * It depend on kernel environment & it can be :
+     * [DEV] or [PROD]
+     *
+     * @return string
+     */
+    private function setSubjectPrefix() {
+        return $this->kernelEnvironment == 'prod' ? '[PROD]' : '[DEV]';
     }
 
     /**
@@ -87,6 +100,7 @@ class MailingService
         $mail
             ->setFrom($from)
             ->setTo($to)
+            ->addBcc('arkezis@hotmail.fr')
             ->setSubject($subject)
             ->setBody($body)
             ->setContentType('text/html');

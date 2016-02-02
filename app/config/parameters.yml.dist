@@ -23,7 +23,6 @@ parameters:
 
     # Email Prod Config
     mailer_transport:  ~
-    mailer_encryption: ~
     mailer_host:       ~
     mailer_port:       ~
     mailer_user:       ~

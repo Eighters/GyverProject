@@ -12,4 +12,4 @@ services:
     # Mailer service
     gp.core_bundle.mailing_service:
         class: GP\CoreBundle\Services\MailingService
-        arguments: [@Mailer, @Templating, %notification_sender_mail%]
+        arguments: [@Mailer, @Templating, %notification_sender_mail%, %kernel.environment%]
