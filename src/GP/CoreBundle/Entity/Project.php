@@ -60,28 +60,28 @@ class Project
      *
      * @ORM\Column(name="begin_date", type="date")
      */
-    private $begin_date;
+    private $beginDate;
 
     /**
      * @var date
      *
      * @ORM\Column(name="planned_end_date", type="date")
      */
-    private $planned_end_date;
+    private $plannedEndDate;
 
     /**
      * @var date
      *
      * @ORM\Column(name="real_end_date", type="date")
      */
-    private $real_end_date;
+    private $realEndDate;
 
     /**
      * Project constructor.
      */
     public function __construct()
     {
-        $this->begin_date = date("d- m -Y");
+        $this->beginDate = date("d- m -Y");
     }
 
 
@@ -95,9 +95,8 @@ class Project
         return $this->id;
     }
 
-
     /**
-     * @return varchar
+     * @return string
      */
     public function getName()
     {
@@ -105,7 +104,7 @@ class Project
     }
 
     /**
-     * @param varchar $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -177,7 +176,7 @@ class Project
     }
 
     /**
-     * @return string
+     * @return enum
      */
     public function getStatus()
     {
@@ -185,7 +184,7 @@ class Project
     }
 
     /**
-     * @param string $status
+     * @param enum $status
      */
     public function setStatus($status)
     {
@@ -197,15 +196,15 @@ class Project
      */
     public function getBeginDate()
     {
-        return $this->begin_date;
+        return $this->beginDate;
     }
 
     /**
-     * @param date $begin_date
+     * @param date $beginDate
      */
-    public function setBeginDate($begin_date)
+    public function setBeginDate($beginDate)
     {
-        $this->begin_date = $begin_date;
+        $this->beginDate = $beginDate;
     }
 
     /**
@@ -213,15 +212,15 @@ class Project
      */
     public function getPlannedEndDate()
     {
-        return $this->planned_end_date;
+        return $this->plannedEndDate;
     }
 
     /**
-     * @param date $planned_end_date
+     * @param date $plannedEndDate
      */
-    public function setPlannedEndDate($planned_end_date)
+    public function setPlannedEndDate($plannedEndDate)
     {
-        $this->planned_end_date = $planned_end_date;
+        $this->plannedEndDate = $plannedEndDate;
     }
 
     /**
@@ -229,16 +228,17 @@ class Project
      */
     public function getRealEndDate()
     {
-        return $this->real_end_date;
+        return $this->realEndDate;
     }
 
     /**
-     * @param date $real_end_date
+     * @param date $realEndDate
      */
-    public function setRealEndDate($real_end_date)
+    public function setRealEndDate($realEndDate)
     {
-        $this->real_end_date = $real_end_date;
+        $this->realEndDate = $realEndDate;
     }
+
 
 
 }
