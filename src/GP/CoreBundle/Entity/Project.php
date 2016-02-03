@@ -25,35 +25,33 @@ class Project
      * @var varchar
      *
      * @ORM\Column(name="name", type="varchar")
-     * @ORM\Name
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="id", cascade={"persist"})
      */
     private $company;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
      */
     private $projectCategory;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="id", cascade={"persist"})
      */
     private $administratorsList;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="id", cascade={"persist"})
      */
     private $membersList;
 
     /**
-     * @var varchar
+     * @var enum
      *
-     * @ORM\Column(name="status", type="varchar")
-     * @ORM\Status
+     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('Waiting validation'))
      */
     private $status;
 
@@ -61,7 +59,6 @@ class Project
      * @var date
      *
      * @ORM\Column(name="begin_date", type="date")
-     * @ORM\Begin_date
      */
     private $begin_date;
 
@@ -69,7 +66,6 @@ class Project
      * @var date
      *
      * @ORM\Column(name="planned_end_date", type="date")
-     * @ORM\Planned_end_date
      */
     private $planned_end_date;
 
@@ -77,9 +73,17 @@ class Project
      * @var date
      *
      * @ORM\Column(name="real_end_date", type="date")
-     * @ORM\Real_end_date
      */
     private $real_end_date;
+
+    /**
+     * Project constructor.
+     */
+    public function __construct()
+    {
+        $this->begin_date = date("d- m -Y");
+    }
+
 
     /**
      * Get id
@@ -89,6 +93,151 @@ class Project
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * @return varchar
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param varchar $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param mixed $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjectCategory()
+    {
+        return $this->projectCategory;
+    }
+
+    /**
+     * @param mixed $projectCategory
+     */
+    public function setProjectCategory($projectCategory)
+    {
+        $this->projectCategory = $projectCategory;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdministratorsList()
+    {
+        return $this->administratorsList;
+    }
+
+    /**
+     * @param mixed $administratorsList
+     */
+    public function setAdministratorsList($administratorsList)
+    {
+        $this->administratorsList = $administratorsList;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMembersList()
+    {
+        return $this->membersList;
+    }
+
+    /**
+     * @param mixed $membersList
+     */
+    public function setMembersList($membersList)
+    {
+        $this->membersList = $membersList;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return date
+     */
+    public function getBeginDate()
+    {
+        return $this->begin_date;
+    }
+
+    /**
+     * @param date $begin_date
+     */
+    public function setBeginDate($begin_date)
+    {
+        $this->begin_date = $begin_date;
+    }
+
+    /**
+     * @return date
+     */
+    public function getPlannedEndDate()
+    {
+        return $this->planned_end_date;
+    }
+
+    /**
+     * @param date $planned_end_date
+     */
+    public function setPlannedEndDate($planned_end_date)
+    {
+        $this->planned_end_date = $planned_end_date;
+    }
+
+    /**
+     * @return date
+     */
+    public function getRealEndDate()
+    {
+        return $this->real_end_date;
+    }
+
+    /**
+     * @param date $real_end_date
+     */
+    public function setRealEndDate($real_end_date)
+    {
+        $this->real_end_date = $real_end_date;
     }
 
 
