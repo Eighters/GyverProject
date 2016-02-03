@@ -22,9 +22,9 @@ class Project
     private $id;
 
     /**
-     * @var varchar
+     * @var string
      *
-     * @ORM\Column(name="name", type="varchar")
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
@@ -51,7 +51,7 @@ class Project
     /**
      * @var enum
      *
-     * @ORM\Column(name="status", type="string", columnDefinition="ENUM('Waiting validation'))
+     * @ORM\Column(name="status", type="string", columnDefinition="enum('Waiting validation')")
      */
     private $status;
 
