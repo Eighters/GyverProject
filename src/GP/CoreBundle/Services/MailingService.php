@@ -13,13 +13,24 @@ class MailingService
 {
     protected $mailer;
     protected $templating;
+    protected $senderEmail;
+    protected $bccEmail;
     protected $kernelEnvironment;
 
-    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail, $kernelEnvironment)
+    /**
+     * MailingService constructor.
+     * @param \Swift_Mailer $mailer
+     * @param EngineInterface $templating
+     * @param $senderEmail
+     * @param $bccEmail
+     * @param $kernelEnvironment
+     */
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail, $bccEmail, $kernelEnvironment)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->senderEmail = $senderEmail;
+        $this->bccEmail = $bccEmail;
         $this->kernelEnvironment = $kernelEnvironment;
     }
 
@@ -33,8 +44,8 @@ class MailingService
         $template = ':Email:account_deleted.html.twig';
 
         $from = $this->senderEmail;
-        $to = 'gauvin.thibaut83@gmail.com';
-        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Deleted !';
+        $to = $user->getEmail();
+        $subject = $this->setSubjectPrefix() . 'Account Deleted !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
@@ -50,8 +61,8 @@ class MailingService
         $template = ':Email:account_archived.html.twig';
 
         $from = $this->senderEmail;
-        $to = 'gauvin.thibaut83@gmail.com';
-        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Archived !';
+        $to = $user->getEmail();
+        $subject = $this->setSubjectPrefix() . 'Account Archived !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
@@ -67,8 +78,8 @@ class MailingService
         $template = ':Email:account_activated.html.twig';
 
         $from = $this->senderEmail;
-        $to = 'gauvin.thibaut83@gmail.com';
-        $subject = $this->setSubjectPrefix() . '[GyverProject Notification] Account Reactivated !';
+        $to = $user->getEmail();
+        $subject = $this->setSubjectPrefix() . 'Account Reactivated !';
         $body = $this->templating->render($template, array('user' => $user));
 
         $this->sendMessage($from, $to, $subject, $body);
@@ -82,7 +93,8 @@ class MailingService
      * @return string
      */
     private function setSubjectPrefix() {
-        return $this->kernelEnvironment == 'prod' ? '[PROD]' : '[DEV]';
+        $envPrefix = $this->kernelEnvironment == 'prod' ? '[PROD]' : '[DEV]';
+        return $envPrefix . ' [Notification@GyverProject] ';
     }
 
     /**
@@ -100,7 +112,7 @@ class MailingService
         $mail
             ->setFrom($from)
             ->setTo($to)
-            ->addBcc('arkezis@hotmail.fr')
+            ->addBcc($this->bccEmail)
             ->setSubject($subject)
             ->setBody($body)
             ->setContentType('text/html');

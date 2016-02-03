@@ -21,12 +21,19 @@ parameters:
     test_database_user:     root
     test_database_password: ~
 
-    # Email Prod Config
+    # Prod Mailler Config
     mailer_transport:  ~
     mailer_host:       ~
     mailer_port:       ~
     mailer_user:       ~
     mailer_password:   ~
+
+    # Dev Mailler Config
+    mailcatcher_transport:  smtp
+    mailcatcher_host:       localhost
+    mailcatcher_port:       1025
+    mailcatcher_user:       ~
+    mailcatcher_password:   ~
 
     # Change This Token
     secret: 3e0197329281e3278dd3f6e15c83f0edda08d66d
@@ -35,3 +42,4 @@ parameters:
     item_per_page: 6
     application_name: Gyver Project
     notification_sender_mail: gyver.project@gmail.com
+    notification_bcc_mail: gyver.project@gmail.com

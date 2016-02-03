@@ -2,8 +2,8 @@ GP\CoreBundle\Entity\User:
     user (template):
         username: user
         usernameCanonical: user
-        email: user@example.com
-        emailCanonical: user@example.com
+        email: user@g4.fr
+        emailCanonical: user@g4.fr
         enabled: 1
         salt: ajsdqew2drsw0ggss0k0gs4gw4wgwcw
         password: jWV51iizX2+qwWLLya+eXImJ9wwWw0CCHi4yW9STBFcn6lLEv7r2f1cpRxbnBQtRoP/8pozVXNcrOdu3L+iv5Q== # version crypté du mot de passe 'password'
@@ -24,8 +24,8 @@ GP\CoreBundle\Entity\User:
     admin (extends user):
         username: admin
         usernameCanonical: admin
-        email: admin@example.com
-        emailCanonical: admin@example.com
+        email: admin@g4.fr
+        emailCanonical: admin@g4.fr
         roles: [ROLE_ADMIN]
         firstName: admin
         lastName: user
@@ -34,8 +34,8 @@ GP\CoreBundle\Entity\User:
     chef_projet (extends user):
         username: chef_projet
         usernameCanonical: chef_projet
-        email: chef_projet@example.com
-        emailCanonical: chef_projet@example.com
+        email: chef_projet@g4.fr
+        emailCanonical: chef_projet@g4.fr
         roles: [ROLE_USER]
         firstName: Carl
         lastName: Sutter
@@ -44,8 +44,8 @@ GP\CoreBundle\Entity\User:
     consultant (extends user):
         username: consultant
         usernameCanonical: consultant
-        email: consultant@example.com
-        emailCanonical: consultant@example.com
+        email: consultant@g4.fr
+        emailCanonical: consultant@g4.fr
         roles: [ROLE_USER]
         firstName: ALexandre
         lastName: Jacob
@@ -54,8 +54,8 @@ GP\CoreBundle\Entity\User:
     developpeur (extends user):
         username: developpeur
         usernameCanonical: developpeur
-        email: developpeur@example.com
-        emailCanonical: developpeur@example.com
+        email: developpeur@g4.fr
+        emailCanonical: developpeur@g4.fr
         roles: [ROLE_USER]
         firstName: Matthieu
         lastName: Rodraney
@@ -64,8 +64,8 @@ GP\CoreBundle\Entity\User:
     collaborateur (extends user):
         username: collaborateur
         usernameCanonical: collaborateur
-        email: collaborateur@example.com
-        emailCanonical: collaborateur@example.com
+        email: collaborateur@g4.fr
+        emailCanonical: collaborateur@g4.fr
         roles: [ROLE_USER]
         firstName: Carine
         lastName: Leguellec
@@ -74,8 +74,8 @@ GP\CoreBundle\Entity\User:
     client (extends user):
         username: client
         usernameCanonical: client
-        email: client@example.com
-        emailCanonical: client@example.com
+        email: client@g4.fr
+        emailCanonical: client@g4.fr
         roles: [ROLE_USER]
         firstName: Roberto
         lastName: Ramos
@@ -84,8 +84,8 @@ GP\CoreBundle\Entity\User:
     thibaut (extends user):
         username: thibaut
         usernameCanonical: thibaut
-        email: thibaut@example.com
-        emailCanonical: thibaut@example.com
+        email: thibaut@g4.fr
+        emailCanonical: thibaut@g4.fr
         roles: [ROLE_USER]
         firstName: Thibaut
         lastName: Gauvin
