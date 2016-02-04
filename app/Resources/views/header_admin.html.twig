@@ -5,7 +5,7 @@
     <ul id="nav-mobile" class="left hide-on-med-and-down">
         {# Dashboard #}
         <li {% if current_route == 'admin_dashboard' %}class="active" {% endif %}>
-            <a class="white-text" href="{{ path('admin_dashboard') }}">
+            <a href="{{ path('admin_dashboard') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Admin Dashboard">
                 <i class="material-icons left">dashboard</i>
                 Dashboard
             </a>
@@ -14,7 +14,7 @@
 
         {# User #}
         <li {% if current_route == 'admin_show_all_user' or current_route == 'admin_show_user' %}class="active" {% endif %}>
-            <a class="white-text" href="{{ path('admin_show_all_user') }}">
+            <a href="{{ path('admin_show_all_user') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage User">
                 <i class="material-icons left">group</i>
                 User
             </a>
@@ -23,7 +23,7 @@
 
         {# Company #}
         <li {% if current_route == 'admin_show_companies'%}class="active" {% endif %}>
-            <a class="white-text" href="{{ path('admin_show_companies') }}">
+            <a href="{{ path('admin_show_companies') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Company">
                 <i class="material-icons left">business</i>
                 Company
             </a>
@@ -32,7 +32,7 @@
 
         {# Project #}
         <li {% if current_route == 'admin_show_project'%}class="active" {% endif %}>
-            <a class="white-text" href="{{ path('admin_show_project') }}">
+            <a href="{{ path('admin_show_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Projects">
                 <i class="material-icons left">today</i>
                 Project
             </a>
@@ -43,7 +43,7 @@
     <ul class="right hide-on-med-and-down">
         {# Logout #}
         <li>
-            <a class="white-text" href="{{ path('dashboard') }}">
+            <a href="{{ path('dashboard') }}"  class="tooltipped white-text" data-position="left" data-delay="20" data-tooltip="Déconnexion Admin">
                 <i class="material-icons right">power_settings_new</i>
             </a>
         </li>
