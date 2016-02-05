@@ -4,19 +4,20 @@
 
 {% block body %}
 
+    <div class="vcenter">
     <div class="container">
         <div class="row center">
             <div class="col offset-l3 l6 s12">
                 <div class="card white">
                     <div class="card-content z-depth-2 login-form">
                         <div class="row">
-                            <div class="language-selector">
+                            <!-- <div class="language-selector">
                                 <a href="#">FR</a> |
                                 <a href="#">EN</a>
-                            </div>
+                            </div> -->
 
                             <div class="col s12 application-icon">
-                                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="gyver-logo circle responsive-img valign">
+                                <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
                             </div>
 
                             {% if error %}
@@ -50,8 +51,8 @@
                                     <label for="remember_me">Se souvenir de moi</label>
                                 </div>
                                 <div class="row">
-                                    <button class="btn waves-effect waves-light btn-large amber accent-4" type="submit" id="_submit" name="_submit">
-                                        Connexion
+                                    <button class="btn waves-effect waves-light  cyan darken-2" type="submit" id="_submit" name="_submit">
+                                        Se connecter
                                     </button>
                                 </div>
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -66,5 +67,6 @@
             </div>
         </div>
     </div>
+        </div>
 
 {% endblock %}
