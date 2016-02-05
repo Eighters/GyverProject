@@ -88,7 +88,7 @@ $(document).ready(function(){
      * Initialize the sidebar nav
      */
     $('.button-collapse').sideNav({
-        menuWidth: 275
+        menuWidth: 250
     });
 
     /**
