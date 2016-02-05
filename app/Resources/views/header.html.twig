@@ -1,7 +1,7 @@
 {% set current_route = app.request.attributes.get('_route') %}
 
 <div class="row">
-    <nav class="cyan darken-4">
+    <nav class="cyan darken-2">
 
         <div class="menu-gauche">
 
@@ -12,8 +12,8 @@
             <ul id="slide-out" class="side-nav fixed  cyan darken-2">
 
                 <li class="application-header">
-                    <div class="valign-wrapper">
-                        <img class="circle application-logo" src="{{ asset('assets/images/logo.png') }}" alt="user-profile-img"/>
+                    <div class="valign-wrapper cyan lighten-2">
+                        <img class="circle application-logo" src="{{ asset('assets/images/logoMenu.png') }}" alt="logoMenu"/>
                         <p class="application-name">{{ application_name }}</p>
                     </div>
 
@@ -116,7 +116,7 @@
                 <ul class="right">
                     <li>
                         <div class="nav-wrapper">
-                            <form class="teal darken-1">
+                            <form class="cyan lighten-2">
                                 <div class="input-field">
                                     <input id="search" type="search" required>
                                     <label for="search"><i class="material-icons">search</i></label>

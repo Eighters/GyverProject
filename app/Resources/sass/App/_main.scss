@@ -1,8 +1,13 @@
 /* UNDER NAV MENU */
 
-nav ul a {
-  color: $light-color-primary;
+.vcenter {
+  min-height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
 }
+
 nav a {
   color: $text-icons;
 }
@@ -42,7 +47,7 @@ nav ul li + .active {
     }
     .application-name {
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: 30px;
     }
 
     .user-pannel {
