@@ -88,7 +88,7 @@ $(document).ready(function(){
      * Initialize the sidebar nav
      */
     $('.button-collapse').sideNav({
-        menuWidth: 250
+        menuWidth: 270
     });
 
     /**
@@ -97,11 +97,11 @@ $(document).ready(function(){
     $('.user-infos').dropdown({
             inDuration: 300,
             outDuration: 225,
-            constrain_width: false,
+            constrain_width: true,
             hover: false,
             gutter: 0,
             belowOrigin: true,
-            alignment: 'left'
+            alignment: 'right'
         }
     );
 

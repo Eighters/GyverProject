@@ -44,6 +44,8 @@ nav ul li + .active {
 
     .application-logo {
       margin: 10px 5px 10px 10px;
+      max-width: 50px;
+      max-height: 50px;
     }
     .application-name {
       text-transform: uppercase;
