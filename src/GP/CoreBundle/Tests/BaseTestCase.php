@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Tests;
 
+use GP\CoreBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 use Symfony\Component\DomCrawler\Crawler;
@@ -44,7 +45,7 @@ class BaseTestCase extends WebTestCase
      * @param $password
      * @return Client
      */
-    public function LoginUsingFormUser($username, $password)
+    public function loginUsingFormUser($username, $password)
     {
         $this->client = static::createClient();
         $this->crawler = $this->client->request('GET', '/login');
@@ -64,6 +65,16 @@ class BaseTestCase extends WebTestCase
     }
 
     /**
+     * Use this function to quickly dump the http client response html
+     *
+     * @param Client $client
+     */
+    protected function debugClientResponse(Client $client)
+    {
+        return var_dump($client->getResponse()->getContent());
+    }
+
+    /**
      * Generate a route
      *
      * @param Client $client
@@ -76,7 +87,41 @@ class BaseTestCase extends WebTestCase
         return $client->getContainer()->get('router')->generate($routeName, $routeParameter, false);
     }
 
+
     /**
+     * Use this function to retrieve a user by this email
+     *
+     * @param $email
+     * @param Client $client
+     * @return User
+     */
+    protected function getUserByEmail($email, Client $client)
+    {
+        $em = $client->getContainer()->get('doctrine')->getManager();;
+
+        return $em->getRepository('GPCoreBundle:User')->findOneByEmail($email);
+    }
+
+    /**
+     * Count Total of user in db
+     *
+     * @param Client $client
+     * @return string
+     */
+    protected function getTotalUser(Client $client)
+    {
+        $em = $client->getContainer()->get('doctrine')->getManager();;
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(user.id)');
+        $qb->from('GPCoreBundle:User','user');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Assert that the given content is present in the html page
+     *
      * @param Crawler $crawler
      * @param $content
      * @param string $message
@@ -91,6 +136,8 @@ class BaseTestCase extends WebTestCase
     }
 
     /**
+     * Assert that the given content is NOT present in the html page
+     *
      * @param Crawler $crawler
      * @param $content
      * @param string $message
@@ -105,13 +152,15 @@ class BaseTestCase extends WebTestCase
     }
 
     /**
-     * Use this function to quickly dump the http client response html
+     * Assert that given content is visible in flash message
      *
-     * @param Client $client
+     * @param Crawler $crawler
+     * @param $content
+     * @param string $message
      */
-    protected function debugClientResponse(Client $client)
+    protected function assertFlashMessageContains(Crawler $crawler, $content, $message = '')
     {
-        return var_dump($client->getResponse()->getContent());
+        $this->assertGreaterThan(0, $crawler->filter('.flashMessage:contains(' . $content . ')')->count(), $message);
     }
 
 }

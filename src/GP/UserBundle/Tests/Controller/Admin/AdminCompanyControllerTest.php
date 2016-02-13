@@ -24,7 +24,7 @@ class AdminCompanyControllerTest extends BaseTestCase
      */
     public function testShowCompanyAction($userName, $password, $expectedStatusCode, $message)
     {
-        $client = $this->LoginUsingFormUser($userName, $password);
+        $client = $this->loginUsingFormUser($userName, $password);
         $url = $this->generateRoute($client, 'admin_show_companies');
         $client->request('GET', $url);
 

@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -70,7 +71,7 @@ class AdminUserController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'L\'utilisateur est introuvable');
+            $this->addFlash('error', 'Utilisateur introuvable');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
@@ -93,13 +94,13 @@ class AdminUserController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            $this->addFlash('error', 'Utilisateur introuvable');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
         // Admin can't be deleted !
         if ($user->hasRole('ROLE_ADMIN')) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être supprimé');
+            $this->addFlash('error', 'Utilisateur '. $user->getFirstName() .' ne peut pas être supprimé');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
@@ -112,7 +113,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountDeletedNotification($user);
 
         // Return success message
-        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement supprimé');
+        $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement supprimé');
         return $this->redirectToRoute('admin_show_all_user');
     }
 
@@ -130,13 +131,13 @@ class AdminUserController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            $this->addFlash('error', 'Utilisateur introuvable');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
         // Admin can't be archived !
         if ($user->hasRole('ROLE_ADMIN')) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être désactivé');
+            $this->addFlash('error', 'Utilisateur '. $user->getFirstName() .' ne peut pas être désactivé');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
@@ -150,7 +151,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountArchivedNotification($user);
 
         // Return success message
-        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement désactivé');
+        $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement désactivé');
         return $this->redirectToRoute('admin_show_all_user');
     }
 
@@ -168,17 +169,11 @@ class AdminUserController extends Controller
 
         // Checking if user exists
         if (!$user) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' est introuvable');
+            $this->addFlash('error', 'Utilisateur introuvable');
             return $this->redirectToRoute('admin_show_all_user');
         }
 
-        // Admin can't be archived !
-        if ($user->hasRole('ROLE_ADMIN')) {
-            $this->addFlash('error', 'L\'utilisateur '. $user->getFirstName() .' ne peut pas être activé');
-            return $this->redirectToRoute('admin_show_all_user');
-        }
-
-        // Archive the user
+        // Activate the user
         $user->setEnabled(1);
         $em->persist($user);
         $em->flush();
@@ -188,7 +183,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountActivatedNotification($user);
 
         // Return success message
-        $this->addFlash('success', 'L\'utilisateur '. $user->getFirstName() .' a été correctement activé');
+        $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement activé');
         return $this->redirectToRoute('admin_show_all_user');
     }
 

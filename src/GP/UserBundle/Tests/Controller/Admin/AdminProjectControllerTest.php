@@ -24,7 +24,7 @@ class AdminProjectControllerTest extends BaseTestCase
      */
     public function testShowProjectAction($userName, $password, $expectedStatusCode, $message)
     {
-        $client = $this->LoginUsingFormUser($userName, $password);
+        $client = $this->loginUsingFormUser($userName, $password);
         $url = $this->generateRoute($client, 'admin_show_project');
         $client->request('GET', $url);
 
@@ -38,13 +38,13 @@ class AdminProjectControllerTest extends BaseTestCase
                 'userName' => 'admin',
                 'password' => self::USER_PASSWORD,
                 'expectedStatusCode' => '200',
-                'message' => 'An admin User should see the manage company page',
+                'message' => 'An admin User should see the manage project page',
             ),
             array(
                 'userName' => 'thibaut',
                 'password' => self::USER_PASSWORD,
                 'expectedStatusCode' => '403',
-                'message' => 'An NON admin User should NOT see the manage company page',
+                'message' => 'An NON admin User should NOT see the manage project page',
             ),
         );
     }

@@ -21,6 +21,13 @@ GP\CoreBundle\Entity\User:
         lastName: user
         company: ~
 
+    deletedUser (extends user):
+        username: deleted
+        usernameCanonical: user
+        email: deleted_user@g4.fr
+        firstName: deleted
+        lastName: user
+
     admin (extends user):
         username: admin
         usernameCanonical: admin
