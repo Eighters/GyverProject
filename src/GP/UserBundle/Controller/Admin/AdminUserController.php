@@ -27,11 +27,6 @@ class AdminUserController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
         return array();
     }
 
@@ -44,11 +39,6 @@ class AdminUserController extends Controller
      */
     public function showUsersAction(Request $request)
     {
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
         // Getting all users
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('GPCoreBundle:User')->findAll();
@@ -74,11 +64,6 @@ class AdminUserController extends Controller
      */
     public function showUserAction($id)
     {
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
         // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
@@ -102,11 +87,6 @@ class AdminUserController extends Controller
      */
     public function deleteUserAction($id)
     {
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
         // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
@@ -142,13 +122,8 @@ class AdminUserController extends Controller
      * @Route("/user/{id}/disable", name="admin_disable_user")
      * @Method("GET")
      */
-    public function archiveUserAction($id) {
-
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
+    public function archiveUserAction($id)
+    {
         // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
@@ -185,13 +160,8 @@ class AdminUserController extends Controller
      * @Route("/user/{id}/activate", name="admin_activate_user")
      * @Method("GET")
      */
-    public function activateUserAction($id) {
-
-        $currentUser = $this->getUser();
-        if (!$currentUser->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('You need to be admin');
-        }
-
+    public function activateUserAction($id)
+    {
         // Searching requested user
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GPCoreBundle:User')->find($id);
