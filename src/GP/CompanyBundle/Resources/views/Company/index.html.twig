@@ -2,9 +2,6 @@
 
 {% block title %}Tableau de bord{% endblock%}
 
-{% block underNavTitle %}Liste des Entreprises{% endblock %}
-{% block underNavText %}Retrouver ici toute la liste des Entreprises{% endblock %}
-
 {% block body %}
 
     <div class="row">
@@ -37,29 +34,3 @@
     </div>
 
 {% endblock %}
-
-{#
-    <div class="row">
-        {% for i in 1..10 %}
-            <div class="col s6 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ asset('assets/images/background.jpg') }}">
-                        <span class="card-title">Company {{ i }}</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">View More</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-#}
-
-
-

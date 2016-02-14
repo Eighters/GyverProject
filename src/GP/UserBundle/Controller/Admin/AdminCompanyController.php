@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class Admin Company Controller
  * @package GP\UserBundle\Controller
  *
- * @Route("/secure/admin")
+ * @Route("/secure/admin/company")
  */
 class AdminCompanyController extends Controller
 {
@@ -21,7 +21,7 @@ class AdminCompanyController extends Controller
     /**
      * Returns the list of companies registered in the application
      *
-     * @Route("/company", name="admin_show_companies")
+     * @Route("/", name="admin_show_companies")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Company:showCompanies.html.twig")
      */
@@ -41,5 +41,25 @@ class AdminCompanyController extends Controller
 
         // Return all users with KnpPaginator
         return array('pagination' => $pagination);
+    }
+
+    /**
+     * @Route("/{id}", name="admin_show_company")
+     * @Method("GET")
+     * @Template("GPUserBundle:Admin/Company:showCompany.html.twig")
+     */
+    public function showCompanyAction($id)
+    {
+        // Searching requested project
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+
+        // Checking if company exists
+        if (!$company) {
+            $this->addFlash('error', 'Compagnie introuvable');
+            return $this->redirectToRoute('admin_show_companies');
+        }
+
+        return array('company' => $company);
     }
 }

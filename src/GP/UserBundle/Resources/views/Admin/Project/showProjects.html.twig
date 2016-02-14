@@ -7,28 +7,26 @@
 
 {% block body %}
 
-    <div class="container">
-        <div class="row">
+    <div class="row">
 
-            {% for company in pagination %}
-                <div class="col s12 m6">
-                    <div class="card">
-                        <div class="card teal darken-4 white-text">
-                            <div class="card-content">
-                                <h5 class="valign center-align center">
-                                    <i class="material-icons medium">today</i>
-                                    <br/>
-                                    {{ company.name }}
-                                </h5>
-                            </div>
+        {% for company in pagination %}
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card teal darken-4 white-text">
+                        <div class="card-content">
+                            <h5 class="valign center-align center">
+                                <i class="material-icons medium">today</i>
+                                <br/>
+                                {{ company.name }}
+                            </h5>
                         </div>
-                        <div class="card-content"></div>
                     </div>
+                    <div class="card-content"></div>
                 </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
 
-            {{ knp_pagination_render(pagination) }}
-        </div>
+        {{ knp_pagination_render(pagination) }}
     </div>
 
 {% endblock %}

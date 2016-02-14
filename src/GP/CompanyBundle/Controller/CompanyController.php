@@ -25,4 +25,24 @@ class CompanyController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/{id}", name="company_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showCompanyAction($id)
+    {
+        // Searching requested project
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+
+        // Checking if company exists
+        if (!$company) {
+            $this->addFlash('error', 'Compagnie introuvable');
+            return $this->redirectToRoute('company_index');
+        }
+
+        return array('company' => $company);
+    }
 }

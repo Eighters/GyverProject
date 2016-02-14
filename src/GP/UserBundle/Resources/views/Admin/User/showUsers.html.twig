@@ -6,77 +6,82 @@
 {% block underNavText %}Vous avez {{ pagination.getTotalItemCount }} utilisateurs{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
 
-            <ul class="collection">
-                {% for user in pagination %}
+    <div class="row">
+        <ul class="collection">
+            {% for user in pagination %}
 
-                    <li class="collection-item avatar">
-                        <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
-                        <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
+                <li class="collection-item avatar">
+                    <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
+                    <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
 
-                        <div class="switch">
-                            <label>
-                                Archivé
-                                <input disabled type="checkbox" {{ user.enabled ? 'checked':'' }}>
-                                <span class="lever"></span>
-                                Actif
-                            </label>
+                    <div class="switch">
+                        <label>
+                            Archivé
+                            <input disabled type="checkbox" {{ user.enabled ? 'checked':'' }}>
+                            <span class="lever"></span>
+                            Actif
+                        </label>
+                    </div>
+
+                    <p>
+                        Entreprise{% if user.company|length > 1 %}s{% endif %}:
+
+                        {% for company in user.company %}
+                            {% if loop.last %}
+                                {{ company.name }}
+                            {% else  %}
+                                {{ company.name }} |
+                            {% endif %}
+                        {%  endfor %}
+                    </p>
+
+                    <div class="secondary-content">
+                        <div class="fixed-action-btn horizontal click-to-toggle">
+                            <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
+                                        <i class="material-icons">info</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    {% if user.enabled %}
+                                        <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                            <i class="material-icons">visibility_off</i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('admin_activate_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
+                                            <i class="material-icons">visibility</i>
+                                        </a>
+                                    {% endif %}
+                                </li>
+
+                                <li>
+                                    <a href="#" onclick="confirmAdminDeleteUser({{ user.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                        <i class="material-icons ">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <p>
-                            Entreprise{% if user.company|length > 1 %}s{% endif %}:
-
-                            {% for company in user.company %}
-                                {% if loop.last %}
-                                    {{ company.name }}
-                                {% else  %}
-                                    {{ company.name }} |
-                                {% endif %}
-                            {%  endfor %}
-                        </p>
-                        <div class="secondary-content">
-                            <div class="fixed-action-btn horizontal click-to-toggle">
-                                <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('admin_show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
-                                            <i class="material-icons">info</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
-                                            <i class="material-icons">create</i>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        {% if user.enabled %}
-                                            <a href="{{ path('admin_disable_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
-                                                <i class="material-icons">visibility_off</i>
-                                            </a>
-                                        {% else %}
-                                            <a href="{{ path('admin_activate_user', {'id': user.id}) }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Archiver">
-                                                <i class="material-icons">visibility</i>
-                                            </a>
-                                        {% endif %}
-                                    </li>
-
-                                    <li>
-                                        <a href="#" onclick="confirmAdminDeleteUser({{ user.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
-                                            <i class="material-icons ">delete</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            {{ knp_pagination_render(pagination) }}
-        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
+
+    <div class="row">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
 {% endblock %}

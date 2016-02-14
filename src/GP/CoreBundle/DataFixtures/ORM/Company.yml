@@ -1,6 +1,7 @@
 GP\CoreBundle\Entity\Company:
     companySample (template):
         name: Company Sample
+        description: compagny sample description
 
     company1 (extends companySample):
         name: IT2M Consultant

@@ -27,7 +27,7 @@ class Company
      *
      * @ORM\Column(name="name", type="string")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="La compagnie doit avoir un nom")
      * @Assert\Length(
      *      min = 1,
      *      max = 255,
@@ -37,6 +37,22 @@ class Company
      *
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     *
+     * @Assert\NotBlank(message="La compagnie doit avoir une description")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 5000,
+     *      minMessage = "Company description must be at least {{ limit }} characters long",
+     *      maxMessage = "Company description cannot be longer than {{ limit }} characters"
+     * )
+     *
+     */
+    private $description;
 
     /**
      * Get id
@@ -71,4 +87,21 @@ class Company
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
 }

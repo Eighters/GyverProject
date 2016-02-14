@@ -34,7 +34,7 @@ GP\CoreBundle\Entity\User:
         email: admin@g4.fr
         emailCanonical: admin@g4.fr
         roles: [ROLE_ADMIN]
-        firstName: admin
+        firstName: administrator
         lastName: user
         company: [ @company1 ]
 

@@ -29,6 +29,13 @@ class Project
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="id", cascade={"persist"})
      */
     private $company;
@@ -109,6 +116,22 @@ class Project
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
