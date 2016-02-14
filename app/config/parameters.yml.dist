@@ -36,7 +36,7 @@ parameters:
     mailcatcher_password:   ~
 
     # Change This Token
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 7p2CkiwX7U82U6wDK5IW9x86IHbQ3bcr
 
     # Aplication Parameters
     item_per_page: 6
