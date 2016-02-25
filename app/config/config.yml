@@ -6,9 +6,8 @@ imports:
 monolog:
   channels: ['user_access']
   handlers:
-    security:
-      # log all messages (since debug is the lowest level)
-      level:    debug
+    user_access:
+      level:    notice
       type:     stream
       path:     '%kernel.logs_dir%/user_access.log'
       channels: [user_access]
