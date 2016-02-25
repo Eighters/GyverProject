@@ -111,6 +111,9 @@ class AdminUserController extends Controller
         $mailerService = $this->get('gp.core_bundle.mailing_service');
         $mailerService->sendUserAccountDeletedNotification($user);
 
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->notice($this->getUser()->getEmail() .' have deleted user: '. $user->getEmail().' (id: '.$user->getId().')');
+
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement supprimé');
         return $this->redirectToRoute('admin_show_all_user');
@@ -149,6 +152,9 @@ class AdminUserController extends Controller
         $mailerService = $this->get('gp.core_bundle.mailing_service');
         $mailerService->sendUserAccountArchivedNotification($user);
 
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->notice($this->getUser()->getEmail() .' have archived user: '. $user->getEmail().' (id: '.$user->getId().')');
+
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement désactivé');
         return $this->redirectToRoute('admin_show_all_user');
@@ -180,6 +186,9 @@ class AdminUserController extends Controller
         // Notice him by email
         $mailerService = $this->get('gp.core_bundle.mailing_service');
         $mailerService->sendUserAccountActivatedNotification($user);
+
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->notice($this->getUser()->getEmail() .' have reactivated user: '. $user->getEmail().' (id: '.$user->getId().')');
 
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement activé');

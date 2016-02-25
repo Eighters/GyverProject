@@ -3,6 +3,16 @@ imports:
   - { resource: security.yml }
   - { resource: services.yml }
 
+monolog:
+  channels: ['user_access']
+  handlers:
+    security:
+      # log all messages (since debug is the lowest level)
+      level:    debug
+      type:     stream
+      path:     '%kernel.logs_dir%/user_access.log'
+      channels: [user_access]
+
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
