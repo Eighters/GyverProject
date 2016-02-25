@@ -8,10 +8,10 @@ class AppKernel extends Kernel
     /**
      * Patch for MAC users
      */
-    public function init()
+    public function __construct($environment, $debug)
     {
         date_default_timezone_set( 'Europe/Paris' );
-        parent::init();
+        parent::__construct($environment, $debug);
     }
 
     public function registerBundles()
