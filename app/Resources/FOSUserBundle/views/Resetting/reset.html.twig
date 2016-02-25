@@ -1,0 +1,66 @@
+{% extends '::layout_disconnected.html.twig' %}
+
+{% block title %}Change Password{% endblock %}
+
+{% block body %}
+
+    <div class="vcenter">
+        <div class="container">
+            <div class="row center">
+                <div class="col offset-l3 l6 s12">
+
+                    <div class="card white">
+                        <div class="card-content z-depth-2">
+                            <div class="col s12 application-icon">
+                                <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
+                            </div>
+
+                            <div class="col s12">
+                                <p>Changement de mot de passe :</p>
+                                <p>Veuillez saisir votre nouveau mot de passe :</p>
+                            </div>
+
+                            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+
+
+                                {#{{ form.password.mismatch }}#}
+
+                                {#{%  if invalid_message is defined and invalid_message %}#}
+                                    {#<p>#}
+                                        {#{{ invalid_message }}#}
+                                    {#</p>#}
+                                {#{% endif %}#}
+
+                                <div id="fos_user_resetting_form">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="fos_user_resetting_form_plainPassword_first" class="required">Nouveau mot de passe</label>
+                                        <input type="password" id="fos_user_resetting_form_plainPassword_first" name="fos_user_resetting_form[plainPassword][first]" required="required" />
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="fos_user_resetting_form_plainPassword_second" class="required">Confirmer le mot de passe</label>
+                                        <input type="password" id="fos_user_resetting_form_plainPassword_second" name="fos_user_resetting_form[plainPassword][second]" required="required" />
+                                    </div>
+
+                                    {{ form_widget(form._token) }}
+                                </div>
+
+                                <div>
+                                    <button class="btn waves-effect waves-light  cyan darken-2" type="submit" name="_submit">
+                                        Confirmer
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

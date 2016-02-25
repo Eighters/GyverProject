@@ -22,10 +22,8 @@
 
                             {% if error %}
                                 <div class="col s12">
-                                    <div class="col s1">
-                                        <i class="material-icons" title="Voir">report_problem</i>
-                                    </div>
-                                    <div class="col s11">
+                                    <div class="col s12">
+                                        <i class="material-icons left">report_problem</i>
                                         <p class="red darken-1">{{ error.messageKey|trans(error.messageData, 'security')|capitalize }}</p>
                                     </div>
                                 </div>
@@ -59,7 +57,7 @@
                             </form>
 
                             <div class="col s12">
-                                <a href="#">Mot de passe oublié ?</a>
+                                <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
                             </div>
                         </div>
                     </div>

@@ -89,6 +89,14 @@ fos_user:
   db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
   firewall_name: main
   user_class: GP\CoreBundle\Entity\User
+  from_email:
+    address:  "%notification_sender_mail%"
+    sender_name: "%application_name% Project Team"
+  service:
+    mailer: fos_user.mailer.twig_swift
+  resetting:
+    email:
+      template: Email/password_resetting.email.twig
   registration:
     form:
       type: app_user_registration

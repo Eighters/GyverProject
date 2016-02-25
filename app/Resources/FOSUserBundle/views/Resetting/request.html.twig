@@ -1,0 +1,50 @@
+{% extends '::layout_disconnected.html.twig' %}
+
+{% block title %}Request Change Password{% endblock %}
+
+{% block body %}
+
+<div class="vcenter">
+    <div class="container">
+        <div class="row center">
+            <div class="col offset-l3 l6 s12">
+                <div class="card white">
+                    <div class="card-content z-depth-2">
+                        <div class="col s12 application-icon">
+                            <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
+                        </div>
+
+                        <div class="col s12">
+                            <p>Demande de changement de mot de passe :</p>
+                            <p>Veuillez saisir votre adresse email :</p>
+                        </div>
+
+                        {% if invalid_username is defined %}
+                            <div class="col s12">
+                                <div class="col s12">
+                                    <i class="material-icons left">report_problem</i>
+                                    <p class="red darken-1">Email invalide</p>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <form class="col-s12" method="POST" action="{{ path('fos_user_resetting_send_email') }}">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <label for="username">Email</label>
+                                <input type="text" id="username" name="username" required="required" />
+                            </div>
+                            <div>
+                                <button class="btn waves-effect waves-light  cyan darken-2" type="submit" name="_submit">
+                                    Confirmer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
