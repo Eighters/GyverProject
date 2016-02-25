@@ -7,7 +7,7 @@ monolog:
   channels: ['user_access']
   handlers:
     user_access:
-      level:    notice
+      level:    error
       type:     stream
       path:     '%kernel.logs_dir%/user_access.log'
       channels: [user_access]
