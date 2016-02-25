@@ -1,24 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_error.html.twig' %}
 
-{% block title %}500{% endblock%}
+{% block title %}Error 500{% endblock%}
 
 {% block body %}
 
-    <div class="row">
-        <div class="col s12">
-            <h3>Server Error</h3>
+    <div class="container">
+        <div class="row">
 
-            <p>
-                The requested page couldn't be located. Checkout for any URL
-                misspelling or
+            <div class="col s12">
+                <div class="card cyan darken-2">
+                    <div class="card-content">
+                        <h2 class="white-text">
+                            Server Error !
+                        </h2>
+                    </div>
+                </div>
+            </div>
 
-                {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('dashboard') }}">return to the homepage</a>.
-                {% else %}
-                    <a href="{{ path('login') }}">return to the homepage</a>.
-                {% endif %}
-            </p>
+            <div class="col s8 push-l2">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('assets/images/gyver.jpg') }}">
+                        <span class="card-title">Our Team is inspecting your issue case</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">Error 500</span>
+                        <p>
+                            The requested page couldn't be located. Checkout for any URL
+                            misspelling.
+                            We apologize for the inconvenience.
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('dashboard') }}">return to the homepage</a>.
+                        {% else %}
+                            <a href="{{ path('login') }}">return to the homepage</a>.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
 {% endblock %}
