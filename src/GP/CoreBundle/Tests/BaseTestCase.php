@@ -38,6 +38,11 @@ class BaseTestCase extends WebTestCase
     protected $router;
 
     /**
+     * @var string
+     */
+    protected $application_name;
+
+    /**
      * Use this function to connect to user in the application using login form
      * This is the only way I've find to get an authenticated user :'(
      *
