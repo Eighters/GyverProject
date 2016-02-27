@@ -40,6 +40,6 @@ parameters:
 
     # Aplication Parameters
     item_per_page: 6
-    application_name: Gyver Project
+    application_name: iris
     notification_sender_mail: gyver.project@gmail.com
     notification_bcc_mail: gyver.project@gmail.com
