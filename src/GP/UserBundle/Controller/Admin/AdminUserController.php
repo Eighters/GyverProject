@@ -125,7 +125,7 @@ class AdminUserController extends Controller
      * Archive a given user. He can be reactivated later.
      *
      * @Route("/user/{id}/disable", name="admin_disable_user")
-     * @Method("GET")
+     * @Method("GET|POST")
      */
     public function archiveUserAction($id)
     {
@@ -166,7 +166,7 @@ class AdminUserController extends Controller
      * Reactive a given user.
      *
      * @Route("/user/{id}/activate", name="admin_activate_user")
-     * @Method("GET")
+     * @Method("GET|POST")
      */
     public function activateUserAction($id)
     {
@@ -234,7 +234,7 @@ class AdminUserController extends Controller
                 $logger->alert('[INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
 
                 $this->addFlash('success', 'Une invitation a été envoyée à l\'adresse: ' . $invitation->getEmail());
-                $this->redirectToRoute('admin_invite_user');
+                $this->redirect($this->generateUrl('admin_show_all_user'));
             }
         }
 
