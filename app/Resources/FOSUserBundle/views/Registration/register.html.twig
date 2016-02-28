@@ -1,0 +1,159 @@
+{% extends '::layout_disconnected.html.twig' %}
+
+{% block title %}Request Change Password{% endblock %}
+
+{% block body %}
+
+    <div class="vcenter">
+        <div class="container">
+            <div class="row center">
+                <div class="col offset-l2 l8 s12">
+                    <div class="card white">
+                        <div class="card-content z-depth-2">
+
+                            <div class="col s12 application-icon">
+                                <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
+                            </div>
+
+                            <div class="col s12">
+                                <p>Inscription Nouvel Utilisateur :</p>
+                                <p>Veuillez remplir le formulaire suivant :</p>
+                            </div>
+
+                            <form class="col-s12" method="POST" {{ form_enctype(form) }} action="{{ path('fos_user_registration_register') }}">
+
+                                <div class="row">
+                                    <div class="col s12">
+                                        {% if not form.email.vars.valid %}
+                                            <div class="col s10 offset-s1">
+                                                <i class="material-icons left">report_problem</i>
+                                                <p class="red darken-1">Vous devez spécifier un Email valide</p>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">email</i>
+                                            <label for="fos_user_registration_form_email" class="required">Email</label>
+                                            <input id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" type="email">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col s6">
+                                        {% if not form.username.vars.valid %}
+                                            <div class="col s10 offset-s1">
+                                                <i class="material-icons left">report_problem</i>
+                                                <p class="red darken-1">Vous devez spécifier un Pseudo</p>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">account_circle</i>
+                                            <label for="fos_user_registration_form_username" class="required">Username</label>
+                                            <input id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <div class="left-align">
+                                            <input id="fos_user_registration_form_civility_0" name="fos_user_registration_form[civility][]" value="male" type="radio">
+                                            <label for="fos_user_registration_form_civility_0">Masculin</label>
+                                            <input id="fos_user_registration_form_civility_1" name="fos_user_registration_form[civility][]" value="female" type="radio">
+                                            <label for="fos_user_registration_form_civility_1">Feminin</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col l6 s12">
+                                        {% if not form.firstName.vars.valid %}
+                                            <div class="col s10 offset-s1">
+                                                <i class="material-icons left">report_problem</i>
+                                                <p class="red darken-1">Vous devez spécifier un Nom</p>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">perm_contact_calendar</i>
+                                            <label for="fos_user_registration_form_firstName" class="required">First Name</label>
+                                            <input id="fos_user_registration_form_firstName" name="fos_user_registration_form[firstName]" required="required" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="col l6 s12">
+                                        {% if not form.lastName.vars.valid %}
+                                            <div class="col s10 offset-s1">
+                                                <i class="material-icons left">report_problem</i>
+                                                <p class="red darken-1">Vous devez spécifier un Prénom</p>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">perm_contact_calendar</i>
+                                            <label for="fos_user_registration_form_lastName" class="required">Last Name</label>
+                                            <input id="fos_user_registration_form_lastName" name="fos_user_registration_form[lastName]" required="required" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    {% if not form.plainPassword.first.vars.valid %}
+                                        <div class="col s10 offset-s1">
+                                            <i class="material-icons left">report_problem</i>
+                                            <p class="red darken-1">Mots de passe non identiques</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="input-field col l6 s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="fos_user_registration_form_plainPassword_first" class="required">Password</label>
+                                        <input id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" type="password">
+                                    </div>
+
+                                    <div class="input-field col l6 s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="fos_user_registration_form_plainPassword_second" class="required">Password Confirmation</label>
+                                        <input id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" type="password">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    {% if not form.invitation.vars.valid %}
+                                        <div class="col s10 offset-s1">
+                                            <i class="material-icons left">report_problem</i>
+                                            <p class="red darken-1">Votre code d'invitation est incorrect</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">https</i>
+                                        <label for="fos_user_registration_form_invitation" class="required">Invitation Code</label>
+                                        <input id="fos_user_registration_form_invitation" name="fos_user_registration_form[invitation]" required="required" type="text">
+                                    </div>
+                                </div>
+
+                                {{ form_row(form._token) }}
+
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                                        Confirmer l'inscription
+                                    </button>
+
+                                    <a href="{{ path('login') }}" class="btn waves-effect waves-light amber accent-4">
+                                        Retour
+                                    </a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

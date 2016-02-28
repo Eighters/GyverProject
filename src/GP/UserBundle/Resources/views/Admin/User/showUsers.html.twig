@@ -8,6 +8,13 @@
 {% block body %}
 
     <div class="row">
+        <a href="{{ path('admin_invite_user') }}" class="waves-effect waves-light btn">
+            <i class="material-icons right">add</i>
+            Invite new user
+        </a>
+    </div>
+
+    <div class="row">
         <ul class="collection">
             {% for user in pagination %}
 

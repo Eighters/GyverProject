@@ -36,6 +36,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="GP\CoreBundle\Entity\Invitation")
+     * @ORM\JoinColumn(referencedColumnName="code")
+     * @Assert\NotNull()
+     */
+    protected $invitation;
+
+    /**
      * @var enum $civility
      *
      * @ORM\Column(name="civility", type="string", columnDefinition="enum('male', 'female')")
@@ -47,7 +54,6 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstName", type="string", length=80)
      *
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 2,
@@ -63,7 +69,6 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastName", type="string", length=80)
      *
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 2,
@@ -97,6 +102,16 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setInvitation(Invitation $invitation)
+    {
+        $this->invitation = $invitation;
+    }
+
+    public function getInvitation()
+    {
+        return $this->invitation;
     }
 
     /**

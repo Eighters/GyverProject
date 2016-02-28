@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
+use GP\CoreBundle\Entity\Invitation;
 
 /**
  * Class Admin User Controller
@@ -195,4 +196,29 @@ class AdminUserController extends Controller
         return $this->redirectToRoute('admin_show_all_user');
     }
 
+    /**
+     * Invite a new user in the application
+     *
+     * @Route("/invitation", name="admin_invite_user")
+     * @Method("GET")
+     * @Template("GPUserBundle:Admin/User:inviteUser.html.twig")
+     */
+    public function inviteUserAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $invitation = new Invitation();
+        $invitation->setEmail('arkezis@hotmail.fr');
+        $invitation->send();
+
+        $em->persist($invitation);
+        $em->flush($invitation);
+
+        // and then just output your $invitation->getCode() to user
+        // also don't forget to check invitation as sent: $invitation->send()
+
+        $code = $invitation->getCode();
+
+        return array('invitationCode' => $code);
+    }
 }
