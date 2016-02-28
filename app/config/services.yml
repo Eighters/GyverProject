@@ -12,7 +12,7 @@ services:
     # Mailer service
     gp.core_bundle.mailing_service:
         class: GP\CoreBundle\Services\MailingService
-        arguments: [@Mailer, @Templating, %notification_sender_mail%, %notification_bcc_mail%, %kernel.environment%]
+        arguments: [@Mailer, @Templating, %notification_sender_mail%, %notification_bcc_mail%, %kernel.environment%, %application_name% ]
 
     app.form.registration:
         class: GP\CoreBundle\Form\Type\RegistrationFormType

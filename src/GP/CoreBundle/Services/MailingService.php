@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Services;
 
+use GP\CoreBundle\Entity\Invitation;
 use Symfony\Component\Templating\EngineInterface;
 use GP\CoreBundle\Entity\User;
 
@@ -16,6 +17,7 @@ class MailingService
     protected $senderEmail;
     protected $bccEmail;
     protected $kernelEnvironment;
+    protected $applicationName;
 
     /**
      * MailingService constructor.
@@ -24,14 +26,16 @@ class MailingService
      * @param $senderEmail
      * @param $bccEmail
      * @param $kernelEnvironment
+     * @param $applicationName
      */
-    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail, $bccEmail, $kernelEnvironment)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, $senderEmail, $bccEmail, $kernelEnvironment, $applicationName)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->senderEmail = $senderEmail;
         $this->bccEmail = $bccEmail;
         $this->kernelEnvironment = $kernelEnvironment;
+        $this->applicationName = $applicationName;
     }
 
     /**
@@ -86,6 +90,23 @@ class MailingService
     }
 
     /**
+     * Send an Invitation email to the given user email adress
+     *
+     * @param Invitation $invitation
+     */
+    public function sendUserInvitationNotification(Invitation $invitation)
+    {
+        $template = ':Email:user_invitation.html.twig';
+
+        $from = $this->senderEmail;
+        $to = $invitation->getEmail();
+        $subject = $this->setSubjectPrefix() . 'Codes Inscription';
+        $body = $this->templating->render($template, array('invitation' => $invitation));
+
+        $this->sendMessage($from, $to, $subject, $body);
+    }
+
+    /**
      * Set the prefix of the mail subject
      * It depend on kernel environment & it can be :
      * [DEV] or [PROD]
@@ -94,7 +115,7 @@ class MailingService
      */
     private function setSubjectPrefix() {
         $envPrefix = $this->kernelEnvironment == 'prod' ? '[PROD]' : '[DEV]';
-        return $envPrefix . ' [Notification@GyverProject] ';
+        return $envPrefix . ' ['.$this->applicationName.' Project] ';
     }
 
     /**

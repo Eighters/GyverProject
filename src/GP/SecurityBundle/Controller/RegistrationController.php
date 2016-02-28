@@ -63,6 +63,10 @@ class RegistrationController extends Controller
             if (null === $response = $event->getResponse()) {
                 $this->addFlash('success', 'Votre compte a bien été créé');
 
+                // Log the registration
+                $logger = $this->get('monolog.logger.user_access');
+                $logger->alert('[SIGNUP] ' . $user->getEmail() .' have successfully Signed Up with Invitation ID No°' . $user->getInvitation()->getCode());
+
                 $url = $this->generateUrl('login');
                 $response = new RedirectResponse($url);
             }

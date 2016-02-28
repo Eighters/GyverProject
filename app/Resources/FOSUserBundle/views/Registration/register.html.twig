@@ -128,10 +128,12 @@
                                         </div>
                                     {% endif %}
 
+                                    {% set code = app.request.get('code') %}
+
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">https</i>
                                         <label for="fos_user_registration_form_invitation" class="required">Invitation Code</label>
-                                        <input id="fos_user_registration_form_invitation" name="fos_user_registration_form[invitation]" required="required" type="text">
+                                        <input id="fos_user_registration_form_invitation" name="fos_user_registration_form[invitation]" required="required" type="text" value="{{ code }}">
                                     </div>
                                 </div>
 

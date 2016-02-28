@@ -8,15 +8,37 @@
 {% block body %}
 
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m8 offset-m2">
             <div class="card">
                 <div class="card-content">
-                    <p>Votre code est :</p>
-                    <p>{{ invitationCode }}</p>
+                    <p class="center">Veuillez renseigner l'adresse Email du collaborateur à inviter dans l'application :</p>
+
+                    {{ form_start(form) }}
+
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+
+                    {{ form_label(form.welcomeMessage) }}
+                    {{ form_errors(form.welcomeMessage) }}
+                    {{ form_widget(form.welcomeMessage) }}
+
+                    {{ form_rest(form) }}
+
+                    <div class="center">
+                        <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                            Inviter
+                        </button>
+
+                        <a href="{{ path('admin_show_all_user') }}" class="btn waves-effect waves-light amber accent-4">
+                            Retour
+                        </a>
+                    </div>
+
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
-
     </div>
 
 {% endblock %}

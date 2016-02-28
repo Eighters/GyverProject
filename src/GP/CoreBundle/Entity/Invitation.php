@@ -3,6 +3,7 @@
 namespace GP\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  * Class Invitation
  *
  * @ORM\Table(name="invitation")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="GP\CoreBundle\Repository\InvitationRepository")
  *
  * @package GP\CoreBundle\Entity
  */
@@ -24,6 +25,9 @@ class Invitation
 
     /**
      * @ORM\Column(name="email", type="string", length=256)
+     *
+     * @Assert\NotNull(message="Vous devez renseigner une adresse Email")
+     * @Assert\Email(message = "'{{ value }}' n'est pas un Email valide")
      */
     protected $email;
 
@@ -41,6 +45,15 @@ class Invitation
      * @ORM\Column(name="sent_at", type="datetime")
      */
     protected $sentAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="welcome_message", type="text", length=5000)
+     *
+     * @Assert\NotNull(message="Vous devez renseigner un message de bienvenue")
+     */
+    protected $welcomeMessage;
 
     public function __construct()
     {
@@ -87,5 +100,21 @@ class Invitation
     public function setSentAt($sentAt)
     {
         $this->sentAt = $sentAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWelcomeMessage()
+    {
+        return $this->welcomeMessage;
+    }
+
+    /**
+     * @param string $welcomeMessage
+     */
+    public function setWelcomeMessage($welcomeMessage)
+    {
+        $this->welcomeMessage = $welcomeMessage;
     }
 }
