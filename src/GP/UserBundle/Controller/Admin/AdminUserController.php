@@ -217,7 +217,8 @@ class AdminUserController extends Controller
 
             if ($olderInvitation) {
                 $this->addFlash('error', 'Erreur, Une invitation est déjà en cours pour l\'adresse: ' . $invitation->getEmail());
-                $this->redirectToRoute('admin_invite_user');
+
+                return $this->redirectToRoute('admin_invite_user');
             } else {
                 $invitation->send();
 
@@ -234,7 +235,8 @@ class AdminUserController extends Controller
                 $logger->alert('[INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
 
                 $this->addFlash('success', 'Une invitation a été envoyée à l\'adresse: ' . $invitation->getEmail());
-                $this->redirect($this->generateUrl('admin_show_all_user'));
+
+                return $this->redirect($this->generateUrl('admin_show_all_user'));
             }
         }
 
