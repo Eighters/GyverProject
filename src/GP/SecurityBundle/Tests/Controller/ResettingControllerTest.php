@@ -20,6 +20,8 @@ class ResettingControllerTest extends BaseTestCase
         $client = static::createClient();
         $client->enableProfiler();
 
+        // Get original encrypted password & application name param
+        $originalPassword = $this->getUserByEmail(static::USER_CHEF_PROJET, $client)->getPassword();
         $this->application_name = ucfirst($client->getKernel()->getContainer()->getParameter('application_name'));
 
         $url = $this->generateRoute($client, 'fos_user_resetting_request');
@@ -28,11 +30,10 @@ class ResettingControllerTest extends BaseTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'A non logged user should see the request change password page');
 
         $data = array(
-            'username'  => 'gauvin.thibaut83+gyver-project@gmail.com'
+            'username'  => static::USER_CHEF_PROJET
         );
 
         $form = $crawler->selectButton('_submit')->form($data);
-
         $client->submit($form);
 
         // Check that an email was sent
@@ -44,16 +45,13 @@ class ResettingControllerTest extends BaseTestCase
         $message = $collectedMessages[0];
         $this->assertInstanceOf('Swift_Message', $message);
         $this->assertEquals('['.$this->application_name.' Project] | Demande de réinitialisation de mot de passe', $message->getSubject());
-        $this->assertEquals('gyver.project@gmail.com', key($message->getFrom()));
+        $this->assertEquals($client->getKernel()->getContainer()->getParameter('notification_sender_mail'), key($message->getFrom()));
         $this->assertEquals('gauvin.thibaut83+gyver-project@gmail.com', key($message->getTo()));
 
-        // Check Html
         $client->followRedirect();
-//        $this->assertHtmlContains(
-//            $crawler,
-//            'checkEmail',
-//            'A User who submit a valid user request change password should see a confirmation message'
-//        );
+
+        // Check that password is changed:
+        // In Progress ...
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'A non logged user should see the confirmation page after submit a change password request');
     }

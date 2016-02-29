@@ -36,13 +36,13 @@ class AdminUserControllerTest extends BaseTestCase
     {
         return array (
             array(
-                'userName' => 'admin',
+                'userName' => self::USER_ADMIN,
                 'password' => self::USER_PASSWORD,
                 'expectedStatusCode' => '200',
                 'message' => 'An admin User should see the admin dashboard page',
             ),
             array(
-                'userName' => 'thibaut',
+                'userName' => self::USER_CHEF_PROJET,
                 'password' => self::USER_PASSWORD,
                 'expectedStatusCode' => '403',
                 'message' => 'An NON admin User should NOT see the admin dashboard page',
@@ -55,7 +55,7 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testShowUsersAction()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
         $url = $this->generateRoute($client, 'admin_show_all_user');
         $this->crawler =  $client->request('GET', $url);
 
@@ -72,8 +72,8 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testShowUserAction()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('chef_projet@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
         $url = $this->generateRoute($client, 'admin_show_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('GET', $url);
 
@@ -90,8 +90,8 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessDeleteUserAction()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('deleted_user@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail('gyver.project+deleted@gmail.com', $client);
 
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('DELETE', $url);
@@ -106,7 +106,7 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailDeleteUser()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => 'gzej'));
         $this->crawler =  $client->request('DELETE', $url);
 
@@ -120,8 +120,8 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailDeleteAdminUser()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('admin@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_ADMIN, $client);
 
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('DELETE', $url);
@@ -136,8 +136,8 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessArchiveUserAction()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('alicia@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('GET', $url);
@@ -147,7 +147,7 @@ class AdminUserControllerTest extends BaseTestCase
         $this->assertFlashMessageContains($this->crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement désactivé', 'Admin should see a confirmation flashMessage when he archive a given user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail('alicia@g4.fr', $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET, $client)->isEnabled();
         $this->assertEquals(0, $userStatus, 'Archived user should have isEnabled property set to 0');
     }
 
@@ -156,7 +156,7 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailArchiveUser()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => 'ghfh'));
         $this->crawler =  $client->request('GET', $url);
@@ -167,12 +167,12 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot archive admin user
+     * Test the admin cannot archive himself or another admin user
      */
     public function testFailArchiveAdmin()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('admin@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_ADMIN, $client);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('GET', $url);
@@ -182,7 +182,7 @@ class AdminUserControllerTest extends BaseTestCase
         $this->assertFlashMessageContains($this->crawler, 'Utilisateur '. $user->getFirstName() .' ne peut pas être désactivé', 'Admin should see a error flashMessage when he archive a admin user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail('admin@g4.fr', $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_ADMIN, $client)->isEnabled();
         $this->assertNotEquals(0, $userStatus, 'Admin user should NOT have isEnabled property set to 0 when admin try to archive it');
     }
 
@@ -191,8 +191,8 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessActivateUserAction()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
-        $user = $this->getUserByEmail('alicia@g4.fr', $client);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
 
         $url = $this->generateRoute($client, 'admin_activate_user', array('id' => $user->getId()));
         $this->crawler =  $client->request('GET', $url);
@@ -202,7 +202,7 @@ class AdminUserControllerTest extends BaseTestCase
         $this->assertFlashMessageContains($this->crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement activé', 'Admin should see a confirmation flashMessage when he archive a given user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail('alicia@g4.fr', $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET, $client)->isEnabled();
         $this->assertEquals(1, $userStatus, 'User activated should have isEnabled property set to 1');
     }
 
@@ -211,7 +211,7 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailActivateUser()
     {
-        $client = $this->loginUsingFormUser('admin', self::USER_PASSWORD);
+        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
 
         $url = $this->generateRoute($client, 'admin_activate_user', array('id' => 'ghfh'));
         $this->crawler =  $client->request('GET', $url);

@@ -21,18 +21,11 @@ GP\CoreBundle\Entity\User:
         lastName: user
         company: ~
 
-    deletedUser (extends user):
-        username: deleted
-        usernameCanonical: user
-        email: deleted_user@g4.fr
-        firstName: deleted
-        lastName: user
-
     admin (extends user):
         username: admin
         usernameCanonical: admin
-        email: admin@g4.fr
-        emailCanonical: admin@g4.fr
+        email: gyver.project+admin@gmail.com
+        emailCanonical: gyver.project+admin@gmail.com
         roles: [ROLE_ADMIN]
         firstName: administrator
         lastName: user
@@ -41,18 +34,18 @@ GP\CoreBundle\Entity\User:
     chef_projet (extends user):
         username: chef_projet
         usernameCanonical: chef_projet
-        email: chef_projet@g4.fr
-        emailCanonical: chef_projet@g4.fr
+        email: gyver.project+chef-projet@gmail.com
+        emailCanonical: gyver.project+chef-projet@gmail.com
         roles: [ROLE_USER]
         firstName: Carl
-        lastName: Sutter
+        lastName: De Sutter
         company: [ @company1 ]
 
     consultant (extends user):
         username: consultant
         usernameCanonical: consultant
-        email: consultant@g4.fr
-        emailCanonical: consultant@g4.fr
+        email: gyver.project+consultant@gmail.com
+        emailCanonical: gyver.project+consultant@gmail.com
         roles: [ROLE_USER]
         firstName: ALexandre
         lastName: Jacob
@@ -61,8 +54,8 @@ GP\CoreBundle\Entity\User:
     developpeur (extends user):
         username: developpeur
         usernameCanonical: developpeur
-        email: developpeur@g4.fr
-        emailCanonical: developpeur@g4.fr
+        email: gyver.project+developpeur@gmail.com
+        emailCanonical: gyver.project+developpeur@gmail.com
         roles: [ROLE_USER]
         firstName: Matthieu
         lastName: Rodraney
@@ -71,8 +64,8 @@ GP\CoreBundle\Entity\User:
     collaborateur (extends user):
         username: collaborateur
         usernameCanonical: collaborateur
-        email: collaborateur@g4.fr
-        emailCanonical: collaborateur@g4.fr
+        email: gyver.project+collaborateur@gmail.com
+        emailCanonical: gyver.project+collaborateur@gmail.com
         roles: [ROLE_USER]
         firstName: Carine
         lastName: Leguellec
@@ -81,12 +74,18 @@ GP\CoreBundle\Entity\User:
     client (extends user):
         username: client
         usernameCanonical: client
-        email: client@g4.fr
-        emailCanonical: client@g4.fr
+        email: gyver.project+client@gmail.com
+        emailCanonical: gyver.project+client@gmail.com
         roles: [ROLE_USER]
         firstName: Roberto
         lastName: Ramos
         company: [ @company4 ]
+
+    deletedUser (extends user):
+        email: gyver.project+deleted@gmail.com
+        username: deleted
+        firstName: deleted
+        lastName: user
 
     thibaut (extends user):
         username: thibaut
@@ -101,8 +100,8 @@ GP\CoreBundle\Entity\User:
     rkoci (extends user):
         username: rkoci
         usernameCanonical: rkoci
-        email: rkoci@g4.fr
-        emailCanonical: rkoci@g4.fr
+        email: remikoci+gyver-project@gmail.com
+        emailCanonical: remikoci+gyver-project@gmail.com
         roles: [ROLE_USER]
         civility: female
         firstName: Rémi
@@ -112,8 +111,8 @@ GP\CoreBundle\Entity\User:
     guillaume (extends user):
         username: guillaume
         usernameCanonical: guillaume
-        email: guillaume@g4.fr
-        emailCanonical: guillaume@g4.fr
+        email: guilohm.roche+gyver-project@gmail.com
+        emailCanonical: guilohm.roche+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Guillaume
         lastName: Roche
@@ -122,8 +121,8 @@ GP\CoreBundle\Entity\User:
     karim (extends user):
         username: karim
         usernameCanonical: karim
-        email: karim@g4.fr
-        emailCanonical: karim@g4.fr
+        email: tayeb.karims+gyver-project@gmail.com
+        emailCanonical: tayeb.karims+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Karim
         lastName: Tayeb
@@ -132,8 +131,8 @@ GP\CoreBundle\Entity\User:
     ralph (extends user):
         username: ralph
         usernameCanonical: ralph
-        email: ralph@g4.fr
-        emailCanonical: ralph@g4.fr
+        email: ralph.lewiz+gyver-project@gmail.com
+        emailCanonical: ralph.lewiz+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Ralph
         lastName: Zogo
@@ -142,8 +141,8 @@ GP\CoreBundle\Entity\User:
     rowmain (extends user):
         username: rowmain
         usernameCanonical: rowmain
-        email: rowmain@g4.fr
-        emailCanonical: rowmain@g4.fr
+        email: dalleau.romain+gyver-project@gmail.com
+        emailCanonical: dalleau.romain+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Dalleau
@@ -152,8 +151,8 @@ GP\CoreBundle\Entity\User:
     romain (extends user):
         username: romain
         usernameCanonical: romain
-        email: romain@g4.fr
-        emailCanonical: romain@g4.fr
+        email: lesniak.romain+gyver-project@gmail.com
+        emailCanonical: lesniak.romain+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Lesniak
@@ -162,8 +161,8 @@ GP\CoreBundle\Entity\User:
     brandon (extends user):
         username: brandon
         usernameCanonical: brandon
-        email: brandon@g4.fr
-        emailCanonical: brandon@g4.fr
+        email: turgotbeurionbrandon+gyver-project@gmail.com
+        emailCanonical: turgotbeurionbrandon+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Brandon
         lastName: Beurion
@@ -172,8 +171,8 @@ GP\CoreBundle\Entity\User:
     robin (extends user):
         username: robin
         usernameCanonical: robin
-        email: robin@g4.fr
-        emailCanonical: robin@g4.fr
+        email: rbilly.mail+gyver-project@gmail.com
+        emailCanonical: rbilly.mail+gyver-project@gmail.com
         roles: [ROLE_USER]
         firstName: Robin
         lastName: Billy
@@ -182,8 +181,8 @@ GP\CoreBundle\Entity\User:
     alicia (extends user):
         username: alicia
         usernameCanonical: alicia
-        email: alicia@g4.fr
-        emailCanonical: alicia@g4.fr
+        email: abelkovskaya+gyver-project@gmail.com
+        emailCanonical: abelkovskaya+gyver-project@gmail.com
         roles: [ROLE_USER]
         civility: female
         firstName: Alicia

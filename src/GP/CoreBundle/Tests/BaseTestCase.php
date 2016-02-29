@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 class BaseTestCase extends WebTestCase
 {
 
-    const USER_ADMIN = 'admin@g4.fr';
-    const USER_CHEF_PROJET = 'chef_projet@g4.fr';
-    const USER_CONSULTANT = 'consultant@g4.fr';
-    const USER_DEVELOPPEUR = 'developpeur@g4.fr';
-    const USER_COLLABORATEUR = 'collaborateur@g4.fr';
-    const USER_CLIENT = 'client@g4.fr';
+    const USER_ADMIN = 'gyver.project+admin@gmail.com';
+    const USER_CHEF_PROJET = 'gyver.project+chef-projet@gmail.com';
+    const USER_CONSULTANT = 'gyver.project+consultant@gmail.com';
+    const USER_DEVELOPPEUR = 'gyver.project+developpeur@gmail.com';
+    const USER_COLLABORATEUR = 'gyver.project+collaborateur@gmail.com';
+    const USER_CLIENT = 'gyver.project+client@gmail.com';
 
     const USER_PASSWORD = 'password';
 
