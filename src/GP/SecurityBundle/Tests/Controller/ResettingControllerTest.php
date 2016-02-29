@@ -46,7 +46,7 @@ class ResettingControllerTest extends BaseTestCase
         $this->assertInstanceOf('Swift_Message', $message);
         $this->assertEquals('['.$this->application_name.' Project] | Demande de réinitialisation de mot de passe', $message->getSubject());
         $this->assertEquals($client->getKernel()->getContainer()->getParameter('notification_sender_mail'), key($message->getFrom()));
-        $this->assertEquals('gauvin.thibaut83+gyver-project@gmail.com', key($message->getTo()));
+        $this->assertEquals(static::USER_CHEF_PROJET, key($message->getTo()));
 
         $client->followRedirect();
 
