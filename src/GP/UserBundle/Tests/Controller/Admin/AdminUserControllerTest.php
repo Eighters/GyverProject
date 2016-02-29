@@ -32,6 +32,7 @@ class AdminUserControllerTest extends BaseTestCase
         $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
     }
 
+
     public function userProvider()
     {
         return array (
@@ -51,7 +52,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test only admin can access Manage user page
+     * Test that only admin can access Manage user page
      */
     public function testShowUsersAction()
     {
@@ -68,7 +69,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test only admin can access to a given user account summary page
+     * Test that only admin can access to a given user account summary page
      */
     public function testShowUserAction()
     {
@@ -86,7 +87,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin can delete given user
+     * Test that admin can delete given user
      */
     public function testSuccessDeleteUserAction()
     {
@@ -102,7 +103,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot delete a not found user
+     * Test that admin cannot delete a not found user
      */
     public function testFailDeleteUser()
     {
@@ -116,7 +117,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot delete an admin user
+     * Test that admin cannot delete an admin user
      */
     public function testFailDeleteAdminUser()
     {
@@ -132,7 +133,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin can archive given user
+     * Test that admin can archive a user
      */
     public function testSuccessArchiveUserAction()
     {
@@ -152,7 +153,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot archive a not found user
+     * Test that admin cannot archive a not found user
      */
     public function testFailArchiveUser()
     {
@@ -167,7 +168,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot archive himself or another admin user
+     * Test that admin cannot archive himself or another admin user
      */
     public function testFailArchiveAdmin()
     {
@@ -187,7 +188,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin can activate given user
+     * Test that admin can activate a given user
      */
     public function testSuccessActivateUserAction()
     {
@@ -207,7 +208,7 @@ class AdminUserControllerTest extends BaseTestCase
     }
 
     /**
-     * Test the admin cannot activate a not found user
+     * Test that admin cannot activate a not found user
      */
     public function testFailActivateUser()
     {

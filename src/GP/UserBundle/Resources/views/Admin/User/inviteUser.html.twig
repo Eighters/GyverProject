@@ -11,31 +11,54 @@
         <div class="col s12 m8 offset-m2">
             <div class="card">
                 <div class="card-content">
-                    <p class="center">Veuillez renseigner l'adresse Email du collaborateur à inviter dans l'application :</p>
-
-                    {{ form_start(form) }}
-
-                    {{ form_label(form.email) }}
-                    {{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}
-
-                    {{ form_label(form.welcomeMessage) }}
-                    {{ form_errors(form.welcomeMessage) }}
-                    {{ form_widget(form.welcomeMessage) }}
-
-                    {{ form_rest(form) }}
-
-                    <div class="center">
-                        <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
-                            Inviter
-                        </button>
-
-                        <a href="{{ path('admin_show_all_user') }}" class="btn waves-effect waves-light amber accent-4">
-                            Retour
-                        </a>
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center">Nouvelle Invitation</h4>
+                            <p class="center">Veuillez renseigner l'adresse Email du collaborateur à inviter dans l'application :</p>
+                        </div>
                     </div>
 
-                    {{ form_end(form) }}
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_start(form) }}
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    {{ form_widget(form.email) }}
+                                    {{ form_label(form.email) }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.email) }}
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    {{ form_widget(form.welcomeMessage, {
+                                        attr: {
+                                            class: 'materialize-textarea',
+                                            placeholder: 'Bonjour, je vous invite à vous inscrire sur notre application de gestion de projet',
+                                        }
+                                    }) }}
+                                    {{ form_label(form.welcomeMessage) }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.welcomeMessage) }}
+                                    </div>
+                                </div>
+
+                                {{ form_rest(form) }}
+
+                                <div class="center">
+                                    <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                                        Inviter
+                                    </button>
+
+                                    <a href="{{ path('admin_show_all_user') }}" class="btn waves-effect waves-light amber accent-4">
+                                        Retour
+                                    </a>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

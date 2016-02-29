@@ -52,6 +52,12 @@ class Invitation
      * @ORM\Column(name="welcome_message", type="text", length=5000)
      *
      * @Assert\NotNull(message="Vous devez renseigner un message de bienvenue")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "Votre message de bienvenue doit avoir un minimum de {{ limit }} caractères",
+     *      maxMessage = "Votre message de bienvenue ne peut pas faire plus de {{ limit }} caractères"
+     * )
      */
     protected $welcomeMessage;
 
