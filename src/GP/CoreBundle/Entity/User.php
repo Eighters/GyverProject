@@ -38,7 +38,6 @@ class User extends BaseUser
     /**
      * @ORM\OneToOne(targetEntity="GP\CoreBundle\Entity\Invitation")
      * @ORM\JoinColumn(referencedColumnName="code")
-     * @Assert\NotNull()
      */
     protected $invitation;
 

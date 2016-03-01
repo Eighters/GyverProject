@@ -26,8 +26,8 @@ class ResettingController extends FOSResettingController
      *
      * Reset user password
      *
-     * @Route("/login", name="login")
-     * @Method("GET")
+     * @Route("/password/reset/{token}", name="reset_password")
+     * @Method("GET|POST")
      * @Template()
      */
     public function resetAction(Request $request, $token)
@@ -69,6 +69,10 @@ class ResettingController extends FOSResettingController
             }
 
             $dispatcher->dispatch(FOSUserEvents::RESETTING_RESET_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+            // Log the reset action
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[RESET_PASSWORD] ' . $user->getEmail() .' have successfully reset her password (id: '.$user->getId().')');
 
             return $response;
         }
