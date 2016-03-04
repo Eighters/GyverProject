@@ -8,12 +8,12 @@
 {% block body %}
 
     <div class="row center">
-        <a href="{{ path('admin_invite_user') }}" class="waves-effect waves-light btn">
+        <a href="{{ path('admin_invitation_new') }}" class="waves-effect waves-light btn">
             <i class="material-icons right">add</i>
             Inviter un utilisateur
         </a>
 
-        <a href="#" class="waves-effect waves-light btn amber accent-4">
+        <a href="{{ path('admin_show_invitation') }}" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">info_outline</i>
             Voir les invitations en cours
         </a>
@@ -56,7 +56,7 @@
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Afficher">
+                                    <a href="{{ path('admin_show_user', {'id': user.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
                                         <i class="material-icons">info</i>
                                     </a>
                                 </li>

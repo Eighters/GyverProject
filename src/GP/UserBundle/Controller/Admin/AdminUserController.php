@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
-use GP\CoreBundle\Entity\Invitation;
-use GP\UserBundle\Form\Type\Admin\SendInvitationType;
 
 /**
  * Class Admin User Controller
@@ -195,53 +193,5 @@ class AdminUserController extends Controller
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement activé');
         return $this->redirectToRoute('admin_show_all_user');
-    }
-
-    /**
-     * Invite a new user in the application
-     *
-     * @Route("/invitation", name="admin_invite_user")
-     * @Method("GET|POST")
-     * @Template("GPUserBundle:Admin/User:inviteUser.html.twig")
-     */
-    public function inviteUserAction(Request $request)
-    {
-        $invitation = new Invitation();
-        $form = $this->createForm(new SendInvitationType(), $invitation);
-
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            // check if they already have an invitation in progress for the given Email
-            $repository = $this->getDoctrine()->getRepository('GPCoreBundle:Invitation');
-            $olderInvitation = $repository->findByEmail($invitation->getEmail());
-
-            if ($olderInvitation) {
-                $this->addFlash('error', 'Erreur, Une invitation est déjà en cours pour l\'adresse: ' . $invitation->getEmail());
-
-                return $this->redirectToRoute('admin_invite_user');
-            } else {
-                $invitation->send();
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($invitation);
-                $em->flush();
-
-                // Notice him by email
-                $mailerService = $this->get('gp.core_bundle.mailing_service');
-                $mailerService->sendUserInvitationNotification($invitation);
-
-                // Log the invitation
-                $logger = $this->get('monolog.logger.user_access');
-                $logger->alert('[INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
-
-                $this->addFlash('success', 'Une invitation a été envoyée à l\'adresse: ' . $invitation->getEmail());
-
-                return $this->redirect($this->generateUrl('admin_show_all_user'));
-            }
-        }
-
-        return array(
-            'form' => $form->createView()
-        );
     }
 }
