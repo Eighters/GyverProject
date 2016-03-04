@@ -1,47 +1,48 @@
 {% extends 'Email/email_layout.html.twig' %}
 
-
-{% if not invitation.welcomeMessage %}
-    {% set rowNb = 1 %}
-{% elseif invitation.welcomeMessage|length <= 243 %}
-    {% set rowNb = 3 %}
-{% else %}
-    {% set rowNb = 6 %}
-{% endif %}
-
 {% block body %}
 
-    <p>
-        Bonjour,
+    <div>
+        <p style="font-family:Lucida Grande,Lucida Sans,Lucida Sans Unicode,Arial,Helvetica,Verdana,sans-serif;color:#666666;font-size:12px;line-height:16px;">
+            Bonjour,
+            <br>
+            <br>
+            Vous avez été invités par un administrateur à vous inscrire sur notre outil de gestion de projet : <span style="font-weight: bold;color:#666666;">{{ application_name|capitalize }}</span>
+            <br>
+            <br>
+            Votre code d'inscription est :
+            <span style="color: #fff;background-color:#006064;padding:1px 8px;border-radius:2px;font-size:18px;line-height:22px;letter-spacing:1px;">{{ invitation.code }}</span>
+        </p>
+
         <br>
-        <br>
-        Vous avez été invités par un administrateur à vous inscrire sur notre outil de gestion de projet : {{ application_name|capitalize }}
-        <br>
-        <br>
-        Votre code d'inscription est :
-        <span style="color: #fff;background-color:#006064;padding:1px 8px;border-radius:2px;font-size:17px;letter-spacing:1px;">{{ invitation.code }}</span>
-        <br>
-        <br>
+
         <label for="message">Message d'inscription: </label>
+
         <br>
-        <br>
-        <textarea id="message" rows="{{ rowNb }}" cols="80" style="font-family:Lucida Grande,Lucida Sans,Lucida Sans Unicode,Arial,Helvetica,Verdana,sans-serif;color:rgb(102,102,102);font-size:14px;line-height:1.45em" disabled>
+
+        <p id="message" style="font-family:Lucida Grande,Lucida Sans,Lucida Sans Unicode,Arial,Helvetica,Verdana,sans-serif;color:#666666;font-size:14px;line-height:18px;background-color:#EBEBE4;padding:10px;border-radius:2px;">
 {{ invitation.welcomeMessage }}
-        </textarea>
+        </p>
+
         <br>
+
+        <div style="text-align: center">
+            <a href="{{ app.request.schemeAndHttpHost }}{{ path('register') }}?code={{ invitation.code }}" style="text-decoration:none;">
+                <button type="button" style="padding:10px 30px;background-color:#ffab00;color:#fff;border:none;border-radius:2px;font-size:17px;letter-spacing:1px;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
+                    Inscription
+                </button>
+            </a>
+        </div>
+
         <br>
-        <a href="{{ app.request.schemeAndHttpHost }}{{ path('register') }}?code={{ invitation.code }}" style="text-decoration:none;">
-            <button type="button" style="padding:10px 30px;background-color:#ffab00;color:#fff;border:none;border-radius:2px;font-size:17px;letter-spacing:1px;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
-                Inscription
-            </button>
-        </a>
-        <br>
-        <br>
-        Nous vous souhaitons la meilleur expérience possible,
-        A très bientôt.
-        <br>
-        <br>
-        L'équipe {{ application_name|capitalize }} Project.
-    </p>
+
+        <p style="font-family:Lucida Grande,Lucida Sans,Lucida Sans Unicode,Arial,Helvetica,Verdana,sans-serif;color:#666666;font-size:12px;line-height:16px;">
+            Nous vous souhaitons la meilleur expérience possible,
+            A très bientôt.
+            <br>
+            <br>
+            L'équipe {{ application_name|capitalize }} Project.
+        </p>
+    </div>
 
 {% endblock %}

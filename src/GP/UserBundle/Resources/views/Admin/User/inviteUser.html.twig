@@ -33,10 +33,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">mode_edit</i>
                                     {{ form_widget(form.welcomeMessage, {
-                                        attr: {
-                                            class: 'materialize-textarea',
-                                            placeholder: 'Bonjour, je vous invite à vous inscrire sur notre application de gestion de projet',
-                                        }
+                                        attr: { class: 'materialize-textarea' }
                                     }) }}
                                     {{ form_label(form.welcomeMessage) }}
                                     <div class="red-text">
