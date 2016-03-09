@@ -2,7 +2,6 @@
 
 .vcenter {
   min-height: 100%;
-  min-height: 100vh;
 
   display: flex;
   align-items: center;
@@ -44,8 +43,8 @@ nav ul li + .active {
 
     .application-logo {
       margin: 10px 5px 10px 10px;
-      max-width: 50px;
-      max-height: 50px;
+      max-width: 45px;
+      max-height: 45px;
     }
     .application-name {
       text-transform: uppercase;

@@ -39,7 +39,6 @@ class AdminInvitationController extends Controller
 
             if ($olderInvitation) {
                 $this->addFlash('error', 'Erreur, Une invitation est déjà en cours pour l\'adresse: ' . $invitation->getEmail());
-
                 return $this->redirectToRoute('admin_invitation_new');
             } else {
                 $invitation->send();
@@ -57,7 +56,6 @@ class AdminInvitationController extends Controller
                 $logger->alert('[INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
 
                 $this->addFlash('success', 'Une invitation a été envoyée à l\'adresse: ' . $invitation->getEmail());
-
                 return $this->redirect($this->generateUrl('admin_show_all_user'));
             }
         }
@@ -77,7 +75,7 @@ class AdminInvitationController extends Controller
     public function showInvitationAction(Request $request)
     {
         $invitationRepository = $this->getDoctrine()->getRepository('GPCoreBundle:Invitation');
-        $invitations = $invitationRepository->findAll();
+        $invitations = $invitationRepository->findAllInvitationAndOrderByDate();
 
         $pagination = $this->get('knp_paginator')->paginate(
             $invitations,

@@ -18,6 +18,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class Invitation
 {
+    CONST STATUS_PENDING = 'pending';
+    CONST STATUS_ACCEPTED = 'accepted';
+
     /**
      * @ORM\Id @ORM\Column(name="code", type="string", length=6)
      */
@@ -61,22 +64,57 @@ class Invitation
      */
     protected $welcomeMessage;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="confirmation_token", type="string", length=64)
+     *
+     * @Assert\NotNull()
+     */
+    protected $confirmationToken;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string")
+     */
+    protected $status;
+
     public function __construct()
     {
         $this->code = substr(md5(uniqid(rand(), true)), 0, 6);
         $this->sentAt = new \DateTime("now");
+        $this->confirmationToken = substr(hash('whirlpool', date("Y-m-d H:i:s")), 32, 64);
+        $this->status = self::STATUS_PENDING;
     }
 
+    /**
+     * @return string
+     */
     public function getCode()
     {
         return $this->code;
     }
 
+    /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -99,7 +137,6 @@ class Invitation
     {
         return $this->sentAt;
     }
-
     /**
      * @param DateTime $sentAt
      */
@@ -122,5 +159,37 @@ class Invitation
     public function setWelcomeMessage($welcomeMessage)
     {
         $this->welcomeMessage = $welcomeMessage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param string $confirmationToken
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }

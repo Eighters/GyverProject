@@ -9,6 +9,9 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use GP\CoreBundle\Entity\Invitation;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,40 +23,43 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class RegistrationController extends Controller
 {
-
     /**
      * Override of the FOSUserBundle reset password function.
      *
      * Reset user password
      *
-     * @Route("/register", name="register")
-     * @Method("GET")
+     * @Route("/register/{token}", name="register")
+     * @Method("GET|POST")
      * @Template()
      */
-    public function registerAction(Request $request)
+    public function registerAction(Request $request, $token)
     {
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->get('fos_user.registration.form.factory');
-        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-        $userManager = $this->get('fos_user.user_manager');
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $dispatcher = $this->get('event_dispatcher');
+        $repository = $this->getDoctrine()->getRepository('GPCoreBundle:Invitation');
+        $invitation = $repository->findOneByConfirmationToken($token);
 
+        if(!$invitation) {
+            throw new NotFoundHttpException("Invitation not found");
+        }
+
+        $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->createUser();
         $user->setEnabled(true);
+        $user->setEmail($invitation->getEmail());
+        $user->setInvitation($invitation);
 
         $event = new GetResponseUserEvent($user, $request);
+        $dispatcher = $this->get('event_dispatcher');
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
+        $formFactory = $this->get('fos_user.registration.form.factory');
         $form = $formFactory->createForm();
         $form->setData($user);
 
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
@@ -62,13 +68,13 @@ class RegistrationController extends Controller
 
             if (null === $response = $event->getResponse()) {
                 $this->addFlash('success', 'Votre compte a bien été créé');
+                $this->updateInvitationStatus($invitation);
 
                 // Log the registration
                 $logger = $this->get('monolog.logger.user_access');
                 $logger->alert('[SIGNUP] ' . $user->getEmail() .' have successfully Signed Up with Invitation ID No°' . $user->getInvitation()->getCode());
 
-                $url = $this->generateUrl('login');
-                $response = new RedirectResponse($url);
+                $response = new RedirectResponse($this->generateUrl('login'));
             }
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
@@ -78,6 +84,16 @@ class RegistrationController extends Controller
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
+            'token' => $invitation->getConfirmationToken()
         ));
+    }
+
+    private function updateInvitationStatus(Invitation $invitation)
+    {
+        $invitation->setStatus(Invitation::STATUS_ACCEPTED);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($invitation);
+        $em->flush();
     }
 }

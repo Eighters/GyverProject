@@ -19,14 +19,14 @@
                 <ul class="collection">
                     <li class="collection-item">
                         <div class="row invitation valign-wrapper">
-                            <div class="col s2 valign">
-                                <p class="center-align">Code Invitation</p>
+                            <div class="col s3 valign">
+                                <p class="center-align">Date d'envoi</p>
                             </div>
                             <div class="col s4 valign">
                                 <p class="center-align">Destinataire</p>
                             </div>
-                            <div class="col s3 valign">
-                                <p class="center-align">Date d'envoi</p>
+                            <div class="col s2 valign">
+                                <p class="center-align">Status</p>
                             </div>
                             <div class="col s3 valign">
                                 <p class="center-align">Actions</p>
@@ -37,16 +37,16 @@
                     {% for invitation in pagination %}
                         <li class="collection-item">
                             <div class="row invitation valign-wrapper">
-                                <div class="col s2 valign center-align">
-                                    <p>{{ invitation.code }}</p>
+                                <div class="col s3 valign center-align">
+                                    <p>{{ invitation.sentAt|date(' d/m/Y G:i') }}</p>
                                 </div>
 
                                 <div class="col s4 valign center-align">
                                     <p>{{ invitation.email }}</p>
                                 </div>
 
-                                <div class="col s3 valign center-align">
-                                    <p>{{ invitation.sentAt|date(' d/m/Y h:i A') }}</p>
+                                <div class="col s2 valign center-align">
+                                    <p>{{ invitation.status }}</p>
                                 </div>
 
                                 <div class="col s3 valign center-align">
@@ -75,43 +75,3 @@
     </div>
 
 {% endblock %}
-
-
-{#
-
-<div class="row">
-    <div class="col s12 m8 offset-m2">
-        <div class="row">
-            <h4 class="center-align">Invitations: </h4>
-            <ul class="collection">
-                {% for invitation in invitations %}
-                    <li class="collection-item">
-                        <table class="responsive-table centered highlight">
-                            <tr>
-                                <td>{{ invitation.code }}</td>
-                                <td>{{ invitation.email }}</td>
-                                <td>{{ invitation.sentAt|date('l jS \of F Y h:i:s A') }}</td>
-                                <td>
-                                    <a href="#" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
-                                        <i class="material-icons">info</i>
-                                    </a>
-
-                                    <a href="#" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Réenvoyer l'inviation">
-                                        <i class="material-icons">replay</i>
-                                    </a>
-
-                                    <a href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer l'inviation">
-                                        <i class="material-icons ">delete</i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </li>
-                {% endfor %}
-
-            </ul>
-        </div>
-    </div>
-</div>
-
-#}

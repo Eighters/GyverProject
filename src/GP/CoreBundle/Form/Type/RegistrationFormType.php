@@ -10,6 +10,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('email', 'email', array('disabled' => true))
             ->add('firstName', 'text')
             ->add('lastName', 'text')
             ->add('civility', 'choice', array (
@@ -20,7 +21,7 @@ class RegistrationFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
             ))
-            ->add('invitation', 'GP\CoreBundle\Form\Type\InvitationFormType');
+            ->add('invitation', 'GP\CoreBundle\Form\Type\InvitationFormType', array('disabled' => true));
     }
 
     public function getParent()
