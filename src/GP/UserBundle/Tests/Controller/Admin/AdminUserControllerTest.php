@@ -80,7 +80,7 @@ class AdminUserControllerTest extends BaseTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the given user account information page');
 
-        $this->assertHtmlContains($this->crawler, 'Profil utilisateur');
+        $this->assertHtmlContains($this->crawler, 'Profil Utilisateur');
         $this->assertHtmlContains($this->crawler, $user->getEmail());
         $this->assertHtmlContains($this->crawler, $user->getFirstName());
         $this->assertHtmlContains($this->crawler, $user->getLastName());
