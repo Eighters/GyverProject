@@ -15,7 +15,11 @@ class Version20160308161053 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql('ALTER TABLE invitation ADD confirmation_token VARCHAR(128) NOT NULL, ADD status VARCHAR(255) NOT NULL');
+        $this->addSql('
+            ALTER TABLE invitation
+            ADD confirmation_token VARCHAR(128) NOT NULL,
+            ADD status VARCHAR(255) NOT NULL
+        ');
     }
 
     /**

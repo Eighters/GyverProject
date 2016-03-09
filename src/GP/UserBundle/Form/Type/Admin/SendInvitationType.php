@@ -21,6 +21,17 @@ class SendInvitationType extends AbstractType
     {
         $builder
             ->add('email', 'email')
+            ->add('userName', 'text')
+            ->add('firstName', 'text')
+            ->add('lastName', 'text')
+            ->add('civility', 'choice', array (
+                'choices'   => array (
+                    'male' => 'Masculin',
+                    'female' => 'Feminin',
+                ),
+                'multiple' => false,
+                'expanded' => true,
+            ))
             ->add('welcomeMessage', TextareaType::class, array(
                 'data' => 'Bonjour, je vous invite à vous inscrire sur notre application de gestion de projet',
             ))

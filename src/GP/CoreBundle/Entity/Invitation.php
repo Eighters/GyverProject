@@ -80,6 +80,60 @@ class Invitation
      */
     protected $status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userName", type="string", length=80)
+     *
+     * @Assert\NotBlank(message="Vous devez renseigner un pseudo")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 80,
+     *      minMessage = "Le pseudo doit avoir un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le pseudo ne peut pas faire plus de {{ limit }} caractères"
+     * )
+     */
+    protected $userName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstName", type="string", length=80)
+     *
+     * @Assert\NotBlank(message="Vous devez renseigner un Prénom")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 80,
+     *      minMessage = "Le Prénom doit avoir un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le Prénom ne peut pas faire plus de {{ limit }} caractères"
+     * )
+     */
+    protected $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastName", type="string", length=80)
+     *
+     * @Assert\NotBlank(message="Vous devez renseigner un Nom")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 80,
+     *      minMessage = "Le Nom doit avoir un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le Nom ne peut pas faire plus de {{ limit }} caractères"
+     * )
+     */
+    protected $lastName;
+
+    /**
+     * @var string $civility
+     *
+     * @ORM\Column(name="civility", type="string", columnDefinition="enum('male', 'female')")
+     *
+     * @Assert\NotBlank(message="Vous devez renseigner la civilité de l'utilisateur")
+     */
+    protected $civility;
+
     public function __construct()
     {
         $this->code = substr(md5(uniqid(rand(), true)), 0, 6);
@@ -191,5 +245,69 @@ class Invitation
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->userName;
+    }
+
+    /**
+     * @param string $userName
+     */
+    public function setUsername($userName)
+    {
+        $this->userName = $userName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCivility()
+    {
+        return $this->civility;
+    }
+
+    /**
+     * @param string $civility
+     */
+    public function setCivility($civility)
+    {
+        $this->civility = $civility;
     }
 }

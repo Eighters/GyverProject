@@ -11,8 +11,9 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', 'email', array('disabled' => true))
-            ->add('firstName', 'text')
-            ->add('lastName', 'text')
+            ->add('username', 'text', array('disabled' => true))
+            ->add('firstName', 'text', array('disabled' => true))
+            ->add('lastName', 'text', array('disabled' => true))
             ->add('civility', 'choice', array (
                 'choices'   => array (
                     'male' => 'Masculin',
@@ -20,6 +21,7 @@ class RegistrationFormType extends AbstractType
                 ),
                 'multiple' => false,
                 'expanded' => true,
+                'disabled' => true,
             ))
             ->add('invitation', 'GP\CoreBundle\Form\Type\InvitationFormType', array('disabled' => true));
     }

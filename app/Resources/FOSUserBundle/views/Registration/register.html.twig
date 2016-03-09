@@ -21,7 +21,6 @@
                             </div>
 
                             <form class="col-s12" method="POST" {{ form_enctype(form) }} action="{{ path('register', { 'token': token }) }}">
-
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">email</i>
@@ -29,46 +28,6 @@
                                         {{ form_label(form.email, 'Email') }}
                                         <div class="red-text">
                                             {{ form_errors(form.email) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <i class="material-icons prefix">account_circle</i>
-                                        {{ form_widget(form.username) }}
-                                        {{ form_label(form.username, 'Pseudo') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.username) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s6">
-                                        <div class="left-align">
-                                            {{ form_widget(form.civility) }}
-                                            <div class="red-text">
-                                                {{ form_errors(form.civility) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-field col l6 s12">
-                                        <i class="material-icons prefix">perm_contact_calendar</i>
-                                        {{ form_widget(form.firstName) }}
-                                        {{ form_label(form.firstName, 'Nom') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.firstName) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col l6 s12">
-                                        <i class="material-icons prefix">perm_contact_calendar</i>
-                                        {{ form_widget(form.lastName) }}
-                                        {{ form_label(form.lastName, 'Prénom') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.lastName) }}
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +74,6 @@
                                         Retour
                                     </a>
                                 </div>
-
                             </form>
 
                         </div>

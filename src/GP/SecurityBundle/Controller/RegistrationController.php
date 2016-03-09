@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use GP\CoreBundle\Entity\Invitation;
+use GP\CoreBundle\Entity\User;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -43,9 +44,7 @@ class RegistrationController extends Controller
 
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->createUser();
-        $user->setEnabled(true);
-        $user->setEmail($invitation->getEmail());
-        $user->setInvitation($invitation);
+        $user = $this->setUserData($user, $invitation);
 
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher = $this->get('event_dispatcher');
@@ -88,6 +87,31 @@ class RegistrationController extends Controller
         ));
     }
 
+    /**
+     * Set user data with invitation before inject into registration form
+     *
+     * @param User $user
+     * @param Invitation $invitation
+     * @return User
+     */
+    private function setUserData(User $user, Invitation $invitation)
+    {
+        $user->setEnabled(true);
+        $user->setEmail($invitation->getEmail());
+        $user->setUsername($invitation->getUserName());
+        $user->setFirstName($invitation->getFirstName());
+        $user->setLastName($invitation->getLastName());
+        $user->setCivility($invitation->getCivility());
+        $user->setInvitation($invitation);
+
+        return $user;
+    }
+
+    /**
+     * Update invitation status after successfull user registration
+     *
+     * @param Invitation $invitation
+     */
     private function updateInvitationStatus(Invitation $invitation)
     {
         $invitation->setStatus(Invitation::STATUS_ACCEPTED);

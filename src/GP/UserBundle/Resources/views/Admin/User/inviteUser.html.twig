@@ -21,23 +21,67 @@
                     <div class="row">
                         <div class="col s12">
                             {{ form_start(form) }}
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">email</i>
-                                    {{ form_widget(form.email) }}
-                                    {{ form_label(form.email) }}
-                                    <div class="red-text">
-                                        {{ form_errors(form.email) }}
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        {{ form_widget(form.email) }}
+                                        {{ form_label(form.email) }}
+                                        <div class="red-text">
+                                            {{ form_errors(form.email) }}
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">mode_edit</i>
-                                    {{ form_widget(form.welcomeMessage, {
-                                        attr: { class: 'materialize-textarea' }
-                                    }) }}
-                                    {{ form_label(form.welcomeMessage) }}
-                                    <div class="red-text">
-                                        {{ form_errors(form.welcomeMessage) }}
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        {{ form_widget(form.userName) }}
+                                        {{ form_label(form.userName, 'Pseudo') }}
+                                        <div class="red-text">
+                                            {{ form_errors(form.userName) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <div class="left-align">
+                                            {{ form_widget(form.civility) }}
+                                            <div class="red-text">
+                                                {{ form_errors(form.civility) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col l6 s12">
+                                        <i class="material-icons prefix">perm_contact_calendar</i>
+                                        {{ form_widget(form.firstName) }}
+                                        {{ form_label(form.firstName, 'Nom') }}
+                                        <div class="red-text">
+                                            {{ form_errors(form.firstName) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col l6 s12">
+                                        <i class="material-icons prefix">perm_contact_calendar</i>
+                                        {{ form_widget(form.lastName) }}
+                                        {{ form_label(form.lastName, 'Prénom') }}
+                                        <div class="red-text">
+                                            {{ form_errors(form.lastName) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">mode_edit</i>
+                                        {{ form_widget(form.welcomeMessage, {
+                                            attr: { class: 'materialize-textarea' }
+                                        }) }}
+                                        {{ form_label(form.welcomeMessage) }}
+                                        <div class="red-text">
+                                            {{ form_errors(form.welcomeMessage) }}
+                                        </div>
                                     </div>
                                 </div>
 
