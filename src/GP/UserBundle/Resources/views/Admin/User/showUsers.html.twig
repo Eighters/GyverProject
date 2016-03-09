@@ -24,7 +24,7 @@
             {% for user in pagination %}
 
                 <li class="collection-item avatar">
-                    <img src="http://lorempixel.com/{{ random(['100', '90', '95']) }}/{{ random(['100', '90', '95']) }}/people/" class="circle">
+                    <img src="{{ asset('assets/images/user_img_default.png') }}" class="circle">
                     <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
 
                     <div class="switch">
