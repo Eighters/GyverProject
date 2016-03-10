@@ -16,14 +16,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class ProjectController extends Controller
 {
     /**
-     * @Route("/", name="project_index")
+     * @Route("/", name="show_projects")
      * @Method("GET")
      *
      * @Template()
      */
-    public function indexAction()
+    public function showProjectsAction()
     {
-        return array();
+        // Getting all projects
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('GPCoreBundle:Project')->findAll();
+
+        return array('projects' => $projects);
     }
 
     /**

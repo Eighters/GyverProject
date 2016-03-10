@@ -1,0 +1,55 @@
+{% extends 'layout_connected.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock%}
+
+{% block body %}
+
+    <div class="row">
+
+        {% if projects is empty %}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card cyan darken-2 white-text">
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                    <div class="card-content cyan-text">
+                        <div class="center-align">
+                            <h3>
+                                <a href="#">
+                                    <i class="material-icons" style="font-size:3em;">add</i>
+                                </a>
+                            </h3>
+                            <h5>Créer un projet</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% for project in projects %}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card cyan darken-2 white-text">
+                        <div class="card-content">
+                            <div class="right-align">
+                                <i class="material-icons">edit</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content cyan-text center-align">
+                        <h3>
+                            <i class="material-icons" style="font-size:3em;">folder</i>
+                        </h3>
+                        <h5>{{ project.name }}</h5>
+                    </div>
+                    <div class="card-action cyan darken-2 white-text center-align">
+                        <i class="material-icons" style="font-size:3em;">expand_more</i>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

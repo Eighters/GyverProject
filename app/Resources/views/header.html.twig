@@ -53,8 +53,8 @@
                 </li>
 
                 {# Projects #}
-                <li {% if current_route == 'project_index' %}class="active" {% endif %}>
-                    <a href="{{ path('project_index') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Project">
+                <li {% if current_route == 'show_projects' %}class="active" {% endif %}>
+                    <a href="{{ path('show_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Project">
                         <i class="material-icons left">folder</i>
                         Projects
                     </a>
