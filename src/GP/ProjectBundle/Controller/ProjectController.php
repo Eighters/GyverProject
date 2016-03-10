@@ -44,7 +44,7 @@ class ProjectController extends Controller
         // Checking if project exists
         if (!$project) {
             $this->addFlash('error', 'Projet introuvable');
-            return $this->redirectToRoute('project_index');
+            return $this->redirectToRoute('show_projects');
         }
 
         return array('project' => $project);

@@ -18,7 +18,7 @@
                         <div class="center-align">
                             <h3>
                                 <a href="#">
-                                    <i class="material-icons" style="font-size:3em;">add</i>
+                                    <i class="material-icons" style="font-size:3em;">add_circle_outline</i>
                                 </a>
                             </h3>
                             <h5>Créer un projet</h5>
@@ -44,9 +44,11 @@
                         </h3>
                         <h5>{{ project.name }}</h5>
                     </div>
-                    <div class="card-action cyan darken-2 white-text center-align">
-                        <i class="material-icons" style="font-size:3em;">expand_more</i>
-                    </div>
+                    <a href="{{ path('project_show', {'id': project.id}) }}">
+                        <div class="card-action cyan darken-2 white-text center-align">
+                            <i class="material-icons" style="font-size:3em;">expand_more</i>
+                        </div>
+                    </a>
                 </div>
             </div>
         {% endfor %}
