@@ -33,7 +33,7 @@ class RegistrationController extends Controller
      * @Method("GET|POST")
      * @Template()
      */
-    public function registerAction(Request $request, $token)
+    public function registerAction(Request $request, $token = '')
     {
         $repository = $this->getDoctrine()->getRepository('GPCoreBundle:Invitation');
         $invitation = $repository->findOneByConfirmationToken($token);
