@@ -56,30 +56,30 @@ class Project
     private $membersList;
 
     /**
-     * @var enum
+     * @var string
      *
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('Waiting validation')")
+     * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
 
     /**
-     * @var date
+     * @var \DateTime
      *
-     * @ORM\Column(name="begin_date", type="date")
+     * @ORM\Column(name="begin_date", type="datetime")
      */
     private $beginDate;
 
     /**
-     * @var date
+     * @var \DateTime
      *
-     * @ORM\Column(name="planned_end_date", type="date")
+     * @ORM\Column(name="planned_end_date", type="datetime")
      */
     private $plannedEndDate;
 
     /**
-     * @var date
+     * @var \DateTime
      *
-     * @ORM\Column(name="real_end_date", type="date")
+     * @ORM\Column(name="real_end_date", type="datetime", nullable=true)
      */
     private $realEndDate;
 
@@ -88,9 +88,8 @@ class Project
      */
     public function __construct()
     {
-        $this->beginDate = date("d- m -Y");
+        $this->beginDate = new \DateTime("now");
     }
-
 
     /**
      * Get id
@@ -199,7 +198,7 @@ class Project
     }
 
     /**
-     * @return enum
+     * @return string
      */
     public function getStatus()
     {
@@ -207,7 +206,7 @@ class Project
     }
 
     /**
-     * @param enum $status
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -215,7 +214,7 @@ class Project
     }
 
     /**
-     * @return date
+     * @return \DateTime
      */
     public function getBeginDate()
     {
@@ -223,7 +222,7 @@ class Project
     }
 
     /**
-     * @param date $beginDate
+     * @param \DateTime $beginDate
      */
     public function setBeginDate($beginDate)
     {
@@ -231,7 +230,7 @@ class Project
     }
 
     /**
-     * @return date
+     * @return \DateTime
      */
     public function getPlannedEndDate()
     {
@@ -239,7 +238,7 @@ class Project
     }
 
     /**
-     * @param date $plannedEndDate
+     * @param \DateTime $plannedEndDate
      */
     public function setPlannedEndDate($plannedEndDate)
     {
@@ -247,7 +246,7 @@ class Project
     }
 
     /**
-     * @return date
+     * @return \DateTime
      */
     public function getRealEndDate()
     {
@@ -255,7 +254,7 @@ class Project
     }
 
     /**
-     * @param date $realEndDate
+     * @param \DateTime $realEndDate
      */
     public function setRealEndDate($realEndDate)
     {

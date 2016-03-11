@@ -128,7 +128,7 @@ class Invitation
     /**
      * @var string $civility
      *
-     * @ORM\Column(name="civility", type="string", columnDefinition="enum('male', 'female')")
+     * @ORM\Column(name="civility", type="string", length=10)
      *
      * @Assert\NotBlank(message="Vous devez renseigner la civilité de l'utilisateur")
      */

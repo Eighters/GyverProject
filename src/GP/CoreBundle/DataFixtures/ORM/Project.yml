@@ -1,0 +1,36 @@
+GP\CoreBundle\Entity\Project:
+    project (template):
+        name: Project Sample
+        description: project description sample
+        status: Created
+        plannedEndDate: <dateTime("2025-01-01 23:59:59")>
+
+    gyver (extend project):
+        name: test new project
+        description: test project
+        status: Created
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    gyver (extend project):
+        name: Projet Gyver
+        description: Gyver project Yeah !
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    iris (extend project):
+        name: Projet Iris
+        description: Iris project Yeah !
+        status: In Progress
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    kiss (extend project):
+        name: Projet Kiss
+        description: Kiss project Yeah !
+        status: Finished
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    solid (extend project):
+        name: Projet Solid
+        description: Solid project Yeah !
+        status: Clotured
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
