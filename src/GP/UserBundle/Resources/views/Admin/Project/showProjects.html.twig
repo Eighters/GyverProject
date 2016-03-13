@@ -3,29 +3,61 @@
 {% block title %}Gestions des Projets{% endblock%}
 
 {% block underNavTitle %}Liste des Projets{% endblock %}
-{% block underNavText %}Vous avez {{ pagination.getTotalItemCount }} Projets{% endblock %}
+{% block underNavText %}Vous avez {{ pagination.getTotalItemCount }} Compagnies{% endblock %}
 
 {% block body %}
 
-    <div class="row">
+    <div class="row center">
+        <a href="#" class="waves-effect waves-light btn amber accent-4">
+            <i class="material-icons right">add_circle_outline</i>
+            Créer un nouveau Projet
+        </a>
+    </div>
 
-        {% for company in pagination %}
-            <div class="col s12 m6">
-                <div class="card">
-                    <div class="card teal darken-4 white-text">
-                        <div class="card-content">
-                            <h5 class="valign center-align center">
-                                <i class="material-icons medium">today</i>
-                                <br/>
-                                {{ company.name }}
-                            </h5>
+    <div class="row">
+        <ul class="collection">
+
+            {% for project in pagination %}
+                <li class="collection-item avatar">
+                    <i class="material-icons circle black">folder</i>
+                    <p class="title">{{ project.name }}</p>
+                    <p>Status: {{ project.status }}</p>
+                    <p>Description: {{ project.description }}</p>
+
+                    <div class="secondary-content">
+                        <div class="fixed-action-btn horizontal click-to-toggle">
+                            <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_show_project', {'id': project.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
+                                        <i class="material-icons">info</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                        <i class="material-icons ">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="card-content"></div>
-                </div>
-            </div>
-        {% endfor %}
+                </li>
+            {% endfor %}
 
+        </ul>
+    </div>
+
+    <div class="row">
         {{ knp_pagination_render(pagination) }}
     </div>
 

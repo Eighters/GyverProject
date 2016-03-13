@@ -22,8 +22,8 @@
         {# User End #}
 
         {# Company #}
-        <li {% if current_route == 'admin_show_companies'%}class="active"{% endif %}>
-            <a href="{{ path('admin_show_companies') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Company">
+        <li {% if current_route == 'admin_show_all_company' or current_route == 'admin_show_company' %}class="active"{% endif %}>
+            <a href="{{ path('admin_show_all_company') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Company">
                 <i class="material-icons left">business</i>
                 Company
             </a>
@@ -31,9 +31,9 @@
         {# Company End #}
 
         {# Project #}
-        <li {% if current_route == 'admin_show_project'%}class="active"{% endif %}>
-            <a href="{{ path('admin_show_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Projects">
-                <i class="material-icons left">today</i>
+        <li {% if current_route == 'admin_show_all_project'  or current_route == 'admin_show_project' %}class="active"{% endif %}>
+            <a href="{{ path('admin_show_all_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Projects">
+                <i class="material-icons left">folder</i>
                 Project
             </a>
         </li>

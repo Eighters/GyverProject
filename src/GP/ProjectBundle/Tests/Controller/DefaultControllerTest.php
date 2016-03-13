@@ -8,7 +8,6 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        $client = static::createClient();
 
     }
 }

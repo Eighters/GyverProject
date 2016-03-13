@@ -21,7 +21,7 @@ class AdminCompanyController extends Controller
     /**
      * Returns the list of companies registered in the application
      *
-     * @Route("/", name="admin_show_companies")
+     * @Route("/", name="admin_show_all_company")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Company:showCompanies.html.twig")
      */

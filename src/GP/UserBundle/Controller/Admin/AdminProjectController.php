@@ -13,15 +13,15 @@ use Symfony\Component\HttpFoundation\Request;
  * Class Admin Project Controller
  * @package GP\UserBundle\Controller
  *
- * @Route("/secure/admin")
+ * @Route("/secure/admin/project")
  */
 class AdminProjectController extends Controller
 {
 
     /**
-     * Returns all the projects
+     * Returns the list of companies registered in the application
      *
-     * @Route("/project", name="admin_show_project")
+     * @Route("/", name="admin_show_all_project")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Project:showProjects.html.twig")
      */
@@ -29,17 +29,37 @@ class AdminProjectController extends Controller
     {
         // Getting all users
         $em = $this->getDoctrine()->getManager();
-        $companies = $em->getRepository('GPCoreBundle:Company')->findAll();
+        $projects = $em->getRepository('GPCoreBundle:Project')->findAll();
 
         // Create a pagination
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $companies,
+            $projects,
             $request->query->getInt('page', 1),
             $this->container->getParameter( 'knp_paginator.page_range' )
         );
 
         // Return all users with KnpPaginator
         return array('pagination' => $pagination);
+    }
+
+    /**
+     * @Route("/{id}", name="admin_show_project")
+     * @Method("GET")
+     * @Template("GPUserBundle:Admin/Project:showProject.html.twig")
+     */
+    public function showCompanyAction($id)
+    {
+        // Searching requested project
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('GPCoreBundle:Project')->find($id);
+
+        // Checking if company exists
+        if (!$project) {
+            $this->addFlash('error', 'Projet introuvable');
+            return $this->redirectToRoute('admin_show_all_project');
+        }
+
+        return array('project' => $project);
     }
 }

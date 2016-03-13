@@ -7,59 +7,53 @@
 
 {% block body %}
 
+    <div class="row center">
+        <a href="#" class="waves-effect waves-light btn amber accent-4">
+            <i class="material-icons right">add_circle_outline</i>
+            Créer une nouvelle entreprise
+        </a>
+    </div>
+
     <div class="row">
+        <ul class="collection">
 
-        {% for company in pagination %}
-            <div class="col s4 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('assets/images/background.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">
-                        {{ company.name }}
-                        <a class="right btn-floating btn-large waves-effect waves-light amber accent-4">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </span>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ company.name }}<i class="material-icons right">close</i></span>
+            {% for company in pagination %}
+                <li class="collection-item avatar">
+                    <i class="material-icons circle black">business</i>
+                    <p class="title">{{ company.name }}</p>
+                    <p>{{ company.description }}</p>
 
-                        <hr>
-
-                        <table class="highlight responsive-table">
-                            <tr>
-                                <td>Date De création:</td>
-                                <td>31/12/2007</td>
-                            </tr>
-                            <tr>
-                                <td>Taille:</td>
-                                <td>5 utilisateurs</td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de projets en cours:</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de projets terminés:</td>
-                                <td>2</td>
-                            </tr>
-                        </table>
-
-                        <hr>
-
-                        <div class="center">
-                            <a href="{{ path('admin_show_company', {'id': company.id}) }}">
-                                Voir détails
+                    <div class="secondary-content">
+                        <div class="fixed-action-btn horizontal click-to-toggle">
+                            <a class="btn-floating btn-large waves-effect waves-light amber accent-4 tooltipped" data-position="right" data-delay="50" data-tooltip="Voir les actions">
+                                <i class="material-icons">more_vert</i>
                             </a>
-                        </div>
 
-                        <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_show_company', {'id': company.id}) }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
+                                        <i class="material-icons">info</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                        <i class="material-icons ">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-        {% endfor %}
+                </li>
+            {% endfor %}
+
+        </ul>
 
     </div>
 

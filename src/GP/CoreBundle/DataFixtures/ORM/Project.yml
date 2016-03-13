@@ -34,3 +34,33 @@ GP\CoreBundle\Entity\Project:
         description: Solid project Yeah !
         status: Clotured
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    test1 (extend project):
+        name: Projet test1
+        description: test1 project description ...
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    test2 (extend project):
+        name: Projet test2
+        description: test2 project description ...
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    test3 (extend project):
+        name: Projet test3
+        description: test3 project description ...
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    test4 (extend project):
+        name: Projet test4
+        description: test4 project description ...
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+
+    test5 (extend project):
+        name: Projet test5
+        description: test5 project description ...
+        status: Started
+        plannedEndDate: <dateTime("2020-01-01 20:00:00")>
