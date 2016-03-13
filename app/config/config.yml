@@ -48,6 +48,7 @@ twig:
   strict_variables: "%kernel.debug%"
   globals:
     application_name: %application_name%
+    support_address: %support_address%
 
 # Doctrine Configuration
 doctrine:

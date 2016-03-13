@@ -2,20 +2,16 @@
 
 {% block body %}
 
-    <p>
-        Hi <span style="font-weight:bold; font-size:16px;">{{ user.firstName }} {{ user.lastName }}</span>,
-        <br>
-        <br>
-        Your account on www.gyverproject.com has been deleted by administrator
-        <br>
-        <br>
-        If you have any question, please contact support team at gyver.project@gmail.com
-        <br>
-        <br>
-        Kind regards,
-        <br>
-        <br>
-        The Gyver Project team.
-    </p>
+    <div>
+        <p>Bonjour <span style="font-weight:bold; font-size:16px;">{{ user.firstName }} {{ user.lastName }}</span>,</p>
+
+        <p>Votre compte sur <a href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a> a été supprimé par un administrateur.</p>
+
+        <p>Si vous avez la moindre question, contacter le support sur "{{ support_address }}".</p>
+
+        <p>Cordialement,</p>
+
+        <p>L'équipe {{ application_name|capitalize }} Project.</p>
+    </div>
 
 {% endblock %}
