@@ -43,3 +43,4 @@ parameters:
     application_name: iris
     notification_sender_mail: gyver.project@gmail.com
     notification_bcc_mail: gyver.project@gmail.com
+    support_address: gyver.project@gmail.com
