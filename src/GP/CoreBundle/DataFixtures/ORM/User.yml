@@ -31,6 +31,16 @@ GP\CoreBundle\Entity\User:
         lastName: user
         company: [ '@company1' ]
 
+    michel_martin (extends user):
+        username: michel_martin
+        usernameCanonical: michel_martin
+        email: michel.martin@it-2m.com
+        emailCanonical: michel.martin@it-2m.com
+        roles: [ROLE_USER]
+        firstName: Michel
+        lastName: Martin
+        company: [ '@company1' ]
+
     chef_projet (extends user):
         username: chef_projet
         usernameCanonical: chef_projet
