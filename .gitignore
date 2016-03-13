@@ -35,3 +35,6 @@
 
 # Capifony local config
 app/config/deploy.rb
+
+# Fuck you insight !
+/.idea
