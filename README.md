@@ -25,17 +25,18 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 
 ## Documentation
 
-[Github Wiki](https://github.com/TechGameCrew/GyverProject/wiki)
-
-* [Symfony 2 Help & Documentation](app/Resources/doc/symfonyDoc.md)
-* [Manual Provisioning](app/Resources/doc/manual.md)
-* [Use Mailcatcher](app/Resources/doc/mail.md)
-* [Tests](app/Resources/doc/test.md)
-* [Docker Provisioning (Recommanded)](app/Resources/doc/docker.md)
+* [Wiki](https://github.com/TechGameCrew/GyverProject/wiki)
 * [F.A.Q](app/Resources/doc/faq.md)
+* [Symfony 2 Help & Documentation](app/Resources/doc/symfonyDoc.md)
+* [Tests](app/Resources/doc/test.md)
+* [Use Mailcatcher](app/Resources/doc/mail.md)
+
+**Setup & run Project:**
+
+* [Manual Provisioning 1/2](app/Resources/doc/manual.md)
+* [Manual Provisioning 2/2](app/Resources/doc/install.md)
+* [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 
 ## Licence
 
 Code released under [GLPv2](https://github.com/TechGameCrew/GyverProject/blob/master/LICENSE)
-
-test sign a commit with my gpg key x

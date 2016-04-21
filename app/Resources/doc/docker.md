@@ -1,34 +1,42 @@
 # GET STARTED WITH DOCKER :
 
-**Docker provisioning is Ready to work, follow this guide and read the fucking docker manual :D**
+**Docker provisioning is Ready to work, follow this guide and RTFDM (read the fucking docker manual)**
 
-More infos :
-[Docker Doc](https://docs.docker.com/)
+More Infos :
+[Docker Documentation](https://docs.docker.com/)
 
-**Need to update documentation for MAC OSX user.**
+##  Install Docker
+*   **Windaube & MAC OSX :**  
+    **Docker is no longer available for Windaube OS, you can try to use a REAL OS FOR REAL DEVELOPER**
+    **Need to update documentation for MAC OSX user.**
 
-## Install Docker (LINUX):
-
-* **Simply run this command :**  
-    ```
-    sudo apt-get update  
-    sudo apt-get install docker.io
-    ```
- 
-* **Check if Docker is installed :**  
-    ```
-    sudo docker -v
-    Docker version 1.6.2, build 7c8fca2
-    ```
-
-## Basic Commands:  
+*   **Linux :**
+    * **Simply run this command :**  
+        ```bash
+        sudo apt-get update
+        sudo apt-get install docker.io
+        ```
+        
+    * **Check if Docker is installed :**  
+        ```bash
+        sudo docker -v
+        Docker version 1.6.2, build 7c8fca2
+        ```
+        
+    * **Docker without sudo**  
+        To run docker command without sudo, you need to add your user (who has root privileges) to docker group  
+        ```bash
+        sudo usermod -aG docker <user_name>
+        ```
+        
+## DOCKER Basic Commands:  
 
 * **List images :**  
-    ```
+    ```bash
     docker images
     ```
  
-    ```
+    ```bash
     thibaut@thibaut-UX32VD:/home/app/docker/GyverProject (master)$  docker images
     REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
     app                 latest              5a8e4fe6db5c        7 hours ago         759.7 MB
@@ -36,44 +44,44 @@ More infos :
     ```
   
 * **List Current Running Container :**  
-    ```
+    ```bash
     docker ps
     ```
  
  Note if no container is started, this command return blank results.
  
 * **List all Container :**  
-    ```
+    ```bash
     docker ps -a
     ```
 
-    ```
+    ```bash
     thibaut@thibaut-UX32VD:/home/app/docker/GyverProject (master)$ docker ps -a
     CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                          NAMES
     7421597cd17d        app:latest          "/bin/bash"         7 hours ago         Up 12 minutes       999/tcp, 0.0.0.0:999->80/tcp   gyverproject    
     ```
 
 * **Delete Images :**  
-    ```
+    ```bash
     docker rmi <IMAGE ID>
     ```
  
  Note: You can't delete image used by active container.
  
 * **Delete Container**  
-    ```
+    ```bash
     docker rm <CONTAINER ID>
     ```
  
  Note: You can't delete running containers, stop it before !
  
 * **Stop Container**  
-    ```
+    ```bash
     docker stop <CONTAINER ID>
     ```
 
 * **Start Container**  
-    ```
+    ```bash
     docker start <CONTAINER ID>
     ```
   
@@ -81,36 +89,53 @@ More infos :
 
 ## Build GyverProject Images & Starting DEV container :  
 
-Before, you need to git clone clone the GyverProject repository & cd to the project.
+Once you have docker properly installed you can build your own Project images and run it inside container for development
 
-* **1° Build GyverProject image :**  
+* **Before, you need to git clone clone the GyverProject repository & cd to the project.**  
+    Use one this two commands, depending on what protocol you want to use.  
+    
+    ```bash
+    # Cloning repository
+    git clone https://github.com/TechGameCrew/GyverProject.git     --> use https protocol (Easy Way)
+    git clone git@github.com:TechGameCrew/GyverProject.git         --> use ssh protocol (need to generate & configure SSH Key before)
+    
+    # Cd to repository
+    cd GyverProject
     ```
+    
+* **1° Build GyverProject image :**  
+    ```bash
     docker build -t <Image Name> .
     ```
   
 * **2° Run container :**  
-    ```
+    ```bash
     docker run -ti -d -p 999:80 --name gyverproject -v /path/to/code/local:/home/app <Image Name>
     ```
  
- docker run option :
+    Run command option :
     * **-ti**: run container in interactive mode  
-    * **-d**: run container in daemon mode  
-    * **-p**: open port in container  
-    * **--name**: give a name to container  
-    * **-v**: mount shared directory inside container  
+    * **-d**: run container in daemon mode (persist in background)  
+    * **-p**: bind port (-p port-local:port-docker)  
+    * **--name**: give a name to your container  
+    * **-v**: mount shared directory inside container (-v local/path:docker/path)  
     * **Image Name**: can be just image name like 'app' or image name & tag like 'app:latest'   
-    The image name can be set when you build your image with `docker build -t imageName .` 
+    The image name can be set when you build your image with  
+    `docker build -t <Image Name> .`  
  
 * **3° Connect to running container :**  
-    ```
+    ```bash
+    # list running container
+    docker ps
+    # Connect to it
     docker exec -ti <CONTAINER ID> bash -l
     ```
 
- You are now inside your docker container with root user.
+    You are now inside your docker container with root user.
  
 * **4° Build the Project :**  
-    ```
+    ```bash
+    # this will execute a sh script
     ./entrypoint.sh
     ```
 
@@ -119,11 +144,11 @@ Before, you need to git clone clone the GyverProject repository & cd to the proj
 ### Once your have successfully build the project one time, when you restart your computer, you just need to :
  
 * **Start container :**  
-    ```
+    ```bash
     docker start <CONTAINER ID>
     ```
 
 * **Run starting script :**  
-    ```
+    ```bash
     docker exec -ti <CONTAINER ID> bash -l ./gyver.sh
     ```
