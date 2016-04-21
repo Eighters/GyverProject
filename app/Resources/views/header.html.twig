@@ -53,16 +53,16 @@
                 </li>
 
                 {# Projects #}
-                <li {% if current_route == 'show_projects' %}class="active" {% endif %}>
-                    <a href="{{ path('show_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Project">
+                <li {% if current_route == 'show_all_projects' %}class="active" {% endif %}>
+                    <a href="{{ path('show_all_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Project">
                         <i class="material-icons left">folder</i>
                         Projects
                     </a>
                 </li>
 
                 {# Company #}
-                <li {% if current_route == 'company_index' %}class="active" {% endif %}>
-                    <a href="{{ path('company_index') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Company">
+                <li {% if current_route == 'show_all_companies' %}class="active" {% endif %}>
+                    <a href="{{ path('show_all_companies') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Company">
                         <i class="material-icons left">business</i>
                         Company
                     </a>

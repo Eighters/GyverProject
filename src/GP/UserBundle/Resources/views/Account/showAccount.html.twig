@@ -66,7 +66,11 @@
                     {% else %}
                         <ul>
                             {% for company in user.company %}
-                                <li>{{ company.name }}</li>
+                                <li>
+                                    <a href="{{ path('show_company', {'id': company.id}) }}">
+                                        {{ company.name }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     {% endif %}

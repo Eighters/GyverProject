@@ -3,10 +3,10 @@ GP\CoreBundle\Entity\Company:
         name: Company Sample
         description: compagny sample description
 
-    company1 (extends companySample):
+    it2M (extends companySample):
         name: IT2M Consultant
 
-    company2 (extends companySample):
+    institutg4 (extends companySample):
         name: Institut G4
 
     company3 (extends companySample):

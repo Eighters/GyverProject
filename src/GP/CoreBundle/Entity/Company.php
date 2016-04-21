@@ -103,5 +103,4 @@ class Company
     {
         $this->description = $description;
     }
-
 }

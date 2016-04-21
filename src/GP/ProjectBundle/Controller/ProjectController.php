@@ -16,9 +16,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class ProjectController extends Controller
 {
     /**
-     * @Route("/", name="show_projects")
-     * @Method("GET")
+     * @Route("/", name="show_all_projects")
      *
+     * @Method("GET")
      * @Template()
      */
     public function showProjectsAction()
@@ -31,7 +31,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="project_show")
+     * @Route("/{id}", name="show_project")
      * @Method("GET")
      * @Template()
      */
@@ -44,10 +44,9 @@ class ProjectController extends Controller
         // Checking if project exists
         if (!$project) {
             $this->addFlash('error', 'Projet introuvable');
-            return $this->redirectToRoute('show_projects');
+            return $this->redirectToRoute('show_all_projects');
         }
 
         return array('project' => $project);
     }
-
 }

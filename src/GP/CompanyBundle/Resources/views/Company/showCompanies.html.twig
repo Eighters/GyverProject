@@ -1,0 +1,61 @@
+{% extends 'layout_connected.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock%}
+
+{% block body %}
+
+    <div class="row">
+        {% for company in companies %}
+            <div class="col s6 m4 l3">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ asset('assets/images/admin/company_background.png') }}">
+                    </div>
+
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            {{ company.name }}
+                            <a class="right btn-floating btn-large waves-effect waves-light amber accent-4">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ company.name }}<i class="material-icons right">close</i></span>
+
+                        <hr>
+
+                        <table class="highlight responsive-table">
+                            <tr>
+                                <td>Date De création:</td>
+                                <td>31/12/2007</td>
+                            </tr>
+                            <tr>
+                                <td>Taille:</td>
+                                <td>5 utilisateurs</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre de projets en cours:</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre de projets terminés:</td>
+                                <td>2</td>
+                            </tr>
+                        </table>
+
+                        <hr>
+
+                        <div class="row center-align">
+                            <a class="waves-effect waves-light btn amber accent-4" href="{{ path('show_company', {'id': company.id}) }}">
+                                Voir Détails
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -29,7 +29,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_ADMIN]
         firstName: administrator
         lastName: user
-        company: [ '@company1' ]
+        company: [ '@it2M' ]
 
     michel_martin (extends user):
         username: michel_martin
@@ -39,7 +39,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Michel
         lastName: Martin
-        company: [ '@company1' ]
+        company: [ '@it2M' ]
 
     chef_projet (extends user):
         username: chef_projet
@@ -49,7 +49,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Carl
         lastName: De Sutter
-        company: [ '@company1' ]
+        company: [ '@it2M' ]
 
     consultant (extends user):
         username: consultant
@@ -59,7 +59,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: ALexandre
         lastName: Jacob
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     developpeur (extends user):
         username: developpeur
@@ -69,7 +69,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Matthieu
         lastName: Rodraney
-        company: [ '@company1' ]
+        company: [ '@it2M' ]
 
     collaborateur (extends user):
         username: collaborateur
@@ -79,7 +79,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Carine
         lastName: Leguellec
-        company: [ '@company1', '@company3' ]
+        company: [ '@it2M', '@company3' ]
 
     client (extends user):
         username: client
@@ -105,7 +105,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Thibaut
         lastName: Gauvin
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     rkoci (extends user):
         username: rkoci
@@ -116,7 +116,7 @@ GP\CoreBundle\Entity\User:
         civility: female
         firstName: Rémi
         lastName: Koci
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     guillaume (extends user):
         username: guillaume
@@ -126,7 +126,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Guillaume
         lastName: Roche
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     karim (extends user):
         username: karim
@@ -136,7 +136,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Karim
         lastName: Tayeb
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     ralph (extends user):
         username: ralph
@@ -146,7 +146,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Ralph
         lastName: Zogo
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     rowmain (extends user):
         username: rowmain
@@ -156,7 +156,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Dalleau
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     romain (extends user):
         username: romain
@@ -166,7 +166,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Lesniak
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     brandon (extends user):
         username: brandon
@@ -176,7 +176,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Brandon
         lastName: Beurion
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     robin (extends user):
         username: robin
@@ -186,7 +186,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Robin
         lastName: Billy
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]
 
     alicia (extends user):
         username: alicia
@@ -197,4 +197,4 @@ GP\CoreBundle\Entity\User:
         civility: female
         firstName: Alicia
         lastName: Belkovskaya
-        company: [ '@company1', '@company2' ]
+        company: [ '@it2M', '@institutg4' ]

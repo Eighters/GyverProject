@@ -4,62 +4,74 @@ GP\CoreBundle\Entity\Project:
         description: project description sample
         status: Created
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
+        customerCompany: '@institutg4'
+        supplierCompany: '@it2M'
 
-    gyver (extend project):
+    testproject (extends project):
         name: test new project
         description: test project
         status: Created
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
-    gyver (extend project):
+    gyver (extends project):
         name: Projet Gyver
         description: Gyver project Yeah !
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@it2M'
+        supplierCompany: '@institutg4'
 
-    iris (extend project):
+    iris (extends project):
         name: Projet Iris
         description: Iris project Yeah !
         status: In Progress
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@it2M'
+        supplierCompany: '@institutg4'
 
-    kiss (extend project):
+    kiss (extends project):
         name: Projet Kiss
         description: Kiss project Yeah !
         status: Finished
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@company3'
 
-    solid (extend project):
+    solid (extends project):
         name: Projet Solid
         description: Solid project Yeah !
         status: Clotured
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@company3'
 
-    test1 (extend project):
+
+    test1 (extends project):
         name: Projet test1
         description: test1 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@company4'
 
-    test2 (extend project):
+    test2 (extends project):
         name: Projet test2
         description: test2 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@company5'
 
-    test3 (extend project):
+    test3 (extends project):
         name: Projet test3
         description: test3 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
+        customerCompany: '@company6'
 
-    test4 (extend project):
+    test4 (extends project):
         name: Projet test4
         description: test4 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
-    test5 (extend project):
+    test5 (extends project):
         name: Projet test5
         description: test5 project description ...
         status: Started

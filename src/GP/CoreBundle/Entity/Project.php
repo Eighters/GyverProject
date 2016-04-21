@@ -36,9 +36,16 @@ class Project
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="id", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\JoinColumn(name="customer_company", referencedColumnName="id", nullable=false)
      */
-    private $company;
+    private $customerCompany;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\JoinColumn(name="supplier_company", referencedColumnName="id", nullable=false)
+     */
+    private $supplierCompany;
 
     /**
      * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
@@ -134,19 +141,49 @@ class Project
     }
 
     /**
-     * @return mixed
+     * Get customer company
+     *
+     * @return Company
      */
-    public function getCompany()
+    public function getCustomerCompany()
     {
-        return $this->company;
+        return $this->customerCompany;
     }
 
     /**
-     * @param mixed $company
+     * Set customer company
+     *
+     * @param Company $customerCompany
+     * @return Project
      */
-    public function setCompany($company)
+    public function setCustomerCompany(Company $customerCompany)
     {
-        $this->company = $company;
+        $this->customerCompany = $customerCompany;
+
+        return $this;
+    }
+
+    /**
+     * Get supplier company
+     *
+     * @return Company
+     */
+    public function getSupplierCompany()
+    {
+        return $this->supplierCompany;
+    }
+
+    /**
+     * Set supplier company
+     *
+     * @param Company $supplierCompany
+     * @return Project
+     */
+    public function setSupplierCompany(Company $supplierCompany)
+    {
+        $this->supplierCompany = $supplierCompany;
+
+        return $this;
     }
 
     /**
@@ -260,8 +297,5 @@ class Project
     {
         $this->realEndDate = $realEndDate;
     }
-
-
-
 }
 
