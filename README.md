@@ -37,6 +37,10 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 * [Manual Provisioning 2/2](app/Resources/doc/install.md)
 * [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 
+**Update Project:**
+
+* [Use Mailcatcher](app/Resources/doc/update.md)
+
 ## Licence
 
 Code released under [GLPv2](https://github.com/TechGameCrew/GyverProject/blob/master/LICENSE)

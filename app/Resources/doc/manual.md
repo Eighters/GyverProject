@@ -2,7 +2,7 @@
 
 This commands was tested on Ubuntu 14.04 LTS and also work on other linux system like Debian or Linux Mint
 
-This will help to setup your local environement. After you need to build & run the project here: [Build & Run](installProject.md)
+This will help to setup your local environement. After you need to build & run the project here: [Build & Run](install.md)
 
 ## Build your local environment:
 
