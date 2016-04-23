@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AdminCompanyController extends Controller
 {
-
     /**
      * Returns the list of companies registered in the application
      *
@@ -44,7 +43,7 @@ class AdminCompanyController extends Controller
     }
 
     /**
-     * Display full data of a given companies
+     * Display full data of a given company
      *
      * @Route("/{id}", name="admin_show_company")
      * @Method("GET")
