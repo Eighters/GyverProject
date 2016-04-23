@@ -1,4 +1,4 @@
-    {% extends 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block title %}Profil Utilisateur{% endblock %}
 
@@ -92,7 +92,11 @@
                     {% else %}
                         <ul>
                             {% for company in user.company %}
-                                <li>{{ company.name }}</li>
+                                <li>
+                                    <a href="{{ path('admin_show_company', {'id': company.id}) }}">
+                                        {{ company.name }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     {% endif %}

@@ -2,6 +2,7 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
+use GP\CoreBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -27,7 +28,7 @@ class AdminCompanyController extends Controller
      */
     public function showCompaniesAction(Request $request)
     {
-        // Getting all users
+        // Getting all companies
         $em = $this->getDoctrine()->getManager();
         $companies = $em->getRepository('GPCoreBundle:Company')->findAll();
 
@@ -39,27 +40,36 @@ class AdminCompanyController extends Controller
             $this->container->getParameter( 'knp_paginator.page_range' )
         );
 
-        // Return all users with KnpPaginator
         return array('pagination' => $pagination);
     }
 
     /**
+     * Display full data of a given companies
+     *
      * @Route("/{id}", name="admin_show_company")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Company:showCompany.html.twig")
      */
     public function showCompanyAction($id)
     {
-        // Searching requested project
+        // Searching requested company
         $em = $this->getDoctrine()->getManager();
         $company = $em->getRepository('GPCoreBundle:Company')->find($id);
 
         // Checking if company exists
         if (!$company) {
             $this->addFlash('error', 'Compagnie introuvable');
-            return $this->redirectToRoute('admin_show_companies');
+            return $this->redirectToRoute('admin_show_all_company');
         }
 
-        return array('company' => $company);
+        // Get company customer & supplier projects
+        $customerProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::CUSTOMER);
+        $supplierProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::SUPPLIER);
+
+        return array(
+            'company' => $company,
+            'customerProjects' => $customerProjects,
+            'supplierProjects' => $supplierProjects
+        );
     }
 }

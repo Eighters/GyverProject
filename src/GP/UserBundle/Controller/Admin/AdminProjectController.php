@@ -25,9 +25,9 @@ class AdminProjectController extends Controller
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Project:showProjects.html.twig")
      */
-    public function showCompaniesAction(Request $request)
+    public function showProjectsAction(Request $request)
     {
-        // Getting all users
+        // Getting all project
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('GPCoreBundle:Project')->findAll();
 
@@ -39,22 +39,23 @@ class AdminProjectController extends Controller
             $this->container->getParameter( 'knp_paginator.page_range' )
         );
 
-        // Return all users with KnpPaginator
         return array('pagination' => $pagination);
     }
 
     /**
+     * Display full data of given project
+     *
      * @Route("/{id}", name="admin_show_project")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/Project:showProject.html.twig")
      */
-    public function showCompanyAction($id)
+    public function showProjectAction($id)
     {
         // Searching requested project
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('GPCoreBundle:Project')->find($id);
 
-        // Checking if company exists
+        // Checking if project exists
         if (!$project) {
             $this->addFlash('error', 'Projet introuvable');
             return $this->redirectToRoute('admin_show_all_project');
