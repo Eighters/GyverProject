@@ -1,3 +1,20 @@
 .invitation {
   margin-bottom: 0;
 }
+
+/* admin under nav menu */
+
+.under-nav {
+  padding: $padding-basic *2 $padding-basic * 4;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 32px;
+    color: white;
+  }
+
+  p {
+    font-size: 20px;
+    color: #b2ebf2;
+  }
+}

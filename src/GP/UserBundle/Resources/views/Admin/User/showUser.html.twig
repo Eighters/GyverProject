@@ -8,7 +8,6 @@
 {% block body %}
 
     <div class="row">
-
         <div class="col s12 m6">
             <div class="card">
                 <div class="card blue-grey lighten-2 white-text">
@@ -103,7 +102,18 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-content">
+                    <a href="{{ path('admin_show_all_user') }}" class="waves-effect waves-light btn amber accent-4 tooltipped" data-position="top" data-delay="50" data-tooltip="Retour">
+                        <i class="material-icons">chevron_left</i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

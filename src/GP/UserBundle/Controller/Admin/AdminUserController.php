@@ -13,27 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
  * Class Admin User Controller
  * @package GP\UserBundle\Controller
  *
- * @Route("/secure/admin")
+ * @Route("/secure/admin/user")
  */
 class AdminUserController extends Controller
 {
-
-    /**
-     * Render Admin Dashboard
-     *
-     * @Route("/", name="admin_dashboard")
-     * @Method("GET")
-     * @Template("GPUserBundle:Admin:index.html.twig")
-     */
-    public function indexAction(Request $request)
-    {
-        return array();
-    }
-
     /**
      * Returns the list of application users
      *
-     * @Route("/user", name="admin_show_all_user")
+     * @Route("/", name="admin_show_all_user")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/User:showUsers.html.twig")
      */
@@ -58,7 +45,7 @@ class AdminUserController extends Controller
     /**
      * Return the profile of a specific user
      *
-     * @Route("/user/{id}", name="admin_show_user")
+     * @Route("/{id}", name="admin_show_user")
      * @Method("GET")
      * @Template("GPUserBundle:Admin/User:showUser.html.twig")
      */
@@ -82,7 +69,7 @@ class AdminUserController extends Controller
      * Delete the specified user from the database.
      * This is a complete deletion, no turning back available
      *
-     * @Route("/user/{id}/delete", name="admin_delete_user")
+     * @Route("/{id}/delete", name="admin_delete_user")
      * @Method("DELETE")
      */
     public function deleteUserAction($id)
@@ -122,7 +109,7 @@ class AdminUserController extends Controller
     /**
      * Archive a given user. He can be reactivated later.
      *
-     * @Route("/user/{id}/disable", name="admin_disable_user")
+     * @Route("/{id}/disable", name="admin_disable_user")
      * @Method("GET|POST")
      */
     public function archiveUserAction($id)
@@ -163,7 +150,7 @@ class AdminUserController extends Controller
     /**
      * Reactive a given user.
      *
-     * @Route("/user/{id}/activate", name="admin_activate_user")
+     * @Route("/{id}/activate", name="admin_activate_user")
      * @Method("GET|POST")
      */
     public function activateUserAction($id)

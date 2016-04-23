@@ -17,22 +17,22 @@
             {% include '::header_admin.html.twig' %}
         {% endblock %}
 
+        <div class="under-nav col s12 grey darken-1">
+            <h4 class="white-text">{% block underNavTitle %}Titre{% endblock %}</h4>
+            <p class="white-text text-accent-1">{% block underNavText %}Description{% endblock %}</p>
+        </div>
+
         <div class="row">
-            <div class="under-nav col s12 grey darken-1">
-                <h4 class="white-text">{% block underNavTitle %}Titre{% endblock %}</h4>
-                <p class="white-text text-accent-1">{% block underNavText %}Description{% endblock %}</p>
+            <div class="col m12">
+                {% block flashMessage %}
+                    {% include '::flashMessage.html.twig' %}
+                {% endblock %}
+
+                {# Body Block #}
+                {% block body %}{% endblock %}
+                {# End Body #}
             </div>
         </div>
-
-        {% block flashMessage %}
-            {% include '::flashMessage.html.twig' %}
-        {% endblock %}
-
-        {# Body Block #}
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
-        {# End Body #}
 
         {% block javascripts %}
             {% include '::javascripts.html.twig' %}

@@ -12,7 +12,6 @@ use GP\CoreBundle\Tests\BaseTestCase;
  */
 class AdminUserControllerTest extends BaseTestCase
 {
-
     /**
      * Test only admin can access admin dashboard page
      *
@@ -62,10 +61,10 @@ class AdminUserControllerTest extends BaseTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the admin manage user page');
 
-        $this->assertHtmlContains($this->crawler, 'Gestion des utilisateurs', 'Admin should see the manage user page right title');
+        $this->assertHtmlContains($this->crawler, 'Liste des Utilisateurs:', 'Admin should see the manage user page right title');
 
         $totalUser = $this->getTotalUser($client);
-        $this->assertHtmlContains($this->crawler, 'Vous avez ' . $totalUser . ' utilisateurs', 'Admin should see ' . $totalUser . ' users listed in the manage user page');
+        $this->assertHtmlContains($this->crawler, 'Vous avez ' . $totalUser . ' Utilisateurs.', 'Admin should see ' . $totalUser . ' users listed in the manage user page');
     }
 
     /**
@@ -221,5 +220,4 @@ class AdminUserControllerTest extends BaseTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertFlashMessageContains($this->crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he try to activate a NOT FOUND user');
     }
-
 }
