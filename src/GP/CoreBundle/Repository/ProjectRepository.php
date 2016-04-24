@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use GP\CoreBundle\Entity\Company;
 
 /**
- * ProjectRepositoryZ
+ * Project Repository
  */
 class ProjectRepository extends EntityRepository
 {

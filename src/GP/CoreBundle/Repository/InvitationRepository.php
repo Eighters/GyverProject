@@ -5,7 +5,7 @@ namespace GP\CoreBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * InvitationRepository
+ * Invitation Repository
  */
 class InvitationRepository extends EntityRepository
 {
