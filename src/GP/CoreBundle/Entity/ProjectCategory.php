@@ -8,8 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * ProjectCategory
  *
- * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Table(name="project_category", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
+ * @ORM\Entity(repositoryClass="GP\CoreBundle\Repository\ProjectCategoryRepository")
  */
 class ProjectCategory
 {
@@ -26,6 +26,8 @@ class ProjectCategory
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez spécifier un nom de catégorie projet")
      */
     private $name;
 

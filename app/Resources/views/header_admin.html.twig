@@ -13,7 +13,7 @@
         {# Dashboard End #}
 
         {# User #}
-        <li {% if current_route == 'admin_show_all_user' or current_route == 'admin_show_user' %}class="active"{% endif %}>
+        <li {% if current_route == 'admin_show_all_user' or current_route == 'admin_show_user' or current_route == 'admin_invitation_new' or current_route == 'admin_show_invitation' %}class="active"{% endif %}>
             <a href="{{ path('admin_show_all_user') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage User">
                 <i class="material-icons left">group</i>
                 User
@@ -31,7 +31,7 @@
         {# Company End #}
 
         {# Project #}
-        <li {% if current_route == 'admin_show_all_project'  or current_route == 'admin_show_project' %}class="active"{% endif %}>
+        <li {% if current_route == 'admin_show_all_project'  or current_route == 'admin_show_project' or current_route == 'admin_show_all_project_categories' or current_route == 'admin_create_project_category' %}class="active"{% endif %}>
             <a href="{{ path('admin_show_all_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Projects">
                 <i class="material-icons left">folder</i>
                 Project

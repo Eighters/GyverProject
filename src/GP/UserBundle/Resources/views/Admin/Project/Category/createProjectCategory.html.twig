@@ -1,0 +1,108 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Catégories Projet{% endblock%}
+
+{% block underNavTitle %}Nouvelle Catégorie Projet: {% endblock %}
+{% block underNavText %}Veuillez Remplir le formulaire suivant{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col m10 offset-m1">
+            <div class="card">
+                <div id="createProjectCategory" class="card-content">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="input-field col s6">
+                                {{ form_widget(form.name) }}
+                                {{ form_label(form.name) }}
+
+                                {% if not form.name.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.name) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="input-field col s6">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p>Catégorie Globale ?</p>
+                                    </div>
+
+                                    <div class="col s6">
+                                        {{ form_widget(form.global) }}
+                                    </div>
+                                </div>
+
+                                {% if not form.global.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.global) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div class="col s12">
+                                    {{ form_label(form.company) }}
+                                </div>
+
+                                <br><br>
+
+                                <div class="col s12">
+                                    {{ form_widget(form.company) }}
+                                </div>
+
+                                {% if not form.company.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.company) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {#{{ form_row(form) }}#}
+
+                        <div class="center-align">
+                            <br>
+
+                            <button class="btn waves-effect waves-light cyan darken-2" type="submit">
+                                Enregistrer
+                            </button>
+
+                            <a href="{{ path("admin_show_all_project_categories") }}" class="btn waves-effect waves-light amber accent-4">
+                                Retour
+                            </a>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var globalInput = "input[name='new_project_category["+ '{{ form.global.vars.name }}' +"]']";
+        var selectInput = document.getElementById('new_project_category_company');
+
+        // On Change
+        $(globalInput).change(handleGlobalInputChange);
+
+        // Function
+        function handleGlobalInputChange() {
+            var globalInputValue =  $(globalInput + ':checked').val();
+
+            if (globalInputValue == 1) {
+                selectInput.setAttribute("disabled", "disabled");
+            } else {
+                selectInput.removeAttribute("disabled");
+            }
+        }
+    </script>
+{% endblock %}

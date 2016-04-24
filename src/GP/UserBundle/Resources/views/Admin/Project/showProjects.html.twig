@@ -13,15 +13,14 @@
             Créer un nouveau Projet
         </a>
 
-        <a href="#" class="waves-effect waves-light btn">
+        <a href="{{ path("admin_show_all_project_categories") }}" class="waves-effect waves-light btn">
             <i class="material-icons right">assignment</i>
-            Gérer les catégories Project
+            Gérer les catégories Projet
         </a>
     </div>
 
     <div class="row">
         <ul class="collection">
-
             {% for project in pagination %}
                 <li class="collection-item avatar">
                     <i class="material-icons circle black">folder</i>
@@ -58,7 +57,6 @@
                     </div>
                 </li>
             {% endfor %}
-
         </ul>
     </div>
 

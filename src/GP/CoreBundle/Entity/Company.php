@@ -10,7 +10,7 @@ use GP\CoreBundle\Entity\ProjectCategory;
 /**
  * Company
  *
- * @ORM\Table(name="company")
+ * @ORM\Table(name="company", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
  * @ORM\Entity(repositoryClass="GP\CoreBundle\Repository\CompanyRepository")
  */
 class Company
@@ -72,7 +72,7 @@ class Company
      *
      * @var ProjectCategory
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="company", cascade={"persist"})
      */
     private $projectCategory;
 
