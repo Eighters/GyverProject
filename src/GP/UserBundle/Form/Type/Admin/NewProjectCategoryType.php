@@ -2,10 +2,10 @@
 
 namespace GP\UserBundle\Form\Type\Admin;
 
-use GP\CoreBundle\Repository\CompanyRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use GP\CoreBundle\Entity\Company;
 
 /**
  * Class NewProjectCategoryType
@@ -14,13 +14,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
  */
 class NewProjectCategoryType extends AbstractType
 {
-    private $companyRepository;
-
-    public function __construct(CompanyRepository $companyRepository)
-    {
-        $this->companyRepository = $companyRepository;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -40,7 +33,7 @@ class NewProjectCategoryType extends AbstractType
             ->add('company', EntityType::class, array(
                 'class' => 'GP\CoreBundle\Entity\Company',
                 'choices_as_values' => true,
-                'choice_label' => function ($company) {
+                'choice_label' => function (Company $company) {
                     return $company->getName();
                 }
             ))

@@ -54,9 +54,7 @@ class AdminProjectCategoryController extends Controller
     public function createProjectCategoryAction(Request $request)
     {
         $projectCategory = new ProjectCategory();
-
-        $companyRepository = $this->getDoctrine()->getManager()->getRepository('GPCoreBundle:Company');
-        $form = $this->createForm(new NewProjectCategoryType($companyRepository), $projectCategory);
+        $form = $this->createForm(new NewProjectCategoryType(), $projectCategory);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
