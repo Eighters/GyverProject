@@ -57,6 +57,7 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         if ($this->container->getParameter('kernel.environment') == 'test' || $this->container->getParameter('kernel.environment') == 'dev') {
             $files = array(
                 __DIR__.'/Company.yml',
+                __DIR__.'/ProjectCategory.yml',
                 __DIR__.'/User.yml',
                 __DIR__.'/Email.yml',
                 __DIR__.'/PhoneNumber.yml',

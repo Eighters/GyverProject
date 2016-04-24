@@ -39,7 +39,7 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 
 **Update Project:**
 
-* [Use Mailcatcher](app/Resources/doc/update.md)
+* [Update Project](app/Resources/doc/update.md)
 
 ## Licence
 

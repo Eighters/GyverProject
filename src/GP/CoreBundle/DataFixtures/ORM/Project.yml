@@ -4,7 +4,7 @@ GP\CoreBundle\Entity\Project:
         description: project description sample
         status: Created
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
-        customerCompany: '@institutg4'
+        customerCompany: '@institutG4'
         supplierCompany: '@it2M'
 
     testproject (extends project):
@@ -19,7 +19,7 @@ GP\CoreBundle\Entity\Project:
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
         customerCompany: '@it2M'
-        supplierCompany: '@institutg4'
+        supplierCompany: '@institutG4'
 
     iris (extends project):
         name: Projet Iris
@@ -27,7 +27,7 @@ GP\CoreBundle\Entity\Project:
         status: In Progress
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
         customerCompany: '@it2M'
-        supplierCompany: '@institutg4'
+        supplierCompany: '@institutG4'
 
     kiss (extends project):
         name: Projet Kiss

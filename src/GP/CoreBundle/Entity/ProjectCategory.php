@@ -3,6 +3,7 @@
 namespace GP\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ProjectCategory
@@ -29,7 +30,10 @@ class ProjectCategory
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="id", cascade={"persist"})
+     * @var Company
+     *
+     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="projectCategory")
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     private $company;
 
@@ -38,8 +42,7 @@ class ProjectCategory
      *
      * @ORM\Column(name="is_global", type="boolean")
      */
-    private $isGlobal;
-
+    private $global;
 
     /**
      * Get id
@@ -49,20 +52,6 @@ class ProjectCategory
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return ProjectCategory
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -76,15 +65,14 @@ class ProjectCategory
     }
 
     /**
-     * Set company
+     * Set name
      *
-     * @param integer $company
-     *
+     * @param string $name
      * @return ProjectCategory
      */
-    public function setCompany($company)
+    public function setName($name)
     {
-        $this->company = $company;
+        $this->name = $name;
 
         return $this;
     }
@@ -100,19 +88,38 @@ class ProjectCategory
     }
 
     /**
-     * @return boolean
+     * Set company
+     *
+     * @param integer $company
+     * @return ProjectCategory
      */
-    public function isIsGlobal()
+    public function setCompany($company)
     {
-        return $this->isGlobal;
+        $this->company = $company;
+
+        return $this;
     }
 
     /**
-     * @param boolean $isGlobal
+     * Get global
+     *
+     * @return boolean
      */
-    public function setIsGlobal($isGlobal)
+    public function isGlobal()
     {
-        $this->isGlobal = $isGlobal;
+        return $this->global;
+    }
+
+    /**
+     * Set global
+     *
+     * @param boolean $global
+     * @return ProjectCategory
+     */
+    public function setGlobal($global)
+    {
+        $this->global = $global;
+
+        return $this;
     }
 }
-

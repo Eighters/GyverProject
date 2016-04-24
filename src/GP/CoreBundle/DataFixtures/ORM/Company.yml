@@ -2,11 +2,12 @@ GP\CoreBundle\Entity\Company:
     companySample (template):
         name: Company Sample
         description: compagny sample description
+        creationDate: <dateTime("2015-01-01 12:00:00")>
 
     it2M (extends companySample):
         name: IT2M Consultant
 
-    institutg4 (extends companySample):
+    institutG4 (extends companySample):
         name: Institut G4
 
     company3 (extends companySample):

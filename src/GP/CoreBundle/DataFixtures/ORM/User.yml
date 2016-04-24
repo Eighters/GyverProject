@@ -59,7 +59,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: ALexandre
         lastName: Jacob
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     developpeur (extends user):
         username: developpeur
@@ -105,7 +105,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Thibaut
         lastName: Gauvin
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     rkoci (extends user):
         username: rkoci
@@ -116,7 +116,7 @@ GP\CoreBundle\Entity\User:
         civility: female
         firstName: Rémi
         lastName: Koci
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     guillaume (extends user):
         username: guillaume
@@ -126,7 +126,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Guillaume
         lastName: Roche
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     karim (extends user):
         username: karim
@@ -136,7 +136,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Karim
         lastName: Tayeb
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     ralph (extends user):
         username: ralph
@@ -146,7 +146,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Ralph
         lastName: Zogo
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     rowmain (extends user):
         username: rowmain
@@ -156,7 +156,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Dalleau
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     romain (extends user):
         username: romain
@@ -166,7 +166,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Romain
         lastName: Lesniak
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     brandon (extends user):
         username: brandon
@@ -176,7 +176,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Brandon
         lastName: Beurion
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     robin (extends user):
         username: robin
@@ -186,7 +186,7 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_USER]
         firstName: Robin
         lastName: Billy
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]
 
     alicia (extends user):
         username: alicia
@@ -197,4 +197,4 @@ GP\CoreBundle\Entity\User:
         civility: female
         firstName: Alicia
         lastName: Belkovskaya
-        company: [ '@it2M', '@institutg4' ]
+        company: [ '@it2M', '@institutG4' ]

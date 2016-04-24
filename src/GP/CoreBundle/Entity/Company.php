@@ -5,6 +5,8 @@ namespace GP\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use GP\CoreBundle\Entity\ProjectCategory;
+
 /**
  * Company
  *
@@ -23,6 +25,8 @@ class Company
     private $id;
 
     /**
+     * Company Name
+     *
      * @var string
      *
      * @ORM\Column(name="name", type="string")
@@ -34,11 +38,12 @@ class Company
      *      minMessage = "Company name must be at least {{ limit }} characters long",
      *      maxMessage = "Company name cannot be longer than {{ limit }} characters"
      * )
-     *
      */
     private $name;
 
     /**
+     * Company Description
+     *
      * @var string
      *
      * @ORM\Column(name="description", type="text")
@@ -50,9 +55,34 @@ class Company
      *      minMessage = "Company description must be at least {{ limit }} characters long",
      *      maxMessage = "Company description cannot be longer than {{ limit }} characters"
      * )
-     *
      */
     private $description;
+
+    /**
+     * Company Creation Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetime")
+     */
+    private $creationDate;
+
+    /**
+     * The ProjectCategory associated to the Company
+     *
+     * @var ProjectCategory
+     *
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
+     */
+    private $projectCategory;
+
+    /**
+     * Company constructor.
+     */
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime("now");
+    }
 
     /**
      * Get id
@@ -62,20 +92,6 @@ class Company
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Company
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -89,6 +105,21 @@ class Company
     }
 
     /**
+     * Set name
+     *
+     * @param string $name
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
      * @return string
      */
     public function getDescription()
@@ -97,10 +128,61 @@ class Company
     }
 
     /**
+     * Set description
+     *
      * @param string $description
+     * @return Company
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get creation date
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set creation date
+     *
+     * @param \DateTime $creationDate
+     * @return Company
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get ProjectCategory
+     *
+     * @return ProjectCategory
+     */
+    public function getProjectCategory()
+    {
+        return $this->projectCategory;
+    }
+
+    /**
+     * Set ProjectCategory
+     *
+     * @param ProjectCategory $projectCategory
+     * @return Company
+     */
+    public function setProjectCategory(ProjectCategory $projectCategory)
+    {
+        $this->projectCategory = $projectCategory;
+
+        return $this;
     }
 }
