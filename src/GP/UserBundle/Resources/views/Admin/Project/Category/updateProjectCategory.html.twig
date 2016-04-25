@@ -2,7 +2,7 @@
 
 {% block title %}Gestions des Catégories Projet{% endblock%}
 
-{% block underNavTitle %}Nouvelle Catégorie Projet: {% endblock %}
+{% block underNavTitle %}Mettre à jour une Catégorie Projet: {% endblock %}
 {% block underNavText %}Veuillez Remplir le formulaire suivant{% endblock %}
 
 {% block body %}
@@ -54,12 +54,6 @@
                                 <div class="col s12">
                                     {{ form_widget(form.company) }}
                                 </div>
-
-                                {% if not form.company.vars.valid %}
-                                    <div class="red-text">
-                                        {{ form_errors(form.company) }}
-                                    </div>
-                                {% endif %}
                             </div>
                         </div>
 

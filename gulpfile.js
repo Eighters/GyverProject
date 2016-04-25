@@ -13,22 +13,34 @@ gulp.task( 'default',
 );
 
 gulp.task( 'build',
-    [ 'js', 'sass' ]
+    [ 'jsVendor', 'jsMain', 'sass' ]
 );
 
 
 /**
- * Merge and compile JS files
+ * Merge and compile JS Vendor
  */
-gulp.task( 'js', function() {
+gulp.task( 'jsVendor', function() {
     gulp.src(
         [
             config.bowerDir + '/jquery/dist/jquery.min.js',
             config.bowerDir + '/materialize/dist/js/materialize.min.js',
-            config.bowerDir + '/sweetalert/dist/sweetalert.min.js',
+            config.bowerDir + '/sweetalert/dist/sweetalert.min.js'
+            //'app/Resources/js/**/*.js'
+        ])
+        .pipe(concat('main.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./web/assets/js'));
+});
+
+/**
+ * Merge and compile JS app files
+ */
+gulp.task( 'jsMain', function() {
+    gulp.src(
+        [
             'app/Resources/js/**/*.js'
         ])
-        .pipe(concat('gyver_main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./web/assets/js'));
 });
@@ -50,5 +62,5 @@ gulp.task( 'sass', function() {
  */
 gulp.task('watch', function () {
     gulp.watch('app/Resources/sass/**/*.scss', ['sass']);
-    gulp.watch('app/Resources/js/**/*.js', ['js']);
+    gulp.watch('app/Resources/js/**/*.js', ['jsMain']);
 });

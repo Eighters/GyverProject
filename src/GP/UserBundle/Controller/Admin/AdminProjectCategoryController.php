@@ -74,6 +74,44 @@ class AdminProjectCategoryController extends Controller
     }
 
     /**
+     * Update a given project category
+     *
+     * @Route("/{id}/update", name="admin_update_project_category")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/Project/Category:updateProjectCategory.html.twig")
+     */
+    public function updateProjectCategoryAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $projectCategory = $em->getRepository('GPCoreBundle:ProjectCategory')->find($id);
+
+        // Return error message if no project category is found
+        if (!$projectCategory) {
+            $this->addFlash('error', 'La catégorie projet est introuvable');
+            return $this->redirectToRoute('admin_show_all_project_categories');
+        }
+
+        $form = $this->createForm(new NewProjectCategoryType(), $projectCategory);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($projectCategory);
+            $em->flush();
+
+            // Return success message
+            $this->addFlash('success', 'La catégorie '. $projectCategory->getName() .' a été correctement mise à jour');
+            return $this->redirectToRoute('admin_show_all_project_categories');
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
      * Delete a given project category
      *
      * @Route("/{id}/delete", name="admin_delete_project_category")

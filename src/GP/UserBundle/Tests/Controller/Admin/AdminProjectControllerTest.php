@@ -22,7 +22,7 @@ class AdminProjectControllerTest extends BaseTestCase
      * @param $expectedStatusCode
      * @param $message
      */
-    public function testShowProjectAction($userName, $password, $expectedStatusCode, $message)
+    public function testAccessShowProjectAction($userName, $password, $expectedStatusCode, $message)
     {
         $client = $this->loginUsingFormUser($userName, $password);
         $url = $this->generateRoute($client, 'admin_show_all_project');

@@ -22,7 +22,7 @@ class AdminCompanyControllerTest extends BaseTestCase
      * @param $expectedStatusCode
      * @param $message
      */
-    public function testShowCompanyAction($userName, $password, $expectedStatusCode, $message)
+    public function testAccessShowCompanyAction($userName, $password, $expectedStatusCode, $message)
     {
         $client = $this->loginUsingFormUser($userName, $password);
         $url = $this->generateRoute($client, 'admin_show_all_company');

@@ -17,6 +17,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class CompanyController extends Controller
 {
     /**
+     * Display all companies of all user (for given user => not developed yet)
+     *
+     * User access right change displayed data
+     *
      * @Route("/", name="show_all_companies")
      *
      * @Method("GET")
@@ -32,6 +36,10 @@ class CompanyController extends Controller
     }
 
     /**
+     * Display data of the given company
+     *
+     * User access right change displayed data
+     *
      * @Route("/{id}", name="show_company")
      * @Method("GET")
      * @Template()
@@ -48,6 +56,7 @@ class CompanyController extends Controller
             return $this->redirectToRoute('show_all_companies');
         }
 
+        // Getting all Customer & Supplier Project
         $customerProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::CUSTOMER);
         $supplierProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::SUPPLIER);
 

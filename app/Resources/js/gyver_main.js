@@ -6,6 +6,11 @@
  */
 
 
+/**
+ * Add input field in user form
+ *
+ * @param name
+ */
 function addInputField(name) {
 
     switch(name) {
@@ -82,6 +87,9 @@ function AdminDeleteUser(id) {
     });
 }
 
+/**
+ * Menu
+ */
 $(document).ready(function(){
 
     /**
@@ -104,5 +112,4 @@ $(document).ready(function(){
             alignment: 'right'
         }
     );
-
 });

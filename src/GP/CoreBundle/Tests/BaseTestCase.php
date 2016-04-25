@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Tests;
 
+use Doctrine\ORM\EntityManager;
 use GP\CoreBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -23,17 +24,17 @@ class BaseTestCase extends WebTestCase
     const USER_PASSWORD = 'password';
 
     /**
-     * @var Client $client
+     * @var Client
      */
     protected $client;
 
     /**
-     * @var Crawler $crawler
+     * @var Crawler
      */
     protected $crawler;
 
     /**
-     * @var Router $router
+     * @var Router
      */
     protected $router;
 
@@ -45,6 +46,8 @@ class BaseTestCase extends WebTestCase
     /**
      * Use this function to connect to user in the application using login form
      * This is the only way I've find to get an authenticated user :'(
+     *
+     * TODO Find a way to improve this fore
      *
      * @param $username
      * @param $password
@@ -91,7 +94,6 @@ class BaseTestCase extends WebTestCase
     {
         return $client->getContainer()->get('router')->generate($routeName, $routeParameter, false);
     }
-
 
     /**
      * Use this function to retrieve a user by this email
@@ -167,5 +169,4 @@ class BaseTestCase extends WebTestCase
     {
         $this->assertGreaterThan(0, $crawler->filter('.flashMessage:contains(' . $content . ')')->count(), $message);
     }
-
 }
