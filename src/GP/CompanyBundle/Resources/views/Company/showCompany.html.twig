@@ -29,9 +29,7 @@
             <div class="card">
                 <div class="card">
                     <div class="card-content">
-                        <p>
-                            {{ company.description }}
-                        </p>
+                        <p>{{ company.description }}</p>
 
                         <hr>
 
@@ -42,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td>Taille:</td>
-                                <td>5 utilisateurs</td>
+                                <td>{{ company.user|length }} utilisateurs</td>
                             </tr>
                             <tr>
                                 <td>Nombre de projets en cours:</td>
@@ -55,7 +53,6 @@
                         </table>
 
                         <hr>
-
                     </div>
                 </div>
             </div>
@@ -63,60 +60,88 @@
 
         <div class="col s6 m6">
             <div class="card">
-                <div class="card">
-                    <div class="card-content">
+                <div class="card-content">
+                    <div class="row">
+                        <hr>
 
-                        <div class="row">
-                            <hr>
-                            <p>Project Clients:</p>
-                            <hr>
+                        <p>Projet Clients:</p>
 
-                            <table class="highlight responsive-table">
-                                {% if customerProject is defined and customerProject is not null %}
-                                    {% for project in customerProject %}
-                                        <tr>
-                                            <td>{{ project.name }}</td>
-                                            <td>
-                                                <a href="{{ path('show_project', {'id': project.id}) }}">Voir Détails</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
+                        <hr>
+
+                        <table class="highlight responsive-table">
+                            {% if customerProject is defined and customerProject is not null %}
+                                {% for project in customerProject %}
                                     <tr>
-                                        <td>Aucun Projet</td>
+                                        <td>{{ project.name }}</td>
+                                        <td>
+                                            <a href="{{ path('show_project', {'id': project.id}) }}">Voir Détails</a>
+                                        </td>
                                     </tr>
-                                {% endif %}
-                            </table>
-                        </div>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>Aucun Projet</td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                    </div>
 
-                        <div class="row">
-                            <hr>
-                            <p>Project Consultants:</p>
-                            <hr>
+                    <div class="row">
+                        <hr>
 
-                            <table class="highlight responsive-table">
-                                {% if supplierProject is defined and supplierProject is not null %}
-                                    {% for project in supplierProject %}
-                                        <tr>
-                                            <td>{{ project.name }}</td>
-                                            <td>
-                                                <a href="{{ path('show_project', {'id': project.id}) }}">Voir Détails</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
+                        <p>Projet Consultants:</p>
+
+                        <hr>
+
+                        <table class="highlight responsive-table">
+                            {% if supplierProject is defined and supplierProject is not null %}
+                                {% for project in supplierProject %}
                                     <tr>
-                                        <td>Aucun Projet</td>
+                                        <td>{{ project.name }}</td>
+                                        <td>
+                                            <a href="{{ path('show_project', {'id': project.id}) }}">Voir Détails</a>
+                                        </td>
                                     </tr>
-                                {% endif %}
-                            </table>
-                        </div>
-
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>Aucun Projet</td>
+                                </tr>
+                            {% endif %}
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <div class="row">
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                    <i class="material-icons">supervisor_account</i>
+                    Membres : {{ company.user|length }}
+
+                    <i class="material-icons right">library_add</i>
+                </div>
+                <div class="collapsible-body">
+                    {% if company.user|length == 0 %}
+                        <p>Pas de membre</p>
+                    {% else %}
+                        <ul class="collection">
+                            {% for user in company.user %}
+                                <li class="collection-item avatar">
+                                    <i class="material-icons circle black">supervisor_account</i>
+                                    <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
+                                    <span class="right">Rôle: Undefined</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
     </div>
 
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -77,11 +78,21 @@ class Company
     private $projectCategory;
 
     /**
+     * A collection of user associated to the project
+     *
+     * @var User
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="companies")
+     */
+    private $users;
+
+    /**
      * Company constructor.
      */
     public function __construct()
     {
         $this->creationDate = new \DateTime("now");
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -184,5 +195,48 @@ class Company
         $this->projectCategory = $projectCategory;
 
         return $this;
+    }
+
+    /**
+     * Add User
+     *
+     * @param Company $company
+     *
+     * @return User
+     */
+    public function addUser(Company $company)
+    {
+        $this->users[] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Remove User
+     *
+     * @param Company $company
+     *
+     * @return User
+     */
+    public function removeUser(Company $company)
+    {
+        $this->users->removeElement($company);
+
+        return $this;
+    }
+
+    /**
+     * Get User
+     *
+     * @return ArrayCollection
+     */
+    public function getUser()
+    {
+        return $this->users;
+    }
+
+    public function getCustomerProject()
+    {
+
     }
 }

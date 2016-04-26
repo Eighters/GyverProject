@@ -32,19 +32,29 @@
                         <table class="highlight responsive-table">
                             <tr>
                                 <td>Date De création:</td>
-                                <td>31/12/2007</td>
+                                <td>{{ company.creationDate|date("d/m/Y") }}</td>
                             </tr>
                             <tr>
                                 <td>Taille:</td>
-                                <td>5 utilisateurs</td>
+                                <td>
+                                    {% if company.user|length == 0 %}
+                                        <p>Pas de membre</p>
+                                    {% else %}
+                                        <p>{{ company.user|length }} membres</p>
+                                    {% endif %}
+                                </td>
                             </tr>
                             <tr>
-                                <td>Nombre de projets en cours:</td>
-                                <td>1</td>
+                                <td>Nombre de projets Clients:</td>
+                                <td>
+                                    xx
+                                </td>
                             </tr>
                             <tr>
-                                <td>Nombre de projets terminés:</td>
-                                <td>2</td>
+                                <td>Nombre de projets Consultant:</td>
+                                <td>
+                                    xx
+                                </td>
                             </tr>
                         </table>
 

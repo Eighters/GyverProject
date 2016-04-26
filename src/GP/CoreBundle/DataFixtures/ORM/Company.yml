@@ -6,18 +6,23 @@ GP\CoreBundle\Entity\Company:
 
     it2M (extends companySample):
         name: IT2M Consultant
+        creationDate: <dateTime("2013-04-08 12:00:00")>
 
     institutG4 (extends companySample):
         name: Institut G4
+        creationDate: <dateTime("2015-02-11 11:07:11")>
 
     company3 (extends companySample):
         name: Orange
+        creationDate: <dateTime("2015-03-11 07:30:02")>
 
     company4 (extends companySample):
         name: SFR
+        creationDate: <dateTime("2015-03-10 12:01:11")>
 
     company5 (extends companySample):
         name: Decathlon
+        creationDate: <dateTime("2013-12-12 11:12:07")>
 
     company6 (extends companySample):
         name: Leader Price

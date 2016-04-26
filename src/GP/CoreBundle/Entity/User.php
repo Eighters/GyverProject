@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,6 +25,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+
+        $this->company = new ArrayCollection();
     }
 
     /**
@@ -36,12 +39,18 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * The invitation used to register the user
+     *
+     * @var Invitation
+     *
      * @ORM\OneToOne(targetEntity="GP\CoreBundle\Entity\Invitation")
      * @ORM\JoinColumn(referencedColumnName="code")
      */
     protected $invitation;
 
     /**
+     * The user civility
+     *
      * @var string $civility
      *
      * @ORM\Column(name="civility", type="string", length=10)
@@ -49,6 +58,8 @@ class User extends BaseUser
     private $civility;
 
     /**
+     * The user first name
+     *
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=80)
@@ -64,6 +75,8 @@ class User extends BaseUser
     private $firstName;
 
     /**
+     * The user last name
+     *
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=80)
@@ -79,19 +92,28 @@ class User extends BaseUser
     private $lastName;
 
     /**
+     * User phone numbers
+     *
      * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Phone", mappedBy="user", cascade={"remove"})
      */
     private $phoneList;
 
     /**
+     * User Emails addresses
+     *
      * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\Email", mappedBy="user", cascade={"remove"})
      */
     protected $emailList;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", cascade={"persist"})
+     * A collection of user associated companies
+     *
+     * @var Company
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="users")
+     * @ORM\JoinTable(name="user_company")
      */
-    private $company;
+    private $companies;
 
     /**
      * Get id
@@ -103,14 +125,32 @@ class User extends BaseUser
         return $this->id;
     }
 
-    public function setInvitation(Invitation $invitation)
-    {
-        $this->invitation = $invitation;
-    }
-
     public function getInvitation()
     {
         return $this->invitation;
+    }
+
+    /**
+     * Set Invitation
+     *
+     * @param Invitation $invitation
+     * @return User
+     */
+    public function setInvitation(Invitation $invitation)
+    {
+        $this->invitation = $invitation;
+
+        return $this;
+    }
+
+    /**
+     * Get civility
+     *
+     * @return string
+     */
+    public function getCivility()
+    {
+        return $this->civility;
     }
 
     /**
@@ -128,13 +168,13 @@ class User extends BaseUser
     }
 
     /**
-     * Get civility
+     * Get firstName
      *
      * @return string
      */
-    public function getCivility()
+    public function getFirstName()
     {
-        return $this->civility;
+        return $this->firstName;
     }
 
     /**
@@ -152,13 +192,13 @@ class User extends BaseUser
     }
 
     /**
-     * Get firstName
+     * Get lastName
      *
      * @return string
      */
-    public function getFirstName()
+    public function getLastName()
     {
-        return $this->firstName;
+        return $this->lastName;
     }
 
     /**
@@ -173,16 +213,6 @@ class User extends BaseUser
         $this->lastName = $lastName;
 
         return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
     }
 
     /**
@@ -262,7 +292,7 @@ class User extends BaseUser
      */
     public function addCompany(Company $company)
     {
-        $this->company[] = $company;
+        $this->companies[] = $company;
 
         return $this;
     }
@@ -271,19 +301,23 @@ class User extends BaseUser
      * Remove company
      *
      * @param Company $company
+     *
+     * @return User
      */
     public function removeCompany(Company $company)
     {
-        $this->company->removeElement($company);
+        $this->companies->removeElement($company);
+
+        return $this;
     }
 
     /**
      * Get company
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getCompany()
     {
-        return $this->company;
+        return $this->companies;
     }
 }

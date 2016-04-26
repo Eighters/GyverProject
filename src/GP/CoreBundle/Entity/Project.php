@@ -298,4 +298,3 @@ class Project
         $this->realEndDate = $realEndDate;
     }
 }
-
