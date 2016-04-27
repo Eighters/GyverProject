@@ -4,11 +4,10 @@
 
 {% block body %}
 
-    <div class="vcenter">
     <div class="container">
         <div class="row center">
             <div class="col offset-l3 l6 s12">
-                <div class="card white">
+                <div class="card white vcenter">
                     <div class="card-content z-depth-2 login-form">
                         <div class="row">
                             <!-- <div class="language-selector">
@@ -33,14 +32,14 @@
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">account_circle</i>
-                                        <input class="validate" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
                                         <label for="username">Email :</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">lock</i>
-                                        <input class="validate" type="password" id="password" name="_password" required="required" />
+                                        <input type="password" id="password" name="_password" required="required" />
                                         <label for="password">Mot de passe :</label>
                                     </div>
                                 </div>
@@ -65,6 +64,5 @@
             </div>
         </div>
     </div>
-        </div>
 
 {% endblock %}
