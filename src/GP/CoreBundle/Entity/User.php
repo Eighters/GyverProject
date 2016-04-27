@@ -26,7 +26,8 @@ class User extends BaseUser
     {
         parent::__construct();
 
-        $this->company = new ArrayCollection();
+        $this->companies = new ArrayCollection();
+        $this->accessRole = new ArrayCollection();
     }
 
     /**
@@ -114,6 +115,16 @@ class User extends BaseUser
      * @ORM\JoinTable(name="user_company")
      */
     private $companies;
+
+    /**
+     * Registered role for the user
+     *
+     * @var AccessRole
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", inversedBy="users")
+     * @ORM\JoinTable(name="user_access")
+     */
+    private $accessRole;
 
     /**
      * Get id
@@ -319,5 +330,47 @@ class User extends BaseUser
     public function getCompany()
     {
         return $this->companies;
+    }
+
+    ####################################################################
+    # TA MERE LA PUTA MADRES DE CON DE CHIOTTE !! :O
+    ####################################################################
+
+    /**
+     * Add new Access Role to user
+     *
+     * @param AccessRole $accessRole
+     *
+     * @return User
+     */
+    public function addAccessRole(AccessRole $accessRole)
+    {
+        $this->accessRole[] = $accessRole;
+
+        return $this;
+    }
+
+    /**
+     * Remove given Access Role to User
+     *
+     * @param AccessRole $accessRole
+     *
+     * @return User
+     */
+    public function removeAccessRole(AccessRole $accessRole)
+    {
+        $this->accessRole->removeElement($accessRole);
+
+        return $this;
+    }
+
+    /**
+     * Get User Access Role
+     *
+     * @return ArrayCollection
+     */
+    public function getAccessRole()
+    {
+        return $this->accessRole;
     }
 }

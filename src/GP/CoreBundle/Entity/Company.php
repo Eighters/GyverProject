@@ -87,12 +87,22 @@ class Company
     private $users;
 
     /**
+     * Registered role for the Company
+     *
+     * @var AccessRole
+     *
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="company")
+     */
+    private $companyRoles;
+
+    /**
      * Company constructor.
      */
     public function __construct()
     {
         $this->creationDate = new \DateTime("now");
         $this->users = new ArrayCollection();
+        $this->companyRoles = new ArrayCollection();
     }
 
     /**
@@ -198,35 +208,7 @@ class Company
     }
 
     /**
-     * Add User
-     *
-     * @param Company $company
-     *
-     * @return User
-     */
-    public function addUser(Company $company)
-    {
-        $this->users[] = $company;
-
-        return $this;
-    }
-
-    /**
-     * Remove User
-     *
-     * @param Company $company
-     *
-     * @return User
-     */
-    public function removeUser(Company $company)
-    {
-        $this->users->removeElement($company);
-
-        return $this;
-    }
-
-    /**
-     * Get User
+     * Return Users in Company
      *
      * @return ArrayCollection
      */
@@ -235,8 +217,67 @@ class Company
         return $this->users;
     }
 
-    public function getCustomerProject()
+    /**
+     * Add new user to the Company
+     *
+     * @param User $user
+     *
+     * @return Company
+     */
+    public function addUser(User $user)
     {
+        $this->users[] = $user;
 
+        return $this;
+    }
+
+    /**
+     * Remove user from Company
+     *
+     * @param User $user
+     *
+     * @return Company
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * Get company Access Roles
+     *
+     * @return ArrayCollection
+     */
+    public function getCompanyRoles()
+    {
+        return $this->companyRoles;
+    }
+
+    /**
+     * Add new Access Roles to company
+     *
+     * @param AccessRole $companyRoles
+     * @return Company
+     */
+    public function addCompanyRoles(AccessRole $companyRoles)
+    {
+        $this->companyRoles[] = $companyRoles;
+
+        return $this;
+    }
+
+    /**
+     * Remove given Access Roles from company
+     *
+     * @param AccessRole $companyRoles
+     * @return Company
+     */
+    public function removeCompanyRoles(AccessRole $companyRoles)
+    {
+        $this->companyRoles->removeElement($companyRoles);
+
+        return $this;
     }
 }

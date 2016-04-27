@@ -1,0 +1,42 @@
+GP\CoreBundle\Entity\AccessRole:
+    userRoleCompanySample (template):
+        name: Role company sample
+        type: company
+        description: Role company description sample
+        company: '@it2M'
+        project: ~
+
+    userRoleProjectSample (template):
+        name: Role project sample
+        type: project
+        description: Role project description sample
+        company: ~
+        project: '@gyver'
+
+    it2mRoleTest (extends userRoleCompanySample):
+        name: role it2m test
+        description: role it2m test
+
+    it2mRoleConsultant (extends userRoleCompanySample):
+        name: Consultant MOE / MOA
+        description: consultant en MOE / MOA pour le clients Apple
+
+    it2mRoleChefProjet (extends userRoleCompanySample):
+        name: Chef de projet
+        description: Chef de projet
+
+    it2mRoleDeveloppeur (extends userRoleCompanySample):
+        name: Developpeur Symfony 2
+        description: Le super Developpeur Symfony 2 !
+
+    it2mRoleDevops (extends userRoleCompanySample):
+        name: DevOps
+        description: Le super DevOps !
+
+    gyverRoleAngluar (extends userRoleProjectSample):
+        name: Spécialiste Angular Js
+        description: Le spécialiste et formateur Angular Js
+
+    gyverRoleSEO (extends userRoleProjectSample):
+        name: Spécialiste SEO
+        description: Le spécialiste et formateur en SEO

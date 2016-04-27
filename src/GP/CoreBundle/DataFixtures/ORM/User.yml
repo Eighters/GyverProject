@@ -19,7 +19,8 @@ GP\CoreBundle\Entity\User:
         civility: male
         firstName: user
         lastName: user
-        company: ~
+        company: [ '@it2M' ]
+        accessRole: [ '@it2mRoleTest' ]
 
     admin (extends user):
         username: admin
@@ -40,6 +41,7 @@ GP\CoreBundle\Entity\User:
         firstName: Michel
         lastName: Martin
         company: [ '@it2M' ]
+        accessRole: [ '@it2mRoleChefProjet' ]
 
     chef_projet (extends user):
         username: chef_projet
@@ -50,6 +52,7 @@ GP\CoreBundle\Entity\User:
         firstName: Carl
         lastName: De Sutter
         company: [ '@it2M' ]
+        accessRole: [ '@it2mRoleChefProjet' ]
 
     consultant (extends user):
         username: consultant
@@ -60,6 +63,7 @@ GP\CoreBundle\Entity\User:
         firstName: ALexandre
         lastName: Jacob
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@it2mRoleConsultant' ]
 
     developpeur (extends user):
         username: developpeur
@@ -70,6 +74,7 @@ GP\CoreBundle\Entity\User:
         firstName: Matthieu
         lastName: Rodraney
         company: [ '@it2M' ]
+        accessRole: [ '@it2mRoleDeveloppeur' ]
 
     collaborateur (extends user):
         username: collaborateur
@@ -106,6 +111,7 @@ GP\CoreBundle\Entity\User:
         firstName: Thibaut
         lastName: Gauvin
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@it2mRoleDeveloppeur', '@it2mRoleDevops' ]
 
     rkoci (extends user):
         username: rkoci
@@ -177,6 +183,7 @@ GP\CoreBundle\Entity\User:
         firstName: Brandon
         lastName: Beurion
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@gyverRoleAngluar' ]
 
     robin (extends user):
         username: robin
@@ -187,6 +194,7 @@ GP\CoreBundle\Entity\User:
         firstName: Robin
         lastName: Billy
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@gyverRoleSEO' ]
 
     alicia (extends user):
         username: alicia

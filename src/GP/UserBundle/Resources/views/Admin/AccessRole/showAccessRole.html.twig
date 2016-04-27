@@ -1,0 +1,68 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Roles{% endblock%}
+
+{% block underNavTitle %}Liste des Roles: {% endblock %}
+{% block underNavText %}{{ accessRole.name|capitalize }}{% endblock %}
+
+{% block body %}
+
+    <div class="col s12 m12">
+        <div class="card">
+            <div class="card-content cyan darken-2 white-text">
+                <h5 class="valign">
+                    <i class="material-icons left">done_all</i>
+                    Role n°{{ accessRole.id }}, <span class="black-text">{{ accessRole.name }}</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6 m6">
+        <div class="card">
+            <div class="card-content">
+                <h4 class="center">Détails:</h4>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <span class="title">Nom:</span> {{ accessRole.name }}
+                    </li>
+                    <li class="collection-item avatar">
+                        <span class="title">Type:</span> {{ accessRole.type }}
+                    </li>
+                    <li class="collection-item avatar">
+                        <span class="title">Description:</span> {{ accessRole.description }}
+                    </li>
+
+                    {% if accessRole.type == 'project' %}
+                        <li class="collection-item avatar">
+                            <span class="title">Projet:</span> {{ accessRole.project.name }}
+                        </li>
+                    {% elseif accessRole.type == 'company' %}
+                        <li class="collection-item avatar">
+                            <span class="title">Entreprise:</span> {{ accessRole.company.name }}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6 m6">
+        <div class="card">
+            <div class="card-content">
+                <h4 class="center">Utilisateurs: {{ accessRole.users|length }}</h4>
+                <ul class="collection">
+                    {% for user in accessRole.users %}
+                        <li class="collection-item avatar">
+                            <img src="{{ asset('assets/images/user_img_default.png') }}" class="circle">
+                            <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
+                            <br>
+                            <a href="{{ path("admin_show_user", {'id': user.id}) }}">{{ user.email }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

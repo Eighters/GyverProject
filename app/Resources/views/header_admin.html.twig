@@ -38,6 +38,15 @@
             </a>
         </li>
         {# Project End #}
+
+        {# Roles #}
+        <li {% if current_route == 'admin_show_all_access_roles'  or current_route == 'admin_show_access_role' %}class="active"{% endif %}>
+            <a href="{{ path('admin_show_all_access_roles') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Application Roles">
+                <i class="material-icons left">done_all</i>
+                Roles
+            </a>
+        </li>
+        {# Roles End #}
     </ul>
 
     <ul class="right">

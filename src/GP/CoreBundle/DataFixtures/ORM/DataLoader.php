@@ -58,10 +58,11 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
             $files = array(
                 __DIR__.'/Company.yml',
                 __DIR__.'/ProjectCategory.yml',
+                __DIR__.'/Project.yml',
+                __DIR__.'/AccessRole.yml',
                 __DIR__.'/User.yml',
                 __DIR__.'/Email.yml',
                 __DIR__.'/PhoneNumber.yml',
-                __DIR__.'/Project.yml',
             );
             Fixtures::load($files, $manager, array('providers' => array($this)));
         }
