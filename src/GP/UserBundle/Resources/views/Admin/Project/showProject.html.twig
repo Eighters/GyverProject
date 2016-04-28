@@ -2,7 +2,7 @@
 
 {% block title %}Détails Projet{% endblock%}
 
-{% block underNavTitle %}Détail Projet{% endblock %}
+{% block underNavTitle %}Détails Projet{% endblock %}
 {% block underNavText %}{{ project.name|capitalize }}{% endblock %}
 
 {% block body %}
@@ -76,6 +76,36 @@
                     </ul>
                 </div>
             </div>
+        </div>
+
+
+        <div class="col s12 m6">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les Rôles">
+                        <i class="material-icons">done_all</i>
+                        Roles: {{ project.projectRoles|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        {% if project.projectRoles|length == 0 %}
+                            <p>Aucun rôles</p>
+                        {% else %}
+                            <ul class="collection">
+                                {% for role in project.projectRoles %}
+                                    <li class="collection-item">
+                                        <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                            <span class="title">{{ role.name }}</span>
+                                        </a>
+                                        <span class="right">{{ role.description }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

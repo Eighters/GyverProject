@@ -13,7 +13,6 @@
     </div>
 
     <div class="row">
-
         <div class="col s12 m12">
             <div class="card">
                 <div class="card-content cyan darken-2 white-text">
@@ -25,47 +24,48 @@
             </div>
         </div>
 
-        <div class="col s6 m6">
+        <div class="col s12 m6">
             <div class="card">
-                <div class="card">
-                    <div class="card-content">
-                        <p>{{ company.description }}</p>
+                <div class="card-content cyan darken-2 white-text">
+                    <h5 class="valign center">Détails Entreprise:</h5>
+                </div>
 
-                        <hr>
+                <div class="card-content">
+                    <p>{{ company.description }}</p>
+                    <hr>
 
-                        <table class="highlight responsive-table">
-                            <tr>
-                                <td>Date De création:</td>
-                                <td>{{ company.creationDate|date('d/m/Y') }}</td>
-                            </tr>
-                            <tr>
-                                <td>Taille:</td>
-                                <td>{{ company.user|length }} utilisateurs</td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de projets en cours:</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de projets terminés:</td>
-                                <td>2</td>
-                            </tr>
-                        </table>
+                    <table class="highlight responsive-table">
+                        <tr>
+                            <td>Date De création:</td>
+                            <td>{{ company.creationDate|date('d/m/Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Taille:</td>
+                            <td>{{ company.user|length }} utilisateurs</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de projets en cours:</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de projets terminés:</td>
+                            <td>2</td>
+                        </tr>
+                    </table>
 
-                        <hr>
-                    </div>
+                    <hr>
                 </div>
             </div>
-        </div>
 
-        <div class="col s6 m6">
             <div class="card">
+                <div class="card-content cyan darken-2 white-text">
+                    <h5 class="valign center">Projets de l'entreprise: {{ customerProject|length + supplierProject|length }}</h5>
+                </div>
+
                 <div class="card-content">
                     <div class="row">
                         <hr>
-
-                        <p>Projet Clients:</p>
-
+                        <p>Projet Clients: {{ customerProject|length }}</p>
                         <hr>
 
                         <table class="highlight responsive-table">
@@ -88,9 +88,7 @@
 
                     <div class="row">
                         <hr>
-
-                        <p>Projet Consultants:</p>
-
+                        <p>Projet Consultants: {{ supplierProject|length }}</p>
                         <hr>
 
                         <table class="highlight responsive-table">
@@ -114,34 +112,74 @@
             </div>
         </div>
 
-    </div>
+        <div class="col s12 m6">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                        <i class="material-icons">done_all</i>
+                        Roles: {{ company.companyRoles|length }}
 
-    <div class="row">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
-                    <i class="material-icons">supervisor_account</i>
-                    Membres : {{ company.user|length }}
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        {% if company.companyRoles|length == 0 %}
+                            <p>Aucun rôles</p>
+                        {% else %}
+                            <ul class="collection">
+                                {% for role in company.companyRoles %}
+                                    <li class="collection-item">
+                                        <a href="#">
+                                            <span class="title">{{ role.name }}</span>
+                                        </a>
+                                        <span class="right">{{ role.description }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
 
-                    <i class="material-icons right">library_add</i>
-                </div>
-                <div class="collapsible-body">
-                    {% if company.user|length == 0 %}
-                        <p>Pas de membre</p>
-                    {% else %}
-                        <ul class="collection">
-                            {% for user in company.user %}
-                                <li class="collection-item avatar">
-                                    <i class="material-icons circle black">supervisor_account</i>
-                                    <span class="title">{{ user.firstName }} {{ user.lastName }}</span>
-                                    <span class="right">Rôle: Undefined</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-            </li>
-        </ul>
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                        <i class="material-icons">supervisor_account</i>
+                        Membres: {{ company.user|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="user-with-role-list">
+                            {% if company.user|length == 0 %}
+                                <p>Pas de membre</p>
+                            {% else %}
+                                <table class="highlight responsive-table">
+                                    {% for user in company.user %}
+                                        <tr class="collection-item">
+                                            <td>
+                                                <a href="#">
+                                                    {{ user.firstName }} {{ user.lastName }}
+                                                </a>
+                                            </td>
+                                            <td>Rôle:</td>
+                                            <td>
+                                                {% if user.accessRole|length == 0 %}
+                                                    <span>Rôle: Undefined</span>
+                                                {% else %}
+                                                    {% for role in user.accessRole %}
+                                                        <a class="waves-effect waves-teal btn-flat" href="#">
+                                                            {{ role.name }}
+                                                        </a>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
 {% endblock %}

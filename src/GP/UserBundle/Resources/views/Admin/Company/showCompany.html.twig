@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-content grey darken-2 white-text">
                     <h5 class="valign">
-                        <i class="material-icons left">folder</i>
+                        <i class="material-icons left">business</i>
                         Entreprise no°{{ company.id }}, <span class="black-text">{{ company.name }}</span>
                     </h5>
                 </div>
@@ -46,19 +46,17 @@
                     </table>
                 </div>
             </div>
-        </div>
 
-        <div class="col s12 m6">
             <div class="card">
                 <div class="card-content grey lighten-1 white-text">
-                    <h5 class="valign center">Projets de l'entreprise:</h5>
+                    <h5 class="valign center">Projets de l'entreprise: {{ customerProjects|length + supplierProjects|length }}</h5>
                 </div>
 
                 <div class="card-content">
                     <div class="row">
                         <div class="col s12">
                             <hr>
-                            <p>Project Clients:</p>
+                            <p>Project Clients: {{ customerProjects|length }}</p>
                             <hr>
 
                             <table class="highlight responsive-table">
@@ -81,7 +79,7 @@
 
                         <div class="col s12">
                             <hr>
-                            <p>Project Consultants:</p>
+                            <p>Project Consultants: {{ supplierProjects|length }}</p>
                             <hr>
 
                             <table class="highlight responsive-table">
@@ -105,6 +103,75 @@
 
                 </div>
             </div>
+        </div>
+
+        <div class="col s12 m6">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                        <i class="material-icons">done_all</i>
+                        Roles: {{ company.companyRoles|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        {% if company.companyRoles|length == 0 %}
+                            <p>Aucun rôles</p>
+                        {% else %}
+                            <ul class="collection">
+                                {% for role in company.companyRoles %}
+                                    <li class="collection-item">
+                                        <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                            <span class="title">{{ role.name }}</span>
+                                        </a>
+                                        <span class="right">{{ role.description }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                        <i class="material-icons">supervisor_account</i>
+                        Membres: {{ company.user|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="user-with-role-list">
+                            {% if company.user|length == 0 %}
+                                <p>Pas de membre</p>
+                            {% else %}
+                                <table class="highlight responsive-table">
+                                    {% for user in company.user %}
+                                        <tr class="collection-item">
+                                            <td>
+                                                <a href="{{ path('admin_show_user', {'id': user.id}) }}">
+                                                    {{ user.firstName }} {{ user.lastName }}
+                                                </a>
+                                            </td>
+                                            <td>Rôle:</td>
+                                            <td>
+                                                {% if user.accessRole|length == 0 %}
+                                                    <span>Rôle: Undefined</span>
+                                                {% else %}
+                                                    {% for role in user.accessRole %}
+                                                        <a class="waves-effect waves-teal btn-flat" href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                                            {{ role.name }}
+                                                        </a>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

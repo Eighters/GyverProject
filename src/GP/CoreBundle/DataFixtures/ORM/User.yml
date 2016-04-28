@@ -41,7 +41,7 @@ GP\CoreBundle\Entity\User:
         firstName: Michel
         lastName: Martin
         company: [ '@it2M' ]
-        accessRole: [ '@it2mRoleChefProjet' ]
+        accessRole: [ '@it2mRoleChefProjet', '@it2mRoleConsultant' ]
 
     chef_projet (extends user):
         username: chef_projet
@@ -123,6 +123,7 @@ GP\CoreBundle\Entity\User:
         firstName: Rémi
         lastName: Koci
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@it2mRoleDeveloppeur' ]
 
     guillaume (extends user):
         username: guillaume
@@ -133,6 +134,7 @@ GP\CoreBundle\Entity\User:
         firstName: Guillaume
         lastName: Roche
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@gyverRoleScrumMaster' ]
 
     karim (extends user):
         username: karim
@@ -163,6 +165,7 @@ GP\CoreBundle\Entity\User:
         firstName: Romain
         lastName: Dalleau
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@gyverRoleProductOwner' ]
 
     romain (extends user):
         username: romain

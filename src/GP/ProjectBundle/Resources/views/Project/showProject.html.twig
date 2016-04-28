@@ -16,60 +16,93 @@
             </div>
         </div>
 
-        <div class="col s6 m6">
+        <div class="col s12 m6">
             <div class="card">
-                <div class="card">
-                    <div class="card-content">
-                        <ul class="collection">
-                            <li class="collection-item">
-                                <i class="material-icons">short_text</i> Nom du projet : {{ project.name }}
-                            </li>
-                            <li class="collection-item">
-                                <i class="material-icons">av_timer</i> Statut du projet : {{ project.status }}
-                            </li>
-                            <li class="collection-item">
-                                <i class="material-icons">today</i> Date de début : {{ project.beginDate|date("d/m/Y") }}
-                            </li>
-                            <li class="collection-item">
-                                <i class="material-icons">today</i> Date de fin prévue : {{ project.plannedEndDate|date("d/m/Y") }}
-                            </li>
-                            <li class="collection-item">
-                                <i class="material-icons">today</i> Date de fin réelle : {{ project.realEndDate|date("d/m/Y") }}
-                            </li>
-                            <li class="collection-item">
-                                <i class="material-icons">description</i>
-                                Description :
-                                <br/><br/>
-                                {{ project.description }}
-                            </li>
-                        </ul>
-                    </div>
+                <div class="card-content cyan darken-2 white-text">
+                    <h5 class="valign center">Détails Projet:</h5>
+                </div>
+
+                <div class="card-content">
+                    <ul class="collection">
+                        <li class="collection-item">
+                            <i class="material-icons">short_text</i> Nom du projet : {{ project.name }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">av_timer</i> Statut du projet : {{ project.status }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">today</i> Date de début : {{ project.beginDate|date("d/m/Y") }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">today</i> Date de fin prévue : {{ project.plannedEndDate|date("d/m/Y") }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">today</i> Date de fin réelle : {{ project.realEndDate|date("d/m/Y") }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">description</i>
+                            Description :
+                            <br/><br/>
+                            {{ project.description }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div class="col s6 m6">
+        <div class="col s12 m6">
             <div class="card">
-                <div class="card">
-                    <div class="card-content">
-                        <ul class="collection">
-                            <li class="collection-header center"><h4>Entreprises</h4></li>
-                            <li class="collection-item">
-                                Client :
-                                <a href="{{ path('show_company', {'id': project.customerCompany.id}) }}">
-                                     {{ project.customerCompany.name }}
-                                </a>
-                            </li>
-                            <li class="collection-item">
-                                Prestataire :
-                                <a href="{{ path('show_company', {'id': project.supplierCompany.id}) }}">
-                                    {{ project.supplierCompany.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="card-content cyan darken-2 white-text">
+                    <h5 class="valign center">Parties Prenantes:</h5>
+                </div>
+
+                <div class="card-content">
+                    <ul class="collection">
+                        <li class="collection-header center"><h4>Entreprises</h4></li>
+                        <li class="collection-item">
+                            Client :
+                            <a href="{{ path('show_company', {'id': project.customerCompany.id}) }}">
+                                {{ project.customerCompany.name }}
+                            </a>
+                        </li>
+                        <li class="collection-item">
+                            Prestataire :
+                            <a href="{{ path('show_company', {'id': project.supplierCompany.id}) }}">
+                                {{ project.supplierCompany.name }}
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="col s12 m6">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
+                        <i class="material-icons">done_all</i>
+                        Roles: {{ project.projectRoles|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        {% if project.projectRoles|length == 0 %}
+                            <p>Aucun rôles</p>
+                        {% else %}
+                            <ul class="collection">
+                                {% for role in project.projectRoles %}
+                                    <li class="collection-item">
+                                        <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                            <span class="title">{{ role.name }}</span>
+                                        </a>
+                                        <span class="right">{{ role.description }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

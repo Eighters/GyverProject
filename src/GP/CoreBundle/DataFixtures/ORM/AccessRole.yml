@@ -27,7 +27,7 @@ GP\CoreBundle\Entity\AccessRole:
 
     it2mRoleChefProjet (extends userRoleCompanySample):
         name: Chef de projet
-        description: Chef de projet
+        description: Le Chef de projet
 
     it2mRoleDeveloppeur (extends userRoleCompanySample):
         name: Developpeur Symfony 2
@@ -36,6 +36,14 @@ GP\CoreBundle\Entity\AccessRole:
     it2mRoleDevops (extends userRoleCompanySample):
         name: DevOps
         description: Le super DevOps !
+
+    gyverRoleScrumMaster (extends userRoleProjectSample):
+        name: ScrumMaster
+        description: Notre formidable ScrumMaster, toujours à l'heure :)
+
+    gyverRoleProductOwner (extends userRoleProjectSample):
+        name: Product Owner
+        description: Ze Po of ze year
 
     gyverRoleAngluar (extends userRoleProjectSample):
         name: Spécialiste Angular Js
