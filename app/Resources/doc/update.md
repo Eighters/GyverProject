@@ -16,17 +16,7 @@ If not, follow the installation tutorial :
     Then pull the sources from that branch    
     `git pull origin master`
 
-* **Update database :**  
-    If you don't have the latest doctirne migrations  
-    `php app/console d:m:migrate`  
-    
-    Then, you need to reload the fixtures to the database  
-    `php app/console d:f:load`
-  
-* **Update Css & Js :**  
-    `./node_modules/gulp/bin/gulp.js build`
-
-* **Update Php Vendor :**  
+* **Update Php Vendor & Application parameter.yml:**  
     /!\ It's not mandatory but you also can update your composer version before install new library. You can deal like this:
     ```bash
     # Note that command requires administrator privileges
@@ -38,3 +28,13 @@ If not, follow the installation tutorial :
     
 * **Update Front-end Libs :**  
     `./node_modules/bower/bin/bower install`
+
+* **Update database :**  
+    If you don't have the latest doctirne migrations  
+    `php app/console d:m:migrate`  
+    
+    Then, you need to reload the fixtures to the database  
+    `php app/console d:f:load`
+  
+* **Update Css & Js :**  
+    `./node_modules/gulp/bin/gulp.js build`
