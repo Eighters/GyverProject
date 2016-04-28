@@ -21,6 +21,10 @@ GP\CoreBundle\Entity\AccessRole:
         name: Consultant MOE / MOA
         description: consultant en MOE / MOA pour le clients Apple
 
+    it2mRoleGraphiste (extends userRoleCompanySample):
+        name: Graphiste
+        description: Un expert en Photoshop et Illustrator
+
     it2mRoleChefProjet (extends userRoleCompanySample):
         name: Chef de projet
         description: Chef de projet

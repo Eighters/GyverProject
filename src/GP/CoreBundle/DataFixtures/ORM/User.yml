@@ -173,6 +173,7 @@ GP\CoreBundle\Entity\User:
         firstName: Romain
         lastName: Lesniak
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@it2mRoleGraphiste' ]
 
     brandon (extends user):
         username: brandon
@@ -206,3 +207,4 @@ GP\CoreBundle\Entity\User:
         firstName: Alicia
         lastName: Belkovskaya
         company: [ '@it2M', '@institutG4' ]
+        accessRole: [ '@it2mRoleGraphiste' ]

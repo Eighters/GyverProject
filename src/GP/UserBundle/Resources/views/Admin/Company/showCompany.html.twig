@@ -10,29 +10,30 @@
     <div class="row">
         <div class="col s12 m12">
             <div class="card">
-                <div class="card-content cyan darken-2 white-text">
+                <div class="card-content grey darken-2 white-text">
                     <h5 class="valign">
                         <i class="material-icons left">folder</i>
-                        Company no°{{ company.id }}, <span class="black-text">{{ company.name }}</span>
+                        Entreprise no°{{ company.id }}, <span class="black-text">{{ company.name }}</span>
                     </h5>
                 </div>
             </div>
         </div>
 
-        <div class="col s6 m6">
+        <div class="col s12 m6">
             <div class="card">
-                <div class="card-content">
-                    <p>{{ company.description }}</p>
-                    <hr>
+                <div class="card-content grey lighten-1 white-text">
+                    <h5 class="valign center">Détails Entreprise:</h5>
+                </div>
 
+                <div class="card-content">
                     <table class="highlight responsive-table">
                         <tr>
-                            <td>Date De création:</td>
-                            <td>31/12/2007</td>
+                            <td>Date de création:</td>
+                            <td>{{ company.creationDate|date('d/m/Y') }}</td>
                         </tr>
                         <tr>
                             <td>Taille:</td>
-                            <td>5 utilisateurs</td>
+                            <td>{{ company.user|length }} utilisateurs</td>
                         </tr>
                         <tr>
                             <td>Nombre de projets en cours:</td>
@@ -47,11 +48,15 @@
             </div>
         </div>
 
-        <div class="col s6 m6">
+        <div class="col s12 m6">
             <div class="card">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
+                <div class="card-content grey lighten-1 white-text">
+                    <h5 class="valign center">Projets de l'entreprise:</h5>
+                </div>
+
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12">
                             <hr>
                             <p>Project Clients:</p>
                             <hr>
@@ -74,7 +79,7 @@
                             </table>
                         </div>
 
-                        <div class="row">
+                        <div class="col s12">
                             <hr>
                             <p>Project Consultants:</p>
                             <hr>
@@ -97,6 +102,7 @@
                             </table>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

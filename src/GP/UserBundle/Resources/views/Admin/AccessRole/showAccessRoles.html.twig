@@ -15,58 +15,74 @@
     </div>
 
     <div class="row">
-        <div class="col s6">
-            <ul class="collection with-header">
-                <li class="collection-header"><h4>Roles Entreprise: {{ accessRoles.company|length }}</h4></li>
-                {% for accessRole in accessRoles.company %}
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle blue-grey">done_all</i>
-                        <div class="col s8">
-                            <p class="title">{{ accessRole.name }}</p>
-                            <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
-                            <a href="{{ path('admin_show_company', {'id': accessRole.company.id}) }}">{{ accessRole.company.name }}</a>
-                        </div>
-                        <div class="col s4">
-                            <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
-                                <i class="material-icons right">delete</i>
-                            </a>
-                            <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
-                                <i class="material-icons">create</i>
-                            </a>
-                            <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Voir Rôle">
-                                <i class="material-icons right">info</i>
-                            </a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content grey darken-1 white-text">
+                    <h5 class="valign center">Roles Entreprise: {{ accessRoles.company|length }}</h5>
+                </div>
+
+                <div class="card-content">
+                    <ul class="collection">
+                        {% for accessRole in accessRoles.company %}
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle blue-grey">done_all</i>
+
+                                <div class="col s8">
+                                    <p class="title">{{ accessRole.name }}</p>
+                                    <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
+                                    <a href="{{ path('admin_show_company', {'id': accessRole.company.id}) }}">{{ accessRole.company.name }}</a>
+                                </div>
+
+                                <div class="col s4">
+                                    <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
+                                        <i class="material-icons right">delete</i>
+                                    </a>
+                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                    <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Voir Rôle">
+                                        <i class="material-icons right">info</i>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="col s6">
-            <ul class="collection with-header">
-                <li class="collection-header"><h4>Roles Projet: {{ accessRoles.project|length }}</h4></li>
-                {% for accessRole in accessRoles.project %}
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle blue-grey">done_all</i>
-                        <div class="col s8">
-                            <p class="title">{{ accessRole.name }}</p>
-                            <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
-                            <a href="{{ path('admin_show_project', {'id': accessRole.project.id}) }}">{{ accessRole.project.name }}</a>
-                        </div>
-                        <div class="col s4">
-                            <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
-                                <i class="material-icons right">delete</i>
-                            </a>
-                            <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
-                                <i class="material-icons">create</i>
-                            </a>
-                            <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Editer Détails">
-                                <i class="material-icons right">info</i>
-                            </a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content grey darken-1 white-text">
+                    <h5 class="valign center">Roles Projet: {{ accessRoles.project|length }}</h5>
+                </div>
+
+                <div class="card-content">
+                    <ul class="collection">
+                        {% for accessRole in accessRoles.project %}
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle blue-grey">done_all</i>
+                                <div class="col s8">
+                                    <p class="title">{{ accessRole.name }}</p>
+                                    <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
+                                    <a href="{{ path('admin_show_project', {'id': accessRole.project.id}) }}">{{ accessRole.project.name }}</a>
+                                </div>
+                                <div class="col s4">
+                                    <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
+                                        <i class="material-icons right">delete</i>
+                                    </a>
+                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                    <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Editer Détails">
+                                        <i class="material-icons right">info</i>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

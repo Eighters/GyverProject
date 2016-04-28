@@ -179,6 +179,11 @@ class Invitation
         return $this->sent;
     }
 
+    public function setIsSent($isSent)
+    {
+        return $this->sent = $isSent;
+    }
+
     public function send()
     {
         $this->sent = true;

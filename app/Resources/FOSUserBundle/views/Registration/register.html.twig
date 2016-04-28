@@ -4,79 +4,76 @@
 
 {% block body %}
 
-    <div class="vcenter">
-        <div class="container">
-            <div class="row center">
-                <div class="col offset-l2 l8 s12">
-                    <div class="card white">
-                        <div class="card-content z-depth-2">
-
-                            <div class="col s12 application-icon">
-                                <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
-                            </div>
-
-                            <div class="col s12">
-                                <h4>Inscription Utilisateur :</h4>
-                                <p>Veuillez remplir le formulaire suivant</p>
-                            </div>
-
-                            <form class="col-s12" method="POST" {{ form_enctype(form) }} action="{{ path('register', { 'token': token }) }}">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">email</i>
-                                        {{ form_widget(form.email) }}
-                                        {{ form_label(form.email, 'Email') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.email) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-field col l6 s12">
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        {{ form_widget(form.plainPassword.first) }}
-                                        {{ form_label(form.plainPassword.first, 'Mot de passe') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.plainPassword.first) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col l6 s12">
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        {{ form_widget(form.plainPassword.second) }}
-                                        {{ form_label(form.plainPassword.second, 'Confirmer mot de passe') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.plainPassword.second) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">https</i>
-                                        {{ form_widget(form.invitation) }}
-                                        {{ form_label(form.invitation, 'Code Invitation') }}
-                                        <div class="red-text">
-                                            {{ form_errors(form.invitation) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{ form_row(form._token) }}
-
-                                <div class="row">
-                                    <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
-                                        Confirmer l'inscription
-                                    </button>
-
-                                    <a href="{{ path('login') }}" class="btn waves-effect waves-light amber accent-4">
-                                        Retour
-                                    </a>
-                                </div>
-                            </form>
-
+    <div class="container">
+        <div class="row center">
+            <div class="col offset-l2 l8 s12">
+                <div class="card white vcenter">
+                    <div class="card-content z-depth-2">
+                        <div class="col s12 application-icon">
+                            <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
                         </div>
+
+                        <div class="col s12">
+                            <h4>Inscription Utilisateur :</h4>
+                            <p>Veuillez remplir le formulaire suivant</p>
+                        </div>
+
+                        <form class="col-s12" method="POST" {{ form_enctype(form) }} action="{{ path('register', { 'token': token }) }}">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    {{ form_widget(form.email) }}
+                                    {{ form_label(form.email, 'Email') }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.email) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col l6 s12">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    {{ form_widget(form.plainPassword.first) }}
+                                    {{ form_label(form.plainPassword.first, 'Mot de passe') }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.plainPassword.first) }}
+                                    </div>
+                                </div>
+
+                                <div class="input-field col l6 s12">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    {{ form_widget(form.plainPassword.second) }}
+                                    {{ form_label(form.plainPassword.second, 'Confirmer mot de passe') }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.plainPassword.second) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">https</i>
+                                    {{ form_widget(form.invitation) }}
+                                    {{ form_label(form.invitation, 'Code Invitation') }}
+                                    <div class="red-text">
+                                        {{ form_errors(form.invitation) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{ form_row(form._token) }}
+
+                            <div class="row">
+                                <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                                    Confirmer l'inscription
+                                </button>
+
+                                <a href="{{ path('login') }}" class="btn waves-effect waves-light amber accent-4">
+                                    Retour
+                                </a>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
