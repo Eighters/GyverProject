@@ -77,6 +77,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="col s12 m6">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les Rôles">
+                        <i class="material-icons">done_all</i>
+                        Roles: {{ user.accessRole|length }}
+
+                        <i class="material-icons right">info_outline</i>
+                    </div>
+                    <div class="collapsible-body">
+                        {% if user.accessRole|length == 0 %}
+                            <p>Aucun rôles</p>
+                        {% else %}
+                            <ul class="collection">
+                                {% for role in user.accessRole %}
+                                    <li class="collection-item">
+                                        <a href="#">
+                                            <span class="title">{{ role.name }}</span>
+                                        </a>
+                                        <span class="right">{{ role.description }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
 {% endblock %}
