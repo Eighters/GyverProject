@@ -20,23 +20,23 @@
                     <div class="user-pannel">
                         <div class="row valign-wrapper user-infos-block">
                             <img class="circle user-profile-img" src="{{ asset('assets/images/user_img_default.png') }}" alt="user-profile-img"/>
-                            <a href="#" class="user-infos tooltipped" data-activates="user-dropdown" data-position="right" data-delay="20" data-tooltip="Your Account">
+                            <a href="#" class="user-infos tooltipped" data-activates="user-dropdown" data-position="right" data-delay="20" data-tooltip="Votre Compte">
                                     {{ app.user.firstName }} {{ app.user.lastName }} &#x25BC;
                                     {{ app.user.email }}
                             </a>
 
                             <ul id="user-dropdown" class="dropdown-content cyan darken-2">
                                 <li>
-                                    <a href="{{ path('show_account') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Display your account informations">
+                                    <a href="{{ path('show_account') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir mes infos">
                                         <i class="material-icons left">group</i>
-                                        Show Account
+                                        Voir
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ path('edit_account') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Edit your account informations">
+                                    <a href="{{ path('edit_account') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Mettre à jour mes infos">
                                         <i class="material-icons left">edit</i>
-                                        Edit Account
+                                        Modifier
                                     </a>
                                 </li>
                             </ul>
@@ -46,64 +46,64 @@
 
                 {# Dashboard #}
                 <li {% if current_route == 'dashboard' %}class="active" {% endif %}>
-                    <a href="{{ path('dashboard') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Dashboard">
+                    <a href="{{ path('dashboard') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir le Tableau De Bord">
                         <i class="material-icons left">dashboard</i>
-                        Dashboard
+                        Tableau De Bord
                     </a>
                 </li>
 
                 {# Projects #}
-                <li {% if current_route == 'show_all_projects' %}class="active" {% endif %}>
-                    <a href="{{ path('show_all_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Project">
+                <li {% if current_route == 'show_all_projects' or current_route == 'show_project' %}class="active" {% endif %}>
+                    <a href="{{ path('show_all_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir les Projets">
                         <i class="material-icons left">folder</i>
-                        Projects
+                        Projets
                     </a>
                 </li>
 
                 {# Company #}
-                <li {% if current_route == 'show_all_companies' %}class="active" {% endif %}>
-                    <a href="{{ path('show_all_companies') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Company">
+                <li {% if current_route == 'show_all_companies' or current_route == 'show_company' %}class="active" {% endif %}>
+                    <a href="{{ path('show_all_companies') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir les Entreprises">
                         <i class="material-icons left">business</i>
-                        Company
+                        Entreprises
                     </a>
                 </li>
 
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Task">
-                        <i class="material-icons left">toc</i>
-                        Task
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Team">
-                        <i class="material-icons left">group</i>
-                        Team
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Deliverable">
-                        <i class="material-icons left">folder</i>
-                        Deliverable
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Meetings">
-                        <i class="material-icons left">recent_actors</i>
-                        Meeting
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Budget">
-                        <i class="material-icons left">attach_money</i>
-                        Budget
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Risk">
-                        <i class="material-icons left">trending_up</i>
-                        Risk
-                    </a>
-                </li>
+                {#<li>#}
+                    {#<a href="#" class="tooltipped disabled" data-position="right" data-delay="20" data-tooltip="View Task">#}
+                        {#<i class="material-icons left">toc</i>#}
+                        {#Task#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="#" class="tooltipped disabled" data-position="right" data-delay="20" data-tooltip="View Team">#}
+                        {#<i class="material-icons left">group</i>#}
+                        {#Team#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="#" class="tooltipped disabled" data-position="right" data-delay="20" data-tooltip="View Deliverable">#}
+                        {#<i class="material-icons left">folder</i>#}
+                        {#Deliverable#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Meetings">#}
+                        {#<i class="material-icons left">recent_actors</i>#}
+                        {#Meeting#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Budget">#}
+                        {#<i class="material-icons left">attach_money</i>#}
+                        {#Budget#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="#" class="tooltipped" data-position="right" data-delay="20" data-tooltip="View Risk">#}
+                        {#<i class="material-icons left">trending_up</i>#}
+                        {#Risk#}
+                    {#</a>#}
+                {#</li>#}
             </ul>
         </div>
 

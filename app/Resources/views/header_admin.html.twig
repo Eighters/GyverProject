@@ -5,43 +5,43 @@
     <ul id="header-admin" class="left">
         {# Dashboard #}
         <li {% if current_route == 'admin_dashboard' %}class="active"{% endif %}>
-            <a href="{{ path('admin_dashboard') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Admin Dashboard">
+            <a href="{{ path('admin_dashboard') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Tableau de Bord Administrateur">
                 <i class="material-icons left">dashboard</i>
-                Dashboard
+                Tableau de Bord
             </a>
         </li>
         {# Dashboard End #}
 
         {# User #}
         <li {% if current_route == 'admin_show_all_user' or current_route == 'admin_show_user' or current_route == 'admin_invitation_new' or current_route == 'admin_show_invitation' %}class="active"{% endif %}>
-            <a href="{{ path('admin_show_all_user') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage User">
+            <a href="{{ path('admin_show_all_user') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Gestion des Utilisateurs">
                 <i class="material-icons left">group</i>
-                User
+                Utilisateurs
             </a>
         </li>
         {# User End #}
 
         {# Company #}
         <li {% if current_route == 'admin_show_all_company' or current_route == 'admin_show_company' %}class="active"{% endif %}>
-            <a href="{{ path('admin_show_all_company') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Company">
+            <a href="{{ path('admin_show_all_company') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Gestion des Entreprises">
                 <i class="material-icons left">business</i>
-                Company
+                Entreprises
             </a>
         </li>
         {# Company End #}
 
         {# Project #}
         <li {% if current_route == 'admin_show_all_project'  or current_route == 'admin_show_project' or current_route == 'admin_show_all_project_categories' or current_route == 'admin_create_project_category' %}class="active"{% endif %}>
-            <a href="{{ path('admin_show_all_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Projects">
+            <a href="{{ path('admin_show_all_project') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Gestion des Projets">
                 <i class="material-icons left">folder</i>
-                Project
+                Projets
             </a>
         </li>
         {# Project End #}
 
         {# Roles #}
         <li {% if current_route == 'admin_show_all_access_roles'  or current_route == 'admin_show_access_role' %}class="active"{% endif %}>
-            <a href="{{ path('admin_show_all_access_roles') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Manage Application Roles">
+            <a href="{{ path('admin_show_all_access_roles') }}" class="tooltipped white-text" data-position="down" data-delay="20" data-tooltip="Gestion des Roles Projets / Entreprises">
                 <i class="material-icons left">done_all</i>
                 Roles
             </a>
