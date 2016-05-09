@@ -3,7 +3,6 @@
 namespace GP\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NoResultException;
 use GP\CoreBundle\Entity\User;
 
 /**
