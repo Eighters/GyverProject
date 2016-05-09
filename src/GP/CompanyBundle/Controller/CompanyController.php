@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class ProjectController
@@ -17,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class CompanyController extends Controller
 {
     /**
-     * Display all companies of all user (for given user => not developed yet)
+     * Display companies of current user
      *
      * User access right change displayed data
      *
@@ -28,9 +29,9 @@ class CompanyController extends Controller
      */
     public function showCompaniesAction()
     {
-        // Getting all Companies
+        // Getting all User Companies
         $em = $this->getDoctrine()->getManager();
-        $companies = $em->getRepository('GPCoreBundle:Company')->findAll();
+        $companies = $em->getRepository('GPCoreBundle:Company')->findUserCompanies($this->getUser());
 
         return array('companies' => $companies);
     }
@@ -54,6 +55,11 @@ class CompanyController extends Controller
         if (!$company) {
             $this->addFlash('error', 'Compagnie introuvable');
             return $this->redirectToRoute('show_all_companies');
+        }
+
+        // Check if user have right to view company data
+        if (!$company->checkUserAccess($this->getUser()) && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ) {
+            throw new AccessDeniedException();
         }
 
         // Getting all Customer & Supplier Project

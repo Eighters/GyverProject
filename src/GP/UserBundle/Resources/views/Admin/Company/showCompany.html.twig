@@ -33,7 +33,7 @@
                         </tr>
                         <tr>
                             <td>Taille:</td>
-                            <td>{{ company.user|length }} utilisateurs</td>
+                            <td>{{ company.users|length }} utilisateurs</td>
                         </tr>
                         <tr>
                             <td>Nombre de projets en cours:</td>
@@ -135,17 +135,17 @@
                 <li>
                     <div class="collapsible-header tooltipped" data-position="left" data-delay="20" data-tooltip="Voir tous les membres">
                         <i class="material-icons">supervisor_account</i>
-                        Membres: {{ company.user|length }}
+                        Membres: {{ company.users|length }}
 
                         <i class="material-icons right">info_outline</i>
                     </div>
                     <div class="collapsible-body">
                         <div class="user-with-role-list">
-                            {% if company.user|length == 0 %}
+                            {% if company.users|length == 0 %}
                                 <p>Pas de membre</p>
                             {% else %}
                                 <table class="highlight responsive-table">
-                                    {% for user in company.user %}
+                                    {% for user in company.users %}
                                         <tr class="collection-item">
                                             <td>
                                                 <a href="{{ path('admin_show_user', {'id': user.id}) }}">

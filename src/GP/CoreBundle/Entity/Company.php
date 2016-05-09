@@ -212,7 +212,7 @@ class Company
      *
      * @return ArrayCollection
      */
-    public function getUser()
+    public function getUsers()
     {
         return $this->users;
     }
@@ -279,5 +279,24 @@ class Company
         $this->companyRoles->removeElement($companyRoles);
 
         return $this;
+    }
+
+    /**
+     * Check if given user have access to the company
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function checkUserAccess(User $user)
+    {
+        $access = false;
+
+        foreach ($this->users as $companyUser) {
+            if ($companyUser->getId() == $user->getId()) {
+                return true;
+            }
+        }
+
+        return $access;
     }
 }

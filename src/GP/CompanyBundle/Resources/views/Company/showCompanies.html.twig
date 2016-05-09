@@ -37,10 +37,10 @@
                             <tr>
                                 <td>Taille:</td>
                                 <td>
-                                    {% if company.user|length == 0 %}
+                                    {% if company.users|length == 0 %}
                                         <p>Pas de membre</p>
                                     {% else %}
-                                        <p>{{ company.user|length }} membres</p>
+                                        <p>{{ company.users|length }} membres</p>
                                     {% endif %}
                                 </td>
                             </tr>
