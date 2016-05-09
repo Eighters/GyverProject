@@ -1,0 +1,46 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Entreprises{% endblock%}
+
+{% block underNavTitle %}Création d'une Entreprise :{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant :{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s10 offset-s1">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.name) }}
+                        {{ form_label(form.name) }}
+
+                        {% if not form.name.vars.valid %}
+                            <div class="red-text">
+                                {{ form_errors(form.name) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.description) }}
+                        {{ form_label(form.description) }}
+
+                        {% if not form.description.vars.valid %}
+                            <div class="red-text">
+                                {{ form_errors(form.description) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit">
+                    Enregistrer
+                </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

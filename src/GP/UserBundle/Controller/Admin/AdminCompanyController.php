@@ -2,6 +2,8 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
+use GP\CoreBundle\Entity\Company;
+use GP\UserBundle\Form\Type\Admin\NewCompanyType;
 use GP\CoreBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +20,34 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AdminCompanyController extends Controller
 {
+    /**
+     * Create a new company
+     *
+     * @Route("/new", name="admin_create_company")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/Company:createCompany.html.twig")
+     */
+    public function createCompanyAction(Request $request)
+    {
+        $company = new Company();
+        $form = $this->createForm(new NewCompanyType(), $company);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($company);
+            $em->flush();
+
+            $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement crée');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
     /**
      * Returns the list of companies registered in the application
      *

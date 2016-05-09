@@ -20,8 +20,6 @@ class CompanyController extends Controller
     /**
      * Display companies of current user
      *
-     * User access right change displayed data
-     *
      * @Route("/", name="show_all_companies")
      *
      * @Method("GET")
@@ -38,8 +36,6 @@ class CompanyController extends Controller
 
     /**
      * Display data of the given company
-     *
-     * User access right change displayed data
      *
      * @Route("/{id}", name="show_company")
      * @Method("GET")

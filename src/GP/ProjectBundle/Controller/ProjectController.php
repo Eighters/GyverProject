@@ -16,8 +16,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class ProjectController extends Controller
 {
     /**
-     * @Route("/", name="show_all_projects")
+     * Show all project (associated to the given user => not yet)
      *
+     * @Route("/", name="show_all_projects")
      * @Method("GET")
      * @Template()
      */
@@ -31,6 +32,8 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display projects data
+     *
      * @Route("/{id}", name="show_project")
      * @Method("GET")
      * @Template()
