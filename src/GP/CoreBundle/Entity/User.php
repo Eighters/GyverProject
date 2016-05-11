@@ -112,7 +112,7 @@ class User extends BaseUser
      * @var Company
      *
      * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="users")
-     * @ORM\JoinTable(name="user_company")
+     * @ORM\JoinTable(name="company_users")
      */
     private $companies;
 

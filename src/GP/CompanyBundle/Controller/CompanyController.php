@@ -58,14 +58,8 @@ class CompanyController extends Controller
             throw new AccessDeniedException();
         }
 
-        // Getting all Customer & Supplier Project
-        $customerProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::CUSTOMER);
-        $supplierProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::SUPPLIER);
-
         return array(
             'company' => $company,
-            'customerProject' => $customerProjects,
-            'supplierProject' => $supplierProjects,
         );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace GP\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,18 +37,15 @@ class Project
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumn(name="customer_company", referencedColumnName="id", nullable=false)
+     * The companies associated to the project
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="projects")
      */
-    private $customerCompany;
+    private $companies;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumn(name="supplier_company", referencedColumnName="id", nullable=false)
-     */
-    private $supplierCompany;
-
-    /**
+     * The category of project
+     *
      * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
      */
     private $projectCategory;
@@ -95,6 +93,7 @@ class Project
     public function __construct()
     {
         $this->beginDate = new \DateTime("now");
+        $this->companies = new ArrayCollection();
     }
 
     /**
@@ -140,47 +139,37 @@ class Project
     }
 
     /**
-     * Get customer company
+     * Get project companies
      *
      * @return Company
      */
-    public function getCustomerCompany()
+    public function getCompanies()
     {
-        return $this->customerCompany;
+        return $this->companies;
     }
 
     /**
-     * Set customer company
+     * Add company to the project
      *
-     * @param Company $customerCompany
+     * @param Company $company
      * @return Project
      */
-    public function setCustomerCompany(Company $customerCompany)
+    public function addCompanies(Company $company)
     {
-        $this->customerCompany = $customerCompany;
+        $this->companies[] = $company;
 
         return $this;
     }
 
     /**
-     * Get supplier company
+     * Remove company from project
      *
-     * @return Company
-     */
-    public function getSupplierCompany()
-    {
-        return $this->supplierCompany;
-    }
-
-    /**
-     * Set supplier company
-     *
-     * @param Company $supplierCompany
+     * @param Company $company
      * @return Project
      */
-    public function setSupplierCompany(Company $supplierCompany)
+    public function removeCompanies(Company $company)
     {
-        $this->supplierCompany = $supplierCompany;
+        $this->companies->removeElement($company);
 
         return $this;
     }

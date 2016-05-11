@@ -4,8 +4,7 @@ GP\CoreBundle\Entity\Project:
         description: project description sample
         status: Created
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
-        customerCompany: '@institutG4'
-        supplierCompany: '@it2M'
+#        companies: [ '@institutG4', '@it2M' ]
 
     testproject (extends project):
         name: test new project
@@ -18,52 +17,42 @@ GP\CoreBundle\Entity\Project:
         description: Gyver project Yeah !
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@it2M'
-        supplierCompany: '@institutG4'
 
     iris (extends project):
         name: Projet Iris
         description: Iris project Yeah !
         status: In Progress
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@it2M'
-        supplierCompany: '@institutG4'
 
     kiss (extends project):
         name: Projet Kiss
         description: Kiss project Yeah !
         status: Finished
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@company3'
 
     solid (extends project):
         name: Projet Solid
         description: Solid project Yeah !
         status: Clotured
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@company3'
-
 
     test1 (extends project):
         name: Projet test1
         description: test1 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@company4'
 
     test2 (extends project):
         name: Projet test2
         description: test2 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@company5'
 
     test3 (extends project):
         name: Projet test3
         description: test3 project description ...
         status: Started
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
-        customerCompany: '@company6'
 
     test4 (extends project):
         name: Projet test4

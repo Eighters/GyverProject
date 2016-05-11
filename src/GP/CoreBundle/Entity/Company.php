@@ -73,9 +73,19 @@ class Company
      *
      * @var ProjectCategory
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="company", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="company", cascade={"remove"})
      */
     private $projectCategory;
+
+    /**
+     * The projects of the company
+     *
+     * @var Project
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="companies", cascade={"remove"})
+     * @ORM\JoinTable(name="company_projects")
+     */
+    private $projects;
 
     /**
      * A collection of user associated to the project
@@ -91,7 +101,7 @@ class Company
      *
      * @var AccessRole
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="company", cascade={"remove"})
      */
     private $companyRoles;
 
@@ -101,6 +111,7 @@ class Company
     public function __construct()
     {
         $this->creationDate = new \DateTime("now");
+        $this->projects = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->companyRoles = new ArrayCollection();
     }
@@ -208,6 +219,42 @@ class Company
     }
 
     /**
+     * Get projects of the company
+     *
+     * @return ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Add new project to the company
+     *
+     * @param Project $project
+     * @return Company
+     */
+    public function addProject(Project $project)
+    {
+        $this->projects[] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Remove given project from the company
+     *
+     * @param Project $project
+     * @return Company
+     */
+    public function removeProject(Project $project)
+    {
+        $this->projects->removeElement($project);
+
+        return $this;
+    }
+
+    /**
      * Return Users in Company
      *
      * @return ArrayCollection
@@ -221,7 +268,6 @@ class Company
      * Add new user to the Company
      *
      * @param User $user
-     *
      * @return Company
      */
     public function addUser(User $user)
@@ -235,7 +281,6 @@ class Company
      * Remove user from Company
      *
      * @param User $user
-     *
      * @return Company
      */
     public function removeUser(User $user)

@@ -56,24 +56,26 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content grey lighten-1 white-text">
-                    <h5 class="valign center">Entreprises:</h5>
+                    <h5 class="valign center">Entreprises participantes: {{ project.companies|length }}</h5>
                 </div>
 
                 <div class="card-content">
-                    <ul class="collection">
-                        <li class="collection-item">
-                            Client :
-                            <a href="{{ path('admin_show_company', {'id': project.customerCompany.id}) }}">
-                                {{ project.customerCompany.name }}
-                            </a>
-                        </li>
-                        <li class="collection-item">
-                            Prestataire :
-                            <a href="{{ path('admin_show_company', {'id': project.supplierCompany.id}) }}">
-                                {{ project.supplierCompany.name }}
-                            </a>
-                        </li>
-                    </ul>
+                    <table class="highlight responsive-table">
+                        {% if project.companies|length > 0 %}
+                            {% for company in project.companies %}
+                                <tr>
+                                    <td>{{ company.name }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_show_company', {'id': company.id}) }}">Voir Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>Aucune Entreprise.</td>
+                            </tr>
+                        {% endif %}
+                    </table>
                 </div>
             </div>
         </div>

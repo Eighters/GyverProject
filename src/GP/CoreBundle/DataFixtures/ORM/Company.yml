@@ -3,26 +3,32 @@ GP\CoreBundle\Entity\Company:
         name: Company Sample
         description: compagny sample description
         creationDate: <dateTime("2015-01-01 12:00:00")>
+        projects: [ "@testproject" ]
 
     it2M (extends companySample):
         name: IT2M Consultant
         creationDate: <dateTime("2013-04-08 12:00:00")>
+        projects: [ "@gyver", "@iris" ]
 
     institutG4 (extends companySample):
         name: Institut G4
         creationDate: <dateTime("2015-02-11 11:07:11")>
+        projects: [ "@gyver", "@iris" ]
 
     company3 (extends companySample):
         name: Orange
         creationDate: <dateTime("2015-03-11 07:30:02")>
+        projects: [ "@kiss" ]
 
     company4 (extends companySample):
         name: SFR
         creationDate: <dateTime("2015-03-10 12:01:11")>
+        projects: [ "@solid", "@kiss" ]
 
     company5 (extends companySample):
         name: Decathlon
         creationDate: <dateTime("2013-12-12 11:12:07")>
+        projects: [ "@test1" ]
 
     company6 (extends companySample):
         name: Leader Price

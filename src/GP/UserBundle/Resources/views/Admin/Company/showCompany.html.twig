@@ -56,58 +56,26 @@
 
             <div class="card">
                 <div class="card-content grey lighten-1 white-text">
-                    <h5 class="valign center">Projets de l'entreprise: {{ customerProjects|length + supplierProjects|length }}</h5>
+                    <h5 class="valign center">Projets de l'entreprise: {{ company.projects|length }}</h5>
                 </div>
 
                 <div class="card-content">
-                    <div class="row">
-                        <div class="col s12">
-                            <hr>
-                            <p>Project Clients: {{ customerProjects|length }}</p>
-                            <hr>
-
-                            <table class="highlight responsive-table">
-                                {% if customerProjects is defined and customerProjects is not null %}
-                                    {% for project in customerProjects %}
-                                        <tr>
-                                            <td>{{ project.name }}</td>
-                                            <td>
-                                                <a href="{{ path('admin_show_project', {'id': project.id}) }}">Voir Détails</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
-                                    <tr>
-                                        <td>Aucun Projet</td>
-                                    </tr>
-                                {% endif %}
-                            </table>
-                        </div>
-
-                        <div class="col s12">
-                            <hr>
-                            <p>Project Consultants: {{ supplierProjects|length }}</p>
-                            <hr>
-
-                            <table class="highlight responsive-table">
-                                {% if supplierProjects is defined and supplierProjects is not null %}
-                                    {% for project in supplierProjects %}
-                                        <tr>
-                                            <td>{{ project.name }}</td>
-                                            <td>
-                                                <a href="{{ path('admin_show_project', {'id': project.id}) }}">Voir Détails</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
-                                    <tr>
-                                        <td>Aucun Projet</td>
-                                    </tr>
-                                {% endif %}
-                            </table>
-                        </div>
-                    </div>
-
+                    <table class="highlight responsive-table">
+                        {% if company.projects|length > 0 %}
+                            {% for project in company.projects %}
+                                <tr>
+                                    <td>{{ project.name }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_show_project', {'id': project.id}) }}">Voir Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>Aucun Projet</td>
+                            </tr>
+                        {% endif %}
+                    </table>
                 </div>
             </div>
         </div>

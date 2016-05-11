@@ -87,18 +87,40 @@ class AdminCompanyController extends Controller
 
         // Checking if company exists
         if (!$company) {
-            $this->addFlash('error', 'Compagnie introuvable');
+            $this->addFlash('error', 'Entreprise introuvable');
             return $this->redirectToRoute('admin_show_all_company');
         }
 
-        // Get company customer & supplier projects
-        $customerProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::CUSTOMER);
-        $supplierProjects = $em->getRepository('GPCoreBundle:Project')->findProject($company, ProjectRepository::SUPPLIER);
-
         return array(
             'company' => $company,
-            'customerProjects' => $customerProjects,
-            'supplierProjects' => $supplierProjects
         );
     }
+
+//    /**
+//     * Archive a given company
+//     *
+//     * @Route("/{id}/delete", name="admin_delete_company")
+//     * @Method("GET|POST")
+//     * @Template()
+//     */
+//    public function archiveCompanyAction($id)
+//    {
+//        // Searching requested company
+//        $em = $this->getDoctrine()->getManager();
+//        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+//
+//        // Checking if company exists
+//        if (!$company) {
+//            $this->addFlash('error', 'Entreprise introuvable');
+//            return $this->redirectToRoute('admin_show_all_company');
+//        }
+//
+//        // Remove Company
+//        $em = $this->getDoctrine()->getManager();
+//        $em->remove($company);
+//        $em->flush();
+//
+//        $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement supprimée');
+//        return $this->redirectToRoute('admin_show_all_company');
+//    }
 }
