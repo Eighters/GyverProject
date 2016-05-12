@@ -4,7 +4,6 @@ namespace GP\UserBundle\Controller\Admin;
 
 use GP\CoreBundle\Entity\Company;
 use GP\UserBundle\Form\Type\Admin\NewCompanyType;
-use GP\CoreBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
