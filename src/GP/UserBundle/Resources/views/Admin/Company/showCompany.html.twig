@@ -10,7 +10,17 @@
     <div class="row center">
         <a href="#" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">add_circle_outline</i>
-            Créer un nouveau Projet
+            Créer un nouveau projet
+        </a>
+
+        <a href="#" class="waves-effect waves-light btn">
+            <i class="material-icons right">add_circle_outline</i>
+            Créer un nouveau rôle
+        </a>
+
+        <a href="#" class="waves-effect waves-light btn amber accent-4">
+            <i class="material-icons right">add_circle_outline</i>
+            Ajouter un nouvel utilisateurs
         </a>
     </div>
 
@@ -158,11 +168,11 @@
                         <i class="material-icons">chevron_left</i>
                     </a>
 
-                    <a class="right btn-floating waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                    <a href="#" onclick="confirmAdminDeleteCompany({{ company.id }})" class="right btn-floating waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                         <i class="material-icons">delete</i>
                     </a>
 
-                    <a class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                    <a href="#" class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                         <i class="material-icons">edit</i>
                     </a>
                 </div>
@@ -170,4 +180,10 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/delete_company.js') }}"></script>
 {% endblock %}

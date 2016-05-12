@@ -73,7 +73,7 @@ class Company
      *
      * @var ProjectCategory
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="company", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="company", cascade={"remove", "persist"})
      */
     private $projectCategory;
 
@@ -82,7 +82,7 @@ class Company
      *
      * @var Project
      *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="companies", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="companies", cascade={"persist"})
      * @ORM\JoinTable(name="company_projects")
      */
     private $projects;
@@ -101,7 +101,7 @@ class Company
      *
      * @var AccessRole
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="company", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="company", cascade={"remove", "persist"})
      */
     private $companyRoles;
 

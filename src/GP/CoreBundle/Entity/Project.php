@@ -43,12 +43,13 @@ class Project
      */
     private $companies;
 
-    /**
-     * The category of project
-     *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
-     */
-    private $projectCategory;
+//    @TODO link globals & company categories to projects when created new one.
+//    /**
+//     * The category of project
+//     *
+//     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
+//     */
+//    private $projectCategory;
 
     /**
      * @var string
@@ -83,7 +84,7 @@ class Project
      *
      * @var AccessRole
      *
-     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", mappedBy="project", cascade={"remove"})
      */
     private $projectRoles;
 

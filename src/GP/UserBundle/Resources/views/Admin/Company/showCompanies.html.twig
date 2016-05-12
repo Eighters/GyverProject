@@ -42,7 +42,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                    <a href="#" onclick="confirmAdminDeleteCompany({{ company.id }})" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                         <i class="material-icons ">delete</i>
                                     </a>
                                 </li>
@@ -58,4 +58,10 @@
         {{ knp_pagination_render(pagination) }}
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/delete_company.js') }}"></script>
 {% endblock %}

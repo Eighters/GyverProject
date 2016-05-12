@@ -34,7 +34,7 @@ class ProjectCategory
     /**
      * @var Company
      *
-     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="projectCategory")
+     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="projectCategory", cascade={"persist"})
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     private $company;

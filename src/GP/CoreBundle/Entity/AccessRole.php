@@ -93,7 +93,7 @@ class AccessRole
      *
      * @var Company
      *
-     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="companyRoles")
+     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="companyRoles", cascade={"remove"})
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     private $company;
@@ -104,7 +104,7 @@ class AccessRole
      *
      * @var Project
      *
-     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="projectRoles")
+     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="projectRoles", cascade={"remove"})
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $project;
