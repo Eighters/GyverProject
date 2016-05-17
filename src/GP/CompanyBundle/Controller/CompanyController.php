@@ -57,8 +57,14 @@ class CompanyController extends Controller
             throw new AccessDeniedException();
         }
 
+        $projectRepository = $this->getDoctrine()->getRepository('GPCoreBundle:Project');
+        $finishedProject = $projectRepository->countFinishedProjects($company);
+        $inProgressProjectNb = $projectRepository->countProjectsInProgress($company);
+
         return array(
             'company' => $company,
+            'finishedProjectNb' => $finishedProject,
+            'inProgressProjectNb' => $inProgressProjectNb
         );
     }
 }

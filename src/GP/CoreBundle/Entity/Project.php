@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const STATUS_PROJECT_REJECTED = 0;
+    const STATUS_PROJECT_WAITING_VALIDATION = 10;
+    const STATUS_PROJECT_ACCEPTED = 20;
+    const STATUS_PROJECT_STARTED = 30;
+    const STATUS_PROJECT_IN_PROGRESS = 40;
+    const STATUS_PROJECT_FINISHED = 50;
+    const STATUS_PROJECT_ARCHIVED = 60;
+
     /**
      * @var integer
      *
@@ -95,6 +103,7 @@ class Project
     {
         $this->beginDate = new \DateTime("now");
         $this->companies = new ArrayCollection();
+        $this->status = static::STATUS_PROJECT_WAITING_VALIDATION;
     }
 
     /**

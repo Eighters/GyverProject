@@ -90,8 +90,14 @@ class AdminCompanyController extends Controller
             return $this->redirectToRoute('admin_show_all_company');
         }
 
+        $projectRepository = $this->getDoctrine()->getRepository('GPCoreBundle:Project');
+        $finishedProject = $projectRepository->countFinishedProjects($company);
+        $inProgressProjectNb = $projectRepository->countProjectsInProgress($company);
+
         return array(
             'company' => $company,
+            'finishedProjectNb' => $finishedProject,
+            'inProgressProjectNb' => $inProgressProjectNb
         );
     }
 

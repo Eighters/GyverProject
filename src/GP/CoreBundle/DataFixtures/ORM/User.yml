@@ -30,7 +30,8 @@ GP\CoreBundle\Entity\User:
         roles: [ROLE_ADMIN]
         firstName: administrator
         lastName: user
-        company: [ '@it2M' ]
+        company: []
+        accessRole: []
 
     michel_martin (extends user):
         username: michel_martin

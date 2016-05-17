@@ -2,66 +2,64 @@ GP\CoreBundle\Entity\Project:
     project (template):
         name: Project Sample
         description: project description sample
-        status: Created
+        status: 20
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
-#        companies: [ '@institutG4', '@it2M' ]
 
     testproject (extends project):
         name: test new project
         description: test project
-        status: Created
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     gyver (extends project):
         name: Projet Gyver
         description: Gyver project Yeah !
-        status: Started
+        status: 40
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     iris (extends project):
         name: Projet Iris
         description: Iris project Yeah !
-        status: In Progress
+        status: 40
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     kiss (extends project):
         name: Projet Kiss
         description: Kiss project Yeah !
-        status: Finished
+        status: 50
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     solid (extends project):
         name: Projet Solid
         description: Solid project Yeah !
-        status: Clotured
+        status: 50
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     test1 (extends project):
         name: Projet test1
         description: test1 project description ...
-        status: Started
+        status: 40
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     test2 (extends project):
         name: Projet test2
         description: test2 project description ...
-        status: Started
+        status: 30
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     test3 (extends project):
         name: Projet test3
         description: test3 project description ...
-        status: Started
+        status: 60
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     test4 (extends project):
         name: Projet test4
         description: test4 project description ...
-        status: Started
+        status: 0
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
 
     test5 (extends project):
         name: Projet test5
         description: test5 project description ...
-        status: Started
+        status: 0
         plannedEndDate: <dateTime("2020-01-01 20:00:00")>
