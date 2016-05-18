@@ -31,7 +31,7 @@
                             <i class="material-icons">short_text</i> Nom du projet : {{ project.name }}
                         </li>
                         <li class="collection-item">
-                            <i class="material-icons">av_timer</i> Statut du projet : {{ project.status }}
+                            <i class="material-icons">av_timer</i> Statut du projet : {{ format_project_status(project.status) }}
                         </li>
                         <li class="collection-item">
                             <i class="material-icons">today</i> Date de début : {{ project.beginDate|date("d/m/Y") }}

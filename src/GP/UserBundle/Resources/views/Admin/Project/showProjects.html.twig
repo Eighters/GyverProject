@@ -25,7 +25,7 @@
                 <li class="collection-item avatar">
                     <i class="material-icons circle black">folder</i>
                     <p class="title">{{ project.name }}</p>
-                    <p>Status: {{ project.status }}</p>
+                    <p>Status: {{ format_project_status(project.status) }}</p>
                     <p>Description: {{ project.description }}</p>
 
                     <div class="secondary-content">

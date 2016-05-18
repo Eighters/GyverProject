@@ -14,6 +14,7 @@ services:
         class: GP\CoreBundle\Services\MailingService
         arguments: [@Mailer, @Templating, %notification_sender_mail%, %notification_bcc_mail%, %kernel.environment%, %application_name% ]
 
+    # Required by FOS to enable user invitation system
     app.form.registration:
         class: GP\CoreBundle\Form\Type\RegistrationFormType
         tags:
@@ -29,3 +30,10 @@ services:
         class: GP\CoreBundle\Form\DataTransformer\InvitationToCodeTransformer
         arguments: ['@doctrine.orm.entity_manager']
         public: false
+
+    # Twig extension
+    app.twig_extension:
+        class: GP\CoreBundle\Twig\GyverProjectExtension
+        public: false
+        tags:
+            - { name: twig.extension }
