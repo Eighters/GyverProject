@@ -1,10 +1,8 @@
 # Ignore Symfony 2 Caches
 /app/cache/*
-!app/cache/.gitkeep
 
 # Ignore Symfony 2 Logs
 /app/logs/*
-!app/logs/.gitkeep
 
 # Ignore Symfony 2 Local Config
 /app/phpunit.xml
@@ -30,11 +28,11 @@
 /node_modules/
 /npm-debug.log
 
-# Keep all .gitkeep files
-!.gitkeep
-
 # Capifony local config
 app/config/deploy.rb
 
 # Fuck you insight !
 /.idea
+
+# Keep all .gitkeep files
+!.gitkeep

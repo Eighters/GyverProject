@@ -5,7 +5,6 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache
-    - node_modules
 
 php:
     - 5.5.9
@@ -15,16 +14,10 @@ before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - cp app/phpunit.xml.dist app/phpunit.xml
 
-    # Npm dependencies
-    - npm install
-
-    # Bower dependencies
-    - ./node_modules/bower/bin/bower install
-
-    # Fix composer rate limiting issue.
+    # Fix composer rate limit issue.
     - if [ -n "$github_api_rate" ]; then composer config github-oauth.github.com ${github_api_rate}; fi;
 
-    # Php dependencies
+    # Install Php dependencies
     - composer self-update
     - composer install --prefer-dist --no-interaction
 
@@ -32,9 +25,6 @@ before_script:
     - php app/console doctrine:database:create --env=test
     - php app/console doctrine:schema:create --env=test
     - php app/console doctrine:fixtures:load -n --env=test
-
-    # Compile Assets
-    - ./node_modules/gulp/bin/gulp.js build
 
 script:
     - bin/phpunit -c app/phpunit.xml

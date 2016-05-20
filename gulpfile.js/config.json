@@ -1,0 +1,24 @@
+{
+  "tasks": {
+    "css": {
+      "src": "./app/Resources/sass",
+      "dest": "./web/assets/css",
+      "autoprefixer": {
+        "browsers": [ "last 3 versions" ]
+      },
+      "sass": {
+        "indentedSyntax": true,
+        "includePaths": [ "./node_modules/normalize.css" ]
+      },
+      "extensions": [ "scss", "css" ]
+    },
+    "javascript": {
+      "src": "./app/Resources/js",
+      "dest": "./web/assets/js",
+      "bowerDir": "./vendor"
+    },
+    "html": {
+      "src": "./"
+    }
+  }
+}
