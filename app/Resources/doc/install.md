@@ -16,19 +16,16 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 * **Cd to project directory :**  
     `cd GyverProject`
     
-* **Install NodeJs dependencies (Bower, Gulp & Gulp Plugins) :**  
-    `npm install`
-    
 * **Install PHP (BackEnd) dependencies (Symfony Core, Doctrine ORM, SwiftMailer, Twig ...) :**  
     `composer install`
     
     **Note:** You will be asking during this process to give some parameter to application. Don't worry about this and press enter, you can configure it later with your code editor in app/config/parameter.yml
     
-* **Install Bower (FrontEnd) dependencies (Materialize, FontAwesome, SeweetAlert ...) :**  
-    `./node_modules/bower/bin/bower install`
-    
-* **Compile Sass & Js files :**  
-    `./node_modules/gulp/bin/gulp.js build`
+* **Install NodeJs dependencies (Bower, Gulp & Gulp Plugins) :**  
+    `npm install`
+
+* **Download FrontEnd Asset & start gulp default tasks:**  
+    `npm start`
     
 * **Give Read, Write and Execute privilege to Cache & log directory :**  
     ```bash
@@ -38,5 +35,9 @@ This commands was tested on Ubuntu 14.04 LTS and also work on other linux system
 * **Go to [localhost](http://localhost/), if you have all done correctly you will see home page  :D :D :D \O/**  
 
 
-* **During Development, you may use following command to watch any change on Sass And Js file and recompile them on every change :**  
-    `./node_modules/gulp/bin/gulp.js watch`
+* **During Development, you may use following command to watch any change on Sass, Html & Js files and recompile them & refresh server them :**  
+    `npm run dev`
+
+    **Note:** This will start a BrowserSync server connected to your app using proxy.  
+    Once this running, you can connect any other browser using the external ip address given by the command prompt.  
+    Any change detected on Html, Css or Javascript file will automatically refresh every synced browser.

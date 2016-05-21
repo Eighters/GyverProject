@@ -25,16 +25,13 @@ If not, follow the installation tutorial :
     
     `composer install`  
     This will download latest php library & update the parameter.yml file, get the default values, you can update this later.
-    
-* **Update Front-end Libs :**  
-    `./node_modules/bower/bin/bower install`
 
 * **Update database :**  
-    If you don't have the latest doctirne migrations  
+    If you don't have the latest Doctrine Migrations  
     `php app/console d:m:migrate`  
     
     Then, you need to reload the fixtures to the database  
     `php app/console d:f:load`
   
-* **Update Css & Js :**  
-    `./node_modules/gulp/bin/gulp.js build`
+* **Update frontEnd libs & Recompile Css & Js assets :**  
+    `npm start`
