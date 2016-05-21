@@ -52,13 +52,20 @@ More Infos :
  
 * **List all Container :**  
     ```bash
+    docker ps
+    ```
+
+* **List running Container :**  
+    ```bash
     docker ps -a
     ```
 
+* **3° Connect to running docker container :**  
     ```bash
-    thibaut@thibaut-UX32VD:/home/app/docker/GyverProject (master)$ docker ps -a
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                          NAMES
-    7421597cd17d        app:latest          "/bin/bash"         7 hours ago         Up 12 minutes       999/tcp, 0.0.0.0:999->80/tcp   gyverproject    
+    # list running container
+    docker ps
+    # Connect to it
+    docker exec -ti <CONTAINER ID> bash
     ```
 
 * **Delete Images :**  
@@ -87,9 +94,10 @@ More Infos :
   
   Note: You need to create container before starting it !
 
+
 ## Build GyverProject Images & Starting DEV container :  
 
-Once you have docker properly installed you can build your own Project images and run it inside container for development
+Once you have docker properly installed you can build your own Project images and run it inside container for development  
 
 * **Before, you need to git clone clone the GyverProject repository & cd to the project.**  
     Use one this two commands, depending on what protocol you want to use.  
@@ -103,12 +111,12 @@ Once you have docker properly installed you can build your own Project images an
     cd GyverProject
     ```
     
-* **1° Build GyverProject image :**  
+* **1° Create GyverProject base image for your container:**  
     ```bash
     docker build -t <Image Name> .
     ```
   
-* **2° Run container :**  
+* **2° Start Container from newly created docker image:**  
     ```bash
     docker run -ti -d -p 999:80 --name gyverproject -v /path/to/code/local:/home/app <Image Name>
     ```
@@ -123,23 +131,16 @@ Once you have docker properly installed you can build your own Project images an
     The image name can be set when you build your image with  
     `docker build -t <Image Name> .`  
  
-* **3° Connect to running container :**  
+* **3° Build Project inside docker container :**  
     ```bash
     # list running container
     docker ps
     # Connect to it
-    docker exec -ti <CONTAINER ID> bash -l
-    ```
-
-    You are now inside your docker container with root user.
- 
-* **4° Build the Project :**  
-    ```bash
-    # this will execute a sh script
-    ./entrypoint.sh
+    docker exec -ti <CONTAINER ID> ./entrypoint.sh
     ```
 
 * **Your done [http://localhost:999](http://localhost:999) !**
+
 
 ### Once your have successfully build the project one time, when you restart your computer, you just need to :
  

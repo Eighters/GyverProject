@@ -46,7 +46,7 @@ echo '---------------------------------------'
 echo ''
 
 echo "Compile Assets"
-/bin/bash -l -c "cd /home/app && ./node_modules/gulp/bin/gulp.js build"
+/bin/bash -l -c "cd /home/app && npm run docker"
 
 echo ''
 echo '---------------------------------------'

@@ -12,7 +12,8 @@
   "scripts": {
     "start": "bower install && gulp",
     "dev": "gulp dev",
-    "prod": "gulp prod"
+    "prod": "gulp prod",
+    "docker": "gulp"
   },
   "dependencies": {
     "bower": "^1.7.1",
