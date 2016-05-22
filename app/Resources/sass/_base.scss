@@ -1,31 +1,4 @@
-/*  */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v10/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Override Materialise Default Directory path */
-$roboto-font-path: "../../../web/assets/fonts" !default;
-
-/* Base Color */
+/* Colors */
 $dark-color-primary: #006064 !default;
 $main-primary-color: #0097A7 !default;
 $light-color-primary: #4DD0E1 !default;
@@ -36,14 +9,14 @@ $primary-text : #212121 !default;
 $secondary-text: #9E9E9E !default;
 $divider-color: #E0E0E0 !default;
 
-/* Base Margin, Padding*/
-$margin-basic: 20px;
-$padding-basic: 10px;
+/* Margin, Padding */
+$margin-basic: 20px !default;
+$padding-basic: 10px !default;
 
 /* Font */
-$font-size-title: 35px;
-$font-size-p: 18px;
-$font-space: 3px;
+$font-size-title: 34px !default;
+$font-size-p: 14px !default;
+$font-space: 2px !default;
 
 /* BackGround Color */
-$base-bg-color: $light-color-primary;
+$base-bg-color: $light-color-primary !default;

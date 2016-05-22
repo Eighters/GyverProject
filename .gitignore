@@ -1,35 +1,35 @@
-# Ignore Symfony 2 Caches
+# Symfony 2 Caches & Logs
 /app/cache/*
-
-# Ignore Symfony 2 Logs
 /app/logs/*
 
-# Ignore Symfony 2 Local Config
+# Symfony 2 Local Config
 /app/phpunit.xml
 /app/config/parameters.yml
 /app/bootstrap.php.cache
 
-# Ignore Vendors & Executables
+# Php Vendors & bin, Sensio auto-gen content
 /bin/
 /vendor/
 /web/bundles/
 
-# Ignore local composer packages
-/composer.phar
-
-# Ignore Compass & asset files
-/app/Resources/sass/*.css
-/app/Resources/sass/compiled
-/app/Resources/sass/.sass-cache
-/web/assets/css
-/web/assets/js
-
-# Ignore NodeJs vendor
+# NodeJs
 /node_modules/
 /npm-debug.log
 
+# local composer.phar
+/composer.phar
+
 # Capifony local config
 app/config/deploy.rb
+
+# Old Compass generated files
+/app/Resources/sass/compiled
+/app/Resources/sass/.sass-cache
+
+# Gulp generated contents
+/web/assets/css
+/web/assets/js
+/web/assets/fonts
 
 # Fuck you insight !
 /.idea
