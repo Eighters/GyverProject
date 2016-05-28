@@ -102,6 +102,43 @@ class AdminCompanyController extends Controller
     }
 
     /**
+     * Update a given company
+     *
+     * @Route("/{id}/edit", name="admin_update_company")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/Company:updateCompany.html.twig")
+     */
+    public function updateCompanyAction(Request $request, $id)
+    {
+        // Searching requested company
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+
+        // Checking if company exists
+        if (!$company) {
+            $this->addFlash('error', 'Entreprise introuvable');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        $form = $this->createForm(new NewCompanyType(), $company);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($company);
+            $em->flush();
+
+            $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement mise à jour');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
      * Delete a given company /!\ This is definitive, no turning back possible
      *
      * This also delete cascade all elements attached to the company:

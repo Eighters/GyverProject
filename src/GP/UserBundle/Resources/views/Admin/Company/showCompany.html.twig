@@ -20,7 +20,7 @@
 
         <a href="#" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">add_circle_outline</i>
-            Ajouter un nouvel utilisateurs
+            Ajouter un nouveau membre
         </a>
     </div>
 
@@ -172,7 +172,7 @@
                         <i class="material-icons">delete</i>
                     </a>
 
-                    <a href="#" class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                    <a href="{{ path('admin_update_company', { 'id': company.id }) }}" class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                         <i class="material-icons">edit</i>
                     </a>
                 </div>
