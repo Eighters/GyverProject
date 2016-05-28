@@ -1,0 +1,45 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Entreprises{% endblock%}
+
+{% block underNavTitle %}Ajout d'un membre à l'entreprise {{ company.name }}{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant :{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s10 offset-s1">
+
+            <div class="card">
+                <div class="card-content grey lighten-1 white-text">
+                    <h5 class="valign center">Entreprise: {{ company.name }}</h5>
+                </div>
+
+                <div class="card-content">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            {{ form_label(form.users, 'Choisissez un utilisateur à ajouter :') }} <br>
+
+                            <div class="input-users-choices input-field">
+                                {{ form_widget(form.users) }}
+                            </div>
+                        </div>
+
+                        <div class="row center-align">
+                            <button class="btn waves-effect waves-light cyan darken-2" type="submit">
+                                Ajouter
+                                <i class="material-icons right">send</i>
+                            </button>
+
+                            <a href="{{ path("admin_show_company", { 'id': company.id }) }}" class="btn waves-effect waves-light amber accent-4">
+                                Retour Fiche entreprise
+                            </a>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

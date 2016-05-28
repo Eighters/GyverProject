@@ -4,12 +4,13 @@ namespace GP\UserBundle\Controller\Admin;
 
 use GP\CoreBundle\Entity\Company;
 use GP\UserBundle\Form\Type\Admin\NewCompanyType;
+use GP\UserBundle\Form\Type\Admin\addUserToCompanyType;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Admin Company Controller
@@ -169,5 +170,53 @@ class AdminCompanyController extends Controller
 
         $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement supprimée');
         return $this->redirectToRoute('admin_show_all_company');
+    }
+
+    /**
+     * Add new user to given company
+     *
+     * @Route("/{id}/add-user", name="admin_add_user_to_company")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/Company:addUserToCompany.html.twig")
+     */
+    public function AddUserToCompanyAction(Request $request, $id)
+    {
+        // Searching requested company
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+
+        // Checking if company exists
+        if (!$company) {
+            $this->addFlash('error', 'Entreprise introuvable');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        $companyUsers = $company->getUsers();
+
+        $form = $this->createForm(new addUserToCompanyType($company));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $selectedUser = $form->get('users')->getData();
+            $username = $selectedUser->getFirstName() . ' ' . $selectedUser->getLastName();
+
+            foreach ($companyUsers as $user) {
+                if ($user->getId() == $selectedUser->getId()) {
+                    $this->addFlash('error', 'L\'utilisateur ' . $username . ' est déja membre de l\'entreprise ' . $company->getName());
+                    return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
+                }
+            }
+
+            $selectedUser->addCompany($company);
+            $em->persist($selectedUser);
+            $em->flush();
+
+            $this->addFlash('success', 'L\'utilisateur ' . $username . ' a été correctement ajouté à l\'entreprise ' . $company->getName());
+            return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
+        }
+
+        return array(
+            'company' => $company,
+            'form' => $form->createView()
+        );
     }
 }

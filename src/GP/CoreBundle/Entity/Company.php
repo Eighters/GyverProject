@@ -92,7 +92,7 @@ class Company
      *
      * @var User
      *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="companies")
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="companies", cascade={"persist"})
      */
     private $users;
 
@@ -262,6 +262,18 @@ class Company
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Required for adding new user to Company
+     * to avoid some issues
+     *
+     * @param User $user
+     * @return Company
+     */
+    public function setUsers(User $user)
+    {
+        return $this->addUser($user);
     }
 
     /**

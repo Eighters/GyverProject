@@ -61,7 +61,7 @@ GP\CoreBundle\Entity\User:
         email: gyver.project+consultant@gmail.com
         emailCanonical: gyver.project+consultant@gmail.com
         roles: [ROLE_USER]
-        firstName: ALexandre
+        firstName: Alexandre
         lastName: Jacob
         company: [ '@it2M', '@institutG4' ]
         accessRole: [ '@it2mRoleConsultant' ]
