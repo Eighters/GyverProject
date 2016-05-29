@@ -3,6 +3,9 @@
 namespace GP\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use GP\CoreBundle\Entity\AccessRole;
+use GP\CoreBundle\Entity\Company;
+use GP\CoreBundle\Entity\User;
 
 /**
  * Access Role Repository
@@ -12,4 +15,26 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccessRoleRepository extends EntityRepository
 {
+
+    public function findUserRoleInCompany(Company $company, User $user)
+    {
+        $result = $this->createQueryBuilder('ar')
+            ->where('ar.type = :company_type')
+
+            ->join('ar.company', 'c')
+            ->andWhere('c = :company')
+
+            ->join('ar.users', 'u')
+            ->andWhere('u = :users')
+
+            ->setParameter('company_type', AccessRole::TYPE_COMPANY)
+            ->setParameter('company', $company->getId())
+            ->setParameter('users', $user->getId())
+
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
+    }
 }

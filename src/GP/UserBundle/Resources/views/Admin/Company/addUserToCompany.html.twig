@@ -25,6 +25,14 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            {{ form_label(form.companyRoles, 'Choisissez un rôle à associer à l\'utilisateur :') }} <br>
+
+                            <div class="input-roles-choices input-field">
+                                {{ form_widget(form.companyRoles) }}
+                            </div>
+                        </div>
+
                         <div class="row center-align">
                             <button class="btn waves-effect waves-light cyan darken-2" type="submit">
                                 Ajouter

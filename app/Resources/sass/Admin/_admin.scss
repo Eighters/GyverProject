@@ -27,6 +27,8 @@
   padding: 20px;
 }
 
-.input-users-choices select {
-  display: block;
+.input-users-choices, .input-roles-choices {
+  select {
+    display: block;
+  }
 }

@@ -144,9 +144,15 @@
                                                     Undefined
                                                 {% else %}
                                                     {% for role in user.accessRole %}
-                                                        <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
-                                                            {{ role.name }}
-                                                        </a>
+                                                        {% if role.type == 'company' and role.company.id == company.id %}
+                                                            <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                                                {{ role.name }}
+                                                            </a>
+                                                        {% elseif role.type == 'project' %}
+                                                            <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                                                {{ role.name }}
+                                                            </a>
+                                                        {% endif %}
                                                     {% endfor %}
                                                 {% endif %}
                                             </td>

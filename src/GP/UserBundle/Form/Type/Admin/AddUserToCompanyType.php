@@ -2,6 +2,7 @@
 
 namespace GP\UserBundle\Form\Type\Admin;
 
+use GP\CoreBundle\Entity\AccessRole;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -11,11 +12,11 @@ use GP\CoreBundle\Entity\User;
 use GP\CoreBundle\Entity\Company;
 
 /**
- * Class addUserToCompanyType
+ * Class AddUserToCompanyType
  *
  * @package GP\UserBundle\Form\Type\Admin
  */
-class addUserToCompanyType extends AbstractType
+class AddUserToCompanyType extends AbstractType
 {
     /**
      * @var Company
@@ -40,16 +41,32 @@ class addUserToCompanyType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
 //                        ->join('u.companies', 'companies')
-                        ->innerJoin('u.companies', 'companies')
-//                        ->leftJoin('u.companies', 'companies')
-                        ->where('companies <> :company')
+//                        ->innerJoin('u.companies', 'companies')
+                        ->leftJoin('u.companies', 'companies')
+//                        ->where('companies <> :company')
                         ->andWhere('u.enabled = 1')
                         ->orderBy('u.lastLogin', 'DESC')
-                        ->setParameter('company', $this->company->getId())
+//                        ->setParameter('company', $this->company->getId())
                     ;
                 },
                 'choice_label' => function (User $user) {
                     return $user->getFirstName() . ' ' . $user->getLastName();
+                }
+            ))
+            ->add('companyRoles', EntityType::class, array(
+                'class' => 'GP\CoreBundle\Entity\AccessRole',
+                'choices_as_values' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('ar')
+                        ->where('ar.type = :company_type')
+                        ->join('ar.company', 'c')
+                        ->andWhere('c = :company')
+                        ->setParameter('company_type', AccessRole::TYPE_COMPANY)
+                        ->setParameter('company', $this->company->getId())
+                    ;
+                },
+                'choice_label' => function (AccessRole $accessRole) {
+                    return $accessRole->getName();
                 }
             ))
         ;

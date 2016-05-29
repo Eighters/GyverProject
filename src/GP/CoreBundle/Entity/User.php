@@ -121,7 +121,7 @@ class User extends BaseUser
      *
      * @var AccessRole
      *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\AccessRole", inversedBy="users", cascade={"persist"})
      * @ORM\JoinTable(name="user_access")
      */
     private $accessRole;
@@ -331,10 +331,6 @@ class User extends BaseUser
     {
         return $this->companies;
     }
-
-    ####################################################################
-    # TA MERE LA PUTA MADRES DE CON DE CHIOTTE !! :O
-    ####################################################################
 
     /**
      * Add new Access Role to user

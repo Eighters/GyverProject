@@ -2,10 +2,11 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
+use GP\CoreBundle\Entity\AccessRole;
 use GP\CoreBundle\Entity\Company;
 use GP\CoreBundle\Entity\User;
 use GP\UserBundle\Form\Type\Admin\NewCompanyType;
-use GP\UserBundle\Form\Type\Admin\addUserToCompanyType;
+use GP\UserBundle\Form\Type\Admin\AddUserToCompanyType;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -180,7 +181,7 @@ class AdminCompanyController extends Controller
      * @Method("GET|POST")
      * @Template("GPUserBundle:Admin/Company:addUserToCompany.html.twig")
      */
-    public function AddUserToCompanyAction(Request $request, $id)
+    public function addUserToCompanyAction(Request $request, $id)
     {
         // Searching requested company
         $em = $this->getDoctrine()->getManager();
@@ -193,11 +194,18 @@ class AdminCompanyController extends Controller
         }
 
         $companyUsers = $company->getUsers();
+        $form = $this->createForm(new AddUserToCompanyType($company));
 
-        $form = $this->createForm(new addUserToCompanyType($company));
         $form->handleRequest($request);
         if ($form->isValid()) {
             $selectedUser = $form->get('users')->getData();
+            $selectedRole = $form->get('companyRoles')->getData();
+
+            if ($selectedRole === null) {
+                $this->addFlash('error', 'Vous devez specifier un rôle pour le nouvel utilisateur');
+                return $this->redirectToRoute('admin_add_user_to_company', array('id' => $id));
+            }
+
             $username = $selectedUser->getFirstName() . ' ' . $selectedUser->getLastName();
 
             foreach ($companyUsers as $user) {
@@ -207,8 +215,9 @@ class AdminCompanyController extends Controller
                 }
             }
 
-            // Add user to company
-            $selectedUser->addCompany($company);
+            $selectedUser->addCompany($company);            // Add user to company
+            $selectedUser->addAccessRole($selectedRole);    // Give role to user for company
+
             $em->persist($selectedUser);
             $em->flush();
 
@@ -244,16 +253,21 @@ class AdminCompanyController extends Controller
             return $this->redirectToRoute('admin_show_company', array('id' => $id));
         }
 
-        $result = $this->checkUserExistInCompany($user, $company);
+        $userExistInCompany = $this->checkUserExistInCompany($user, $company);
         $username = $user->getFirstName() . ' ' . $user->getLastName();
-
-        if (!$result) {
+        if (!$userExistInCompany) {
             $this->addFlash('error', 'L\'utilisateur ' . $username . ' n\'est pas membre de l\'entreprise ' . $company->getName());
             return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
         }
 
-        // Remove User from company
-        $user->removeCompany($company);
+        $userRoleInCompany = $em->getRepository('GPCoreBundle:AccessRole')->findUserRoleInCompany($company, $user);
+
+        if ($userRoleInCompany) {
+            $user->removeAccessRole($userRoleInCompany[0]);    // Remove company role from User
+        }
+
+        $user->removeCompany($company);                 // Remove User from company
+
         $em->persist($user);
         $em->flush();
 
