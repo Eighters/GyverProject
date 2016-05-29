@@ -3,6 +3,7 @@
 namespace GP\UserBundle\Controller\Admin;
 
 use GP\CoreBundle\Entity\Company;
+use GP\CoreBundle\Entity\User;
 use GP\UserBundle\Form\Type\Admin\NewCompanyType;
 use GP\UserBundle\Form\Type\Admin\addUserToCompanyType;
 
@@ -206,6 +207,7 @@ class AdminCompanyController extends Controller
                 }
             }
 
+            // Add user to company
             $selectedUser->addCompany($company);
             $em->persist($selectedUser);
             $em->flush();
@@ -218,5 +220,66 @@ class AdminCompanyController extends Controller
             'company' => $company,
             'form' => $form->createView()
         );
+    }
+
+    /**
+     * Remove given user from given company
+     *
+     * @Route("/{id}/remove-user/{user_id}", name="admin_remove_user_from_company")
+     * @Method("GET|DELETE")
+     */
+    public function removeUserFromCompanyAction(Request $request, $id, $user_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+        if (!$company) {
+            $this->addFlash('error', 'Entreprise introuvable');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        $user = $em->getRepository('GPCoreBundle:User')->find($user_id);
+        if (!$user) {
+            $this->addFlash('error', 'Utilisateur introuvable');
+            return $this->redirectToRoute('admin_show_company', array('id' => $id));
+        }
+
+        $result = $this->checkUserExistInCompany($user, $company);
+        $username = $user->getFirstName() . ' ' . $user->getLastName();
+
+        if (!$result) {
+            $this->addFlash('error', 'L\'utilisateur ' . $username . ' n\'est pas membre de l\'entreprise ' . $company->getName());
+            return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
+        }
+
+        // Remove User from company
+        $user->removeCompany($company);
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('success', 'L\'utilisateur ' . $username . ' a correctement été supprimé de l\'entreprise ' . $company->getName());
+        return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
+    }
+
+    /**
+     * Check if user is really a member of the company
+     * before removing him from it
+     *
+     * @param User $user
+     * @param Company $company
+     * @return bool
+     */
+    private function checkUserExistInCompany(User $user, Company $company)
+    {
+        $userCompanies = $user->getCompany();
+        $check = false;
+
+        foreach ($userCompanies as $userCompany) {
+            if ($userCompany->getId() == $company->getId()) {
+                return $check = true;
+            }
+        }
+
+        return $check;
     }
 }

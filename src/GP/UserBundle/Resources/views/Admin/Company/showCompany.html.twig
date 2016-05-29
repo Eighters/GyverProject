@@ -132,6 +132,7 @@
                                 <table class="highlight responsive-table">
                                     {% for user in company.users %}
                                         <tr class="collection-item">
+                                            <td>Utilisateurs:</td>
                                             <td>
                                                 <a href="{{ path('admin_show_user', {'id': user.id}) }}">
                                                     {{ user.firstName }} {{ user.lastName }}
@@ -140,14 +141,20 @@
                                             <td>Rôle:</td>
                                             <td>
                                                 {% if user.accessRole|length == 0 %}
-                                                    <span>Rôle: Undefined</span>
+                                                    Undefined
                                                 {% else %}
                                                     {% for role in user.accessRole %}
-                                                        <a class="waves-effect waves-teal btn-flat" href="{{ path('admin_show_access_role', {'id': role.id}) }}">
+                                                        <a href="{{ path('admin_show_access_role', {'id': role.id}) }}">
                                                             {{ role.name }}
                                                         </a>
                                                     {% endfor %}
                                                 {% endif %}
+                                            </td>
+                                            <td>Actions:</td>
+                                            <td>
+                                                <a href="{{ path('admin_remove_user_from_company', { 'id': company.id, 'user_id': user.id }) }}">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
                                             </td>
                                         </tr>
                                     {% endfor %}
