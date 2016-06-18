@@ -88,7 +88,10 @@ class AdminRoleController extends Controller
             $em->persist($accessRole);
             $em->flush();
 
-            $this->addFlash('success', 'suce ma bite');
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[COMPANY_ROLE_ADD] ' . $this->getUser()->getEmail() .' have added new role ' . $accessRole->getName() . ' to company '. $company->getName());
+
+            $this->addFlash('success', 'Le rôle: '. $accessRole->getName() . 'a été ajouté avec succès à l\'entreprise '.$company->getName());
             return $this->redirectToRoute('admin_show_company', array('id' => $id));
         }
 
@@ -128,7 +131,10 @@ class AdminRoleController extends Controller
             $em->persist($accessRole);
             $em->flush();
 
-            $this->addFlash('success', 'suce ma bite');
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[PROJECT_ROLE_ADD] ' . $this->getUser()->getEmail() .' have added new role ' . $accessRole->getName() . ' to project '. $project->getName());
+
+            $this->addFlash('success', 'Le rôle: '. $accessRole->getName().'a été ajouté avec succès au projet '.$project->getName());
             return $this->redirectToRoute('admin_show_project', array('id' => $id));
         }
 

@@ -40,6 +40,9 @@ class AdminCompanyController extends Controller
             $em->persist($company);
             $em->flush();
 
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[COMPANY_CREATION] ' . $this->getUser()->getEmail() .' have created new company '. $company->getName());
+
             $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement crée');
             return $this->redirectToRoute('admin_show_all_company');
         }
@@ -170,6 +173,9 @@ class AdminCompanyController extends Controller
         $em->remove($company);
         $em->flush();
 
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->alert('[COMPANY_DELETION] ' . $this->getUser()->getEmail() .' have deleted company '. $company->getName());
+
         $this->addFlash('success', 'L\'entreprise '. $company->getName() .' a été correctement supprimée');
         return $this->redirectToRoute('admin_show_all_company');
     }
@@ -221,6 +227,9 @@ class AdminCompanyController extends Controller
             $em->persist($selectedUser);
             $em->flush();
 
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[COMPANY_USER_ADD] ' . $this->getUser()->getEmail() .' have added ' . $username . ' to company '. $company->getName());
+
             $this->addFlash('success', 'L\'utilisateur ' . $username . ' a été correctement ajouté à l\'entreprise ' . $company->getName());
             return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
         }
@@ -270,6 +279,9 @@ class AdminCompanyController extends Controller
 
         $em->persist($user);
         $em->flush();
+
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->alert('[COMPANY_USER_DELETE] ' . $this->getUser()->getEmail() .' have removed ' . $username . ' from company: '. $company->getName());
 
         $this->addFlash('success', 'L\'utilisateur ' . $username . ' a correctement été supprimé de l\'entreprise ' . $company->getName());
         return $this->redirectToRoute('admin_show_company', array('id' => $company->getId()));
