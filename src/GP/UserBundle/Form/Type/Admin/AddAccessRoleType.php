@@ -2,7 +2,6 @@
 
 namespace GP\UserBundle\Form\Type\Admin;
 
-use GP\CoreBundle\Entity\AccessRole;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 

@@ -2,7 +2,6 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
-use GP\CoreBundle\Entity\AccessRole;
 use GP\CoreBundle\Entity\Company;
 use GP\CoreBundle\Entity\User;
 use GP\UserBundle\Form\Type\Admin\NewCompanyType;
