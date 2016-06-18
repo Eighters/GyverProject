@@ -28,16 +28,19 @@
                                 <i class="material-icons circle blue-grey">done_all</i>
 
                                 <div class="col s8">
-                                    <p class="title">{{ accessRole.name }}</p>
-                                    <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
-                                    <a href="{{ path('admin_show_company', {'id': accessRole.company.id}) }}">{{ accessRole.company.name }}</a>
+                                    <p class="title">Nom: {{ accessRole.name }}</p>
+                                    <p>Description: {{ accessRole.description|length > 35 ? accessRole.description[0:35] ~ '...' : accessRole.description }}</p>
+                                    <p>
+                                        Entreprise:
+                                        <a href="{{ path('admin_show_company', {'id': accessRole.company.id}) }}">{{ accessRole.company.name }}</a>
+                                    </p>
                                 </div>
 
                                 <div class="col s4">
-                                    <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
+                                    <a class="right btn-floating red tooltipped" onclick="confirmAdminDeleteAccessRole({{ accessRole.id }})" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
                                         <i class="material-icons right">delete</i>
                                     </a>
-                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
+                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle Entreprise">
                                         <i class="material-icons">create</i>
                                     </a>
                                     <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Voir Rôle">
@@ -63,12 +66,15 @@
                             <li class="collection-item avatar">
                                 <i class="material-icons circle blue-grey">done_all</i>
                                 <div class="col s8">
-                                    <p class="title">{{ accessRole.name }}</p>
-                                    <p>{{ accessRole.description|length > 50 ? accessRole.description[0:50] ~ '...' : accessRole.description }}</p>
-                                    <a href="{{ path('admin_show_project', {'id': accessRole.project.id}) }}">{{ accessRole.project.name }}</a>
+                                    <p class="title">Nom: {{ accessRole.name }}</p>
+                                    <p>Description: {{ accessRole.description|length > 35 ? accessRole.description[0:35] ~ '...' : accessRole.description }}</p>
+                                    <p>
+                                        Projet:
+                                        <a href="{{ path('admin_show_project', {'id': accessRole.project.id}) }}">{{ accessRole.project.name }}</a>
+                                    </p>
                                 </div>
                                 <div class="col s4">
-                                    <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
+                                    <a class="right btn-floating red tooltipped" onclick="confirmAdminDeleteAccessRole({{ accessRole.id }})" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
                                         <i class="material-icons right">delete</i>
                                     </a>
                                     <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
@@ -86,4 +92,10 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/delete_access_role.js') }}"></script>
 {% endblock %}

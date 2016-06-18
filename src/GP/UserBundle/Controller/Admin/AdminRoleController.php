@@ -21,7 +21,7 @@ use GP\UserBundle\Form\Type\Admin\AddAccessRoleType;
 class AdminRoleController extends Controller
 {
     /**
-     * Returns the list of Role registered in the application
+     * Returns the list of Access Role registered in the application
      *
      * @Route("/", name="admin_show_all_access_roles")
      * @Method("GET")
@@ -145,7 +145,7 @@ class AdminRoleController extends Controller
     }
 
     /**
-     * Display full data of a given given Role
+     * Display full data of a given Access Role
      *
      * @Route("/{id}", name="admin_show_access_role")
      * @Method("GET")
@@ -163,5 +163,29 @@ class AdminRoleController extends Controller
         }
 
         return array('accessRole' => $accessRole);
+    }
+
+    /**
+     * Delete given Access Role
+     *
+     * @Route("/delete/{id}", name="admin_delete_access_role")
+     * @Method("DELETE")
+     */
+    public function deleteAccessRoleAction(Request $request, $id)
+    {
+        // Getting requested Access Roles
+        $em = $this->getDoctrine()->getManager();
+        $accessRole = $em->getRepository('GPCoreBundle:AccessRole')->find($id);
+
+        if (!$accessRole) {
+            $this->addFlash('error', 'Le rôle est introuvable');
+            return $this->redirectToRoute('admin_show_all_access_roles');
+        }
+
+        $em->remove($accessRole);
+        $em->flush();
+
+        $this->addFlash('success', 'Le rôle ' . $accessRole->getName() . ' a été supprimé avec succès');
+        return $this->redirectToRoute('admin_show_all_access_roles');
     }
 }
