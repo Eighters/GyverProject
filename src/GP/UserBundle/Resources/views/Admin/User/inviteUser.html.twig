@@ -76,7 +76,10 @@
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">mode_edit</i>
                                         {{ form_widget(form.welcomeMessage, {
-                                            attr: { class: 'materialize-textarea' }
+                                            attr: {
+                                                class: 'materialize-textarea',
+                                                length: '2000'
+                                            }
                                         }) }}
                                         {{ form_label(form.welcomeMessage) }}
                                         <div class="red-text">

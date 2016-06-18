@@ -2,15 +2,18 @@
 
 namespace GP\UserBundle\Form\Type\Admin;
 
+use GP\CoreBundle\Entity\AccessRole;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class NewCompanyType
+ * Class AddAccessRoleType
+ *
+ * Add new access role to the given Company or Project
  *
  * @package GP\UserBundle\Form\Type\Admin
  */
-class NewCompanyType extends AbstractType
+class AddAccessRoleType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

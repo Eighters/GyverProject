@@ -72,5 +72,3 @@ class AddUserToCompanyType extends AbstractType
         ;
     }
 }
-
-

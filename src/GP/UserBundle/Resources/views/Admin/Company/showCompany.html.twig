@@ -13,9 +13,9 @@
             Créer un nouveau projet
         </a>
 
-        <a href="#" class="waves-effect waves-light btn">
+        <a href="{{ path('admin_create_company_access_role', { 'id': company.id }) }}" class="waves-effect waves-light btn">
             <i class="material-icons right">add_circle_outline</i>
-            Créer un nouveau rôle
+            Ajouter un nouveau rôle
         </a>
 
         <a href="{{ path('admin_add_user_to_company', { 'id': company.id }) }}" class="waves-effect waves-light btn amber accent-4">

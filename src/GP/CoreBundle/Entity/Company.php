@@ -34,10 +34,10 @@ class Company
      *
      * @Assert\NotBlank(message="La compagnie doit avoir un nom")
      * @Assert\Length(
-     *      min = 1,
+     *      min = 3,
      *      max = 255,
-     *      minMessage = "Company name must be at least {{ limit }} characters long",
-     *      maxMessage = "Company name cannot be longer than {{ limit }} characters"
+     *      minMessage = "Le nom de l'entreprise doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le nom de l'entreprise ne peut excéder {{ limit }} caractères"
      * )
      */
     private $name;
@@ -51,10 +51,10 @@ class Company
      *
      * @Assert\NotBlank(message="La compagnie doit avoir une description")
      * @Assert\Length(
-     *      min = 1,
+     *      min = 3,
      *      max = 5000,
-     *      minMessage = "Company description must be at least {{ limit }} characters long",
-     *      maxMessage = "Company description cannot be longer than {{ limit }} characters"
+     *      minMessage = "La description de l'entreprise doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "La description de l'entreprise ne peut excéder {{ limit }} caractères"
      * )
      */
     private $description;

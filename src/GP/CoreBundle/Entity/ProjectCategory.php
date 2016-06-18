@@ -28,6 +28,12 @@ class ProjectCategory
      * @ORM\Column(name="name", type="string", length=255)
      *
      * @Assert\NotBlank(message="Veuillez spécifier un nom de catégorie projet")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "Le nom de la catégorie projet doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la catégorie projet ne peut excéder {{ limit }} caractères"
+     * )
      */
     private $name;
 

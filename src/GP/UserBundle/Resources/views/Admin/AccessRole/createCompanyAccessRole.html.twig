@@ -1,9 +1,9 @@
 {% extends 'layout_admin.html.twig' %}
 
-{% block title %}Gestions des Entreprises{% endblock%}
+{% block title %}Gestions des Roles {{ company.name|capitalize }}{% endblock%}
 
-{% block underNavTitle %}Mise à jour entreprise : {{ company.name|capitalize }}{% endblock %}
-{% block underNavText %}Veuillez remplir le formulaire suivant :{% endblock %}
+{% block underNavTitle %}Nouveau rôle entreprise : {{ company.name|capitalize }}{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant: {% endblock %}
 
 {% block body %}
 
@@ -15,7 +15,9 @@
                     {{ form_start(form) }}
                         <div class="row">
                             <div class="input-field col s12">
-                                {{ form_widget(form.name) }}
+                                {{ form_widget(form.name, {
+                                    attr: { length: '255' }
+                                }) }}
                                 {{ form_label(form.name) }}
 
                                 {% if not form.name.vars.valid %}
@@ -28,7 +30,12 @@
 
                         <div class="row">
                             <div class="input-field col s12">
-                                {{ form_widget(form.description) }}
+                                {{ form_widget(form.description, {
+                                    attr: {
+                                        class: 'materialize-textarea',
+                                        length: '5000'
+                                    }
+                                }) }}
                                 {{ form_label(form.description) }}
 
                                 {% if not form.description.vars.valid %}
@@ -51,6 +58,7 @@
                     {{ form_end(form) }}
                 </div>
             </div>
+
         </div>
     </div>
 

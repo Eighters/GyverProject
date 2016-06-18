@@ -4,6 +4,7 @@ namespace GP\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project
@@ -34,6 +35,14 @@ class Project
      * @var string
      *
      * @ORM\Column(name="name", type="string")
+     *
+     * @Assert\NotBlank(message="Vous devez spécifiez un nom de projet")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "Le nom du projet doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le nom du projet ne peut excéder {{ limit }} caractères"
+     * )
      */
     private $name;
 
@@ -41,6 +50,14 @@ class Project
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     *
+     * @Assert\NotBlank(message="Vous devez spécifiez une description")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 5000,
+     *      minMessage = "La description du projet doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "La description du projet ne peut excéder {{ limit }} caractères"
+     * )
      */
     private $description;
 

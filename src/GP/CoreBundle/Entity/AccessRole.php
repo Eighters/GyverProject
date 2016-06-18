@@ -53,10 +53,10 @@ class AccessRole
      *
      * @Assert\NotBlank(message="Vous devez spécifiez un nom de rôle")
      * @Assert\Length(
-     *      min = 1,
+     *      min = 3,
      *      max = 255,
      *      minMessage = "Le nom de rôle doit faire un minimum de {{ limit }} caractères",
-     *      maxMessage = "Le nom de rôle doit faire ne peut excéder {{ limit }} caractères"
+     *      maxMessage = "Le nom de rôle ne peut excéder {{ limit }} caractères"
      * )
      */
     private $name;
@@ -70,10 +70,10 @@ class AccessRole
      *
      * @Assert\NotBlank(message="Vous devez spécifiez un description de rôle")
      * @Assert\Length(
-     *      min = 1,
-     *      max = 1000,
-     *      minMessage = "La description de rôle doit faire un minimum de {{ limit }} caractères",
-     *      maxMessage = "La description  de rôle doit faire ne peut excéder {{ limit }} caractères"
+     *      min = 3,
+     *      max = 5000,
+     *      minMessage = "La description du rôle doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "La description du rôle ne peut excéder {{ limit }} caractères"
      * )
      */
     private $description;

@@ -15,7 +15,9 @@
                 {{ form_start(form) }}
                     <div class="row">
                         <div class="input-field col s12">
-                            {{ form_widget(form.name) }}
+                            {{ form_widget(form.name, {
+                                attr: { length: '255' }
+                            }) }}
                             {{ form_label(form.name) }}
 
                             {% if not form.name.vars.valid %}
@@ -28,7 +30,12 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            {{ form_widget(form.description) }}
+                            {{ form_widget(form.description, {
+                                attr: {
+                                    class: 'materialize-textarea',
+                                    length: '5000'
+                                }
+                            }) }}
                             {{ form_label(form.description) }}
 
                             {% if not form.description.vars.valid %}

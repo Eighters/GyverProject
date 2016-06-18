@@ -2,13 +2,14 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
-use GP\CoreBundle\Entity\AccessRole;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Symfony\Component\HttpFoundation\Request;
+use GP\CoreBundle\Entity\AccessRole;
+use GP\UserBundle\Form\Type\Admin\AddAccessRoleType;
 
 /**
  * Class Admin Role Controller
@@ -55,6 +56,86 @@ class AdminRoleController extends Controller
         }
 
         return $accessRoles;
+    }
+
+    /**
+     * Create new access role for given company
+     *
+     * @Route("/company/{id}", name="admin_create_company_access_role")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/AccessRole:createCompanyAccessRole.html.twig")
+     */
+    public function createCompanyAccessRoleAction(Request $request, $id)
+    {
+        // Searching requested company
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('GPCoreBundle:Company')->find($id);
+
+        // Checking if company exists
+        if (!$company) {
+            $this->addFlash('error', 'Entreprise introuvable');
+            return $this->redirectToRoute('admin_show_all_company');
+        }
+
+        $accessRole = new AccessRole();
+        $accessRole->setType(AccessRole::TYPE_COMPANY);
+        $accessRole->setCompany($company);
+        $form = $this->createForm(new AddAccessRoleType(), $accessRole);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($accessRole);
+            $em->flush();
+
+            $this->addFlash('success', 'suce ma bite');
+            return $this->redirectToRoute('admin_show_company', array('id' => $id));
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'company' => $company
+        );
+    }
+
+    /**
+     * Create new access role for given project
+     *
+     * @Route("/project/{id}", name="admin_create_project_access_role")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/AccessRole:createProjectAccessRole.html.twig")
+     */
+    public function createProjectAccessRoleAction(Request $request, $id)
+    {
+        // Searching requested project
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('GPCoreBundle:Project')->find($id);
+
+        // Checking if project exists
+        if (!$project) {
+            $this->addFlash('error', 'Projet introuvable');
+            return $this->redirectToRoute('admin_show_all_project');
+        }
+
+        $accessRole = new AccessRole();
+        $accessRole->setType(AccessRole::TYPE_PROJECT);
+        $accessRole->setProject($project);
+        $form = $this->createForm(new AddAccessRoleType(), $accessRole);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($accessRole);
+            $em->flush();
+
+            $this->addFlash('success', 'suce ma bite');
+            return $this->redirectToRoute('admin_show_project', array('id' => $id));
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'project' => $project
+        );
     }
 
     /**

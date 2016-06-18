@@ -137,7 +137,8 @@ class AdminCompanyController extends Controller
         }
 
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'company' => $company
         );
     }
 
@@ -263,10 +264,10 @@ class AdminCompanyController extends Controller
         $userRoleInCompany = $em->getRepository('GPCoreBundle:AccessRole')->findUserRoleInCompany($company, $user);
 
         if ($userRoleInCompany) {
-            $user->removeAccessRole($userRoleInCompany[0]);    // Remove company role from User
+            $user->removeAccessRole($userRoleInCompany[0]); // Remove company role from User
         }
 
-        $user->removeCompany($company);                 // Remove User from company
+        $user->removeCompany($company); // Remove User from company
 
         $em->persist($user);
         $em->flush();
