@@ -243,6 +243,8 @@ class AdminCompanyController extends Controller
     /**
      * Remove given user from given company
      *
+     * TODO Add js popup confirmation & use only DELETE HTTP verb
+     *
      * @Route("/{id}/remove-user/{user_id}", name="admin_remove_user_from_company")
      * @Method("GET|DELETE")
      */

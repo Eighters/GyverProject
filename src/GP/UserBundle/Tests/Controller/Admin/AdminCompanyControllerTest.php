@@ -2,6 +2,7 @@
 
 namespace GP\UserBundle\Tests\Controller;
 
+use GP\CoreBundle\Entity\User;
 use GP\CoreBundle\Tests\BaseTestCase;
 use GP\CoreBundle\Entity\Company;
 
@@ -227,5 +228,62 @@ class AdminCompanyControllerTest extends BaseTestCase
         $this->assertEquals($originalCompanyNb - 1, $newCompanyNb, 'It should delete the given Company in db when admin delete company');
 
         $this->assertFlashMessageContains($crawler, "L'entreprise ".$company->getName()." a été correctement supprimée");
+    }
+
+    /**
+     * Test that admin can add user to company
+     */
+    public function testAddUserToCompany()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+
+        $company = $this->getCompanyByName(BaseTestCase::COMPANY_NAME);
+        $user = $this->getUserByEmail(BaseTestCase::USER_DEVELOPPEUR);
+        $role = $this->getRoleByName(BaseTestCase::ROLE_NAME);
+
+        $url = $this->generateRoute('admin_add_user_to_company', array('id' => $company->getId()));
+        $crawler = $client->request('GET', $url);
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $form = $crawler->selectButton('_submit')->form();
+
+        $form["add_user_to_company[users]"]->select($user->getId());
+        $form["add_user_to_company[companyRoles]"]->select($role->getId());
+
+        $client->submit($form);
+
+        $this->assertRedirectTo($client, 'admin_show_company', array('id' => $company->getId()), 'admin should be redirect to company detail view when successfully added a new user to it');
+        $crawler = $client->followRedirect();
+
+        $message = 'L\'utilisateur ' . $user->getFirstName() . ' ' . $user->getLastName() . ' a été correctement ajouté à l\'entreprise ' . $company->getName();
+        $this->assertFlashMessageContains($crawler, $message, 'admin should should see a success flashMessage when he successfully added a new user to company');
+
+        return array($user, $company);
+    }
+
+    /**
+     * Test that admin can remove user from company
+     *
+     * @depends testAddUserToCompany
+     * @param array $data
+     */
+    public function testRemoveUserFromCompany($data)
+    {
+        /** @var User $user */
+        $user = $data[0];
+        /** @var Company $company */
+        $company = $data[1];
+
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+
+        $url = $this->generateRoute('admin_remove_user_from_company', array('id' => $company->getId(), 'user_id' => $user->getId()));
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_company', array('id' => $company->getId()), 'admin should be redirect to company detail view when successfully remove a user from it');
+        $crawler = $client->followRedirect();
+
+        $message = 'L\'utilisateur ' . $user->getFirstName() . ' ' . $user->getLastName() . ' a correctement été supprimé de l\'entreprise ' . $company->getName();
+        $this->assertFlashMessageContains($crawler, $message, 'admin should should see a success flashMessage when he successfully remove a user from company');
     }
 }

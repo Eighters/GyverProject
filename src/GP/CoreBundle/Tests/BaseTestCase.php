@@ -15,10 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BaseTestCase extends WebTestCase
 {
-    const COMPANY_NAME = 'Institut G4';
+    const COMPANY_NAME = 'SFR';
     const COMPANY_TEST_NAME = 'Php Unit Company';
+
     const PROJECT_NAME = 'Projet Gyver';
     const PROJECT_TEST_NAME = 'Php Unit project';
+
+    const ROLE_NAME = 'role SFR test 1';
 
     const USER_ADMIN = 'gyver.project+admin@gmail.com';
     const USER_CHEF_PROJET = 'gyver.project+chef-projet@gmail.com';
@@ -167,6 +170,19 @@ class BaseTestCase extends WebTestCase
         $this->em = $this->getEntityManager();
 
         return $this->em->getRepository('GPCoreBundle:Project')->findOneByName($name);
+    }
+
+    /**
+     * Use this function to retrieve a role by this name
+     *
+     * @param $name
+     * @return Project
+     */
+    protected function getRoleByName($name)
+    {
+        $this->em = $this->getEntityManager();
+
+        return $this->em->getRepository('GPCoreBundle:AccessRole')->findOneByName($name);
     }
 
     /**
