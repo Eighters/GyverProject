@@ -39,21 +39,36 @@ class BaseTestCase extends WebTestCase
     protected $router;
 
     /**
-     * @var string
+     * @var EntityManager
      */
-    protected $application_name;
+    protected $em;
 
     /**
-     * Use this function to connect to user in the application using login form
-     * This is the only way I've find to get an authenticated user :'(
-     *
-     * TODO Find a way to improve this fore
+     * Use this function to connect to user in the application using HTTP
      *
      * @param $username
      * @param $password
      * @return Client
      */
-    public function loginUsingFormUser($username, $password)
+    protected function connectUser($username, $password)
+    {
+        $this->client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => $username,
+            'PHP_AUTH_PW'   => $password,
+        ));
+
+        return $this->client;
+    }
+
+    /**
+     * Use this function to connect to user in the application using login form
+     * MORE SLOW, Use connectUser function above instead
+     *
+     * @param $username
+     * @param $password
+     * @return Client
+     */
+    protected function loginUsingFormUser($username, $password)
     {
         $this->client = static::createClient();
         $this->crawler = $this->client->request('GET', '/login');
@@ -68,8 +83,6 @@ class BaseTestCase extends WebTestCase
         $this->client->submit($form);
 
         $this->client->followRedirects();
-
-        return $this->client;
     }
 
     /**
@@ -96,17 +109,32 @@ class BaseTestCase extends WebTestCase
     }
 
     /**
+     * Assert that client response is a redirection to given Route Name
+     *
+     * @param Client $client
+     * @param $routeName
+     * @param array $routeParameter
+     * @param $message
+     */
+    protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = '')
+    {
+        $redirectUrl = $this->generateRoute($client, $routeName, $routeParameter);
+        $this->assertTrue($client->getResponse()->isRedirect($redirectUrl), $message);
+    }
+
+    /**
      * Use this function to retrieve a user by this email
      *
      * @param $email
-     * @param Client $client
      * @return User
      */
-    protected function getUserByEmail($email, Client $client)
+    protected function getUserByEmail($email)
     {
-        $em = $client->getContainer()->get('doctrine')->getManager();;
+        if (!$this->em) {
+            $this->em = $this->getEntityManager();
+        }
 
-        return $em->getRepository('GPCoreBundle:User')->findOneByEmail($email);
+        return $this->em->getRepository('GPCoreBundle:User')->findOneByEmail($email);
     }
 
     /**
@@ -117,7 +145,7 @@ class BaseTestCase extends WebTestCase
      */
     protected function getTotalUser(Client $client)
     {
-        $em = $client->getContainer()->get('doctrine')->getManager();;
+        $em = $client->getContainer()->get('doctrine')->getManager();
 
         $qb = $em->createQueryBuilder();
         $qb->select('count(user.id)');
@@ -153,7 +181,7 @@ class BaseTestCase extends WebTestCase
     {
         $this->assertEquals(
             0,
-            $crawler->filter("html:contains($content)")->count(),
+            $crawler->filter("html:contains('$content')")->count(),
             $message
         );
     }
@@ -167,6 +195,38 @@ class BaseTestCase extends WebTestCase
      */
     protected function assertFlashMessageContains(Crawler $crawler, $content, $message = '')
     {
-        $this->assertGreaterThan(0, $crawler->filter('.flashMessage:contains(' . $content . ')')->count(), $message);
+        $this->assertTrue(
+            $crawler->filter('.flashMessage:contains('.$content.')')->count() > 0,
+            $message
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getContainer()
+    {
+        return static::$kernel->getContainer();
+    }
+
+    /**
+     * Get Entity Manager
+     *
+     * @return EntityManager
+     */
+    protected function getEntityManager()
+    {
+        $this->em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        return $this->em;
+    }
+
+    /**
+     * Get Application Name set in parameter.yml
+     *
+     * @return string
+     */
+    protected function getApplicationName()
+    {
+        return ucfirst($this->getContainer()->getParameter('application_name'));
     }
 }

@@ -25,3 +25,10 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# Use http basic authentication to authenticate users during tests
+# See http://symfony.com/doc/current/cookbook/testing/http_authentication.html
+security:
+    firewalls:
+        main:
+            http_basic: ~

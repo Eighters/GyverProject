@@ -24,7 +24,7 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testIndexAction($userName, $password, $expectedStatusCode, $message)
     {
-        $client = $this->loginUsingFormUser($userName, $password);
+        $client = $this->connectUser($userName, $password);
         $url = $this->generateRoute($client, 'admin_dashboard');
         $client->request('GET', $url);
 
@@ -44,7 +44,7 @@ class AdminUserControllerTest extends BaseTestCase
             array(
                 'userName' => self::USER_CHEF_PROJET,
                 'password' => self::USER_PASSWORD,
-                'expectedStatusCode' => '403',
+                'expectedStatusCode' => '302',
                 'message' => 'An NON admin User should NOT see the admin dashboard page',
             ),
         );
@@ -55,16 +55,16 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testShowUsersAction()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $url = $this->generateRoute($client, 'admin_show_all_user');
-        $this->crawler =  $client->request('GET', $url);
+        $crawler =  $client->request('GET', $url);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the admin manage user page');
 
-        $this->assertHtmlContains($this->crawler, 'Liste des Utilisateurs:', 'Admin should see the manage user page right title');
+        $this->assertHtmlContains($crawler, 'Liste des Utilisateurs:', 'Admin should see the manage user page right title');
 
         $totalUser = $this->getTotalUser($client);
-        $this->assertHtmlContains($this->crawler, 'Vous avez ' . $totalUser . ' Utilisateurs.', 'Admin should see ' . $totalUser . ' users listed in the manage user page');
+        $this->assertHtmlContains($crawler, 'Vous avez ' . $totalUser . ' Utilisateurs.', 'Admin should see ' . $totalUser . ' users listed in the manage user page');
     }
 
     /**
@@ -72,17 +72,17 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testShowUserAction()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
         $url = $this->generateRoute($client, 'admin_show_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('GET', $url);
+        $crawler =  $client->request('GET', $url);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the given user account information page');
 
-        $this->assertHtmlContains($this->crawler, 'Profil Utilisateur');
-        $this->assertHtmlContains($this->crawler, $user->getEmail());
-        $this->assertHtmlContains($this->crawler, $user->getFirstName());
-        $this->assertHtmlContains($this->crawler, $user->getLastName());
+        $this->assertHtmlContains($crawler, 'Profil Utilisateur');
+        $this->assertHtmlContains($crawler, $user->getEmail());
+        $this->assertHtmlContains($crawler, $user->getFirstName());
+        $this->assertHtmlContains($crawler, $user->getLastName());
     }
 
     /**
@@ -90,15 +90,25 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessDeleteUserAction()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail('gyver.project+deleted@gmail.com', $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail('gyver.project+deleted@gmail.com');
+
+        $em = $client->getContainer()->get('doctrine')->getManager();
+        $em->beginTransaction();
 
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('DELETE', $url);
+        $client->request('DELETE', $url);
+
+        $em->rollback();
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement supprimé', 'Admin should see a confirmation flashMessage when he delete a given user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $errorMessage = "Utilisateur " . $user->getFirstName() . " correctement supprimé";
+        $this->assertHtmlContains($crawler, $errorMessage, 'Admin should see a confirmation flashMessage when he delete a given user');
     }
 
     /**
@@ -106,13 +116,16 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailDeleteUser()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => 'gzej'));
-        $this->crawler =  $client->request('DELETE', $url);
+        $client->request('DELETE', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he delete a not found  user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he delete a not found  user');
     }
 
     /**
@@ -120,15 +133,18 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailDeleteAdminUser()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail(self::USER_ADMIN, $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_ADMIN);
 
         $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('DELETE', $url);
+        $client->request('DELETE', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur '. $user->getFirstName() .' ne peut pas être supprimé', 'Admin should see a error flashMessage when he delete a not found  user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur '. $user->getFirstName() .' ne peut pas être supprimé', 'Admin should see a error flashMessage when he delete a not found  user');
     }
 
     /**
@@ -136,18 +152,21 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessArchiveUserAction()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('GET', $url);
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement désactivé', 'Admin should see a confirmation flashMessage when he archive a given user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement désactivé', 'Admin should see a confirmation flashMessage when he archive a given user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET, $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET)->isEnabled();
         $this->assertEquals(0, $userStatus, 'Archived user should have isEnabled property set to 0');
     }
 
@@ -156,14 +175,17 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailArchiveUser()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => 'ghfh'));
-        $this->crawler =  $client->request('GET', $url);
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he archive a NOT FOUND user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he archive a NOT FOUND user');
     }
 
     /**
@@ -171,18 +193,21 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailArchiveAdmin()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail(self::USER_ADMIN, $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_ADMIN);
 
         $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('GET', $url);
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur '. $user->getFirstName() .' ne peut pas être désactivé', 'Admin should see a error flashMessage when he archive a admin user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur '. $user->getFirstName() .' ne peut pas être désactivé', 'Admin should see a error flashMessage when he archive a admin user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail(self::USER_ADMIN, $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_ADMIN)->isEnabled();
         $this->assertNotEquals(0, $userStatus, 'Admin user should NOT have isEnabled property set to 0 when admin try to archive it');
     }
 
@@ -191,18 +216,21 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testSuccessActivateUserAction()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $user = $this->getUserByEmail(self::USER_CHEF_PROJET, $client);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
 
         $url = $this->generateRoute($client, 'admin_activate_user', array('id' => $user->getId()));
-        $this->crawler =  $client->request('GET', $url);
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement activé', 'Admin should see a confirmation flashMessage when he archive a given user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur ' . $user->getFirstName() . ' correctement activé', 'Admin should see a confirmation flashMessage when he archive a given user');
 
         // Check that user is correctly disabled
-        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET, $client)->isEnabled();
+        $userStatus = $this->getUserByEmail(self::USER_CHEF_PROJET)->isEnabled();
         $this->assertEquals(1, $userStatus, 'User activated should have isEnabled property set to 1');
     }
 
@@ -211,13 +239,16 @@ class AdminUserControllerTest extends BaseTestCase
      */
     public function testFailActivateUser()
     {
-        $client = $this->loginUsingFormUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
 
         $url = $this->generateRoute($client, 'admin_activate_user', array('id' => 'ghfh'));
-        $this->crawler =  $client->request('GET', $url);
+        $client->request('GET', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
+        $crawler = $client->followRedirect();
 
         // Assert flash message is present and status code is 200
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertFlashMessageContains($this->crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he try to activate a NOT FOUND user');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertFlashMessageContains($crawler, 'Utilisateur introuvable', 'Admin should see a error flashMessage when he try to activate a NOT FOUND user');
     }
 }
