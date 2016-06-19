@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AdminProjectController extends Controller
 {
-
     /**
      * Returns the list of companies registered in the application
      *

@@ -3,9 +3,11 @@
 namespace GP\CoreBundle\Tests;
 
 use Doctrine\ORM\EntityManager;
+use GP\CoreBundle\Entity\Project;
 use GP\CoreBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use GP\CoreBundle\Entity\Company;
 
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\Routing\Router;
@@ -13,6 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BaseTestCase extends WebTestCase
 {
+    const COMPANY_NAME = 'Institut G4';
+    const COMPANY_TEST_NAME = 'Php Unit Company';
+    const PROJECT_NAME = 'Projet Gyver';
+    const PROJECT_TEST_NAME = 'Php Unit project';
 
     const USER_ADMIN = 'gyver.project+admin@gmail.com';
     const USER_CHEF_PROJET = 'gyver.project+chef-projet@gmail.com';
@@ -83,6 +89,8 @@ class BaseTestCase extends WebTestCase
         $this->client->submit($form);
 
         $this->client->followRedirects();
+
+        return $this->client;
     }
 
     /**
@@ -98,14 +106,14 @@ class BaseTestCase extends WebTestCase
     /**
      * Generate a route
      *
-     * @param Client $client
      * @param $routeName
      * @param array $routeParameter
      * @return string
      */
-    protected function generateRoute(Client $client, $routeName, Array $routeParameter = array())
+    protected function generateRoute($routeName, Array $routeParameter = array())
     {
-        return $client->getContainer()->get('router')->generate($routeName, $routeParameter, false);
+        $this->router = $this->getContainer()->get('router');
+        return $this->router->generate($routeName, $routeParameter, false);
     }
 
     /**
@@ -118,7 +126,7 @@ class BaseTestCase extends WebTestCase
      */
     protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = '')
     {
-        $redirectUrl = $this->generateRoute($client, $routeName, $routeParameter);
+        $redirectUrl = $this->generateRoute($routeName, $routeParameter);
         $this->assertTrue($client->getResponse()->isRedirect($redirectUrl), $message);
     }
 
@@ -130,26 +138,61 @@ class BaseTestCase extends WebTestCase
      */
     protected function getUserByEmail($email)
     {
-        if (!$this->em) {
-            $this->em = $this->getEntityManager();
-        }
+        $this->em = $this->getEntityManager();
 
         return $this->em->getRepository('GPCoreBundle:User')->findOneByEmail($email);
     }
 
     /**
-     * Count Total of user in db
+     * Use this function to retrieve a company by this name
      *
-     * @param Client $client
-     * @return string
+     * @param $name
+     * @return Company
      */
-    protected function getTotalUser(Client $client)
+    protected function getCompanyByName($name)
     {
-        $em = $client->getContainer()->get('doctrine')->getManager();
+        $this->em = $this->getEntityManager();
 
-        $qb = $em->createQueryBuilder();
+        return $this->em->getRepository('GPCoreBundle:Company')->findOneByName($name);
+    }
+
+    /**
+     * Use this function to retrieve a project by this name
+     *
+     * @param $name
+     * @return Project
+     */
+    protected function getProjectByName($name)
+    {
+        $this->em = $this->getEntityManager();
+
+        return $this->em->getRepository('GPCoreBundle:Project')->findOneByName($name);
+    }
+
+    /**
+     * Count total of User in db
+     */
+    protected function getTotalUser()
+    {
+        $this->em = $this->getEntityManager();
+
+        $qb = $this->em->createQueryBuilder();
         $qb->select('count(user.id)');
         $qb->from('GPCoreBundle:User','user');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Count total of Company in db
+     */
+    protected function getTotalCompany()
+    {
+        $this->em = $this->getEntityManager();
+
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('count(company.id)');
+        $qb->from('GPCoreBundle:Company','company');
 
         return $qb->getQuery()->getSingleScalarResult();
     }
@@ -165,7 +208,7 @@ class BaseTestCase extends WebTestCase
     {
         $this->assertGreaterThan(
             0,
-            $crawler->filter("html:contains('$content')")->count(),
+            $crawler->filter('html:contains("'.$content.'")')->count(),
             $message
         );
     }
@@ -181,7 +224,7 @@ class BaseTestCase extends WebTestCase
     {
         $this->assertEquals(
             0,
-            $crawler->filter("html:contains('$content')")->count(),
+            $crawler->filter('html:contains("'.$content.'")')->count(),
             $message
         );
     }
@@ -196,7 +239,7 @@ class BaseTestCase extends WebTestCase
     protected function assertFlashMessageContains(Crawler $crawler, $content, $message = '')
     {
         $this->assertTrue(
-            $crawler->filter('.flashMessage:contains('.$content.')')->count() > 0,
+            $crawler->filter('.flashMessage:contains("'.$content.'")')->count() > 0,
             $message
         );
     }
@@ -216,7 +259,11 @@ class BaseTestCase extends WebTestCase
      */
     protected function getEntityManager()
     {
-        $this->em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        if (!$this->em)
+        {
+            $this->em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        }
+
         return $this->em;
     }
 

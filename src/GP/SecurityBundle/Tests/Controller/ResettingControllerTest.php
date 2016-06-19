@@ -19,7 +19,7 @@ class ResettingControllerTest extends BaseTestCase
         $client = static::createClient();
         $client->enableProfiler();
 
-        $url = $this->generateRoute($client, 'fos_user_resetting_request');
+        $url = $this->generateRoute('fos_user_resetting_request');
         $crawler = $client->request('GET', $url);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'A non logged user should see the request change password page');
@@ -68,7 +68,7 @@ class ResettingControllerTest extends BaseTestCase
         $client = static::createClient();
         $client->enableProfiler();
 
-        $url = $this->generateRoute($client, 'fos_user_resetting_request');
+        $url = $this->generateRoute('fos_user_resetting_request');
         $crawler = $client->request('GET', $url);
 
         $form = $crawler->selectButton('_submit')->form(array('username'  => static::USER_CHEF_PROJET));
@@ -95,7 +95,7 @@ class ResettingControllerTest extends BaseTestCase
         $client = static::createClient();
 
         $user = $this->getUserByEmail(static::USER_CHEF_PROJET);
-        $url = $this->generateRoute($client, 'reset_password', array('token' => $user->getConfirmationToken()));
+        $url = $this->generateRoute('reset_password', array('token' => $user->getConfirmationToken()));
         $crawler = $client->request('GET', $url);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 

@@ -13,7 +13,26 @@ class AdminProjectControllerTest extends BaseTestCase
 {
 
     /**
-     * Test only admin can access to manage project page
+     * Test only admin can access to project dashboard
+     *
+     * @dataProvider userProvider
+     *
+     * @param $userName
+     * @param $password
+     * @param $expectedStatusCode
+     * @param $message
+     */
+    public function testAccessShowProjectsAction($userName, $password, $expectedStatusCode, $message)
+    {
+        $client = $this->connectUser($userName, $password);
+        $url = $this->generateRoute('admin_show_all_project');
+        $client->request('GET', $url);
+
+        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+    }
+
+    /**
+     * Test only admin can access to project details page
      *
      * @dataProvider userProvider
      *
@@ -25,7 +44,9 @@ class AdminProjectControllerTest extends BaseTestCase
     public function testAccessShowProjectAction($userName, $password, $expectedStatusCode, $message)
     {
         $client = $this->connectUser($userName, $password);
-        $url = $this->generateRoute($client, 'admin_show_all_project');
+        $project = $this->getProjectByName(BaseTestCase::PROJECT_NAME);
+
+        $url = $this->generateRoute('admin_show_project', array('id' => $project->getId()));
         $client->request('GET', $url);
 
         $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);

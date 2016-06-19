@@ -25,7 +25,7 @@ class AdminUserControllerTest extends BaseTestCase
     public function testIndexAction($userName, $password, $expectedStatusCode, $message)
     {
         $client = $this->connectUser($userName, $password);
-        $url = $this->generateRoute($client, 'admin_dashboard');
+        $url = $this->generateRoute('admin_dashboard');
         $client->request('GET', $url);
 
         $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
@@ -56,14 +56,14 @@ class AdminUserControllerTest extends BaseTestCase
     public function testShowUsersAction()
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $url = $this->generateRoute($client, 'admin_show_all_user');
+        $url = $this->generateRoute('admin_show_all_user');
         $crawler =  $client->request('GET', $url);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the admin manage user page');
 
         $this->assertHtmlContains($crawler, 'Liste des Utilisateurs:', 'Admin should see the manage user page right title');
 
-        $totalUser = $this->getTotalUser($client);
+        $totalUser = $this->getTotalUser();
         $this->assertHtmlContains($crawler, 'Vous avez ' . $totalUser . ' Utilisateurs.', 'Admin should see ' . $totalUser . ' users listed in the manage user page');
     }
 
@@ -74,7 +74,7 @@ class AdminUserControllerTest extends BaseTestCase
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
-        $url = $this->generateRoute($client, 'admin_show_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_show_user', array('id' => $user->getId()));
         $crawler =  $client->request('GET', $url);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'An admin User should see the given user account information page');
@@ -96,7 +96,7 @@ class AdminUserControllerTest extends BaseTestCase
         $em = $client->getContainer()->get('doctrine')->getManager();
         $em->beginTransaction();
 
-        $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_delete_user', array('id' => $user->getId()));
         $client->request('DELETE', $url);
 
         $em->rollback();
@@ -117,7 +117,7 @@ class AdminUserControllerTest extends BaseTestCase
     public function testFailDeleteUser()
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
-        $url = $this->generateRoute($client, 'admin_delete_user', array('id' => 'gzej'));
+        $url = $this->generateRoute('admin_delete_user', array('id' => 'gzej'));
         $client->request('DELETE', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -136,7 +136,7 @@ class AdminUserControllerTest extends BaseTestCase
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $user = $this->getUserByEmail(self::USER_ADMIN);
 
-        $url = $this->generateRoute($client, 'admin_delete_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_delete_user', array('id' => $user->getId()));
         $client->request('DELETE', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -155,7 +155,7 @@ class AdminUserControllerTest extends BaseTestCase
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
 
-        $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_disable_user', array('id' => $user->getId()));
         $client->request('GET', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -177,7 +177,7 @@ class AdminUserControllerTest extends BaseTestCase
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
 
-        $url = $this->generateRoute($client, 'admin_disable_user', array('id' => 'ghfh'));
+        $url = $this->generateRoute('admin_disable_user', array('id' => 'ghfh'));
         $client->request('GET', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -196,7 +196,7 @@ class AdminUserControllerTest extends BaseTestCase
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $user = $this->getUserByEmail(self::USER_ADMIN);
 
-        $url = $this->generateRoute($client, 'admin_disable_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_disable_user', array('id' => $user->getId()));
         $client->request('GET', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -219,7 +219,7 @@ class AdminUserControllerTest extends BaseTestCase
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
         $user = $this->getUserByEmail(self::USER_CHEF_PROJET);
 
-        $url = $this->generateRoute($client, 'admin_activate_user', array('id' => $user->getId()));
+        $url = $this->generateRoute('admin_activate_user', array('id' => $user->getId()));
         $client->request('GET', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
@@ -241,7 +241,7 @@ class AdminUserControllerTest extends BaseTestCase
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
 
-        $url = $this->generateRoute($client, 'admin_activate_user', array('id' => 'ghfh'));
+        $url = $this->generateRoute('admin_activate_user', array('id' => 'ghfh'));
         $client->request('GET', $url);
 
         $this->assertRedirectTo($client, 'admin_show_all_user', array(), 'admin should be redirect successfully delete a user');
