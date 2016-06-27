@@ -30,7 +30,7 @@ class Invitation
      * @ORM\Column(name="email", type="string", length=256)
      *
      * @Assert\NotNull(message="Vous devez renseigner une adresse Email")
-     * @Assert\Email(message = "'{{ value }}' n'est pas un Email valide")
+     * @Assert\Email(message = "{{ value }} n'est pas un Email valide")
      */
     protected $email;
 

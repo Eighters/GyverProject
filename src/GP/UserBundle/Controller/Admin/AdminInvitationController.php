@@ -87,15 +87,35 @@ class AdminInvitationController extends Controller
     }
 
     /**
-     * Show all Invitations
+     * Delete Given Invitation
      *
-     * @Route("/invitation/delete", name="admin_delete_invitation")
-     * @Method("GET")
-     * @Template("GPUserBundle:Admin/User:showInvitation.html.twig")
+     * @TODO USE ONLY DELETE HTTP action
+     *
+     * @Route("/invitation/{id}/delete", name="admin_delete_invitation")
+     * @Method("GET|DELETE")
      */
-    public function deleteInvitationAction(Request $request)
+    public function deleteInvitationAction($id)
     {
-        $this->addFlash('notice', 'feature en cours de developpement');
+        // Searching requested invitation
+        $em = $this->getDoctrine()->getManager();
+        $invitation = $em->getRepository('GPCoreBundle:Invitation')->find($id);
+
+        // Checking if invitation exists
+        if (!$invitation) {
+            $this->addFlash('error', 'L\'invitation est introuvable');
+            return $this->redirectToRoute('admin_show_invitation');
+        }
+
+        // Remove invitation
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($invitation);
+        $em->flush();
+
+        // Log the event
+        $logger = $this->get('monolog.logger.user_access');
+        $logger->alert('[INVITATION_DELETION] ' . $this->getUser()->getEmail() .' have deleted invitation: '. $invitation->getCode());
+
+        $this->addFlash('success', 'L\'invitation '. $invitation->getCode() .' a été correctement supprimée');
         return $this->redirectToRoute('admin_show_invitation');
     }
 }

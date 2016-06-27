@@ -50,15 +50,15 @@
                                 </div>
 
                                 <div class="col s3 valign center-align">
-                                    <a href="{{ path('admin_delete_invitation') }}" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
+                                    <a href="#" class="btn-floating cyan lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Voir Détails">
                                         <i class="material-icons">info</i>
                                     </a>
 
-                                    <a href="{{ path('admin_delete_invitation') }}" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Réenvoyer l'inviation">
+                                    <a href="#" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Réenvoyer l'inviation">
                                         <i class="material-icons">replay</i>
                                     </a>
 
-                                    <a href="{{ path('admin_delete_invitation') }}" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer l'inviation">
+                                    <a href="{{ path('admin_delete_invitation', { 'id': invitation.code }) }}" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer l'inviation">
                                         <i class="material-icons">delete</i>
                                     </a>
                                 </div>

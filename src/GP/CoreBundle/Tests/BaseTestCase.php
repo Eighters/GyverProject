@@ -127,7 +127,7 @@ class BaseTestCase extends WebTestCase
      * @param array $routeParameter
      * @param $message
      */
-    protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = '')
+    protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = 'Assert redirect to failed.')
     {
         $redirectUrl = $this->generateRoute($routeName, $routeParameter);
         $this->assertTrue($client->getResponse()->isRedirect($redirectUrl), $message);
