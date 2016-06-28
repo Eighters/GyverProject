@@ -21,7 +21,9 @@ class BaseTestCase extends WebTestCase
     const PROJECT_NAME = 'Projet Gyver';
     const PROJECT_TEST_NAME = 'Php Unit project';
 
-    const ROLE_NAME = 'role SFR test 1';
+    const ROLE_COMPANY_NAME = 'role SFR test 1';
+    const ROLE_PROJECT_NAME = 'role projet test';
+    const ROLE_TEST_NAME = 'role test';
 
     const USER_ADMIN = 'gyver.project+admin@gmail.com';
     const USER_CHEF_PROJET = 'gyver.project+chef-projet@gmail.com';
@@ -127,7 +129,7 @@ class BaseTestCase extends WebTestCase
      * @param array $routeParameter
      * @param $message
      */
-    protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = 'Assert redirect to failed.')
+    protected function assertRedirectTo(Client $client, $routeName, Array $routeParameter = array(), $message = 'Assert "redirect to route" failed.. :(')
     {
         $redirectUrl = $this->generateRoute($routeName, $routeParameter);
         $this->assertTrue($client->getResponse()->isRedirect($redirectUrl), $message);

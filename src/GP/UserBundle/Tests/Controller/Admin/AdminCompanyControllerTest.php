@@ -239,7 +239,7 @@ class AdminCompanyControllerTest extends BaseTestCase
 
         $company = $this->getCompanyByName(BaseTestCase::COMPANY_NAME);
         $user = $this->getUserByEmail(BaseTestCase::USER_DEVELOPPEUR);
-        $role = $this->getRoleByName(BaseTestCase::ROLE_NAME);
+        $role = $this->getRoleByName(BaseTestCase::ROLE_COMPANY_NAME);
 
         $url = $this->generateRoute('admin_add_user_to_company', array('id' => $company->getId()));
         $crawler = $client->request('GET', $url);

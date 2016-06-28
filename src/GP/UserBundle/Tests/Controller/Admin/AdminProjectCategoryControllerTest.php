@@ -2,7 +2,6 @@
 
 namespace GP\UserBundle\Tests\Controller;
 
-use GP\CoreBundle\Entity\Invitation;
 use GP\CoreBundle\Entity\ProjectCategory;
 use GP\CoreBundle\Tests\BaseTestCase;
 
@@ -145,9 +144,9 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
      * @dataProvider projectCategoryProvider
      *
      * @param $projectCategoryName
-     * @param $errorMessage
+     * @param $successMessage
      */
-    public function testDeleteProjectCategory($projectCategoryName, $errorMessage)
+    public function testDeleteProjectCategory($projectCategoryName, $successMessage)
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
 
@@ -163,7 +162,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
 
         $this->assertFlashMessageContains(
             $crawler,
-            $errorMessage,
+            $successMessage,
             'Admin should see confirmation flashMessage when he successfully delete a project category'
         );
     }
@@ -173,11 +172,11 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
         return array (
             array(
                 'projectCategoryName' => self::COMPANY_CATEGORY_NAME,
-                'errorMessage' => 'La catégorie de projet '. self::COMPANY_CATEGORY_NAME .' a été correctement supprimé',
+                'successMessage' => 'La catégorie de projet '. self::COMPANY_CATEGORY_NAME .' a été correctement supprimé',
             ),
             array(
                 'projectCategoryName' => self::GLOBAL_CATEGORY_NAME,
-                'errorMessage' => 'La catégorie de projet '. self::GLOBAL_CATEGORY_NAME .' a été correctement supprimé',
+                'successMessage' => 'La catégorie de projet '. self::GLOBAL_CATEGORY_NAME .' a été correctement supprimé',
             ),
         );
     }
