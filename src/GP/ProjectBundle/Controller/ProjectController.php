@@ -2,10 +2,12 @@
 
 namespace GP\ProjectBundle\Controller;
 
+use GP\CoreBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class ProjectController
@@ -48,6 +50,11 @@ class ProjectController extends Controller
         if (!$project) {
             $this->addFlash('error', 'Projet introuvable');
             return $this->redirectToRoute('show_all_projects');
+        }
+
+        // Check if user have right to view company data
+        if (!$project->checkUserAccess($this->getUser()) && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ) {
+            throw new AccessDeniedException();
         }
 
         return array('project' => $project);

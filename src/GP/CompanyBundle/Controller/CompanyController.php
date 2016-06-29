@@ -48,7 +48,7 @@ class CompanyController extends Controller
 
         // Checking if Company exists
         if (!$company) {
-            $this->addFlash('error', 'Compagnie introuvable');
+            $this->addFlash('error', 'Entreprise introuvable');
             return $this->redirectToRoute('show_all_companies');
         }
 

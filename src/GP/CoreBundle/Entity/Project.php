@@ -316,4 +316,27 @@ class Project
 
         return $this;
     }
+
+    /**
+     * Check if User have access to the given project
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function checkUserAccess($user)
+    {
+        $access = false;
+
+        $projectCompanies = $this->getCompanies();
+
+        foreach ($projectCompanies as $company) {
+            foreach ($company->getUsers() as $companyUser) {
+                if ($companyUser->getId() == $user->getId()) {
+                    return true;
+                }
+            }
+        }
+
+        return $access;
+    }
 }
