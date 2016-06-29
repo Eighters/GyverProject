@@ -4,6 +4,7 @@ namespace GP\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use GP\CoreBundle\Entity\Company;
+use GP\CoreBundle\Entity\Project;
 
 /**
  * Project Repository
@@ -25,7 +26,7 @@ class ProjectRepository extends EntityRepository
             ->select('COUNT(project)')
             ->join('project.companies', 'companies')
             ->where('companies = :company')
-            ->andWhere('project.status = 50 OR project.status = 60')
+            ->andWhere('project.status = ' . Project::STATUS_PROJECT_FINISHED . ' OR project.status = ' . Project::STATUS_PROJECT_ARCHIVED)
             ->setParameter('company', $company->getId())
             ->getQuery()->getSingleScalarResult()
         ;
@@ -49,7 +50,7 @@ class ProjectRepository extends EntityRepository
             ->select('COUNT(project)')
             ->join('project.companies', 'companies')
             ->where('companies = :company')
-            ->andWhere('project.status = 20 OR project.status = 30 OR project.status = 40')
+            ->andWhere('project.status = ' . Project::STATUS_PROJECT_ACCEPTED . ' OR project.status = ' . Project::STATUS_PROJECT_STARTED . ' OR project.status = ' . Project::STATUS_PROJECT_IN_PROGRESS)
             ->setParameter('company', $company->getId())
             ->getQuery()->getSingleScalarResult()
         ;

@@ -84,7 +84,7 @@ class AccountControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('edit_account');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -97,7 +97,7 @@ class AccountControllerTest extends BaseTestCase
             "fos_user_profile_form[current_password]" => "password"
         ));
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
         $this->assertFlashMessageContains($crawler, 'profile.flash.updated', 'a user should see confirmation flassmessage when update personnal account infos');
     }
 }

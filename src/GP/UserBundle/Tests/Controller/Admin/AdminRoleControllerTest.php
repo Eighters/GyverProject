@@ -28,7 +28,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_all_access_roles');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     /**
@@ -49,7 +49,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_access_role', array('id' => $role->getId()));
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     public function userProvider()
@@ -101,7 +101,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_create_company_access_role', array('id' => $company->getId()));
         $crawler = $client->request('GET', $url);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -113,7 +113,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_company', array('id' => $company->getId()));
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $this->assertFlashMessageContains(
             $crawler,
@@ -133,7 +133,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_create_project_access_role', array('id' => $project->getId()));
         $crawler = $client->request('GET', $url);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -145,7 +145,7 @@ class AdminRoleControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_project', array('id' => $project->getId()));
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $this->assertFlashMessageContains(
             $crawler,

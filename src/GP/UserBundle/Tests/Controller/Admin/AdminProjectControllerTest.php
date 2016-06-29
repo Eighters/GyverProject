@@ -28,7 +28,7 @@ class AdminProjectControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_all_project');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     /**
@@ -49,7 +49,7 @@ class AdminProjectControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_project', array('id' => $project->getId()));
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     public function userProvider()

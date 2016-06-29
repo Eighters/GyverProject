@@ -31,7 +31,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_all_project_categories');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_create_project_category');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     public function userProvider()
@@ -80,7 +80,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_create_project_category');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -93,7 +93,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_all_project_categories');
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $this->assertFlashMessageContains(
             $crawler,
@@ -112,7 +112,8 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_create_project_category');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -126,7 +127,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_all_project_categories');
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $this->assertFlashMessageContains(
             $crawler,

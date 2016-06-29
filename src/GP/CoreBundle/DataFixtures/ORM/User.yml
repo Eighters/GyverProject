@@ -97,12 +97,6 @@ GP\CoreBundle\Entity\User:
         lastName: Ramos
         company: [ '@company4' ]
 
-    deletedUser (extends user):
-        email: gyver.project+deleted@gmail.com
-        username: deleted
-        firstName: deleted
-        lastName: user
-
     thibaut (extends user):
         username: thibaut
         usernameCanonical: thibaut

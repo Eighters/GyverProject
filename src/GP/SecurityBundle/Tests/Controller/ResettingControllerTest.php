@@ -22,7 +22,7 @@ class ResettingControllerTest extends BaseTestCase
         $url = $this->generateRoute('fos_user_resetting_request');
         $crawler = $client->request('GET', $url);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'A non logged user should see the request change password page');
+        $this->assertStatusCode(200, $client, 'A non logged user should see the request change password page');
 
         $form = $crawler->selectButton('_submit')->form(array('username'  => static::USER_CHEF_PROJET));
         $client->submit($form);
@@ -42,7 +42,7 @@ class ResettingControllerTest extends BaseTestCase
         $crawler = $client->followRedirect();
 
         // Assert Html contain success message
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
         $this->assertHtmlContains(
             $crawler,
             'Nous vous avons envoyé un email avec un lien pour réinitialiser votre mot de passe, Vérifiez vos email',
@@ -77,7 +77,7 @@ class ResettingControllerTest extends BaseTestCase
         // Check that an email not sent
         $mailCollector = $client->getProfile()->getCollector('swiftmailer');
         $this->assertEquals(0, $mailCollector->getMessageCount());
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
         $this->assertHtmlContains(
             $crawler,
             'Erreur, Vous avez déjà une demande de réinitialisation de mot de passe en cours',
@@ -97,7 +97,7 @@ class ResettingControllerTest extends BaseTestCase
         $user = $this->getUserByEmail(static::USER_CHEF_PROJET);
         $url = $this->generateRoute('reset_password', array('token' => $user->getConfirmationToken()));
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $data = array(
             'fos_user_resetting_form[plainPassword][first]'  => 'tutu',
@@ -107,7 +107,8 @@ class ResettingControllerTest extends BaseTestCase
         $form = $crawler->selectButton('_submit')->form($data);
         $crawler = $client->submit($form);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
+
         $this->assertHtmlContains(
             $crawler,
             'Les mots de passe ne sont pas identiques',

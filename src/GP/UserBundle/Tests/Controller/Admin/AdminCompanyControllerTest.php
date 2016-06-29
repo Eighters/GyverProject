@@ -29,7 +29,7 @@ class AdminCompanyControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_all_company');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminCompanyControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_company', array('id' => $company->getId()));
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     public function userProvider()
@@ -85,7 +85,7 @@ class AdminCompanyControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_create_company');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form($data);
         $crawler = $client->submit($form);
@@ -130,7 +130,7 @@ class AdminCompanyControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_create_company');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $data = array(
             'new_company[name]'  => BaseTestCase::COMPANY_TEST_NAME,
@@ -163,7 +163,7 @@ class AdminCompanyControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_update_company', array('id' => $initialCompany->getId()));
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $newCompanyName = BaseTestCase::COMPANY_TEST_NAME . ' update';
         $data = array(
@@ -201,7 +201,7 @@ class AdminCompanyControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_delete_company', array('id' => $company->getId()));
         $client->request('DELETE', $url);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(302, $client);
     }
 
     /**
@@ -222,7 +222,7 @@ class AdminCompanyControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_all_company', array(), 'admin should be redirect to company dashboard when successfully delete a company');
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $newCompanyNb = $this->getTotalCompany();
         $this->assertEquals($originalCompanyNb - 1, $newCompanyNb, 'It should delete the given Company in db when admin delete company');
@@ -244,7 +244,7 @@ class AdminCompanyControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_add_user_to_company', array('id' => $company->getId()));
         $crawler = $client->request('GET', $url);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 

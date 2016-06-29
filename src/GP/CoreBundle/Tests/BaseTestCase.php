@@ -263,6 +263,18 @@ class BaseTestCase extends WebTestCase
     }
 
     /**
+     * Assert that client response is equal to status code
+     *
+     * @param $expectedStatusCode
+     * @param $client
+     * @param $message
+     */
+    protected function assertStatusCode($expectedStatusCode, Client $client, $message = 'The client response don\'t match expected status code.')
+    {
+        $this->assertEquals($client->getResponse()->getStatusCode(), $expectedStatusCode, $message);
+    }
+
+    /**
      * @return mixed
      */
     protected function getContainer()

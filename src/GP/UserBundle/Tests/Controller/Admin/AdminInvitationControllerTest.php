@@ -28,7 +28,7 @@ class AdminInvitationControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_show_invitation');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     /**
@@ -47,7 +47,7 @@ class AdminInvitationControllerTest extends BaseTestCase
         $url = $this->generateRoute('admin_invitation_new');
         $client->request('GET', $url);
 
-        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
     }
 
     public function userProvider()
@@ -81,13 +81,13 @@ class AdminInvitationControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_invitation_new');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
         $form["send_invitation[civility]"]->select('male');
 
         $crawler = $client->submit($form, $data);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         foreach ($errors as $errorName => $errorMessage) {
             $this->assertHtmlContains($crawler, $errorMessage, "Invalid error message for " . $errorName . " in invitation form");
@@ -151,7 +151,7 @@ class AdminInvitationControllerTest extends BaseTestCase
 
         $url = $this->generateRoute('admin_invitation_new');
         $crawler = $client->request('GET', $url);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $form = $crawler->selectButton('_submit')->form();
 
@@ -168,7 +168,7 @@ class AdminInvitationControllerTest extends BaseTestCase
         $this->assertRedirectTo($client, 'admin_show_all_user');
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
 
         $this->assertFlashMessageContains(
             $crawler,
