@@ -99,7 +99,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountDeletedNotification($user);
 
         $logger = $this->get('monolog.logger.user_access');
-        $logger->alert('[DELETE] ' . $this->getUser()->getEmail() .' have deleted user: '. $user->getEmail().' (id: '.$user->getId().')');
+        $logger->alert('[USER_DELETE] ' . $this->getUser()->getEmail() .' have deleted user: '. $user->getEmail().' (id: '.$user->getId().')');
 
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement supprimé');
@@ -140,7 +140,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountArchivedNotification($user);
 
         $logger = $this->get('monolog.logger.user_access');
-        $logger->alert('[DISABLE] ' . $this->getUser()->getEmail() .' have archived user: '. $user->getEmail().' (id: '.$user->getId().')');
+        $logger->alert('[USER_DISABLE] ' . $this->getUser()->getEmail() .' have archived user: '. $user->getEmail().' (id: '.$user->getId().')');
 
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement désactivé');
@@ -175,7 +175,7 @@ class AdminUserController extends Controller
         $mailerService->sendUserAccountActivatedNotification($user);
 
         $logger = $this->get('monolog.logger.user_access');
-        $logger->alert('[ACTIVATE] ' . $this->getUser()->getEmail() .' have reactivated user: '. $user->getEmail().' (id: '.$user->getId().')');
+        $logger->alert('[USER_ACTIVATE] ' . $this->getUser()->getEmail() .' have reactivated user: '. $user->getEmail().' (id: '.$user->getId().')');
 
         // Return success message
         $this->addFlash('success', 'Utilisateur '. $user->getFirstName() .' correctement activé');

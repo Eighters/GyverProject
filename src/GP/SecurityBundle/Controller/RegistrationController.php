@@ -71,7 +71,7 @@ class RegistrationController extends Controller
 
                 // Log the registration
                 $logger = $this->get('monolog.logger.user_access');
-                $logger->alert('[SIGNUP] ' . $user->getEmail() .' have successfully Signed Up with Invitation ID No°' . $user->getInvitation()->getCode());
+                $logger->alert('[USER_SIGNUP] ' . $user->getEmail() .' have successfully Signed Up with Invitation ID No°' . $user->getInvitation()->getCode());
 
                 $response = new RedirectResponse($this->generateUrl('login'));
             }

@@ -53,7 +53,7 @@ class AdminInvitationController extends Controller
 
                 // Log the invitation
                 $logger = $this->get('monolog.logger.user_access');
-                $logger->alert('[INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
+                $logger->alert('[USER_INVITATION] ' . $this->getUser()->getEmail() .' have sent new invitation to '. $invitation->getEmail());
 
                 $this->addFlash('success', 'Une invitation a été envoyée à l\'adresse: ' . $invitation->getEmail());
                 return $this->redirect($this->generateUrl('admin_show_all_user'));
@@ -113,7 +113,7 @@ class AdminInvitationController extends Controller
 
         // Log the event
         $logger = $this->get('monolog.logger.user_access');
-        $logger->alert('[INVITATION_DELETION] ' . $this->getUser()->getEmail() .' have deleted invitation: '. $invitation->getCode());
+        $logger->alert('[USER_INVITATION_DELETION] ' . $this->getUser()->getEmail() .' have deleted invitation: '. $invitation->getCode());
 
         $this->addFlash('success', 'L\'invitation '. $invitation->getCode() .' a été correctement supprimée');
         return $this->redirectToRoute('admin_show_invitation');

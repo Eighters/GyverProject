@@ -72,7 +72,7 @@ class ResettingController extends FOSResettingController
 
             // Log the reset action
             $logger = $this->get('monolog.logger.user_access');
-            $logger->alert('[RESET_PASSWORD] ' . $user->getEmail() .' have successfully reset her password (id: '.$user->getId().')');
+            $logger->alert('[USER_RESET_PASSWORD] ' . $user->getEmail() .' have successfully reset her password (id: '.$user->getId().')');
 
             return $response;
         }
