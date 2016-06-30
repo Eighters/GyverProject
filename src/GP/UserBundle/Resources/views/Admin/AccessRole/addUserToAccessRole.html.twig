@@ -1,0 +1,43 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Roles{% endblock%}
+
+{% block underNavTitle %}Ajouter un utilisateur au rôle: {{ accessRole.name }}{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant: {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s10 offset-s1">
+
+            <div class="card">
+                <div class="card-content">
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        {{ form_label(form.users, 'Choisissez un utilisateur à ajouter au rôle :') }} <br>
+
+                        <div class="input-roles-choices input-field">
+                            {{ form_widget(form.users) }}
+                        </div>
+                    </div>
+
+                    <div class="row center-align">
+                        <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                            Ajouter
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                        <a href="{{ path("admin_show_access_role", { 'id': accessRole.id }) }}" class="btn waves-effect waves-light amber accent-4">
+                            Retour détail Rôle
+                        </a>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

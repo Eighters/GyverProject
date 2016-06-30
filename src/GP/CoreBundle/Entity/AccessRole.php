@@ -81,9 +81,9 @@ class AccessRole
     /**
      * The user associated to the Access Role
      *
-     * @var User
+     * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="accessRole")
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\User", mappedBy="accessRole", cascade={"persist"})
      */
     private $users;
 
@@ -91,7 +91,7 @@ class AccessRole
      * The company associated to the Access Role
      * Only if type = company
      *
-     * @var Company
+     * @var ArrayCollection
      *
      * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Company", inversedBy="companyRoles", cascade={"persist"})
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
@@ -102,7 +102,7 @@ class AccessRole
      * The project associated to the Access Role
      * Only if type = project
      *
-     * @var Project
+     * @var ArrayCollection
      *
      * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="projectRoles", cascade={"persist"})
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
@@ -212,7 +212,20 @@ class AccessRole
      * @param User $user
      * @return AccessRole
      */
-    public function addUsers($user)
+    public function addUsers(User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * avoid bug with form
+     *
+     * @param User $user
+     * @return AccessRole
+     */
+    public function setUsers(User $user)
     {
         $this->users[] = $user;
 

@@ -6,12 +6,12 @@ GP\CoreBundle\Entity\AccessRole:
         company: '@it2M'
         project: ~
 
-#    userRoleProjectSample (template):
-#        name: Role project sample
-#        type: project
-#        description: Role project description sample
-#        company: ~
-#        project: '@gyver'
+    userRoleProjectSample (template):
+        name: Role project sample
+        type: project
+        description: Role project description sample
+        company: ~
+        project: '@gyver'
 
     it2mRoleTest (extends userRoleCompanySample):
         name: role it2m test
@@ -37,28 +37,28 @@ GP\CoreBundle\Entity\AccessRole:
         name: DevOps
         description: Le super DevOps !
 
-    company3RoleTest1 (extends userRoleCompanySample):
+    sfrRoleTest1 (extends userRoleCompanySample):
         name: role SFR test 1
         description: role SFR test description 1
         company: '@company4'
 
-    company3RoleTest2 (extends userRoleCompanySample):
+    sfrRoleTest2 (extends userRoleCompanySample):
         name: role SFR test 2
         description: role SFR test description 2
         company: '@company4'
 
-#    gyverRoleScrumMaster (extends userRoleProjectSample):
-#        name: ScrumMaster
-#        description: Notre formidable ScrumMaster, toujours à l'heure :)
-#
-#    gyverRoleProductOwner (extends userRoleProjectSample):
-#        name: Product Owner
-#        description: Ze Po of ze year
-#
-#    gyverRoleAngluar (extends userRoleProjectSample):
-#        name: Spécialiste Angular Js
-#        description: Le spécialiste et formateur Angular Js
-#
-#    gyverRoleSEO (extends userRoleProjectSample):
-#        name: Spécialiste SEO
-#        description: Le spécialiste et formateur en SEO
+    gyverRoleScrumMaster (extends userRoleProjectSample):
+        name: ScrumMaster
+        description: Notre formidable ScrumMaster, toujours à l'heure :)
+
+    gyverRoleProductOwner (extends userRoleProjectSample):
+        name: Product Owner
+        description: Ze Po of ze year
+
+    gyverRoleAngluar (extends userRoleProjectSample):
+        name: Spécialiste Angular Js
+        description: Le spécialiste et formateur Angular Js
+
+    gyverRoleSEO (extends userRoleProjectSample):
+        name: Spécialiste SEO
+        description: Le spécialiste et formateur en SEO

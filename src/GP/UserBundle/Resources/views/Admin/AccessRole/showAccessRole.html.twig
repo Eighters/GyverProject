@@ -1,6 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
 
-{% block title %}Gestions des Roles{% endblock%}
+{% block title %}Détails Roles {{ accessRole.name|capitalize }}{% endblock%}
 
 {% block underNavTitle %}Détails Rôle: {% endblock %}
 {% block underNavText %}{{ accessRole.name|capitalize }}{% endblock %}
@@ -8,7 +8,7 @@
 {% block body %}
 
     <div class="row center">
-        <a href="#" class="waves-effect waves-light btn amber accent-4">
+        <a href="{{ path('admin_add_user_access_role', { 'id': accessRole.id }) }}" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">add_circle_outline</i>
             Ajouter un utilisateur à ce rôle
         </a>
@@ -89,7 +89,7 @@
                             <br>
                             <a href="{{ path("admin_show_user", {'id': user.id}) }}">{{ user.email }}</a>
 
-                            <a class="right btn-floating red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Retirer le rôle à cet utilisateur">
+                            <a onclick="confirmRemoveAccessRoleForUSer({{ accessRole.id }}, {{ user.id }})" class="right btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Retirer le rôle à cet utilisateur">
                                 <i class="material-icons right">delete</i>
                             </a>
                         </li>

@@ -199,4 +199,65 @@ class AdminRoleControllerTest extends BaseTestCase
             ),
         );
     }
+
+    /**
+     * Test that admin can add new user to a given access role
+     */
+    public function testAddUserToAccessRoleAction()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $em = $client->getContainer()->get('doctrine')->getManager();
+        /** @var AccessRole $accessRole */
+        $accessRole = $em->getRepository('GPCoreBundle:AccessRole')->findOneByName(self::ROLE_COMPANY_NAME);
+
+        $url = $this->generateRoute('admin_add_user_access_role', array('id' => $accessRole->getId()));
+        $crawler = $client->request('GET', $url);
+
+        $this->assertStatusCode(200, $client);
+
+        $user = $this->getUserByEmail(self::USER_COLLABORATEUR);
+
+        $form = $crawler->selectButton('_submit')->form();
+
+        $form["add_user_to_access_role[users]"]->select($user->getId());
+
+        $client->submit($form);
+
+        $this->assertRedirectTo($client, 'admin_show_access_role', array('id' => $accessRole->getId()));
+        $crawler = $client->followRedirect();
+
+        $username = $user->getFirstName() . " " . $user->getLastName();
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle ". $accessRole->getName(). " a bien été affecté à l'utilisateur " . $username,
+            'Admin should see confirmation flashMessage when he successfully add new user to an access role'
+        );
+    }
+
+    /**
+     * Test that admin can remove user from access role
+     *
+     * @depends testAddUserToAccessRoleAction
+     */
+    public function testRemoveAccessRoleForUserAction()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $em = $client->getContainer()->get('doctrine')->getManager();
+        /** @var AccessRole $accessRole */
+        $accessRole = $em->getRepository('GPCoreBundle:AccessRole')->findOneByName(self::ROLE_COMPANY_NAME);
+        $user = $this->getUserByEmail(self::USER_COLLABORATEUR);
+
+        $url = $this->generateRoute('admin_remove_user_access_role', array('id' => $accessRole->getId(), 'user_id' => $user->getId()));
+        $client->request('DELETE', $url);
+
+        $this->assertRedirectTo($client, 'admin_show_access_role', array('id' => $accessRole->getId()));
+        $crawler = $client->followRedirect();
+
+        $username = $user->getFirstName() . " " . $user->getLastName();
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle ". $accessRole->getName(). " a été retiré à l'utilisateur "  . $username,
+            'Admin should see confirmation flashMessage when he successfully add new user to an access role'
+        );
+    }
 }
