@@ -5,6 +5,7 @@ namespace GP\CoreBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use GP\CoreBundle\Entity\Company;
 use GP\CoreBundle\Entity\Project;
+use GP\CoreBundle\Entity\User;
 
 /**
  * Project Repository
@@ -56,5 +57,34 @@ class ProjectRepository extends EntityRepository
         ;
 
         return $result;
+    }
+
+    /**
+     * Get all projects attached to the given user
+     *
+     * @param User $user
+     * @param null $limit
+     * @return array
+     */
+    public function findUserProjects(User $user, $limit = null)
+    {
+        $companyRepository = $this
+            ->getEntityManager()
+            ->getRepository('GPCoreBundle:Company');
+
+        $userCompanies = $companyRepository->findUserCompanies($user, $limit);
+
+        $userProjects = array();
+        foreach ($userCompanies as $company) {
+            foreach ($company->getProjects() as $project) {
+                $result = array_search($project, $userProjects);
+
+                if ($result === false) {
+                    array_push($userProjects, $project);
+                }
+            }
+        }
+
+        return $userProjects;
     }
 }

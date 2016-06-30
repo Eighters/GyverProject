@@ -323,7 +323,7 @@ class Project
      * @param User $user
      * @return bool
      */
-    public function checkUserAccess($user)
+    public function checkUserAccess(User $user)
     {
         $access = false;
 

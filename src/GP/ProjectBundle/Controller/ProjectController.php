@@ -2,7 +2,6 @@
 
 namespace GP\ProjectBundle\Controller;
 
-use GP\CoreBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -22,13 +21,13 @@ class ProjectController extends Controller
      *
      * @Route("/", name="show_all_projects")
      * @Method("GET")
-     * @Template()
+     * @Template("GPProjectBundle:Project:showProjects.html.twig")
      */
     public function showProjectsAction()
     {
-        // Getting all projects
+        // Getting all projects for the current User
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('GPCoreBundle:Project')->findAll();
+        $projects = $em->getRepository('GPCoreBundle:Project')->findUserProjects($this->getUser());
 
         return array('projects' => $projects);
     }
@@ -38,7 +37,7 @@ class ProjectController extends Controller
      *
      * @Route("/{id}", name="show_project")
      * @Method("GET")
-     * @Template()
+     * @Template("GPProjectBundle:Project:showProject.html.twig")
      */
     public function showProjectAction($id)
     {

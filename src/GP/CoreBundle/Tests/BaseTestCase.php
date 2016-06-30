@@ -271,7 +271,7 @@ class BaseTestCase extends WebTestCase
      */
     protected function assertStatusCode($expectedStatusCode, Client $client, $message = 'The client response don\'t match expected status code.')
     {
-        $this->assertEquals($client->getResponse()->getStatusCode(), $expectedStatusCode, $message);
+        $this->assertEquals($expectedStatusCode, $client->getResponse()->getStatusCode(), $message);
     }
 
     /**
