@@ -2,14 +2,14 @@
 
 namespace GP\SecurityBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use GP\CoreBundle\Tests\BaseTestCase;
 
 /**
  * Unit testing for the Security controller
  *
  * @package GP\SecurityBundle\Tests\Controller
  */
-class SecurityControllerTest extends WebTestCase
+class SecurityControllerTest extends BaseTestCase
 {
 
     /**
@@ -42,5 +42,49 @@ class SecurityControllerTest extends WebTestCase
 
         // Assert that the response status code is 2xx
         $this->assertTrue($client->getResponse()->isSuccessful());
+    }
+
+    /**
+     * Test success login form
+     */
+    public function testValidLoginForm()
+    {
+        $client = static::createClient();
+
+        $url = $this->generateRoute('login');
+        $crawler = $client->request('GET', $url);
+
+        $credentials = array(
+            '_username'  => self::USER_DEVELOPPEUR,
+            '_password'  => self::USER_PASSWORD,
+        );
+
+        $form = $crawler->selectButton('_submit')->form($credentials);
+        $client->submit($form);
+
+        $this->assertStatusCode(302, $client);
+    }
+
+    /**
+     * Test errors on login form
+     */
+    public function testInvalidLoginForm()
+    {
+        $client = static::createClient();
+
+        $url = $this->generateRoute('login');
+        $crawler = $client->request('GET', $url);
+
+        $credentials = array(
+            '_username'  => 'toto',
+            '_password'  => 'toto',
+        );
+
+        $form = $crawler->selectButton('_submit')->form($credentials);
+        $client->submit($form);
+
+        $crawler = $client->followRedirect();
+
+        $this->assertHtmlContains($crawler, 'Invalid credentials.' , 'User should see error message when he submit invalid credentials');
     }
 }

@@ -59,6 +59,45 @@ class ResettingControllerTest extends BaseTestCase
     }
 
     /**
+     * Test that a non authenticated user cannot change other user password
+     *
+     * @depends testSubmitRequestChangePassword
+     * @dataProvider userProvider
+     *
+     * @param $userEmail
+     * @param $expectedStatusCode
+     * @param $message
+     */
+    public function testAccessChangePasswordForm($userEmail, $expectedStatusCode, $message)
+    {
+        $client = static::createClient();
+
+        $user = $this->getUserByEmail($userEmail);
+
+        $token = ($user->getConfirmationToken()) ? $user->getConfirmationToken() : 'tutu';
+        $url = $this->generateRoute('reset_password', array('token' => $token));
+        $client->request('GET', $url);
+
+        $this->assertStatusCode($expectedStatusCode, $client, $message);
+    }
+
+    public function userProvider()
+    {
+        return array (
+            array(
+                'invitationEmail' => static::USER_CHEF_PROJET,
+                'expectedStatusCode' => '200',
+                'message' => 'toto',
+            ),
+            array(
+                'invitationEmail' => static::USER_CLIENT,
+                'expectedStatusCode' => '404',
+                'message' => 'totutu',
+            ),
+        );
+    }
+
+    /**
      * Test that a user cannot ask a other reset password demand
      *
      * @depends testSubmitRequestChangePassword
@@ -74,10 +113,12 @@ class ResettingControllerTest extends BaseTestCase
         $form = $crawler->selectButton('_submit')->form(array('username'  => static::USER_CHEF_PROJET));
         $crawler = $client->submit($form);
 
+        $this->assertStatusCode(200, $client);
+
         // Check that an email not sent
         $mailCollector = $client->getProfile()->getCollector('swiftmailer');
         $this->assertEquals(0, $mailCollector->getMessageCount());
-        $this->assertStatusCode(200, $client);
+
         $this->assertHtmlContains(
             $crawler,
             'Erreur, Vous avez déjà une demande de réinitialisation de mot de passe en cours',

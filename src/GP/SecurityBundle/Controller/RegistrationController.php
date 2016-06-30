@@ -25,9 +25,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class RegistrationController extends Controller
 {
     /**
-     * Override of the FOSUserBundle reset password function.
+     * Override of the FOSUserBundle registration function.
      *
-     * Reset user password
+     * User sign up to application (need to be invited by email)
      *
      * @Route("/register/{token}", name="register")
      * @Method("GET|POST")

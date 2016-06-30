@@ -25,6 +25,8 @@ class BaseTestCase extends WebTestCase
     const ROLE_PROJECT_NAME = 'role projet test';
     const ROLE_TEST_NAME = 'role test';
 
+    const INVITATION_EMAIL = 'invitation-test-1@test.fr';
+
     const USER_ADMIN = 'gyver.project+admin@gmail.com';
     const USER_CHEF_PROJET = 'gyver.project+chef-projet@gmail.com';
     const USER_CONSULTANT = 'gyver.project+consultant@gmail.com';

@@ -1,26 +1,26 @@
 GP\CoreBundle\Entity\Invitation:
     invitation1:
         code: 53a380
-        email: toto@toto.fr
+        email: invitation-test-1@test.fr
         isSent: true
         sentAt: <dateTime("2016-02-28 17:42:02")>
         welcomeMessage: Bonjour, je vous invite à vous inscrire sur notre application de gestion de projet
         confirmationToken: 52b636d254ff934a0bda280683424624dca86706117e9aae00f19e527bda77a0
         status: pending
-        userName: test username
-        firstName: test first name
-        lastName: test last name
+        userName: test1 invited username
+        firstName: test1 first name
+        lastName: test1 last name
         civility: male
 
     invitation2:
         code: f217b6
-        email: toto@toto.fr
+        email: invitation-test-2@test.fr
         isSent: true
         sentAt: <dateTime("2016-01-28 17:47:09")>
         welcomeMessage: Bonjour, je vous invite à vous inscrire sur notre application de gestion de projet
         confirmationToken: 1ca75caebc24df48bed2f00d8736b208b97015d4045568282bc867731f0be33b
         status: pending
-        userName: tutu username
-        firstName: tutu first name
-        lastName: tutu last name
+        userName: test2 username
+        firstName: test2 first name
+        lastName: test2 last name
         civility: female
