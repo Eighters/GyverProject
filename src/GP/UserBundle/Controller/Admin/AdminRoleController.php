@@ -280,7 +280,7 @@ class AdminRoleController extends Controller
      *
      * @return bool
      */
-    public function checkUserHaveAccessRole(User $currentUser, $accessRoleUsers)
+    private function checkUserHaveAccessRole(User $currentUser, $accessRoleUsers)
     {
         $permission = false;
         foreach ($accessRoleUsers as $user) {
