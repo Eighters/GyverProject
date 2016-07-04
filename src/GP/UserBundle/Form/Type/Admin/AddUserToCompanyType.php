@@ -51,7 +51,8 @@ class AddUserToCompanyType extends AbstractType
                 },
                 'choice_label' => function (User $user) {
                     return $user->getFirstName() . ' ' . $user->getLastName();
-                }
+                },
+                'empty_value' => 'Choissez un utilisateur'
             ))
             ->add('companyRoles', EntityType::class, array(
                 'class' => 'GP\CoreBundle\Entity\AccessRole',
@@ -67,7 +68,8 @@ class AddUserToCompanyType extends AbstractType
                 },
                 'choice_label' => function (AccessRole $accessRole) {
                     return $accessRole->getName();
-                }
+                },
+                'empty_value' => 'Choissez un role à affecter'
             ))
         ;
     }

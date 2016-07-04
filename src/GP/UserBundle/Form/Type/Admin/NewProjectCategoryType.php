@@ -35,7 +35,8 @@ class NewProjectCategoryType extends AbstractType
                 'choices_as_values' => true,
                 'choice_label' => function (Company $company) {
                     return $company->getName();
-                }
+                },
+                'empty_value' => 'Choissez une entreprise'
             ))
         ;
     }

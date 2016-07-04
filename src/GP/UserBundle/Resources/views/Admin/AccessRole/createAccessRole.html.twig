@@ -1,0 +1,87 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Création Role{% endblock%}
+
+{% block underNavTitle %}Creation d'un rôle :{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant: {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s10 offset-s1">
+
+            <div class="card">
+                <div class="card-content">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_label(form.type, 'Type de rôle :') }}
+
+                                <div class="input-field col s12">
+                                    {{ form_widget(form.type) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.name, {
+                                    attr: { length: '255' }
+                                }) }}
+                                {{ form_label(form.name, 'Nom du rôle :') }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.description, {
+                                    attr: {
+                                        class: 'materialize-textarea',
+                                        length: '2000'
+                                    }
+                                }) }}
+                                {{ form_label(form.description, 'Description du rôle :') }}
+                            </div>
+                        </div>
+
+                        <div id="company_choice" class="row hide">
+                            {{ form_label(form.company, 'Entreprise rattachée au role :') }} <br>
+
+                            <div class="input-roles-choices input-field">
+                                {{ form_widget(form.company) }}
+                            </div>
+                        </div>
+
+                        <div id="project_choice" class="row hide">
+                            {{ form_label(form.project, 'Projet rattaché au role :') }} <br>
+
+                            <div class="input-roles-choices input-field">
+                                {{ form_widget(form.project) }}
+                            </div>
+                        </div>
+
+                        <div class="row center-align">
+                            <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                                Enregistrer
+                                <i class="material-icons right">send</i>
+                            </button>
+
+                            <a href="{{ path("admin_show_all_access_roles") }}" class="btn waves-effect waves-light amber accent-4">
+                                Retour listes rôles
+                            </a>
+                        </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/add_access_role.js') }}"></script>
+{% endblock %}

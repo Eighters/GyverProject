@@ -4,6 +4,7 @@ namespace GP\UserBundle\Controller\Admin;
 
 use GP\CoreBundle\Entity\User;
 use GP\UserBundle\Form\Type\Admin\AddUserToAccessRoleType;
+use GP\UserBundle\Form\Type\Admin\CreateAccessRoleType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -40,6 +41,49 @@ class AdminRoleController extends Controller
     }
 
     /**
+     * Create new access role
+     * It can be a company or a Project Access Role*
+     *
+     * @Route("/add", name="admin_create_access_role")
+     * @Method("GET|POST")
+     * @Template("GPUserBundle:Admin/AccessRole:createAccessRole.html.twig")
+     */
+    public function createAccessRoleAction(Request $request)
+    {
+        $accessRole = new AccessRole();
+        $form = $this->createForm(new CreateAccessRoleType(), $accessRole);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $type = $form->get('type')->getData();
+
+            if ($type == AccessRole::TYPE_COMPANY) {
+                $company = $form->get('company')->getData();
+                $accessRole->setProject(NULL);
+                $accessRole->setCompany($company);
+            } else if ($type == AccessRole::TYPE_PROJECT) {
+                $company = $form->get('project')->getData();
+                $accessRole->setCompany(NULL);
+                $accessRole->setProject($company);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($accessRole);
+            $em->flush();
+
+            $logger = $this->get('monolog.logger.user_access');
+            $logger->alert('[ROLE_NEW] ' . $this->getUser()->getEmail() .' have added new role : ' . $accessRole->getName() . ' of type : '. $accessRole->getType());
+
+            $this->addFlash('success', 'Le rôle: '. $accessRole->getName() . ' a été créé avec succès');
+            return $this->redirectToRoute('admin_show_all_access_roles');
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
      * Display full data of a given Access Role
      *
      * @Route("/{id}", name="admin_show_access_role")
@@ -63,7 +107,7 @@ class AdminRoleController extends Controller
     /**
      * Create new access role for given company
      *
-     * @Route("/{id}/company", name="admin_create_company_access_role")
+     * @Route("/{id}/role-company", name="admin_create_company_access_role")
      * @Method("GET|POST")
      * @Template("GPUserBundle:Admin/AccessRole:createCompanyAccessRole.html.twig")
      */
@@ -106,7 +150,7 @@ class AdminRoleController extends Controller
     /**
      * Create new access role for given project
      *
-     * @Route("/{id}/project", name="admin_create_project_access_role")
+     * @Route("/{id}/role-project", name="admin_create_project_access_role")
      * @Method("GET|POST")
      * @Template("GPUserBundle:Admin/AccessRole:createProjectAccessRole.html.twig")
      */

@@ -1,10 +1,3 @@
-/**
- * project_category.js
- *
- * Here is the main file to write JavaScript for Application.
- * He is included in base template so you can access from everywhere
- */
-
 
 /**
  * Handle input "global" change on project category form (activate|disable the select Company input)

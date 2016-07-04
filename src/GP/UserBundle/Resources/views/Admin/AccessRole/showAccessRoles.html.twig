@@ -8,7 +8,7 @@
 {% block body %}
 
     <div class="row center">
-        <a href="#" class="waves-effect waves-light btn amber accent-4">
+        <a href="{{ path('admin_create_access_role') }}" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">add_circle_outline</i>
             Créer un nouveau Role
         </a>
@@ -39,9 +39,6 @@
                                 <div class="col s4">
                                     <a class="right btn-floating red tooltipped" onclick="confirmAdminDeleteAccessRole({{ accessRole.id }})" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
                                         <i class="material-icons right">delete</i>
-                                    </a>
-                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle Entreprise">
-                                        <i class="material-icons">create</i>
                                     </a>
                                     <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Voir Rôle">
                                         <i class="material-icons right">info</i>
@@ -76,9 +73,6 @@
                                 <div class="col s4">
                                     <a class="right btn-floating red tooltipped" onclick="confirmAdminDeleteAccessRole({{ accessRole.id }})" href="#" data-position="top" data-delay="50" data-tooltip="Supprimer Rôle">
                                         <i class="material-icons right">delete</i>
-                                    </a>
-                                    <a class="right btn-floating green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="Editer Rôle">
-                                        <i class="material-icons">create</i>
                                     </a>
                                     <a class="right btn-floating cyan lighten-2 tooltipped" href="{{ path('admin_show_access_role', {'id': accessRole.id}) }}" data-position="top" data-delay="50" data-tooltip="Editer Détails">
                                         <i class="material-icons right">info</i>

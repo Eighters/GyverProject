@@ -30,12 +30,12 @@ class AddUserToAccessRoleType extends AbstractType
                 'choices_as_values' => true,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.lastLogin', 'DESC')
-                    ;
+                        ->orderBy('u.lastLogin', 'DESC');
                 },
                 'choice_label' => function (User $user) {
                     return $user->getFirstName() . ' ' . $user->getLastName();
-                }
+                },
+                'empty_value' => 'Choissez un utilisateur'
             ))
         ;
     }

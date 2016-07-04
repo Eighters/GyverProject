@@ -1,3 +1,4 @@
+
 /**
  * Modal to confirm action when administrator want to delete a user from the application
  * @param id (ID of the user admin want to delete)

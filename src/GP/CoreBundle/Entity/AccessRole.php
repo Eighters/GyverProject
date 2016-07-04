@@ -21,6 +21,9 @@ class AccessRole
     CONST TYPE_PROJECT = 'project';
     CONST TYPE_COMPANY = 'company';
 
+    CONST PROJECT_PLACEHOLDER = 'Selectionner un projet';
+    CONST COMPANY_PLACEHOLDER = 'Selectionner une entreprise';
+
     /**
      * @var integer
      *
@@ -68,10 +71,10 @@ class AccessRole
      *
      * @ORM\Column(name="description", type="string", length=1000, nullable=false)
      *
-     * @Assert\NotBlank(message="Vous devez spécifiez un description de rôle")
+     * @Assert\NotBlank(message="Vous devez spécifiez une description de rôle")
      * @Assert\Length(
      *      min = 3,
-     *      max = 5000,
+     *      max = 2000,
      *      minMessage = "La description du rôle doit faire un minimum de {{ limit }} caractères",
      *      maxMessage = "La description du rôle ne peut excéder {{ limit }} caractères"
      * )
