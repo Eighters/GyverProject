@@ -5,12 +5,15 @@ namespace GP\CoreBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use GP\CoreBundle\Validator\Constraints as CustomAssert;
 
 /**
  * Project
  *
  * @ORM\Table(name="project", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
  * @ORM\Entity(repositoryClass="GP\CoreBundle\Repository\ProjectRepository")
+ *
+ * @CustomAssert\Project
  */
 class Project
 {
@@ -54,7 +57,7 @@ class Project
      * @Assert\NotBlank(message="Vous devez spécifiez une description")
      * @Assert\Length(
      *      min = 3,
-     *      max = 5000,
+     *      max = 2000,
      *      minMessage = "La description du projet doit faire un minimum de {{ limit }} caractères",
      *      maxMessage = "La description du projet ne peut excéder {{ limit }} caractères"
      * )
@@ -64,17 +67,20 @@ class Project
     /**
      * The companies associated to the project
      *
-     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="projects")
+     * @var Company
+     *
+     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\Company", mappedBy="projects", cascade={"persist"})
      */
     private $companies;
 
-//    @TODO link globals & company categories to projects when created new one.
-//    /**
-//     * The category of project
-//     *
-//     * @ORM\ManyToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="id", cascade={"persist"})
-//     */
-//    private $projectCategory;
+    /**
+     * The category of project
+     *
+     * @var ProjectCategory
+     *
+     * @ORM\OneToMany(targetEntity="GP\CoreBundle\Entity\ProjectCategory", mappedBy="project", cascade={"persist", "remove"})
+     */
+    private $projectCategory;
 
     /**
      * @var string
@@ -84,16 +90,25 @@ class Project
     private $status;
 
     /**
+     * Project creation date
+     *
      * @var \DateTime
      *
-     * @ORM\Column(name="begin_date", type="datetime")
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
+     */
+    private $creationDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_date", type="datetime", nullable=true)
      */
     private $beginDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="planned_end_date", type="datetime")
+     * @ORM\Column(name="planned_end_date", type="datetime", nullable=true)
      */
     private $plannedEndDate;
 
@@ -118,8 +133,10 @@ class Project
      */
     public function __construct()
     {
-        $this->beginDate = new \DateTime("now");
+        $this->creationDate = new \DateTime("now");
         $this->companies = new ArrayCollection();
+        $this->projectCategory = new ArrayCollection();
+        $this->projectRoles = new ArrayCollection();
         $this->status = static::STATUS_PROJECT_WAITING_VALIDATION;
     }
 
@@ -176,6 +193,19 @@ class Project
     }
 
     /**
+     * Avoid bug with doctrine
+     *
+     * @param Company $company
+     * @return Project
+     */
+    public function setCompanies($company)
+    {
+        $this->companies[] = $company;
+
+        return $this;
+    }
+
+    /**
      * Add company to the project
      *
      * @param Company $company
@@ -202,7 +232,9 @@ class Project
     }
 
     /**
-     * @return mixed
+     * Get ProjectCategory
+     *
+     * @return ProjectCategory
      */
     public function getProjectCategory()
     {
@@ -210,11 +242,42 @@ class Project
     }
 
     /**
-     * @param mixed $projectCategory
+     * Add new Project Category to Project
+     *
+     * @param ProjectCategory $projectCategory
+     * @return Project
+     */
+    public function addProjectCategory(ProjectCategory $projectCategory)
+    {
+        $this->projectRoles[] = $projectCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove given Project Category from Project
+     *
+     * @param ProjectCategory $projectCategory
+     * @return Project
+     */
+    public function removeProjectCategory(ProjectCategory $projectCategory)
+    {
+        $this->projectRoles->removeElement($projectCategory);
+
+        return $this;
+    }
+
+    /**
+     * Set ProjectCategory
+     *
+     * @param ProjectCategory $projectCategory
+     * @return Project
      */
     public function setProjectCategory($projectCategory)
     {
-        $this->projectCategory = $projectCategory;
+        $this->projectCategory[] = $projectCategory;
+
+        return $this;
     }
 
     /**
@@ -231,6 +294,29 @@ class Project
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * Get creation date
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set creation date
+     *
+     * @param \DateTime $creationDate
+     * @return Company
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
     }
 
     /**

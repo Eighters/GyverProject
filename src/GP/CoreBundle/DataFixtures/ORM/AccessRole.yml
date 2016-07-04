@@ -11,7 +11,7 @@ GP\CoreBundle\Entity\AccessRole:
         type: project
         description: Role project description sample
         company: ~
-        project: '@gyver'
+        project: '@testproject'
 
     it2mRoleTest (extends userRoleCompanySample):
         name: role it2m test

@@ -114,17 +114,18 @@
                 <p class="brand-logo center hide-on-med-and-down">Dashboard</p>
 
                 <ul class="right">
-                    <li>
-                        <div class="nav-wrapper">
-                            <form class="cyan lighten-2">
-                                <div class="input-field">
-                                    <input id="search" type="search" required>
-                                    <label for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
+                    {# Search bar for quick search with elasticsearch #}
+                    {#<li>#}
+                        {#<div class="nav-wrapper">#}
+                            {#<form class="cyan lighten-2">#}
+                                {#<div class="input-field">#}
+                                    {#<input id="search" type="search" required>#}
+                                    {#<label for="search"><i class="material-icons">search</i></label>#}
+                                    {#<i class="material-icons">close</i>#}
+                                {#</div>#}
+                            {#</form>#}
+                        {#</div>#}
+                    {#</li>#}
 
                     {# Access to the admin dashboard #}
                     {% if is_granted('ROLE_ADMIN') %}

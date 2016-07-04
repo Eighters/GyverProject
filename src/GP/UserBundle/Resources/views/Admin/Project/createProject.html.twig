@@ -1,0 +1,141 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Gestions des Projets{% endblock%}
+
+{% block underNavTitle %}Création d'un nouveau Projet :{% endblock %}
+{% block underNavText %}Veuillez remplir le formulaire suivant :{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s10 offset-s1">
+
+            <div class="card">
+                <div class="card-content">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.name, {
+                                    attr: { length: '255' }
+                                }) }}
+                                {{ form_label(form.name, 'Nom du projet :') }}
+
+                                {% if not form.name.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.name) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.description, {
+                                    attr: {
+                                        class: 'materialize-textarea',
+                                        length: '2000'
+                                    }
+                                }) }}
+                                {{ form_label(form.description, 'Description du projet :') }}
+
+                                {% if not form.description.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.description) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s6 input-field">
+                                {{ form_label(form.beginDate, 'Date de début du projet :') }}
+
+                                {{ form_widget(form.beginDate, {
+                                    attr: {
+                                        class: 'datepicker'
+                                    }
+                                }) }}
+
+                                {% if not form.beginDate.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.beginDate) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col s6 input-field">
+                                {{ form_label(form.plannedEndDate, 'Date de fin (prévue) du projet :') }}
+
+                                {{ form_widget(form.plannedEndDate, {
+                                    attr: {
+                                        class: 'datepicker'
+                                    }
+                                }) }}
+
+                                {% if not form.plannedEndDate.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.plannedEndDate) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            {{ form_label(form.companies, 'Entreprise rattachée au projet :') }} <br>
+
+                            <div class="input-roles-choices input-field">
+                                {{ form_widget(form.companies) }}
+                            </div>
+
+                            {% if not form.companies.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.companies) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            {{ form_label(form.projectCategory, 'Catégorie du projet :') }} <br>
+
+                            <div class="input-roles-choices input-field">
+                                {{ form_widget(form.projectCategory) }}
+                            </div>
+
+                            {% if not form.projectCategory.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.projectCategory) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row center-align">
+                            <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="_submit">
+                                Enregistrer
+                                <i class="material-icons right">send</i>
+                            </button>
+
+                            <a href="{{ path("admin_show_all_project") }}" class="btn waves-effect waves-light amber accent-4">
+                                Retour liste des Projets
+                            </a>
+                        </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 10, // Creates a dropdown of 15 years to control year
+            format: 'yyyy/mm/dd'
+        });
+    </script>
+{% endblock %}

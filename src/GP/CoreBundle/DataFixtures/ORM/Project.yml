@@ -3,6 +3,8 @@ GP\CoreBundle\Entity\Project:
         name: Project Sample
         description: project description sample
         status: 20
+        creationDate: <dateTime("2015-01-01 12:00:00")>
+        beginDate: <dateTime("2015-01-01 23:59:59")>
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
 
     testproject (extends project):

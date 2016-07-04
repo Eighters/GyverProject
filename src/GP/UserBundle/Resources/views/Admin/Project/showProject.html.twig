@@ -92,7 +92,6 @@
             </div>
         </div>
 
-
         <div class="col s12 m6">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
@@ -131,11 +130,11 @@
                         <i class="material-icons">chevron_left</i>
                     </a>
 
-                    <a class="right btn-floating waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                    <a onclick="confirmAdminDeleteProject({{ project.id }})" href="#" class="right btn-floating waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                         <i class="material-icons">delete</i>
                     </a>
 
-                    <a class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                    <a href="#" class="right btn-floating waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                         <i class="material-icons">edit</i>
                     </a>
                 </div>
@@ -143,4 +142,10 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/delete_project.js') }}"></script>
 {% endblock %}

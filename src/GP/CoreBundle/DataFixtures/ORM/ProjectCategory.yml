@@ -2,7 +2,7 @@ GP\CoreBundle\Entity\ProjectCategory:
     ProjectCategorySample (template):
         name: project category sample
         global: true
-        company: null
+        company: "@it2M"
 
     categorieGlobal1 (extends ProjectCategorySample):
         name: Category Global 1
@@ -16,12 +16,10 @@ GP\CoreBundle\Entity\ProjectCategory:
     categorieProject1It2m (extends ProjectCategorySample):
         name: Category Project 1 for Company 1
         global: false
-        company: "@it2M"
 
     categorieProject2It2m (extends ProjectCategorySample):
         name: Category Project 2 for Company 1
         global: false
-        company: "@it2M"
 
     categorieProject1InstitutG4 (extends ProjectCategorySample):
         name: Category Project 1 for Company 2

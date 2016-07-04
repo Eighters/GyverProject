@@ -8,7 +8,7 @@
 {% block body %}
 
     <div class="row center">
-        <a href="#" class="waves-effect waves-light btn amber accent-4">
+        <a href="{{ path('admin_create_project') }}" class="waves-effect waves-light btn amber accent-4">
             <i class="material-icons right">add_circle_outline</i>
             Créer un nouveau Projet
         </a>
@@ -42,13 +42,13 @@
                                 </li>
 
                                 <li>
-                                    <a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
+                                    <a href="#" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editer">
                                         <i class="material-icons">create</i>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
+                                    <a onclick="confirmAdminDeleteProject({{ project.id }})" href="#" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Supprimer">
                                         <i class="material-icons ">delete</i>
                                     </a>
                                 </li>
@@ -64,4 +64,10 @@
         {{ knp_pagination_render(pagination) }}
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/Admin/delete_project.js') }}"></script>
 {% endblock %}

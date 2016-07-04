@@ -14,6 +14,12 @@ services:
         class: GP\CoreBundle\Services\MailingService
         arguments: [@Mailer, @Templating, %notification_sender_mail%, %notification_bcc_mail%, %kernel.environment%, %application_name% ]
 
+    gp.core_bundle.project_validator:
+        class: GP\CoreBundle\Validator\Constraints\ProjectValidator
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: validator.constraint_validator, alias: project_validator }
+
     # Required by FOS to enable user invitation system
     app.form.registration:
         class: GP\CoreBundle\Form\Type\RegistrationFormType

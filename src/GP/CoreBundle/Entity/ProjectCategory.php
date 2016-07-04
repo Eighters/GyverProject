@@ -46,6 +46,14 @@ class ProjectCategory
     private $company;
 
     /**
+     * @var Project
+     *
+     * @ORM\ManyToOne(targetEntity="GP\CoreBundle\Entity\Project", inversedBy="projectCategory", cascade={"persist"})
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    private $project;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_global", type="boolean")
@@ -88,7 +96,7 @@ class ProjectCategory
     /**
      * Get company
      *
-     * @return integer
+     * @return Company
      */
     public function getCompany()
     {
@@ -98,12 +106,35 @@ class ProjectCategory
     /**
      * Set company
      *
-     * @param integer $company
+     * @param Company $company
      * @return ProjectCategory
      */
-    public function setCompany($company)
+    public function setCompany(Company $company)
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set project
+     *
+     * @param Project $project
+     * @return ProjectCategory
+     */
+    public function setProject(Project $project)
+    {
+        $this->project = $project;
 
         return $this;
     }
