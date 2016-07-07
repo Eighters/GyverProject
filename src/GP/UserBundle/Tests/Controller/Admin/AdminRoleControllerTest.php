@@ -92,6 +92,7 @@ class AdminRoleControllerTest extends BaseTestCase
 
     /**
      * Test that admin can create new access role for company
+     * This form is a shortcut to quickly create new access role for given project
      */
     public function testCreateCompanyRoleAction()
     {
@@ -124,6 +125,7 @@ class AdminRoleControllerTest extends BaseTestCase
 
     /**
      * Test that admin can create new access role for project
+     * This form is a shortcut to quickly create new access role for given project
      */
     public function testCreateProjectRoleAction()
     {
@@ -258,6 +260,170 @@ class AdminRoleControllerTest extends BaseTestCase
             $crawler,
             "Le rôle ". $accessRole->getName(). " a été retiré à l'utilisateur "  . $username,
             'Admin should see confirmation flashMessage when he successfully add new user to an access role'
+        );
+    }
+
+    /**
+     * Test that admin can create new access role
+     * General method can create both company or project role
+     *
+     * Here we test to create company access role
+     */
+    public function testCreateRoleActionForCompany()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+
+        $company = $this->getCompanyByName(self::COMPANY_NAME);
+        $url = $this->generateRoute('admin_create_access_role');
+        $crawler = $client->request('GET', $url);
+        $this->assertStatusCode(200, $client);
+
+        $form = $crawler->selectButton('_submit')->form();
+        $form["create_access_role[type]"]->select(AccessRole::TYPE_COMPANY);
+        $form["create_access_role[company]"]->select($company->getId());
+
+        $roleName = self::ROLE_TEST_NAME . " create for company";
+        $client->submit($form, array(
+            "create_access_role[name]" => $roleName,
+            "create_access_role[description]" => self::ROLE_TEST_NAME . " description",
+        ));
+
+        $this->assertRedirectTo($client, 'admin_show_all_access_roles');
+        $crawler = $client->followRedirect();
+
+        $this->assertStatusCode(200, $client);
+
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle: " . $roleName . " a été créé avec succès",
+            'Admin should see confirmation flashMessage when he successfully create new access role'
+        );
+    }
+
+    /**
+     * Test that admin can create new access role
+     * General method can create both company or project role
+     *
+     * Here we test to create company access role
+     */
+    public function testCreateRoleActionForProject()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+
+        $project = $this->getProjectByName(self::PROJECT_NAME);
+        $url = $this->generateRoute('admin_create_access_role');
+        $crawler = $client->request('GET', $url);
+        $this->assertStatusCode(200, $client);
+
+        $form = $crawler->selectButton('_submit')->form();
+        $form["create_access_role[type]"]->select(AccessRole::TYPE_PROJECT);
+        $form["create_access_role[project]"]->select($project->getId());
+
+        $roleName = self::ROLE_TEST_NAME . " create for project";
+        $client->submit($form, array(
+            "create_access_role[name]" => $roleName,
+            "create_access_role[description]" => self::ROLE_TEST_NAME . " description",
+        ));
+
+        $this->assertRedirectTo($client, 'admin_show_all_access_roles');
+        $crawler = $client->followRedirect();
+
+        $this->assertStatusCode(200, $client);
+
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle: " . $roleName . " a été créé avec succès",
+            'Admin should see confirmation flashMessage when he successfully create new access role'
+        );
+    }
+
+    /**
+     * @depends testCreateRoleActionForProject
+     * @depends testCreateRoleActionForCompany
+     */
+    public function testDeleteAccessRole()
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $em = $client->getContainer()->get('doctrine')->getManager();
+
+        /** @var AccessRole $accessRole1 */
+        $accessRole1 = $em->getRepository('GPCoreBundle:AccessRole')->findOneByName(self::ROLE_TEST_NAME . " create for company");
+
+        $url = $this->generateRoute('admin_delete_access_role', array('id' => $accessRole1->getId()));
+        $client->request('DELETE', $url);
+
+        $crawler = $client->followRedirect();
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle " . $accessRole1->getName() . " a été supprimé avec succès",
+            'Admin should see confirmation flashMessage when he successfully delete a given access role'
+        );
+
+        /** @var AccessRole $accessRole2 */
+        $accessRole2 = $em->getRepository('GPCoreBundle:AccessRole')->findOneByName(self::ROLE_TEST_NAME . " create for project");
+
+        $url = $this->generateRoute('admin_delete_access_role', array('id' => $accessRole2->getId()));
+        $client->request('DELETE', $url);
+
+        $crawler = $client->followRedirect();
+        $this->assertFlashMessageContains(
+            $crawler,
+            "Le rôle " . $accessRole2->getName() . " a été supprimé avec succès",
+            'Admin should see confirmation flashMessage when he successfully delete a given access role'
+        );
+    }
+
+    /**
+     * Test error on create new access roles forms
+     *
+     * @dataProvider invalidCreateAccessRoleProvider
+     *
+     * @param $data
+     * @param $errors
+     */
+    public function testFailCreateAccessRoleAction($data, $errors)
+    {
+        $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
+        $project = $this->getProjectByName(self::PROJECT_NAME);
+
+        $url = $this->generateRoute('admin_create_access_role');
+        $crawler = $client->request('GET', $url);
+        $this->assertStatusCode(200, $client);
+
+
+        $form = $crawler->selectButton('_submit')->form();
+        $form["create_access_role[type]"]->select(AccessRole::TYPE_PROJECT);
+        $form["create_access_role[project]"]->select($project->getId());
+
+        $crawler = $client->submit($form, $data);
+
+        $this->assertHtmlContains($crawler, $errors['name']);
+        $this->assertHtmlContains($crawler, $errors['description']);
+    }
+
+    public function invalidCreateAccessRoleProvider()
+    {
+        return array (
+            array(
+                'data' => array(
+                    'create_access_role[name]'  => 'b',
+                    'create_access_role[description]'  => 'b'
+                ),
+                'errors' => array(
+                    'name' => "Le nom du rôle doit faire un minimum de 3 caractères",
+                    'description' => "La description du rôle doit faire un minimum de 3 caractères"
+                )
+            ),
+            array(
+                'data' => array(
+                    'create_access_role[name]'  => str_repeat("a", 256),
+                    'create_access_role[description]'  => str_repeat("a", 2001)
+                ),
+                'errors' => array(
+                    'name' => "Le nom du rôle ne peut excéder 255 caractères",
+                    'description' => "La description du rôle ne peut excéder 2000 caractères"
+                )
+            ),
         );
     }
 }

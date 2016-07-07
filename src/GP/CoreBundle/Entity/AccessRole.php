@@ -58,8 +58,8 @@ class AccessRole
      * @Assert\Length(
      *      min = 3,
      *      max = 255,
-     *      minMessage = "Le nom de rôle doit faire un minimum de {{ limit }} caractères",
-     *      maxMessage = "Le nom de rôle ne peut excéder {{ limit }} caractères"
+     *      minMessage = "Le nom du rôle doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le nom du rôle ne peut excéder {{ limit }} caractères"
      * )
      */
     private $name;

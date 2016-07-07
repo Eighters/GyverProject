@@ -20,6 +20,12 @@
                                 <div class="input-field col s12">
                                     {{ form_widget(form.type) }}
                                 </div>
+
+                                {% if not form.type.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.type) }}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -30,6 +36,12 @@
                                 }) }}
                                 {{ form_label(form.name, 'Nom du rôle :') }}
                             </div>
+
+                            {% if not form.name.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.name) }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="row">
@@ -42,6 +54,12 @@
                                 }) }}
                                 {{ form_label(form.description, 'Description du rôle :') }}
                             </div>
+
+                            {% if not form.description.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.description) }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div id="company_choice" class="row hide">
@@ -50,6 +68,12 @@
                             <div class="input-roles-choices input-field">
                                 {{ form_widget(form.company) }}
                             </div>
+
+                            {% if not form.company.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.company) }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div id="project_choice" class="row hide">
@@ -58,6 +82,12 @@
                             <div class="input-roles-choices input-field">
                                 {{ form_widget(form.project) }}
                             </div>
+
+                            {% if not form.project.vars.valid %}
+                                <div class="red-text">
+                                    {{ form_errors(form.project) }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="row center-align">
