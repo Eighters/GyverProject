@@ -2,6 +2,7 @@
 
 namespace GP\UserBundle\Controller\Admin;
 
+use GP\CoreBundle\Entity\Company;
 use GP\CoreBundle\Entity\Project;
 use GP\UserBundle\Form\Type\Admin\CreateProjectType;
 
@@ -57,7 +58,13 @@ class AdminProjectController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+            // The relation between Company & project is a ManyToMany owning by company, We already check that company exist in ProjectValidator
+            /** @var Company $company */
+            $company = $form->get('companies')->getData();
+            $company->addProject($project);
+
             $em = $this->getDoctrine()->getManager();
+            $em->persist($company);
             $em->persist($project);
             $em->flush();
 
