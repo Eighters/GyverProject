@@ -4,6 +4,7 @@ namespace GP\CoreBundle\Tests;
 
 use Doctrine\ORM\EntityManager;
 use GP\CoreBundle\Entity\Project;
+use GP\CoreBundle\Entity\ProjectCategory;
 use GP\CoreBundle\Entity\User;
 use GP\CoreBundle\Entity\Company;
 
@@ -20,6 +21,8 @@ class BaseTestCase extends WebTestCase
 
     const PROJECT_NAME = 'Projet Gyver';
     const PROJECT_TEST_NAME = 'Php Unit project';
+
+    const PROJECT_CATEGORY_NAME = 'Category Global 1';
 
     const ROLE_COMPANY_NAME = 'role SFR test 1';
     const ROLE_PROJECT_NAME = 'role projet test';
@@ -104,10 +107,11 @@ class BaseTestCase extends WebTestCase
      * Use this function to quickly dump the http client response html
      *
      * @param Client $client
+     * @return mixed
      */
     protected function debugClientResponse(Client $client)
     {
-        return var_dump($client->getResponse()->getContent());
+        return print_r($client->getResponse()->getContent());
     }
 
     /**
@@ -187,6 +191,17 @@ class BaseTestCase extends WebTestCase
         $this->em = $this->getEntityManager();
 
         return $this->em->getRepository('GPCoreBundle:AccessRole')->findOneByName($name);
+    }
+
+    /**
+     * @param $projectCategoryName
+     * @return ProjectCategory
+     */
+    protected function getProjectCategoryByName($projectCategoryName)
+    {
+        $this->em = $this->getEntityManager();
+
+        return $this->em->getRepository('GPCoreBundle:ProjectCategory')->findOneByName($projectCategoryName);
     }
 
     /**

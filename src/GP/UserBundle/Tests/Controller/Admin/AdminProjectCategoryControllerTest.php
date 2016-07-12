@@ -150,10 +150,7 @@ class AdminProjectCategoryControllerTest extends BaseTestCase
     public function testDeleteProjectCategory($projectCategoryName, $successMessage)
     {
         $client = $this->connectUser(self::USER_ADMIN, self::USER_PASSWORD);
-
-        $em = $client->getContainer()->get('doctrine')->getManager();
-        /** @var ProjectCategory $projectCategory */
-        $projectCategory = $em->getRepository('GPCoreBundle:ProjectCategory')->findOneByName($projectCategoryName);
+        $projectCategory = $this->getProjectCategoryByName($projectCategoryName);
 
         $url = $this->generateRoute('admin_delete_project_category', array('id' => $projectCategory->getId()));
         $client->request('GET', $url);

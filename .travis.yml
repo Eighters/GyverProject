@@ -7,7 +7,7 @@ cache:
     - $HOME/.composer/cache
 
 php:
-    - 5.5.9
+    # - 5.5.9
     - 7.0.7
 
 before_script:
@@ -34,5 +34,3 @@ notifications:
     slack: techgamey2team1:yKi6SZOIGGUBHt3PcnkUSvG9
     email:
         - gauvin.thibaut83@gmail.com
-        - rbilly.mail@gmail.com
-        - dalleau.romain@gmail.com
