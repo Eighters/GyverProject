@@ -7,7 +7,7 @@ cache:
     - $HOME/.composer/cache
 
 php:
-    # - 5.5.9
+    - 5.5.9
     - 7.0.7
 
 before_script:
