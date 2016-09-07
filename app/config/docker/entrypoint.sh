@@ -21,89 +21,36 @@ BOLD=""
 NORMAL=""
 fi
 
-echo "Start Nginx"
-nginx
-echo "Nginx server started"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Start Php5-fpm"
-php5-fpm
-echo "Php5-fpm is running"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Start MySql"
-service mysql start
-echo "MySql Server is running"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
 echo "Install Composer Dependency"
-/bin/bash -l -c "cd /home/app && composer install"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Fix Bower issue with G4 fucking proxy"
-/bin/bash -l -c "git config --global url.'https://'.insteadOf git://"
+/bin/bash -l -c "cd /home/docker && composer install --no-interaction"
 
 echo ''
 echo '---------------------------------------'
 echo ''
 
 echo "Install NodeJs packages"
-/bin/bash -l -c "cd /home/app && npm install"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Install Bower dependency"
-/bin/bash -l -c "cd /home/app && ./node_modules/bower/bin/bower install --allow-root --config.interactive=false"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Create Database"
-/bin/bash -l -c "cd /home/app && php app/console doctrine:database:create"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Create Tables"
-/bin/bash -l -c "cd /home/app && php app/console doctrine:migrations:migrate -n"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Load Development Fixtures"
-/bin/bash -l -c "cd /home/app && php app/console doctrine:fixtures:load -n"
-
-echo ''
-echo '---------------------------------------'
-echo ''
-
-echo "Chmod Logs & Cache Directory"
-/bin/bash -l -c "cd /home/app && chmod 777 -R app/cache"
-/bin/bash -l -c "cd /home/app && chmod 777 -R app/logs"
+/bin/bash -l -c "cd /home/docker && npm install"
 
 echo ''
 echo '---------------------------------------'
 echo ''
 
 echo "Compile Assets"
-/bin/bash -l -c "cd /home/app && npm run docker"
+/bin/bash -l -c "cd /home/docker && npm run docker"
+
+echo ''
+echo '---------------------------------------'
+echo ''
+
+echo "Create Tables"
+/bin/bash -l -c "cd /home/docker && php app/console doctrine:migrations:migrate -n"
+
+echo ''
+echo '---------------------------------------'
+echo ''
+
+echo "Load Development Fixtures"
+/bin/bash -l -c "cd /home/docker && php app/console doctrine:fixtures:load -n"
 
 echo ''
 echo '---------------------------------------'
@@ -123,6 +70,5 @@ echo ''
 echo ''
 printf "${YELLOW}"
 echo "Success, Your are ready to develop ! :D"
-echo "Go to http://localhost:999 to visit home page"
 printf "${NORMAL}"
 echo ''

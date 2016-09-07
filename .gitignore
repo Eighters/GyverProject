@@ -36,3 +36,7 @@ app/config/deploy.rb
 
 # Keep all .gitkeep files
 !.gitkeep
+
+# Docker
+docker-compose.yml
+.data/

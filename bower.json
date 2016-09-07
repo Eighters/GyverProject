@@ -23,7 +23,7 @@
     "components"
   ],
   "dependencies": {
-    "materialize": "~0.97.6",
+    "materialize": "~0.97.7",
     "sweetalert": "~1.1.3"
   }
 }

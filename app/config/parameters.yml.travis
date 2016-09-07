@@ -1,0 +1,12 @@
+# This is a minimal parameters file that just sets the database credentials
+# needed by travis CI.
+#
+# All other parameters should be pulled from the default `parameters.yml.dist`
+# when running `composer install`.
+
+parameters:
+    test_database_host:     127.0.0.1
+    test_database_port:     3306
+    test_database_name:     gyver_project_test
+    test_database_user:     travis
+    test_database_password: ~

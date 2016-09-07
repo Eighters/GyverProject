@@ -21,7 +21,7 @@
             "src": "./"
         },
         "fonts": {
-            "src": "./vendor/materialize/dist/font",
+            "src": "./vendor/materialize/dist/fonts",
             "dest": "./web/assets/fonts",
             "extensions": [ "woff2", "woff", "eot", "ttf", "svg" ]
         }
