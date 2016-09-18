@@ -6,8 +6,9 @@
 # ------------------------------------------------------------------------------
 # 1. Server Config
 # ------------------------------------------------------------------------------
-set :application,       "<Your application name>"
+set :application,       "GyverProject"
 set :domain,            "<Url of your remote server>"
+ssh_options[:port]      = "22"
 set :user,              "<User on your remote server>"
 set :deploy_to,         "<Path where your application is clonned>"
 set :app_path,          "app"
@@ -18,7 +19,7 @@ role :app,              domain, :primary => true
 # ------------------------------------------------------------------------------
 # 2. Git Config
 # ------------------------------------------------------------------------------
-set :repository,        "<Git address of your project>"
+set :repository,        "https://github.com/TechGameCrew/GyverProject.git"
 set :deploy_via,        :rsync_with_remote_cache
 set :branch,            fetch(:branch, "master")
 set :scm,               :git
@@ -68,7 +69,13 @@ after "deploy:update_code" do
 end
 
 after "deploy:update_code" do
+  capifony_pretty_print "--> Intall Bower dependencies"
+  run "cd #{latest_release} && npm run bower"
+  capifony_puts_ok
+end
+
+after "deploy:update_code" do
   capifony_pretty_print "--> Compile static files with gulp"
-  run "cd #{latest_release} && npm start"
+  run "cd #{latest_release} && npm run prod"
   capifony_puts_ok
 end

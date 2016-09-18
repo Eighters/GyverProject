@@ -13,7 +13,8 @@
     "start": "bower install && gulp",
     "dev": "gulp dev",
     "prod": "gulp prod",
-    "docker": "bower install && gulp"
+    "docker": "bower install && gulp",
+    "bower": "bower install"
   },
   "dependencies": {
     "bower": "^1.7.9",
