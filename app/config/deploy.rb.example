@@ -8,6 +8,7 @@
 # ------------------------------------------------------------------------------
 set :application,       "<Your application name>"
 set :domain,            "<Url of your remote server>"
+ssh_options[:port]      = "22"
 set :user,              "<User on your remote server>"
 set :deploy_to,         "<Path where your application is clonned>"
 set :app_path,          "app"
