@@ -29,8 +29,7 @@ Run this command on your local machine
 
     $ cap deploy:setup
      
-Capifony ssh to the remote server, and create directories
-
+Capifony will try to ssh to the remote server, and create required directories
 
 ### Setup Nginx config:  
 

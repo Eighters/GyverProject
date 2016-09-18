@@ -11,14 +11,14 @@ parameters:
     dev_database_host:      db
     dev_database_port:      3306
     dev_database_name:      gyver_project
-    dev_database_user:      gyver
+    dev_database_user:      root
     dev_database_password:  institutg4
     
     # Database Config TEST
     test_database_host:     db
     test_database_port:     3306
     test_database_name:     gyver_project_test
-    test_database_user:     gyver
+    test_database_user:     root
     test_database_password: institutg4
 
     # Prod Mailler Config
@@ -30,7 +30,7 @@ parameters:
 
     # Dev Mailler Config
     mailcatcher_transport:  smtp
-    mailcatcher_host:       localhost
+    mailcatcher_host:       mailcatcher
     mailcatcher_port:       1025
     mailcatcher_user:       ~
     mailcatcher_password:   ~

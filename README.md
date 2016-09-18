@@ -29,13 +29,12 @@ Quality is fundamental for us. We constantly use tools to check the quality of t
 * [F.A.Q](app/Resources/doc/faq.md)
 * [Symfony 2 Help & Documentation](app/Resources/doc/symfonyDoc.md)
 * [Tests](app/Resources/doc/test.md)
-* [Use Mailcatcher](app/Resources/doc/mail.md)
 
 **Setup & run Project:**
 
+* [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 * [Manual Provisioning 1/2](app/Resources/doc/manual.md)
 * [Manual Provisioning 2/2](app/Resources/doc/install.md)
-* [Docker Provisioning (Easiest)](app/Resources/doc/docker.md)
 * [Deployment (Capifony)](app/Resources/doc/deployment.md)
 
 **Update Project:**

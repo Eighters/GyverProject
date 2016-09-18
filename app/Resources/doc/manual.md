@@ -29,12 +29,12 @@ This will help to setup your local environement. After you need to build & run t
 **-----------------------------------------------------**
 
 **Install HTTP server. Chose Between Apache2 or Nginx.**  
-/!\ Don't install both of them /!\
+**_/!\ Don't install both of them_**
 
 **Note :**  
 If you install Nginx, you need to install php5-fpm them.
 
-* **NGINX :**  
+* **NGINX (choice 1):**  
     
         $ sudo apt-get install nginx -y
     
@@ -110,7 +110,7 @@ If you install Nginx, you need to install php5-fpm them.
     
 **-----------------------------------------------------**
 
-* **Apache 2 :**  
+* **Apache 2 (choice 2):**  
 
     To install an Apache 2 server on your machine, you can follow this [tutorial](http://www.petit-laboratoire-de-graphisme-potentiel.com/tutoriels/installer-serveur-developpement-apache2-php5.html), very well written and tested by Robin Billy (ask him if you have more question). 
     /!\ Don't forget to set your date.timezone in your php.ini files. /!\

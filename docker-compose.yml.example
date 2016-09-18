@@ -17,6 +17,7 @@ services:
         container_name: symfony
         links:
             - "db:db"
+            - "mailcatcher:mailcatcher"
         volumes:
             - ".:/home/docker:rw"
             - "./app/config/docker/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro"
@@ -49,3 +50,11 @@ services:
             - "3306:3306"
         volumes:
           - "./.data/db:/var/lib/mysql"
+
+    mailcatcher:
+        image: yappabe/mailcatcher
+        container_name: mailcatcher
+        restart: always
+        ports:
+            - "1025:1025"
+            - "1080:1080"
