@@ -17,8 +17,6 @@
 
 .login-form {
     border-radius: 10px;
-    color: red;
-    text-align: left;
 }
 
 .gyver-logo {
@@ -30,6 +28,7 @@
 }
 .input-field label {
     color: $secondary-text;
+    text-align: left;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
