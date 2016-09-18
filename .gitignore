@@ -19,8 +19,9 @@
 # local composer.phar
 /composer.phar
 
-# Capifony local config
+# Capifony config
 app/config/deploy.rb
+.rsync_cache/
 
 # Old Compass generated files
 /app/Resources/sass/compiled
@@ -34,9 +35,9 @@ app/config/deploy.rb
 # Fuck you insight !
 /.idea
 
-# Keep all .gitkeep files
-!.gitkeep
-
 # Docker
 docker-compose.yml
 .data/
+
+# Keep all .gitkeep files
+!.gitkeep

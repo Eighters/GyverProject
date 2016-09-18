@@ -2,35 +2,41 @@
 #                      CAPIFONY DEPLOYMENT CONFIGURATION
 # ==============================================================================
 
+
 # ------------------------------------------------------------------------------
 # 1. Server Config
 # ------------------------------------------------------------------------------
-set :application, "Your application name"
-set :domain,      "Url of your remote server"
-set :user,        "User on your remote server"
-set :deploy_to,   "Path where your application is clonned"
-set :app_path,    "app"
-role :web,        domain
-role :app,        domain, :primary => true
+set :application,       "<Your application name>"
+set :domain,            "<Url of your remote server>"
+set :user,              "<User on your remote server>"
+set :deploy_to,         "<Path where your application is clonned>"
+set :app_path,          "app"
+role :web,              domain
+role :app,              domain, :primary => true
+
 
 # ------------------------------------------------------------------------------
 # 2. Git Config
 # ------------------------------------------------------------------------------
-set :repository,        "Git address of your project"
+set :repository,        "<Git address of your project>"
+set :deploy_via,        :rsync_with_remote_cache
+set :branch,            fetch(:branch, "master")
 set :scm,               :git
-set :deploy_via,        :copy
-set :keep_releases,     5
+set :keep_releases,     3
+
 
 # ------------------------------------------------------------------------------
 # 3. Symfony Config
 # ------------------------------------------------------------------------------
 set :shared_files,      ["app/config/parameters.yml"]
+set :shared_children,   [app_path + "/logs", "vendor", "node_modules"]
 set :writable_dirs,     ["app/cache", "app/logs"]
 set :model_manager,     "doctrine"
 
 set :use_composer,      true
 set :update_vendors,    false
 set :use_sudo,          false
+
 
 # ------------------------------------------------------------------------------
 # 3. Other Config
@@ -39,4 +45,30 @@ set :use_sudo,          false
 default_run_options[:pty] = true
 
 # Be more verbose by uncommenting the following line
-logger.level = Logger::MAX_LEVEL
+# logger.level = Logger::MAX_LEVEL
+
+
+# ------------------------------------------------------------------------------
+# 4. Order Capifony to custom commands
+# ------------------------------------------------------------------------------
+# Override the branch to deploy via the command line:
+if exists?(:deploy_branch)
+  set :branch, deploy_branch unless deploy_branch.to_s.empty?
+end
+
+before "deploy:update_code" do
+  capifony_pretty_print "--> Deploying the '#{branch}' branch to the remote server"
+  capifony_puts_ok
+end
+
+after "deploy:update_code" do
+  capifony_pretty_print "--> Install Npm dependencies"
+  run "cd #{latest_release} && npm install"
+  capifony_puts_ok
+end
+
+after "deploy:update_code" do
+  capifony_pretty_print "--> Compile static files with gulp"
+  run "cd #{latest_release} && npm start"
+  capifony_puts_ok
+end

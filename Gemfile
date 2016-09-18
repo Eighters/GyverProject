@@ -1,4 +1,6 @@
 source "http://rubygems.org"
 
-gem 'capifony',         '~> 2.8.6'
-gem 'mailcatcher',      '~> 0.6.1'
+gem 'capifony',                             '~> 2.8.6'
+gem 'capistrano_rsync_with_remote_cache',   '~> 2.4.0'
+gem 'mailcatcher',                          '~> 0.6.1'
+
