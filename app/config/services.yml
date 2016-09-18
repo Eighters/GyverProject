@@ -12,7 +12,7 @@ services:
     # Mailer service
     gp.core_bundle.mailing_service:
         class: GP\CoreBundle\Services\MailingService
-        arguments: [@Mailer, @Templating, %notification_sender_mail%, %notification_bcc_mail%, %kernel.environment%, %application_name% ]
+        arguments: ['@mailer', '@templating', '%notification_sender_mail%', '%notification_bcc_mail%', '%kernel.environment%', '%application_name%' ]
 
     gp.core_bundle.project_validator:
         class: GP\CoreBundle\Validator\Constraints\ProjectValidator

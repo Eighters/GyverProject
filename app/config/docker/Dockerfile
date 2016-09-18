@@ -25,6 +25,9 @@ RUN adduser --disabled-password --gecos '' devops
 RUN adduser devops sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+# Override default bash config
+ADD .bashrc /home/devops/.bashrc
+
 # Add Provisionning Scripts
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
