@@ -20,8 +20,9 @@
 /composer.phar
 
 # Capifony config
-app/config/deploy.rb
 .rsync_cache/
+app/config/deploy/production.rb
+app/config/deploy/staging.rb
 
 # Old Compass generated files
 /app/Resources/sass/compiled

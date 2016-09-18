@@ -1,0 +1,19 @@
+# ------------------------------------------------------------------------------
+# 1. Server Config
+# ------------------------------------------------------------------------------
+set :domain,            "<remote server ip>"
+ssh_options[:port]      = "<remote server ssh port>"
+set :user,              "<remote server user>"
+set :deploy_to,         "<path to deploy code on remote server>"
+set :use_sudo,          false
+
+# ------------------------------------------------------------------------------
+# 2. Capifony custom commands
+# ------------------------------------------------------------------------------
+
+# Override the branch to deploy via the command line:
+if exists?(:deploy_branch)
+  set :branch, deploy_branch unless deploy_branch.to_s.empty?
+end
+
+server "#{domain}", :web, :app, :db, :primary => true

@@ -4,43 +4,45 @@
 
 
 # ------------------------------------------------------------------------------
-# 1. Server Config
+# 1. Environment Config
 # ------------------------------------------------------------------------------
-set :application,       "GyverProject"
-set :domain,            "<Url of your remote server>"
-ssh_options[:port]      = "22"
-set :user,              "<User on your remote server>"
-set :deploy_to,         "<Path where your application is clonned>"
-set :app_path,          "app"
-role :web,              domain
-role :app,              domain, :primary => true
+set :stages,                %w(production staging)
+set :default_stage,         "staging"
+set :stage_dir,             "app/config/deploy"
+require                     'capistrano/ext/multistage'
 
 
 # ------------------------------------------------------------------------------
-# 2. Git Config
+# 2. Server Config
 # ------------------------------------------------------------------------------
-set :repository,        "https://github.com/TechGameCrew/GyverProject.git"
-set :deploy_via,        :rsync_with_remote_cache
-set :branch,            fetch(:branch, "master")
-set :scm,               :git
-set :keep_releases,     3
+set :application,           "GyverProject"
+set :app_path,              "app"
 
 
 # ------------------------------------------------------------------------------
-# 3. Symfony Config
+# 3. Git Config
 # ------------------------------------------------------------------------------
-set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,   [app_path + "/logs", "vendor", "node_modules"]
-set :writable_dirs,     ["app/cache", "app/logs"]
-set :model_manager,     "doctrine"
-
-set :use_composer,      true
-set :update_vendors,    false
-set :use_sudo,          false
-
+set :repository,            "https://github.com/TechGameCrew/GyverProject.git"
+set :deploy_via,            :rsync_with_remote_cache
+set :scm,                   :git
+set :branch,                "master"
+set :keep_releases,         3
 
 # ------------------------------------------------------------------------------
-# 3. Other Config
+# 4. Symfony Config
+# ------------------------------------------------------------------------------
+set :shared_files,          ["app/config/parameters.yml"]
+set :shared_children,       [app_path + "/cache", app_path + "/logs", "vendor", "node_modules"]
+set :writable_dirs,         [app_path + "/cache", app_path + "/logs"]
+
+set :model_manager,         "doctrine"
+
+set :use_composer,          true
+set :update_vendors,        false
+
+
+# ------------------------------------------------------------------------------
+# 5. Other Config
 # ------------------------------------------------------------------------------
 # Resolve error message sudo : no tty present and no askpass program specified
 default_run_options[:pty] = true
@@ -50,15 +52,10 @@ default_run_options[:pty] = true
 
 
 # ------------------------------------------------------------------------------
-# 4. Order Capifony to custom commands
+# 6. Capifony custom commands
 # ------------------------------------------------------------------------------
-# Override the branch to deploy via the command line:
-if exists?(:deploy_branch)
-  set :branch, deploy_branch unless deploy_branch.to_s.empty?
-end
-
 before "deploy:update_code" do
-  capifony_pretty_print "--> Deploying the '#{branch}' branch to the remote server"
+  capifony_pretty_print "--> Deploying the '#{branch}' branch to '#{stage}'"
   capifony_puts_ok
 end
 
@@ -69,7 +66,7 @@ after "deploy:update_code" do
 end
 
 after "deploy:update_code" do
-  capifony_pretty_print "--> Intall Bower dependencies"
+  capifony_pretty_print "--> Install Bower dependencies"
   run "cd #{latest_release} && npm run bower"
   capifony_puts_ok
 end
@@ -79,3 +76,5 @@ after "deploy:update_code" do
   run "cd #{latest_release} && npm run prod"
   capifony_puts_ok
 end
+
+after "deploy:update", "deploy:cleanup"

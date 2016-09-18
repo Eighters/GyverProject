@@ -1,0 +1,10 @@
+# ------------------------------------------------------------------------------
+# 1. Server Config
+# ------------------------------------------------------------------------------
+set :domain,            "<remote server ip>"
+ssh_options[:port]      = "<remote server ssh port>"
+set :user,              "<remote server user>"
+set :deploy_to,         "<path to deploy code on remote server>"
+set :use_sudo,          false
+
+server "#{domain}", :web, :app, :db, :primary => true
