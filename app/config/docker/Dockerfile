@@ -18,6 +18,14 @@ RUN apt-get update \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer
 
+# opcache
+RUN docker-php-ext-install opcache
+
+# APCu
+RUN pecl install apcu \
+	&& echo "extension=apcu.so\napc.enable_cli = 1" > /usr/local/etc/php/conf.d/ext-apcu.ini
+
+# NodeJs
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Add user devops & give sudo privilege
