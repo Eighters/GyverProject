@@ -25,8 +25,10 @@ var cssTask = function () {
         .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
         .pipe(gulpif(!global.production, sourcemaps.write()))
         .pipe(gulp.dest(paths.dest))
+
         .pipe(browserSync.stream())
 }
 
-gulp.task('css', cssTask)
+gulp.task('css', ['cleanCss'], cssTask)
 module.exports = cssTask
+

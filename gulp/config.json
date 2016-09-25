@@ -24,6 +24,18 @@
             "src": "./vendor/materialize/dist/fonts",
             "dest": "./web/assets/fonts",
             "extensions": [ "woff2", "woff", "eot", "ttf", "svg" ]
+        },
+        "revision": {
+            "src": [ "./web/assets/css/*.css", "./web/assets/js/**/*.js" ],
+            "base": "web",
+            "manifest": {
+                "name": "rev-manifest.json",
+                "path": "./web"
+            }
+        },
+        "clean": {
+            "css": "./web/assets/css/*",
+            "js": "./web/assets/js/*"
         }
     }
 }

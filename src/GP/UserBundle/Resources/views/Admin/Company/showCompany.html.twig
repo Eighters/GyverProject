@@ -198,5 +198,5 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/Admin/delete_company.js') }}"></script>
+    <script src="{{ asset('assets/js/Admin/delete_company.js'|asset_version) }}"></script>
 {% endblock %}

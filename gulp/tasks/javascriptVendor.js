@@ -3,7 +3,6 @@ if(!config.tasks.javascript) return
 
 var gulp        = require('gulp')
 var concat      = require('gulp-concat')
-var browserSync = require('browser-sync')
 
 var javascriptVendorTask = function () {
     return gulp.src(
@@ -14,8 +13,7 @@ var javascriptVendorTask = function () {
         ])
         .pipe(concat('main.js'))
         .pipe(gulp.dest(config.tasks.javascript.dest))
-        .pipe(browserSync.stream())
 }
 
-gulp.task('jsVendor', javascriptVendorTask)
+gulp.task('jsVendor', ['cleanJs'], javascriptVendorTask)
 module.exports = javascriptVendorTask

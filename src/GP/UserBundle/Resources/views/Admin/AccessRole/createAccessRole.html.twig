@@ -113,5 +113,5 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/Admin/add_access_role.js') }}"></script>
+    <script src="{{ asset('assets/js/Admin/add_access_role.js'|asset_version) }}"></script>
 {% endblock %}

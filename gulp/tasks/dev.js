@@ -3,7 +3,7 @@ var gulp         = require('gulp')
 var gulpSequence = require('gulp-sequence')
 
 var devTask = function(cb) {
-    gulpSequence('fonts', 'css', ['jsVendor', 'jsApp'], 'watch',  cb)
+    gulpSequence('fonts', 'css', 'jsApp', 'revision',  cb)
 }
 
 gulp.task('dev', devTask)

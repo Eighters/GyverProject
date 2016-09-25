@@ -79,5 +79,5 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/Admin/project_category.js') }}"></script>
+    <script src="{{ asset('assets/js/Admin/project_category.js'|asset_version) }}"></script>
 {% endblock %}

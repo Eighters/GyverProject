@@ -37,9 +37,17 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         public: false
 
-    # Twig extension
-    app.twig_extension:
-        class: GP\CoreBundle\Twig\GyverProjectExtension
+    # GyverProject Twig extension
+    app.twig_extension.gyver_project:
+        class: 'GP\CoreBundle\Twig\GyverProjectExtension'
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    # Assets revision Twig extension
+    app.twig_extension.asset_version:
+        class: 'GP\CoreBundle\Twig\AssetVersionExtension'
+        arguments: [ '%kernel.root_dir%' ]
         public: false
         tags:
             - { name: twig.extension }

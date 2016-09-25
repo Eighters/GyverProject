@@ -4,7 +4,7 @@ var gulpSequence = require('gulp-sequence')
 
 var productionTask = function(cb) {
     global.production = true
-    gulpSequence('fonts', 'css', ['jsVendor', 'jsApp'], cb)
+    gulpSequence('fonts', 'css', 'jsApp', 'revision', cb)
 }
 
 gulp.task('prod', productionTask)
