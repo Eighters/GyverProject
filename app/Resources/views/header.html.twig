@@ -47,7 +47,7 @@
                 {# Dashboard #}
                 <li {% if current_route == 'dashboard' %}class="active" {% endif %}>
                     <a href="{{ path('dashboard') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir le Tableau De Bord">
-                        <i class="material-icons left">dashboard</i>
+                        {#<i class="material-icons left">dashboard</i>#}
                         Tableau De Bord
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                 {# Projects #}
                 <li {% if current_route == 'show_all_projects' or current_route == 'show_project' %}class="active" {% endif %}>
                     <a href="{{ path('show_all_projects') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir les Projets">
-                        <i class="material-icons left">folder</i>
+                        {#<i class="material-icons left">folder</i>#}
                         Projets
                     </a>
                 </li>
@@ -63,7 +63,7 @@
                 {# Company #}
                 <li {% if current_route == 'show_all_companies' or current_route == 'show_company' %}class="active" {% endif %}>
                     <a href="{{ path('show_all_companies') }}" class="tooltipped" data-position="right" data-delay="20" data-tooltip="Voir les Entreprises">
-                        <i class="material-icons left">business</i>
+                        {#<i class="material-icons left">business</i>#}
                         Entreprises
                     </a>
                 </li>
