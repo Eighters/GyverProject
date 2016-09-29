@@ -1,0 +1,45 @@
+version: '2'
+
+## NOTES:
+# if you see ${SOME_VAR} in this file,
+# these values are taken from .env file
+
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        restart: "${RESTART_POLICIES}"
+        dns_search: "gyverproject.com"
+        ports:
+            - "${NGINX_PORT}:80"
+        links:
+            - "symfony:symfony"
+        volumes:
+            - ".:/home/docker:rw"
+            - "./app/config/docker/prod.conf:/etc/nginx/conf.d/default.conf:ro"
+
+    symfony:
+        build: ./app/config/docker/
+        container_name: symfony
+        restart: "${RESTART_POLICIES}"
+        links:
+            - "db:db"
+        volumes:
+            - ".:/home/docker:rw"
+            - "./app/config/docker/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro"
+        working_dir: "/home/docker"
+        user: "devops"
+
+    db:
+        image: mysql:5.7
+        container_name: db
+        restart: "${RESTART_POLICIES}"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+            - "MYSQL_USER=${MYSQL_USER}"
+            - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+            - "MYSQL_DATABASE=${MYSQL_DATABASE}"
+        ports:
+            - "${MYSQL_PORT}:3306"
+        volumes:
+          - "./.data/db:/var/lib/mysql"

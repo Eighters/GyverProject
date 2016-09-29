@@ -1,11 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
     # Database Config PROD
-    database_host: ~
-    database_port: ~
-    database_name: ~
-    database_user: ~
-    database_password: ~
+    database_host: db
+    database_port: 3306
+    database_name: gyver_project
+    database_user: root
+    database_password: institutg4
     
     # Database Config DEV
     dev_database_host:      db
