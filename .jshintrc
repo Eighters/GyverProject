@@ -1,4 +1,8 @@
 {
+  "globals": {
+    "$": false,
+    "swal": false
+  },
   "node": true,
   "browser": true,
   "esnext": true,
@@ -11,7 +15,7 @@
   "newcap": true,
   "noarg": true,
   "quotmark": "single",
-  "undef": false,
+  "undef": true,
   "strict": false,
   "trailing": true,
   "smarttabs": true,
