@@ -38,7 +38,7 @@ app/config/deploy/staging.rb
 /.idea
 
 # Docker
-docker-compose.yml
+.env
 .data/
 
 # Keep all .gitkeep files

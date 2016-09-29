@@ -18,33 +18,46 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 * [Install instructions](https://docs.docker.com/installation/) for all supported systems
 
+* Check that you can use docker commands without sudo !
+    
+To run docker command without sudo, you need to add your user (who has root privilages) to docker group & restart your sessions.
+      
+    $ sudo usermod -aG docker <user_name>
+
 ## Installation:
 
 * **Copying compose file :**   
 
-  Create copy of 'docker-compose.yml.example' and call it 'docker-compose.yml' or just simply run this command on unix system:
+  Create copy of `.env.example` and call it `.env` or just simply run this command on unix system:
   
-        $ cp docker-compose.yml.example docker-compose.yml
+        # Assume you are in project root
+        $ cp .env.example .env
+        
+  Modify it to you own needs !
 
 * **Create Images and Containers :**
 
     Run following command :
     
         $ docker-compose up -d
+        
+    You can go make a coffee !
 
 * **Connect to app container and start provisionning Script :**  
     
         $ docker-compose run symfony bash
         $ cd /
         $ ./entrypoint.sh
+        
+    Go make another coffee !
 
 **Your done !**
 
-You can now access to following services :
+You can now access to following services on your host machine:
 
-**[Application (localhost)](localhost:80)**  
-**[MailCatcher (localhost:1080)](localhost:1080)**  
-**[PhpMyAdmin (localhost:8080)](localhost:8080)**
+- **[Application](gyverproject.dev)**  
+- **[MailCatcher](localhost:1080)**  
+- **[PhpMyAdmin](localhost:8080)**
 
 * **When you reboot your computer :**  
 

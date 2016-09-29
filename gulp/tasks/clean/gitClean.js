@@ -14,6 +14,8 @@ var sources = [
     '!app/logs/.gitkeep',
     'app/bootstrap.php.cache',
     'app/phpunit.xml',
+    'app/config/deploy/production.rb',
+    'app/config/deploy/staging.rb',
     'vendor',
     'web/assets/css',
     'web/assets/fonts',
