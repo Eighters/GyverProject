@@ -4,6 +4,10 @@ version: '2'
 # if you see ${SOME_VAR} in this file,
 # these values are taken from .env file
 
+#########################
+#         PROD          #
+#########################
+
 services:
     nginx:
         image: nginx

@@ -1,8 +1,7 @@
 # GET STARTED WITH DOCKER :
 
-**Docker provisioning is Ready to work, follow this guide and RTFDM (read the fucking docker manual)**
-
 More Infos :
+
 [Docker Documentation](https://docs.docker.com/)
 
 **-----------------------------------------------------**
@@ -13,14 +12,16 @@ Install [Docker](https://www.docker.com/) on your system.
 
 - [Install instructions](https://docs.docker.com/installation/mac/) for Mac OS X
 - [Install instructions](https://docs.docker.com/installation/ubuntulinux/) for Ubuntu
-- [Install instructions](https://docs.docker.com/engine/installation/windows/) for Windows (prefer Docker for Windows than deprecated Docker Toolbox)
+- [Install instructions](https://docs.docker.com/engine/installation/windows/) for Windows (prefer "Docker For Windows" than deprecated "Docker Toolbox")
+
+Note that using "Docker Toolbox" on Windows OS can occur unexpected issues ... 
 
 Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 - [Install instructions](https://docs.docker.com/installation/) for all supported systems
 
 Check that you can use docker commands without sudo !
-- To run docker command without sudo, you need to add your user (who has root privilages) to docker group & restart your sessions.
+- To run docker command without sudo, you need to add your user (who has root privileges) to docker group & restart your sessions.
       
         $ sudo usermod -aG docker <user_name>
 
@@ -28,35 +29,27 @@ Check that you can use docker commands without sudo !
 
 ## Installation:
 
-* **Copying compose file :**   
+A Makefile is used to provide some useful shortcuts for manipulating docker & docker-compose commands
 
-  Create copy of `.env.example` and call it `.env` or just simply run this command on unix system:
+- **1- Copying compose file :**   
+
+  First, you need to create a copy of `.env.example` and call it `.env`
   
-        # Assume you are in project root
+        # Assume you are in project root, on Unix system
         $ cp .env.example .env
         
-  Modify it to you own needs !
+  This files contains sensible data that not be committed on GIT, you can modify it to you own needs !
 
-* **Create Images and Containers :**
+- **2- Make the :coffee: :**
 
     Run following command :
     
-        $ docker-compose up -d
+        $ make init
         
-    You can go make a coffee !
-
-* **Connect to app container and start provisionning Script :**  
-    
-        $ docker-compose run symfony bash
-        $ cd /
-        $ ./entrypoint.sh
+	This command will create & build Docker images, also start & configures required Containers, and run provisioning script.
+	A lot of stuff is downloaded from Internet, so it can take a lot of time, depending on your Internet speed. 
         
-    Go make another coffee !
-    
-    Note:  
-    This scripts need to be executed only the first time you install the project.
-
-**Your done !**
+- **3- Your done !**
 
 You can now access to following services on your host machine:
 
@@ -65,40 +58,33 @@ You can now access to following services on your host machine:
 - **[PhpMyAdmin](http://localhost:8080)**
 
 **When you reboot your computer :**  
-- Just simply run following command :
+- Just simply run following command to start your Containers (docker Images already created):
 
-        $ docker-compose up -d
+        $ make
 
 **-----------------------------------------------------**
         
-## Docker-compose commands
+## Makefile "tasks" :
 
-* **See what is currently running**
-    
-        $ docker-compose ps
-    
-* **Start Containers**
-    
-        $ docker-compose start
-    
-* **Stop Containers**
-    
-        $ docker-compose stop
-    
-* **Remove Containers**
-    
-        $ docker-compose rm
-    
-* **Get logs**
-    
-        $ docker-compose logs -f
+You can read Makefile located at project root, it contain some comments on what "recipes" do.
+Feel free to add more extra recipes depending on your needs.
 
-#### RUN command usage: 
-    
-    # Usage
-    $ docker-compose run service command
-        
-    # Example
-    $ docker-compose run symfony bash
-        
-**_Service are service name defined in the docker-compose file_**  
+Recipes List:
+
+| Recipes | Goal                                                               |
+|---------|--------------------------------------------------------------------|
+| start   | Start containers (Also builds images, if there not exists)         |
+| stop    | Stop containers (And also remove it)                               |
+| list    | List current running containers                                    |
+| init    | Execute "start" tasks and run provisioning scripts                 |
+| ssh     | Start new bash terminal inside the Symfony Container               |
+| logs    | Display current running containers logs (Press "Ctrl + c" to exit) |
+| prod    | Execute "make" cmd & give environment variable "env" = prod        |
+| clean   | Used to "reset" project for testing provisioning from scratch      |
+
+**-----------------------------------------------------**
+
+## More info's about using docker in production :
+
+I'm not enough experimented to use docker for production env now. More tests need be done.  
+You can however read the [MANUAL PROVISIONING](manual.md) to build manually the (pre)production server
