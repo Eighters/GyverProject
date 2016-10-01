@@ -4,36 +4,27 @@
 
 {% block body %}
 
-    <div class="vcenter">
-        <div class="container">
-            <div class="row center">
-                <div class="col offset-l3 l6 s12">
-                    <div class="card white">
+    <div class="container">
+        <div class="row center">
+            <div class="col offset-l3 l6 s12">
+                <div class="card white vcenter">
+                    <div class="card-content z-depth-2 login-form">
+                        <div class="row">
+                            <div class="col s12 application-icon">
+                                <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
+                            </div>
 
-                        <div class="card-content z-depth-2">
-                            <div class="row">
-                                <div class="col s12 application-icon">
-                                    <img src="{{ asset('assets/images/logoLogin.png') }}" alt="" class="gyver-logo responsive-img valign">
-                                </div>
+                            <div class="col s10 push-s1 green accent-4 valign-wrapper" style="margin-bottom: 20px;">
+                                <i class="material-icons left valign">report_problem</i>
+                                <p class="left-align">
+                                    Nous vous avons envoyé un email avec un lien pour réinitialiser votre mot de passe, Vérifiez vos email
+                                </p>
+                            </div>
 
-                                <div class="col s10 push-s1 green accent-4 valign-wrapper" style="margin-bottom: 20px;">
-                                    <i class="material-icons left valign">report_problem</i>
-                                    <div>
-                                        <p class="left-align">
-                                            Nous vous avons envoyé un email avec un lien pour réinitialiser votre mot de passe, Vérifiez vos email
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="col s12">
-                                    <a class="btn waves-effect waves-light  cyan darken-2" href="{{ path('login') }}">
-                                        Retour
-                                    </a>
-                                </div>
-
+                            <div class="col s12">
+                                <a class="btn waves-effect waves-light  cyan darken-2" href="{{ path('login') }}">Retour</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
