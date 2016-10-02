@@ -1,14 +1,15 @@
 var config = require('../config')
-if(!config.tasks.revision) return
-
-var gulp    = require('gulp')
-var rev     = require('gulp-rev')
+var gulp = require('gulp')
 
 /**
- * Revision all asset files and
- * write a manifest file
+ * Used to implements "Cache Busting" system
+ *
+ * Revision all asset files & write a rev-manifest file
+ * See https://knpuniversity.com/screencast/gulp/version-cache-busting
  */
 var revisionTask = function () {
+    var rev = require('gulp-rev')
+
     return gulp.src(config.tasks.revision.src, { base: config.tasks.revision.base })
         .pipe(gulp.dest(config.tasks.revision.base))
         .pipe(rev())

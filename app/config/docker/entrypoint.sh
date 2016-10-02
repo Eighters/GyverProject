@@ -21,7 +21,7 @@ BOLD=""
 NORMAL=""
 fi
 
-echo "Install Composer Dependency"
+echo "Install Composer Dependencies"
 /bin/bash -l -c "cd /home/docker && composer install --no-interaction --prefer-dist --optimize-autoloader"
 
 echo ''
@@ -30,6 +30,13 @@ echo ''
 
 echo "Install NodeJs packages"
 /bin/bash -l -c "cd /home/docker && npm install"
+
+echo ''
+echo '---------------------------------------'
+echo ''
+
+echo "Download Bower dependencies"
+/bin/bash -l -c "cd /home/docker && npm run bower install"
 
 echo ''
 echo '---------------------------------------'

@@ -1,0 +1,11 @@
+{
+  "assets/css/gyver_main.css": "assets/css/gyver_main-9ff69b052f.css",
+  "assets/js/Admin/add_access_role.js": "assets/js/Admin/add_access_role-81de2d02b3.js",
+  "assets/js/Admin/delete_access_role.js": "assets/js/Admin/delete_access_role-79626b4583.js",
+  "assets/js/Admin/delete_company.js": "assets/js/Admin/delete_company-628b8b2429.js",
+  "assets/js/Admin/delete_project.js": "assets/js/Admin/delete_project-2d61542c2b.js",
+  "assets/js/Admin/delete_user.js": "assets/js/Admin/delete_user-319676efcc.js",
+  "assets/js/Admin/project_category.js": "assets/js/Admin/project_category-548faccacd.js",
+  "assets/js/gyver_main.js": "assets/js/gyver_main-bb8b2cc8e1.js",
+  "assets/js/main.js": "assets/js/main-c372d8ff9f.js"
+}

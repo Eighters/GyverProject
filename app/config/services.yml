@@ -47,7 +47,7 @@ services:
     # Assets revision Twig extension
     app.twig_extension.asset_version:
         class: 'GP\CoreBundle\Twig\AssetVersionExtension'
-        arguments: [ '%kernel.root_dir%' ]
+        arguments: [ '%kernel.root_dir%/../web/rev-manifest.json', "%kernel.environment%" ]
         public: false
         tags:
             - { name: twig.extension }

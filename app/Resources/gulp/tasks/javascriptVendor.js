@@ -1,10 +1,15 @@
 var config = require('../config')
-if(!config.tasks.javascript) return
+var gulp = require('gulp')
 
-var gulp        = require('gulp')
-var concat      = require('gulp-concat')
-
+/**
+ * Get JavaScripts libs used in project & merge it into a single file
+ * We don't need to minify js, they already is (use *.min.js)
+ *
+ * Note that cleanJs recipes is executed before this recipes
+ */
 var javascriptVendorTask = function () {
+    var concat = require('gulp-concat')
+
     return gulp.src(
         [
             config.tasks.javascript.bowerDir + '/jquery/dist/jquery.min.js',

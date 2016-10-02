@@ -52,6 +52,13 @@ prod:
 	make -e env=prod
 
 #####
-# Used to "reset" project for testing provisioning from scratch
-clean:
+# Delete compiled Css & JavaScripts files from "Web/assets" folders
+clean-assets:
+	npm run gulp cleanCss cleanJs
+	rm web/rev-manifest.json
+
+#####
+# Used to "reset" project for testing provisioning from scratch (Remove files ignored by GIT)
+raz:
 	npm run gulp gitClean
+

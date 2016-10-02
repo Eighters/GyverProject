@@ -10,12 +10,11 @@
     "url": "git@github.com:TechGameCrew/GyverProject.git"
   },
   "scripts": {
-    "start": "bower install && gulp",
     "gulp": "gulp",
-    "dev": "gulp dev",
-    "prod": "gulp prod",
-    "docker": "bower install && gulp",
-    "bower": "bower install"
+    "bower": "bower",
+    "build": "gulp build",
+    "dev": "gulp watch",
+    "prod": "gulp dist --env prod"
   },
   "dependencies": {
     "bower": "^1.7.9",
@@ -35,10 +34,10 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
-    "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1",
     "normalize.css": "^4.2.0",
     "require-dir": "^0.3.0",
-    "vinyl-paths": "^2.1.0"
+    "vinyl-paths": "^2.1.0",
+    "yargs": "^5.0.0"
   }
 }
