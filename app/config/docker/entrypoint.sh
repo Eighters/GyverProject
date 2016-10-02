@@ -36,14 +36,14 @@ echo '---------------------------------------'
 echo ''
 
 echo "Download Bower dependencies"
-/bin/bash -l -c "cd /home/docker && npm run bower install"
+/bin/bash -l -c "cd /home/docker && npm -s run bower install -- -s"
 
 echo ''
 echo '---------------------------------------'
 echo ''
 
 echo "Compile Assets"
-/bin/bash -l -c "cd /home/docker && npm run docker"
+/bin/bash -l -c "cd /home/docker && npm run build"
 
 echo ''
 echo '---------------------------------------'

@@ -67,7 +67,7 @@ end
 
 after "deploy:update_code" do
   capifony_pretty_print "--> Install Bower dependencies"
-  run "cd #{latest_release} && npm run bower install"
+  run "cd #{latest_release} && npm -s run bower install -- -s"
   capifony_puts_ok
 end
 
