@@ -10,31 +10,33 @@ The deployment of the application is done with capifony: http://capifony.org
 - Dependencies (Nginx, Mysql, Php etc ...) must be installed and configured on the remote server.
 
 
-### Install Ruby dependencies with bundler:
+### Install Ruby dependencies with bundler :
 
     $ gem install bundler
     $ bundle install
 
 You can check that capifony is correctly installed by running the following
-command in the project directory:
+command in the project directory :
 
     $ cap -T
 
-### In `app/config`, copy the `deploy.rb.example` to `deploy.rb`
+### In `app/config/deploy`, copy the
+- `production.rb.example` to `production.rb`
+- `staging.rb.example` to `staging.rb`
 
 ### Set the values required.
 
 After settings correctly the server user, address etc... You need to init the remote server directory structure required by Capifony  
-Run this command on your local machine
+Run this command on your local machine :
 
     $ cap deploy:setup
      
 Capifony will try to ssh to the remote server, and create required directories
 
-### Setup Nginx config:  
+### Setup Nginx config :  
 
 The remote server need a specific Nginx config, 
-replace content of `/etc/nginx/sites-available/default` by:
+replace content of `/etc/nginx/sites-available/default` by :
 
     server {
         listen 80;
@@ -72,19 +74,28 @@ Don't forget to restart Nginx service to apply change !
 
 ### -----------------------
 
-
 ## Deployment
 
-- To deploy code, simply run
+- To deploy code, simply run :
 
         $ cap deploy
     
-    This will deploy default "master" branch on remote machine.
+    This will deploy default "master" branch on production server.
 
-- To deploy custom branch, run
+- To deploy custom branch (ONLY FOR STAGING), run :
 
-        $ cap -S deploy_branch=MyBranch deploy
+        $ cap staging -S deploy_branch=MyBranch deploy
         
-    Where `MyBranch` is the branch you want to deploy on remote machine
-    
+    Where `MyBranch` is the branch you want to deploy on staging server, this will override default master branch.
+
 Your done with Capifony, enjoy efficient application deployment workflow !
+
+### -----------------------
+
+## Debug Errors
+
+If you have unexpected errors when you deploy your code, you can tell Capifony to be more verbose than usually.
+Simply uncomment the following line in `app/config/deploy.rb` :
+	
+	$ Uncomment this line
+	$ # logger.level = Logger::MAX_LEVEL

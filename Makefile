@@ -59,6 +59,5 @@ clean-assets:
 
 #####
 # Used to "reset" project for testing provisioning from scratch (Remove files ignored by GIT)
-raz:
+raz: stop
 	npm run gulp gitClean
-

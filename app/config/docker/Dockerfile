@@ -1,5 +1,7 @@
 FROM php:7.1-fpm
 
+ARG DOCKER_USER
+
 RUN apt-get update \
     && apt-get install -y \
         libicu-dev \
@@ -35,13 +37,13 @@ RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
 
-# Add user devops & give sudo privilege
-RUN adduser --disabled-password --gecos '' devops
-RUN adduser devops sudo
+# Add user DOCKER_USER defined in .env & give sudo privilege
+RUN adduser --disabled-password --gecos '' ${DOCKER_USER}
+RUN adduser ${DOCKER_USER} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Override default bash config
-ADD .bashrc /home/devops/.bashrc
+ADD .bashrc /home/${DOCKER_USER}/.bashrc
 
 # Add Provisionning Scripts
 ADD entrypoint.sh /entrypoint.sh
