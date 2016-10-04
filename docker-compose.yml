@@ -37,7 +37,7 @@ services:
             - ".:/home/docker:rw"
             - "./app/config/docker/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro"
         working_dir: "/home/docker"
-        user: "${DOCKER_USER}"
+        user: "DOCKER_USER=${DOCKER_USER}"
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
