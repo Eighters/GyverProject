@@ -5,12 +5,12 @@ Written with Symfony, it provides powerful and stable tools for all your project
 We made it simple and user friendly : no useless tools, just what you need to manage your projects.
 
 * Team :
- * Product Owner: [Brandon-Beurion](https://github.com/Brandon-Beurion)
- * Scrum Master: [RobinBilly](https://github.com/RobinBilly)
- * Technical Manager: [Thibaut-gauvin](https://github.com/Thibaut-gauvin)
- * Quality Manager: [TazKilla](https://github.com/TazKilla)
- * Risk Manager: [aliciabelk](https://github.com/aliciabelk)
- * Developers: [Krocodeal](https://github.com/Krocodeal), [ktayeb94](https://github.com/ktayeb94), [lewiz88](https://github.com/lewiz88), [Rlsnk](https://github.com/Rlsnk), [Rowmain](https://github.com/Rowmain)
+ * Product Owner: [dominiquedaville](https://github.com/dominiquedaville)
+ * Scrum Master: [ruru-sensei](https://github.com/ruru-sensei)
+ * Technical Manager: [RechadS](https://github.com/RechadS)
+ * Quality Manager: [JallalS](https://github.com/JallalS)
+ * Risk Manager: [RechadS](https://github.com/RechadS)
+ * Developers: [yanivk](https://github.com/yanivk), [Shadoowkira](https://github.com/Shadoowkira), [JallalS](https://github.com/JallalS)
 
 ## Contribute
 
@@ -21,7 +21,7 @@ This project is currently a school project and closed to external contributors. 
 Quality is fundamental for us. We constantly use tools to check the quality of the project. All results are freely available and searchable below.
 
 [![Build Status](https://travis-ci.org/TechGameCrew/GyverProject.svg)](https://travis-ci.org/TechGameCrew/GyverProject)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25/mini.png)](https://insight.sensiolabs.com/projects/b7ec2306-4268-4661-b2d3-64e667800a25)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/3ea9af65-9fcb-40c1-94b8-c90ed9b26220/mini.png)](https://insight.sensiolabs.com/projects/3ea9af65-9fcb-40c1-94b8-c90ed9b26220)
 
 ## Documentation
 
