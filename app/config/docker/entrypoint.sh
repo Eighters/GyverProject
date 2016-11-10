@@ -35,8 +35,15 @@ echo ''
 echo '---------------------------------------'
 echo ''
 
+echo "Install Bower Globally"
+/bin/bash -l -c "cd /home/docker && sudo npm install -g bower"
+
+echo ''
+echo '---------------------------------------'
+echo ''
+
 echo "Download Bower dependencies"
-/bin/bash -l -c "cd /home/docker && npm -s run bower install -- -s"
+/bin/bash -l -c "cd /home/docker && bower install"
 
 echo ''
 echo '---------------------------------------'
