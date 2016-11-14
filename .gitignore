@@ -43,3 +43,6 @@ app/config/deploy/staging.rb
 
 # Keep all .gitkeep files
 !.gitkeep
+ 
+# PhpMetrics analysis report
+report.html
