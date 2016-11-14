@@ -7,28 +7,24 @@ RUN apt-get update \
         libicu-dev \
         zlib1g-dev \
         git \
-        nodejs \
-        npm \
-        sudo \
-    && docker-php-ext-install \
-        zip \
-        intl \
-        json \
-        mbstring \
-        mysqli \
-        pdo_mysql \
-    && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
-    && chmod +x /usr/local/bin/composer
-
-# opcache
-RUN docker-php-ext-install opcache
-
-# APCu
-RUN pecl install apcu \
-	&& echo "extension=apcu.so\napc.enable_cli = 1" > /usr/local/etc/php/conf.d/ext-apcu.ini
-
-# NodeJs
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+         nodejs \
+         npm \
+         sudo \
++        wget \
+     && docker-php-ext-install \
+         zip \
+         intl \
+@@ -20,6 +21,11 @@ RUN apt-get update \
+     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
+     && chmod +x /usr/local/bin/composer
+ 
+# Install PhpMetrics
+RUN wget -O /phpmetrics.phar http://github.com/phpmetrics/PhpMetrics/raw/master/build/phpmetrics.phar
+RUN chmod +x /phpmetrics.phar
+RUN mv /phpmetrics.phar /usr/local/bin/phpmetrics
+ 
+ # opcache
+ RUN docker-php-ext-install opcache
 
 # BlackFire Probe
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \

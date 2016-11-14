@@ -67,24 +67,32 @@ You can now access to following services on your host machine:
 ## Makefile "tasks" :
 
 You can read Makefile located at project root, it contain some comments on what "recipes" do.
-Feel free to add more extra recipes depending on your needs.
+ Feel free to add more extra recipes depending on your needs.
+ 
+# List available make commands:
+$ make help
 
-Recipes List:
-
-| Recipes | Goal                                                               |
-|---------|--------------------------------------------------------------------|
-| start   | Start containers (Also builds images, if there not exists)         |
-| stop    | Stop containers (And also remove it)                               |
-| list    | List current running containers                                    |
-| init    | Execute "start" tasks and run provisioning scripts                 |
-| ssh     | Start new bash terminal inside the Symfony Container               |
-| logs    | Display current running containers logs (Press "Ctrl + c" to exit) |
-| prod    | Execute "make" cmd & give environment variable "env" = prod        |
-| clean   | Used to "reset" project for testing provisioning from scratch      |
-
+ Recipes List:
+ 
+| Recipes         | Utility                                                            |
+|-----------------|--------------------------------------------------------------------|
+| start           | Start containers (Also builds images, if there not exists)         |
+| stop            | Stop containers (And also remove it)                               |
+| list            | List current running containers                                    |
+| init            | Execute "start" tasks and run provisioning scripts                 |
+| ssh             | Start new bash terminal inside the Symfony Container               |
+| metrics         | Run the PhpMetrics analysis (output report.html)				   |
+| tests           | Execute the entire Unitary & Functional PhpUnit tests suit         |
+| logs            | Display current running containers logs (Press "Ctrl + c" to exit) |
+| prod            | Execute "make" cmd & give environment variable "env" = prod        |
+| clean-assets 	  | Delete compiled Css & JavaScripts files from "Web/assets" folders  |
+| clean-container | Remove stopped useless containers                                  |
+| raz             | Used to "reset" project for testing provisioning from scratch      |
+| help            | Display available make commands                                    |
+ 
 **-----------------------------------------------------**
-
+ 
 ## More info's about using docker in production :
-
-I'm not enough experimented to use docker for production env now. More tests need be done.  
-You can however read the [MANUAL PROVISIONING](manual.md) to build manually the (pre)production server
+ 
+ I'm not enough experimented to use docker for production env now. More tests need be done.  
+ You can however read the [MANUAL PROVISIONING](manual.md) to build manually the (pre)production server.
