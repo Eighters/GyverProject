@@ -48,6 +48,19 @@
                             <i class="material-icons">short_text</i> Nom du projet : {{ project.name }}
                         </li>
                         <li class="collection-item">
+                            <i class="material-icons">short_text</i> Type de projet : 
+                            {% if project.projectCategory|length > 0 %}
+                            {% for category in project.projectCategory %}
+                                {{ category.name }}
+                                    
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>Aucun Type.</td>
+                            </tr>
+                        {% endif %}
+                        </li>
+                        <li class="collection-item">
                             <i class="material-icons">av_timer</i> Statut du projet : {{ format_project_status(project.status) }}
                         </li>
                         <li class="collection-item">
@@ -61,9 +74,24 @@
                         </li>
                         <li class="collection-item">
                             <i class="material-icons">description</i>
+                            Besoin :
+                            <br/><br/>
+                            {{ project.besoin }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">short_text</i> Origine du projet : {{ project.origine }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">description</i>
                             Description :
                             <br/><br/>
                             {{ project.description }}
+                        </li>
+                        <li class="collection-item">
+                            <i class="material-icons">description</i>
+                            Bénéfices :
+                            <br/><br/>
+                            {{ project.benefices }}
                         </li>
                     </ul>
                 </div>
