@@ -106,4 +106,3 @@ help:
 	@echo '| clean-container | Remove stopped useless containers                                  |'
 	@echo '| raz             | Used to "reset" project for testing provisioning from scratch      |'
 	@echo '+-----------------+--------------------------------------------------------------------+'
-        @echo ''
