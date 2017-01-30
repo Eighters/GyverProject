@@ -41,14 +41,14 @@ ssh:
 	$(DOCKER_COMPOSE) run symfony bash
 
 #####
-# Start prod environnement and connect with ssh to the Symfony Container
-sshp:
-	make ssh -e env=prod
-  
-#####
 # Run the PhpMetrics analysis and output "report.html"
 metrics:
 	$(DOCKER_COMPOSE) run symfony phpmetrics --report-html=report.html /home/docker/src
+
+#####
+# Run the PhpMetrics analysis and output "report.html"
+documentation:
+	$(DOCKER_COMPOSE) run symfony phpDocumentor -d src/ -t doc/
 
 #####
 # Run the entire Unitary & Functional PhpUnit tests
@@ -97,8 +97,8 @@ help:
 	@echo '| list            | List current running containers                                    |'
 	@echo '| init            | Execute "start" tasks and run provisioning scripts                 |'
 	@echo '| ssh             | Start new bash terminal inside the Symfony Container               |'
-	@echo '| sshp            | Start prod env and connect with ssh to the Symfony Container       |'
 	@echo '| metrics         | Run the PhpMetrics analysis (output report.html)                   |'
+	@echo '| documentation   | Run the PhpDocumentor & generate documentation at doc/index.html   |'
 	@echo '| tests           | Execute the entire Unitary & Functional PhpUnit tests suit         |'
 	@echo '| logs            | Display current running containers logs (Press "Ctrl + c" to exit) |'
 	@echo '| prod            | Execute "make" cmd & give environment variable "env" = prod        |'
@@ -106,4 +106,4 @@ help:
 	@echo '| clean-container | Remove stopped useless containers                                  |'
 	@echo '| raz             | Used to "reset" project for testing provisioning from scratch      |'
 	@echo '+-----------------+--------------------------------------------------------------------+'
-	@echo ''
+        @echo ''
