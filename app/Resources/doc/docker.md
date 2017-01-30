@@ -24,6 +24,12 @@ Check that you can use docker commands without sudo !
 - To run docker command without sudo, you need to add your user (who has root privileges) to docker group & restart your sessions.
       
         $ sudo usermod -aG docker <user_name>
+	
+Install NodejS	
+	
+	$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+	
+	$ sudo apt-get install -y nodejs
 
 **-----------------------------------------------------**
 
