@@ -7,24 +7,40 @@ RUN apt-get update \
         libicu-dev \
         zlib1g-dev \
         git \
-         nodejs \
-         npm \
-         sudo \
-+        wget \
-     && docker-php-ext-install \
-         zip \
-         intl \
-@@ -20,6 +21,11 @@ RUN apt-get update \
-     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
-     && chmod +x /usr/local/bin/composer
- 
+        nodejs \
+        npm \
+        sudo \
+        wget \
+        graphviz \
+    && docker-php-ext-install \
+        zip \
+        intl \
+        json \
+        mbstring \
+        mysqli \
+        pdo_mysql \
+    && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
+    && chmod +x /usr/local/bin/composer
+
 # Install PhpMetrics
 RUN wget -O /phpmetrics.phar http://github.com/phpmetrics/PhpMetrics/raw/master/build/phpmetrics.phar
 RUN chmod +x /phpmetrics.phar
 RUN mv /phpmetrics.phar /usr/local/bin/phpmetrics
- 
- # opcache
- RUN docker-php-ext-install opcache
+
+# Install PhpDocumentor
+RUN wget -O /phpDocumentor.phar https://github.com/phpDocumentor/phpDocumentor2/releases/download/v2.9.0/phpDocumentor.phar
+RUN chmod +x /phpDocumentor.phar
+RUN mv /phpDocumentor.phar /usr/local/bin/phpDocumentor
+
+# opcache
+RUN docker-php-ext-install opcache
+
+# APCu
+RUN pecl install apcu \
+	&& echo "extension=apcu.so\napc.enable_cli = 1" > /usr/local/etc/php/conf.d/ext-apcu.ini
+
+# NodeJs
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # BlackFire Probe
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
@@ -38,9 +54,9 @@ RUN adduser --disabled-password --gecos '' ${DOCKER_USER}
 RUN adduser ${DOCKER_USER} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# Override default bash config
+# Override default bash config
 ADD .bashrc /home/${DOCKER_USER}/.bashrc
 
-# Add Provisionning Scripts
+# Add Provisionning Scripts
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

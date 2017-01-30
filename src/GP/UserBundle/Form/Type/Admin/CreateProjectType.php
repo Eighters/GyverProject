@@ -26,7 +26,10 @@ class CreateProjectType extends AbstractType
     {
         $builder
             ->add('name', 'text')
+            ->add('origine', 'text')
+            ->add('besoin', 'textarea')
             ->add('description', 'textarea')
+            ->add('benefices', 'textarea')
             ->add('beginDate', 'date', array(
                 'widget' => 'single_text'
             ))
@@ -48,7 +51,7 @@ class CreateProjectType extends AbstractType
             ->add('projectCategory', EntityType::class, array(
                 'class' => 'GP\CoreBundle\Entity\ProjectCategory',
                 'choices_as_values' => true,
-                'empty_value' => 'Selectionner une catégorie',
+                'empty_value' => 'Selectionner un type de projet',
                 'required' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('pc')

@@ -52,6 +52,36 @@ class Project
     /**
      * @var string
      *
+     * @ORM\Column(name="besoin", type="text")
+     *
+     * @Assert\NotBlank(message="Vous devez spécifiez le besoin")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 2000,
+     *      minMessage = "Le besoin du projet doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Le besoin du projet ne peut excéder {{ limit }} caractères"
+     * )
+     */
+    private $besoin;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origine", type="string")
+     *
+     * @Assert\NotBlank(message="Vous devez spécifiez l'origine de projet")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "L'origine du projet doit faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "L'origine du projet ne peut excéder {{ limit }} caractères"
+     * )
+     */
+    private $origine;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      *
      * @Assert\NotBlank(message="Vous devez spécifiez une description")
@@ -63,6 +93,21 @@ class Project
      * )
      */
     private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="benefices", type="text")
+     *
+     * @Assert\NotBlank(message="Vous devez spécifiez les bénéfices")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 2000,
+     *      minMessage = "Les bénéfices du projet doivent faire un minimum de {{ limit }} caractères",
+     *      maxMessage = "Les bénéfices du projet ne peut excéder {{ limit }} caractères"
+     * )
+     */
+    private $benefices;
 
     /**
      * The companies associated to the project
@@ -169,6 +214,38 @@ class Project
     /**
      * @return string
      */
+    public function getBesoin()
+    {
+        return $this->besoin;
+    }
+
+    /**
+     * @param string $besoin
+     */
+    public function setBesoin($besoin)
+    {
+        $this->besoin = $besoin;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getOrigine()
+    {
+        return $this->origine;
+    }
+
+    /**
+     * @param string $origine
+     */
+    public function setOrigine($origine)
+    {
+        $this->origine = $origine;
+    }
+    
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -180,6 +257,22 @@ class Project
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getBenefices()
+    {
+        return $this->benefices;
+    }
+
+    /**
+     * @param string $benefices
+     */
+    public function setBenefices($benefices)
+    {
+        $this->benefices = $benefices;
     }
 
     /**

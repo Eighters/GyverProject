@@ -30,6 +30,39 @@
 
                         <div class="row">
                             <div class="input-field col s12">
+                                {{ form_widget(form.besoin, {
+                                    attr: {
+                                        class: 'materialize-textarea',
+                                        length: '2000'
+                                    }
+                                }) }}
+                                {{ form_label(form.besoin, 'Besoin du projet :') }}
+
+                                {% if not form.besoin.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.besoin) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.origine, {
+                                    attr: { length: '255' }
+                                }) }}
+                                {{ form_label(form.origine, 'Origine du projet :') }}
+
+                                {% if not form.origine.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.origine) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="input-field col s12">
                                 {{ form_widget(form.description, {
                                     attr: {
                                         class: 'materialize-textarea',
@@ -41,6 +74,24 @@
                                 {% if not form.description.vars.valid %}
                                     <div class="red-text">
                                         {{ form_errors(form.description) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form_widget(form.benefices, {
+                                    attr: {
+                                        class: 'materialize-textarea',
+                                        length: '2000'
+                                    }
+                                }) }}
+                                {{ form_label(form.benefices, 'Bénéfices du projet :') }}
+
+                                {% if not form.benefices.vars.valid %}
+                                    <div class="red-text">
+                                        {{ form_errors(form.benefices) }}
                                     </div>
                                 {% endif %}
                             </div>
@@ -95,7 +146,7 @@
                         </div>
 
                         <div class="row">
-                            {{ form_label(form.projectCategory, 'Catégorie du projet :') }} <br>
+                            {{ form_label(form.projectCategory, 'Type de projet :') }} <br>
 
                             <div class="input-roles-choices input-field">
                                 {{ form_widget(form.projectCategory) }}
