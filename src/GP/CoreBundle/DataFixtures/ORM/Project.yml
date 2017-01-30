@@ -6,6 +6,9 @@ GP\CoreBundle\Entity\Project:
         creationDate: <dateTime("2015-01-01 12:00:00")>
         beginDate: <dateTime("2015-01-01 23:59:59")>
         plannedEndDate: <dateTime("2025-01-01 23:59:59")>
+        besoin: Un besoin
+        origine: une origine
+        benefices: money money
 
     testproject (extends project):
         name: test new project
